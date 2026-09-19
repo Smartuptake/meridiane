@@ -60,6 +60,13 @@ drei Ansichten. Die Engine rechnet daraus Spline und Bogenlängen selbst aus.
    einsetzen – Kopf und Textfelder nach dem Vorbild von `data/lu.js` ausfüllen.
 6. In `data/katalog.js` beim betreffenden Meridian `fertig: true` setzen.
 
+## Offene Punkte
+
+Die **Seitenansicht** taugt noch nicht für die Gallenblase: der Arm hängt gerade herunter
+und verdeckt die seitliche Rumpfwand um die Taille – genau dort, wo Gb 24 bis Gb 30 liegen.
+Vor der Gallenblase muss `img/side.png` neu erzeugt werden, mit angehobenem oder nach
+hinten geführtem Arm. Für Dü, Bl und 3E reicht die Rückansicht wie sie ist.
+
 ## Zu den Punktzahlen
 
 Die zwölf Hauptmeridiane tragen zusammen **309** Punkte (WHO-Standardnomenklatur):
