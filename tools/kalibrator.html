@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kalibrator – Meridianpunkte setzen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Spectral:wght@400;600&display=swap">
+<link rel="stylesheet" href="../css/app.css">
+<style>
+  .wrap{max-width:1500px}
+  .kal{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:24px;align-items:start}
+  @media (max-width:1100px){.kal{grid-template-columns:1fr}}
+  .canvas-box{border:1px solid var(--rule-soft);background:#0c181d;border-radius:3px;
+    overflow:auto;max-height:82vh}
+  .canvas-box svg{display:block;cursor:crosshair}
+  .side{display:flex;flex-direction:column;gap:16px}
+  .box{border:1px solid var(--rule-soft);background:#101f25;border-radius:3px;padding:14px 15px}
+  .box h3{font-family:"Spectral",Georgia,serif;font-size:15px;font-weight:600;margin:0 0 10px}
+  .row{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-bottom:8px}
+  label{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--text-3)}
+  input,select,textarea{font:inherit;font-size:13px;color:var(--text);background:#15262d;
+    border:1px solid var(--rule);border-radius:2px;padding:6px 9px}
+  input[type=number]{width:78px}
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--gold);outline-offset:1px}
+  textarea{width:100%;min-height:210px;font-family:"IBM Plex Mono",monospace;font-size:11.5px;
+    line-height:1.5;resize:vertical}
+  .mode{display:flex;flex-wrap:wrap;gap:0;border:1px solid var(--rule);border-radius:2px;overflow:hidden}
+  .mode button{border:0;border-radius:0;padding:7px 10px;font-size:12px}
+  .mode button+button{border-left:1px solid var(--rule)}
+  ul.items{list-style:none;margin:0;padding:0;max-height:210px;overflow:auto;
+    border:1px solid var(--rule-soft);border-radius:2px}
+  ul.items li{display:grid;grid-template-columns:28px 1fr auto auto;gap:7px;align-items:center;
+    padding:4px 7px;border-bottom:1px solid var(--rule-soft);
+    font-family:"IBM Plex Mono",monospace;font-size:11.5px}
+  ul.items li:last-child{border-bottom:0}
+  ul.items li.off{background:#2a1a1a}
+  ul.items .i{color:var(--text-3)}
+  ul.items button{padding:2px 6px;font-size:10.5px;border-radius:2px}
+  .warn{color:#e39a7a;font-size:12px;margin:6px 0 0}
+  .ok{color:var(--jade)}
+  .status{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--text-2);
+    border-top:1px solid var(--rule-soft);margin-top:10px;padding-top:9px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <p class="eyebrow"><a href="../index.html">← Übersicht</a> · Werkzeug</p>
+  <h1>Kalibrator</h1>
+  <p class="lede">Punktlagen auf die Figur setzen: Landmarken wählen, Cun-Lineal spannen, Punkte
+  klicken. Der Kalibrator prüft gegen die Silhouette, ob ein Punkt überhaupt auf dem Körper liegt,
+  und gibt am Ende den fertigen Datensatz aus.</p>
+</header>
+
+<div class="kal">
+  <div class="canvas-box" id="cbox">
+    <svg id="plate" width="880" height="1168" viewBox="0 0 880 1168" xmlns="http://www.w3.org/2000/svg">
+      <image id="fig" href="../img/front.png" x="0" y="0" width="880" height="1168"/>
+      <g id="gRuler"></g>
+      <g id="gPath"></g>
+      <g id="gAnchors"></g>
+      <g id="gPoints"></g>
+      <g id="gLandmarks"></g>
+      <g id="gCursor"><line id="cx" stroke="#cfa856" stroke-width=".7" opacity=".7"/>
+        <line id="cy" stroke="#cfa856" stroke-width=".7" opacity=".7"/></g>
+    </svg>
+  </div>
+
+  <div class="side">
+    <div class="box">
+      <h3>Figur &amp; Darstellung</h3>
+      <div class="row">
+        <label for="view">Ansicht</label>
+        <select id="view">
+          <option value="front">Vorderansicht</option>
+          <option value="back">Rückansicht</option>
+          <option value="side">Seitenansicht</option>
+        </select>
+        <label for="zoom">Zoom</label>
+        <select id="zoom">
+          <option value="1">100 %</option>
+          <option value="1.5" selected>150 %</option>
+          <option value="2">200 %</option>
+          <option value="3">300 %</option>
+        </select>
+      </div>
+      <div class="row">
+        <label for="load">Laden</label>
+        <select id="load"><option value="">– leer beginnen –</option></select>
+        <button id="btnLoad" type="button">Übernehmen</button>
+      </div>
+      <p class="status" id="alphaStatus">Silhouettenprüfung: wird geladen …</p>
+    </div>
+
+    <div class="box">
+      <h3>Klickmodus</h3>
+      <div class="mode" id="modeBar">
+        <button data-mode="anchor" type="button" aria-pressed="true">Stützpunkt</button>
+        <button data-mode="point"  type="button" aria-pressed="false">Punkt</button>
+        <button data-mode="lmA"    type="button" aria-pressed="false">Landmarke A</button>
+        <button data-mode="lmB"    type="button" aria-pressed="false">Landmarke B</button>
+      </div>
+      <p class="status" id="coords">x – , y –</p>
+    </div>
+
+    <div class="box">
+      <h3>Cun-Lineal</h3>
+      <div class="row">
+        <label for="cunN">A→B entspricht</label>
+        <input type="number" id="cunN" value="12" min="1" max="30" step="0.5"> <span style="font-size:13px">Cun</span>
+      </div>
+      <div class="row">
+        <label for="cunAt">Punkt bei</label>
+        <input type="number" id="cunAt" value="1.5" min="0" step="0.5">
+        <span style="font-size:13px">Cun ab A</span>
+        <button id="btnCun" type="button">setzen</button>
+      </div>
+      <p class="status" id="lmStatus">A und B noch nicht gesetzt.</p>
+    </div>
+
+    <div class="box">
+      <h3>Stützpunkte <span style="color:var(--text-3);font-family:'IBM Plex Mono',monospace;font-size:11px" id="nAnchors">0</span></h3>
+      <ul class="items" id="listAnchors"></ul>
+    </div>
+
+    <div class="box">
+      <h3>Punkte <span style="color:var(--text-3);font-family:'IBM Plex Mono',monospace;font-size:11px" id="nPoints">0</span></h3>
+      <ul class="items" id="listPoints"></ul>
+      <p class="warn" id="pointWarn"></p>
+    </div>
+
+    <div class="box">
+      <h3>Datensatz</h3>
+      <div class="row">
+        <button id="btnExport" class="btn-primary" type="button">Erzeugen</button>
+        <button id="btnCopy" type="button">Kopieren</button>
+        <button id="btnClear" type="button">Alles löschen</button>
+      </div>
+      <textarea id="out" spellcheck="false" placeholder="Hier erscheint der Code für data/&lt;id&gt;.js"></textarea>
+    </div>
+  </div>
+</div>
+</div>
+
+<script src="../js/engine.js"></script>
+<script src="../data/katalog.js"></script>
+<script>
+(function () {
+  "use strict";
+  var NS = "http://www.w3.org/2000/svg";
+  var svg = document.getElementById("plate"),
+      fig = document.getElementById("fig"),
+      gPath = document.getElementById("gPath"),
+      gAnch = document.getElementById("gAnchors"),
+      gPts  = document.getElementById("gPoints"),
+      gLm   = document.getElementById("gLandmarks"),
+      gRul  = document.getElementById("gRuler"),
+      cx = document.getElementById("cx"), cy = document.getElementById("cy");
+
+  var anchors = [], points = [], lmA = null, lmB = null, mode = "anchor";
+  var alphaData = null, alphaReady = false;
+
+  function el(t, a) { var e = document.createElementNS(NS, t); for (var k in a) e.setAttribute(k, a[k]); return e; }
+
+  /* ---- Silhouette einlesen, um Fehlplatzierungen zu erkennen ---- */
+  function loadAlpha(src) {
+    alphaReady = false; alphaData = null;
+    var st = document.getElementById("alphaStatus");
+    st.textContent = "Silhouettenprüfung: wird geladen …";
+    var img = new Image();
+    img.onload = function () {
+      try {
+        var c = document.createElement("canvas");
+        c.width = 880; c.height = 1168;
+        c.getContext("2d").drawImage(img, 0, 0, 880, 1168);
+        alphaData = c.getContext("2d").getImageData(0, 0, 880, 1168).data;
+        alphaReady = true;
+        st.innerHTML = '<span class="ok">Silhouettenprüfung aktiv.</span>';
+      } catch (e) {
+        st.textContent = "Silhouettenprüfung aus (Datei über file:// geöffnet). " +
+                         "Für die Prüfung einen lokalen Server starten – siehe README.";
+      }
+      redraw();
+    };
+    img.onerror = function () { st.textContent = "Figur konnte nicht geladen werden: " + src; };
+    img.src = src;
+  }
+  function onBody(x, y) {
+    if (!alphaReady) return true;
+    if (x < 0 || y < 0 || x >= 880 || y >= 1168) return false;
+    return alphaData[((y | 0) * 880 + (x | 0)) * 4 + 3] > 128;
+  }
+
+  /* ---- Zeichnen ---- */
+  function redraw() {
+    gAnch.innerHTML = ""; gPts.innerHTML = ""; gLm.innerHTML = ""; gPath.innerHTML = ""; gRul.innerHTML = "";
+
+    if (anchors.length > 1) {
+      gPath.appendChild(el("path", { d: Meridian.spline(anchors), fill: "none",
+        stroke: "#ffe9b4", "stroke-width": 3.4, "stroke-linecap": "round", opacity: ".75" }));
+    }
+    anchors.forEach(function (a, i) {
+      gAnch.appendChild(el("circle", { cx: a[0], cy: a[1], r: 3.2, fill: "#6fb3a5",
+        stroke: "#0b1519", "stroke-width": 1 }));
+      var t = el("text", { x: a[0] + 6, y: a[1] - 5, fill: "#6fb3a5",
+        "font-family": "IBM Plex Mono, monospace", "font-size": 11 });
+      t.textContent = i; gAnch.appendChild(t);
+    });
+    points.forEach(function (p, i) {
+      var bad = !onBody(p.x, p.y);
+      gPts.appendChild(el("circle", { cx: p.x, cy: p.y, r: 5, fill: bad ? "#e3705f" : "#e9f1f0",
+        stroke: "#0b1519", "stroke-width": 1.4 }));
+      var t = el("text", { x: p.x + 9, y: p.y + 5, fill: "#ffe9b4",
+        "font-family": "IBM Plex Mono, monospace", "font-size": 15 });
+      t.textContent = p.n; gPts.appendChild(t);
+    });
+    [["A", lmA, "#cfa856"], ["B", lmB, "#cfa856"]].forEach(function (m) {
+      if (!m[1]) return;
+      gLm.appendChild(el("circle", { cx: m[1][0], cy: m[1][1], r: 7, fill: "none",
+        stroke: m[2], "stroke-width": 1.8 }));
+      var t = el("text", { x: m[1][0] + 10, y: m[1][1] - 7, fill: m[2],
+        "font-family": "IBM Plex Mono, monospace", "font-size": 15 });
+      t.textContent = m[0]; gLm.appendChild(t);
+    });
+    if (lmA && lmB) {
+      var n = parseFloat(document.getElementById("cunN").value) || 12;
+      gRul.appendChild(el("line", { x1: lmA[0], y1: lmA[1], x2: lmB[0], y2: lmB[1],
+        stroke: "#cfa856", "stroke-width": 1, "stroke-dasharray": "4 4", opacity: ".8" }));
+      var dx = (lmB[0] - lmA[0]) / n, dy = (lmB[1] - lmA[1]) / n;
+      var px = -dy, py = dx, L = Math.hypot(px, py) || 1;
+      px = px / L * 5; py = py / L * 5;
+      for (var k = 0; k <= n; k++) {
+        var x = lmA[0] + dx * k, y = lmA[1] + dy * k, big = (k % 2 === 0);
+        gRul.appendChild(el("line", { x1: x - px * (big ? 1.6 : 1), y1: y - py * (big ? 1.6 : 1),
+          x2: x + px * (big ? 1.6 : 1), y2: y + py * (big ? 1.6 : 1),
+          stroke: "#cfa856", "stroke-width": big ? 1.4 : .8, opacity: ".9" }));
+      }
+      document.getElementById("lmStatus").innerHTML =
+        '<span class="ok">Lineal gespannt:</span> ' + n + ' Cun über ' +
+        Math.round(Math.hypot(lmB[0] - lmA[0], lmB[1] - lmA[1])) + ' px → 1 Cun = ' +
+        (Math.hypot(lmB[0] - lmA[0], lmB[1] - lmA[1]) / n).toFixed(2) + ' px';
+    } else {
+      document.getElementById("lmStatus").textContent =
+        (lmA ? "A gesetzt. " : "A fehlt. ") + (lmB ? "B gesetzt." : "B fehlt.");
+    }
+    renderLists();
+  }
+
+  function renderLists() {
+    var la = document.getElementById("listAnchors"); la.innerHTML = "";
+    anchors.forEach(function (a, i) {
+      var li = document.createElement("li");
+      li.innerHTML = '<span class="i">' + i + '</span><span>' + a[0] + ', ' + a[1] + '</span>';
+      var up = document.createElement("button"); up.textContent = "↑"; up.type = "button";
+      up.onclick = function () { if (i > 0) { var t = anchors[i-1]; anchors[i-1] = anchors[i]; anchors[i] = t; redraw(); } };
+      var del = document.createElement("button"); del.textContent = "✕"; del.type = "button";
+      del.onclick = function () { anchors.splice(i, 1); redraw(); };
+      li.appendChild(up); li.appendChild(del); la.appendChild(li);
+    });
+    document.getElementById("nAnchors").textContent = anchors.length;
+
+    var lp = document.getElementById("listPoints"); lp.innerHTML = "";
+    var off = 0;
+    points.forEach(function (p, i) {
+      var bad = !onBody(p.x, p.y); if (bad) off++;
+      var li = document.createElement("li");
+      if (bad) li.className = "off";
+      li.innerHTML = '<span class="i">' + p.n + '</span><span>' + p.x + ', ' + p.y +
+                     (bad ? '  ⚠ außerhalb' : '') + '</span>';
+      var key = document.createElement("button");
+      key.textContent = p.key ? "★" : "☆"; key.type = "button"; key.title = "Hauptpunkt";
+      key.onclick = function () { p.key = !p.key; redraw(); };
+      var del = document.createElement("button"); del.textContent = "✕"; del.type = "button";
+      del.onclick = function () { points.splice(i, 1); points.forEach(function (q, k) { q.n = k + 1; }); redraw(); };
+      li.appendChild(key); li.appendChild(del); lp.appendChild(li);
+    });
+    document.getElementById("nPoints").textContent = points.length;
+    document.getElementById("pointWarn").textContent =
+      off ? (off + " Punkt(e) liegen außerhalb der Silhouette – rot markiert.") : "";
+  }
+
+  /* ---- Mauszeiger → Bildkoordinaten ---- */
+  function toImg(evt) {
+    var r = svg.getBoundingClientRect();
+    return [Math.round((evt.clientX - r.left) / r.width * 880),
+            Math.round((evt.clientY - r.top) / r.height * 1168)];
+  }
+  svg.addEventListener("mousemove", function (e) {
+    var p = toImg(e);
+    cx.setAttribute("x1", p[0]); cx.setAttribute("x2", p[0]);
+    cx.setAttribute("y1", 0); cx.setAttribute("y2", 1168);
+    cy.setAttribute("y1", p[1]); cy.setAttribute("y2", p[1]);
+    cy.setAttribute("x1", 0); cy.setAttribute("x2", 880);
+    document.getElementById("coords").textContent =
+      "x " + p[0] + " , y " + p[1] + (onBody(p[0], p[1]) ? "" : "   ⚠ außerhalb");
+  });
+  svg.addEventListener("click", function (e) {
+    var p = toImg(e);
+    if (mode === "anchor") anchors.push(p);
+    else if (mode === "point") points.push({ n: points.length + 1, x: p[0], y: p[1], key: false });
+    else if (mode === "lmA") lmA = p;
+    else if (mode === "lmB") lmB = p;
+    redraw();
+  });
+
+  /* ---- Bedienung ---- */
+  document.getElementById("modeBar").addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-mode]"); if (!b) return;
+    mode = b.dataset.mode;
+    Array.prototype.forEach.call(this.querySelectorAll("button"), function (o) {
+      o.setAttribute("aria-pressed", o === b ? "true" : "false");
+    });
+  });
+  document.getElementById("view").addEventListener("change", function () {
+    var src = "../img/" + this.value + ".png";
+    fig.setAttribute("href", src); loadAlpha(src);
+  });
+  document.getElementById("zoom").addEventListener("change", function () {
+    svg.setAttribute("width", 880 * parseFloat(this.value));
+    svg.setAttribute("height", 1168 * parseFloat(this.value));
+  });
+  document.getElementById("cunN").addEventListener("input", redraw);
+  document.getElementById("btnCun").addEventListener("click", function () {
+    if (!lmA || !lmB) { alert("Erst Landmarke A und B setzen."); return; }
+    var n = parseFloat(document.getElementById("cunN").value) || 12;
+    var at = parseFloat(document.getElementById("cunAt").value) || 0;
+    var f = at / n;
+    points.push({ n: points.length + 1,
+      x: Math.round(lmA[0] + (lmB[0] - lmA[0]) * f),
+      y: Math.round(lmA[1] + (lmB[1] - lmA[1]) * f), key: false });
+    redraw();
+  });
+  document.getElementById("btnClear").addEventListener("click", function () {
+    if (!confirm("Stützpunkte, Punkte und Landmarken löschen?")) return;
+    anchors = []; points = []; lmA = lmB = null; redraw();
+  });
+
+  /* ---- Bestehenden Meridian laden ---- */
+  var sel = document.getElementById("load");
+  (window.MeridianKatalog || []).forEach(function (m) {
+    var o = document.createElement("option");
+    o.value = m.id; o.textContent = m.codeDe + " – " + m.name + (m.fertig ? "" : " (leer)");
+    sel.appendChild(o);
+  });
+  document.getElementById("btnLoad").addEventListener("click", function () {
+    var id = sel.value; if (!id) return;
+    var existing = Meridian.get(id);
+    var apply = function (d) {
+      if (!d) { alert("Für " + id + " gibt es noch keinen Datensatz."); return; }
+      anchors = d.path.map(function (a) { return [a[0], a[1]]; });
+      points = d.points.map(function (p) { return { n: p.n, x: p.x, y: p.y, key: !!p.key }; });
+      document.getElementById("view").value = d.view || "front";
+      var src = "../img/" + (d.view || "front") + ".png";
+      fig.setAttribute("href", src); loadAlpha(src);
+    };
+    if (existing) return apply(existing);
+    var s = document.createElement("script");
+    s.src = "../data/" + id + ".js";
+    s.onload = function () { apply(Meridian.get(id)); };
+    s.onerror = function () { alert("data/" + id + ".js existiert noch nicht."); };
+    document.head.appendChild(s);
+  });
+
+  /* ---- Ausgabe ---- */
+  document.getElementById("btnExport").addEventListener("click", function () {
+    var lines = [];
+    lines.push("  path: [" + anchors.map(function (a) { return "[" + a[0] + "," + a[1] + "]"; }).join(",") + "],");
+    lines.push("");
+    lines.push("  points: [");
+    points.forEach(function (p, i) {
+      lines.push('    { n:' + p.n + ', pinyin:"", han:"", de:"",');
+      lines.push('      x:' + p.x + ', y:' + p.y + ', key:' + (p.key ? "true" : "false") + ', role:"",');
+      lines.push('      tags:[],');
+      lines.push('      loc:"",');
+      lines.push('      ind:"",');
+      lines.push('      nd:"" }' + (i < points.length - 1 ? "," : ""));
+    });
+    lines.push("  ]");
+    if (lmA && lmB) {
+      lines.unshift('  cun: { a:[' + lmA[0] + ',' + lmA[1] + '], b:[' + lmB[0] + ',' + lmB[1] +
+                    '], n:' + (parseFloat(document.getElementById("cunN").value) || 12) + ' },');
+    }
+    document.getElementById("out").value = lines.join("\n");
+  });
+  document.getElementById("btnCopy").addEventListener("click", function () {
+    var t = document.getElementById("out"); t.select();
+    try { document.execCommand("copy"); this.textContent = "kopiert ✓";
+          var b = this; setTimeout(function () { b.textContent = "Kopieren"; }, 1400); } catch (e) {}
+  });
+
+  svg.setAttribute("width", 1320); svg.setAttribute("height", 1752);
+  loadAlpha("../img/front.png");
+})();
+</script>
+</body>
+</html>

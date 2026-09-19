@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Meridiane und Antikpunkte – Healthlane Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Serif+SC:wght@400;600&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">Jing Luo · 經絡 · Healthlane Academy</p>
+  <h1>Meridiane und Antikpunkte<span class="han">經絡</span></h1>
+  <p class="lede">Die zwölf Hauptmeridiane als animierte Verläufe. Auf jeder Meridianseite läuft
+  ein Qi-Punkt in Flussrichtung durch den Kanal und hält an jedem Akupunkturpunkt – mit Lage,
+  Wirkung, Stichtiefe und der Einordnung als Antikpunkt.</p>
+  <ul class="meta">
+    <li><b>Hauptmeridiane</b><span>12</span></li>
+    <li><b>Punkte gesamt</b><span>309</span></li>
+    <li><b>mit Ren &amp; Du Mai</b><span>361</span></li>
+    <li><b>Umläufe</b><span>3</span></li>
+  </ul>
+</header>
+
+<main id="umlaeufe"></main>
+
+<div class="note">
+  <strong>Die Antikpunkte</strong> – Ting, Yong, Yu, King und Ho – liegen unterhalb von Ellenbogen
+  und Knie. Dort fließen die Meridiane sehr oberflächlich, dort wechseln sie von Yin zu Yang und
+  zurück, und dort sind sie am leichtesten zu beeinflussen. Auf den Meridianseiten sind sie durch
+  ihren Elementpunkt farbig gekennzeichnet.
+</div>
+
+<footer>
+  <p>Die Punktlagen sind nach der proportionalen Cun-Maßlehre auf die Figuren gesetzt und dienen
+  der Orientierung im Unterricht, nicht der Behandlung. Am Menschen wird immer palpiert.</p>
+  <p>Punktzahlen nach WHO-Standardnomenklatur. Die zwölf Hauptmeridiane tragen zusammen 309 Punkte;
+  die oft genannten 361 Punkte ergeben sich erst mit Ren Mai (24) und Du Mai (28).</p>
+</footer>
+
+</div>
+<script src="data/katalog.js"></script>
+<script>
+(function () {
+  var TITEL = {
+    1: { h: "Erster Umlauf", flow: "Lunge → Dickdarm → Magen → Milz" },
+    2: { h: "Zweiter Umlauf", flow: "Herz → Dünndarm → Blase → Niere" },
+    3: { h: "Dritter Umlauf", flow: "Perikard → 3-Erwärmer → Gallenblase → Leber" }
+  };
+  var host = document.getElementById("umlaeufe");
+  [1, 2, 3].forEach(function (u) {
+    var sec = document.createElement("section");
+    sec.className = "umlauf";
+    var head = document.createElement("div");
+    head.className = "umlauf-head";
+    head.innerHTML = '<span class="n">' + u + '</span><h2>' + TITEL[u].h +
+                     '</h2><span class="flow">' + TITEL[u].flow + '</span>';
+    sec.appendChild(head);
+
+    var grid = document.createElement("div");
+    grid.className = "cards";
+    window.MeridianKatalog.filter(function (m) { return m.umlauf === u; })
+      .forEach(function (m) {
+        var a = document.createElement("a");
+        a.className = "card wx-" + m.wx + (m.fertig ? "" : " pending");
+        a.href = "meridian.html?m=" + m.id;
+        a.innerHTML =
+          '<div class="card-top">' +
+            '<span class="card-code">' + m.codeDe + '</span>' +
+            '<span class="card-int">' + m.code + '</span>' +
+            '<span class="card-han">' + m.han + '</span>' +
+          '</div>' +
+          '<h3>' + m.name + '</h3>' +
+          '<p class="sub">' + m.channel + ' · ' + (m.yin ? 'Yin' : 'Yang') + ' · ' + m.element + '</p>' +
+          '<div class="foot">' +
+            '<span>' + m.clock + '</span>' +
+            '<span>' + m.points + ' Punkte</span>' +
+            '<span class="status' + (m.fertig ? ' ok' : '') + '">' +
+              (m.fertig ? 'fertig' : 'in Arbeit') + '</span>' +
+          '</div>';
+        grid.appendChild(a);
+      });
+    sec.appendChild(grid);
+    host.appendChild(sec);
+  });
+})();
+</script>
+</body>
+</html>

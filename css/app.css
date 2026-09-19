@@ -1,0 +1,183 @@
+/* ===========================================================
+   Meridiane & Antikpunkte – gemeinsame Gestaltung
+   Ein bewusst dunkles Thema: das fließende Qi braucht einen
+   dunklen Grund, sonst verliert der Leuchtpunkt seine Wirkung.
+   =========================================================== */
+:root{
+  --ink:#0b1519;
+  --ink-2:#101f25;
+  --surface:#15262d;
+  --rule:#27434d;
+  --rule-soft:#1f373f;
+  --text:#e6eeef;
+  --text-2:#a3b8bf;
+  --text-3:#6f8b94;
+  --metal:#dfe8e7;
+  --qi:#ffe9b4;
+  --gold:#cfa856;
+  --gold-dim:#8e7238;
+  --jade:#6fb3a5;
+
+  /* Wandlungsphasen */
+  --wx-holz:#7fae6a;
+  --wx-feuer:#d4705f;
+  --wx-erde:#c9a15c;
+  --wx-metall:#c3ced2;
+  --wx-wasser:#5f93b5;
+
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+html,body{background:var(--ink)}
+body{
+  margin:0;color:var(--text);
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:15px;line-height:1.55;
+  background:
+    radial-gradient(120% 80% at 50% -10%, #17313a 0%, transparent 60%),
+    radial-gradient(90% 60% at 10% 110%, #122a2c 0%, transparent 55%),
+    var(--ink);
+  background-attachment:fixed;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--qi)}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:28px 56px}
+
+/* ---------- Kopf ---------- */
+header{border-bottom:1px solid var(--rule-soft);padding-bottom:22px;margin-bottom:26px}
+.eyebrow{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin:0 0 10px}
+.eyebrow a{color:var(--gold);text-decoration:none;border-bottom:1px solid transparent}
+.eyebrow a:hover{border-bottom-color:var(--gold-dim)}
+h1{font-family:"Spectral",Georgia,serif;font-weight:600;
+  font-size:clamp(28px,5.2vw,44px);line-height:1.08;margin:0;
+  text-wrap:balance;letter-spacing:-.01em}
+h1 .han{font-family:"Noto Serif SC",serif;color:var(--metal);font-weight:400;
+  margin-left:.45em;font-size:.72em;letter-spacing:.06em}
+.lede{color:var(--text-2);max-width:62ch;margin:12px 0 0;font-size:15.5px}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;padding:0;list-style:none}
+.meta li{display:flex;align-items:baseline;gap:7px;border:1px solid var(--rule);
+  border-radius:2px;padding:5px 10px;background:#12232a}
+.meta b{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--text-3);font-weight:400}
+.meta span{font-size:13.5px;color:var(--text)}
+
+/* ---------- Bühne ---------- */
+.stage-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
+  gap:34px;align-items:start}
+@media (max-width:880px){.stage-grid{grid-template-columns:1fr;gap:26px}}
+.figure-col{display:flex;flex-direction:column;gap:14px}
+.stage{position:relative;border:1px solid var(--rule-soft);border-radius:3px;
+  background:linear-gradient(175deg,#132229 0%,#0c181d 55%,#0a1418 100%);overflow:hidden}
+.stage::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(75% 55% at 50% 32%, rgba(120,190,200,.07), transparent 70%)}
+svg.plate{display:block;width:100%;height:auto;max-width:100%}
+
+/* ---------- Bedienung ---------- */
+.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+button{font:inherit;font-size:13px;color:var(--text);background:#15262d;
+  border:1px solid var(--rule);border-radius:2px;padding:7px 13px;cursor:pointer;
+  transition:border-color .15s,background .15s,color .15s}
+button:hover{border-color:var(--gold-dim);background:#1a2f37}
+button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+button[aria-pressed="true"]{border-color:var(--gold);color:var(--qi);background:#1d2f2c}
+.btn-primary{background:#1e3129;border-color:var(--gold-dim);color:var(--qi);min-width:104px}
+.btn-primary:hover{background:#243a30;border-color:var(--gold)}
+.speed{display:flex;border:1px solid var(--rule);border-radius:2px;overflow:hidden}
+.speed button{border:0;border-radius:0;padding:7px 11px;
+  font-family:"IBM Plex Mono",monospace;font-size:12px}
+.speed button+button{border-left:1px solid var(--rule)}
+.hint{font-size:12px;color:var(--text-3);margin:0}
+kbd{font-family:"IBM Plex Mono",monospace;font-size:11px;border:1px solid var(--rule);
+  border-radius:2px;padding:1px 5px;color:var(--text-2)}
+
+/* ---------- Detailtafel ---------- */
+.panel{border:1px solid var(--rule-soft);border-radius:3px;background:#101f25;overflow:hidden}
+.panel-head{padding:18px 20px 16px;border-bottom:1px solid var(--rule-soft);
+  background:linear-gradient(180deg,#16292f,#101f25)}
+.pt-code{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.2em;
+  color:var(--gold);margin:0 0 6px}
+.pt-name{font-family:"Spectral",Georgia,serif;font-size:26px;font-weight:600;margin:0;line-height:1.15}
+.pt-name .han{font-family:"Noto Serif SC",serif;font-weight:400;color:var(--metal);
+  margin-left:.4em;font-size:.86em}
+.pt-de{color:var(--text-2);font-style:italic;font-family:"Spectral",Georgia,serif;
+  font-size:16px;margin:4px 0 0}
+.pt-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.tag{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.08em;
+  border:1px solid var(--gold-dim);color:var(--qi);border-radius:2px;
+  padding:3px 7px;background:#1b2a24}
+.tag.plain{border-color:var(--rule);color:var(--text-2);background:transparent}
+.tag.wx{border-color:currentColor;background:transparent}
+.tag.wx-holz{color:var(--wx-holz)} .tag.wx-feuer{color:var(--wx-feuer)}
+.tag.wx-erde{color:var(--wx-erde)} .tag.wx-metall{color:var(--wx-metall)}
+.tag.wx-wasser{color:var(--wx-wasser)}
+dl.detail{margin:0;padding:16px 20px 18px;display:grid;
+  grid-template-columns:76px minmax(0,1fr);gap:9px 14px;align-items:baseline}
+dl.detail dt{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--text-3);padding-top:2px}
+dl.detail dd{margin:0;font-size:14.5px;color:var(--text)}
+
+/* ---------- Punktliste ---------- */
+.list-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  margin:26px 0 10px;padding-bottom:8px;border-bottom:1px solid var(--rule-soft)}
+.list-head h2{font-family:"Spectral",Georgia,serif;font-size:17px;font-weight:600;margin:0}
+.list-head span{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--text-3);letter-spacing:.1em}
+ol.points{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+ol.points li{border-bottom:1px solid var(--rule-soft)}
+ol.points button{width:100%;display:grid;grid-template-columns:52px minmax(0,1fr) auto;
+  gap:12px;align-items:baseline;text-align:left;background:transparent;border:0;
+  border-left:2px solid transparent;border-radius:0;padding:9px 10px 9px 12px}
+ol.points button:hover{background:#15262d}
+ol.points button[aria-current="true"]{background:#1a2f2c;border-left-color:var(--gold)}
+.p-code{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--gold);letter-spacing:.06em}
+ol.points button[aria-current="true"] .p-code{color:var(--qi)}
+.p-name{font-size:14px;color:var(--text);overflow:hidden;text-overflow:ellipsis}
+.p-name i{font-style:normal;font-family:"Noto Serif SC",serif;color:var(--text-2);margin-left:.4em}
+.p-role{font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--text-3);
+  letter-spacing:.06em;white-space:nowrap}
+ol.points button[aria-current="true"] .p-role{color:var(--jade)}
+
+/* ---------- Fuß ---------- */
+footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--rule-soft);
+  color:var(--text-3);font-size:12.5px;max-width:78ch}
+footer p{margin:0 0 8px}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+
+/* ===========================================================
+   Übersichtsseite: die drei Meridianumläufe
+   =========================================================== */
+.umlauf{margin:34px 0 0}
+.umlauf-head{display:flex;align-items:baseline;gap:14px;margin:0 0 14px;
+  padding-bottom:9px;border-bottom:1px solid var(--rule-soft)}
+.umlauf-head h2{font-family:"Spectral",Georgia,serif;font-size:19px;font-weight:600;margin:0}
+.umlauf-head .n{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.2em;
+  color:var(--gold);border:1px solid var(--gold-dim);border-radius:2px;padding:2px 7px}
+.umlauf-head .flow{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--text-3);
+  margin-left:auto;letter-spacing:.06em}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:900px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.cards{grid-template-columns:1fr}}
+a.card{display:block;text-decoration:none;color:inherit;background:#101f25;
+  border:1px solid var(--rule-soft);border-left:3px solid var(--wx);border-radius:2px;
+  padding:14px 15px 13px;transition:background .15s,border-color .15s,transform .15s}
+a.card:hover{background:#15262d;border-top-color:var(--rule);border-right-color:var(--rule);
+  border-bottom-color:var(--rule);transform:translateY(-1px)}
+a.card.pending{opacity:.62}
+a.card.pending:hover{opacity:.85}
+.card-top{display:flex;align-items:baseline;gap:8px}
+.card-code{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--wx);letter-spacing:.08em}
+.card-int{font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--text-3)}
+.card-han{font-family:"Noto Serif SC",serif;font-size:15px;color:var(--text-2);margin-left:auto}
+.card h3{font-family:"Spectral",Georgia,serif;font-size:19px;font-weight:600;margin:5px 0 2px}
+.card .sub{font-size:12.5px;color:var(--text-2);margin:0}
+.card .foot{display:flex;gap:10px;margin-top:10px;padding-top:9px;
+  border-top:1px solid var(--rule-soft);font-family:"IBM Plex Mono",monospace;
+  font-size:10.5px;color:var(--text-3);letter-spacing:.05em}
+.card .foot .status{margin-left:auto;color:var(--text-3)}
+.card .foot .status.ok{color:var(--jade)}
+.wx-holz{--wx:var(--wx-holz)} .wx-feuer{--wx:var(--wx-feuer)}
+.wx-erde{--wx:var(--wx-erde)} .wx-metall{--wx:var(--wx-metall)} .wx-wasser{--wx:var(--wx-wasser)}
+.note{border:1px solid var(--rule-soft);border-left:3px solid var(--gold-dim);
+  background:#101f25;border-radius:2px;padding:14px 16px;margin:32px 0 0;
+  font-size:13.5px;color:var(--text-2);max-width:78ch}
+.note strong{color:var(--text)}
