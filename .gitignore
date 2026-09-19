@@ -9,3 +9,8 @@ Icon?
 *.doc
 *.docx
 *.pages
+
+# Übriggebliebene Arbeitsdateien aus dem Bau der ersten Fassung
+figure.png
+lungenmeridian.html
+zoomcheck.html
