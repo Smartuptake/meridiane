@@ -4,7 +4,7 @@
    Handgelenksfalte y≈528 → Achsel–Ellenbeuge 9 Cun, Ellenbeuge–Handgelenk 12 Cun. */
 Meridian.register({
   id: "lu", code: "LU", codeDe: "Lu", ord: 1,
-  name: "Lunge", nameHan: "肺經",
+  name: "Lunge", titel: "Lungenmeridian", nameHan: "肺經",
   channel: "Hand-Taiyin", channelHan: "手太陰",
   element: "Metall", elementHan: "金", wx: "metall",
   yin: true, coupled: "li", coupledName: "Dickdarm",

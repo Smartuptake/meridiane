@@ -25,7 +25,7 @@
   function notYet() {
     var k = (window.MeridianKatalog || []).filter(function (m) { return m.id === id; })[0];
     var name = k ? k.name : id.toUpperCase();
-    document.getElementById("hTitle").textContent = name + "meridian";
+    document.getElementById("hTitle").textContent = (k && k.titel) || (name + "meridian");
     document.getElementById("hIntro").textContent =
       "Dieser Meridian ist noch nicht kalibriert. Die Punktlagen werden mit dem Kalibrator " +
       "auf die " + (k ? ({front:"Vorder", back:"Rück", side:"Seiten"}[k.view] || "Vorder") : "Vorder") +
@@ -37,10 +37,11 @@
     if (!data) return notYet();
 
     /* Kopf */
-    document.title = data.name + "meridian – Healthlane Academy";
+    var titel = data.titel || (data.name + "meridian");
+    document.title = titel + " – Healthlane Academy";
     document.getElementById("hChannel").textContent =
       data.channel + " " + (data.channelHan || "") + " · " + (data.yin ? "Yin" : "Yang");
-    document.getElementById("hTitle").firstChild.nodeValue = data.name + "meridian";
+    document.getElementById("hTitle").firstChild.nodeValue = titel;
     document.getElementById("hHan").textContent = data.nameHan || "";
     document.getElementById("hIntro").textContent = data.intro || "";
 
@@ -64,7 +65,7 @@
     var rows = [];
 
     function showPoint(p, i) {
-      dCode.textContent = lbl + " " + p.n + "  ·  " + data.code + " " + p.n;
+      dCode.textContent = lbl + " " + p.n;
       dName.innerHTML = "";
       dName.appendChild(document.createTextNode(p.pinyin));
       var h = document.createElement("span"); h.className = "han"; h.textContent = p.han || "";
