@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Meridian-Dehnung – Healthlane Academy</title>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+
+<div class="nav dunkel druckweg">
+  <div class="inner">
+    <a class="home" href="../index.html" aria-label="Healthlane Academy, zur Übersicht">
+      <img src="../img/marke/hla-logo-horizontal-negativ.svg" alt="Healthlane Academy">
+    </a>
+    <nav>
+      <a href="../index.html">Meridiane</a>
+      <a href="../index.html#uebungen" aria-current="page">Übungen</a>
+    </nav>
+  </div>
+</div>
+
+<header class="dunkel hero druckweg">
+  <div class="inner">
+    <p class="label" id="hLabel">&nbsp;</p>
+    <h1 id="hTitel">&nbsp;</h1>
+    <p class="lead" id="hLead"></p>
+    <ul class="meta" id="hMeta"></ul>
+  </div>
+</header>
+
+<div class="druckkopf" aria-hidden="true">
+  <span class="label">Makko-Ho · Übungstableau</span>
+  <span class="marke">Healthlane Academy</span>
+</div>
+
+<section class="papier" id="ordnung">
+  <div class="inner">
+    <p class="label">Ordnung der sechs Übungen</p>
+    <h2 style="margin-top:12px">Sechs Paare, zwölf Meridiane</h2>
+    <div class="ordnung-grid" style="margin-top:40px">
+      <p class="fliess" id="oOrdnung"></p>
+      <figure class="druckweg">
+        <svg id="svgWuxing" xmlns="http://www.w3.org/2000/svg"></svg>
+        <figcaption>Jede Übung dehnt ein Zang-Fu-Paar einer Wandlungsphase.
+        Das Feuer trägt zwei Paare: Herz mit Dünndarm und Perikard mit Drei-Erwärmer.</figcaption>
+      </figure>
+    </div>
+    <div class="tafel-scroll" style="margin-top:56px">
+      <table class="zuordnung uebersicht" id="tUebersicht"></table>
+    </div>
+  </div>
+</section>
+
+<section class="weiss" id="uebungen">
+  <div class="inner">
+    <p class="label druckweg">Die Übungen</p>
+    <h2 style="margin-top:12px" class="druckweg">Ausgangshaltung und Dehnung</h2>
+    <div class="dehn-liste" id="dehnListe" style="margin-top:48px"></div>
+  </div>
+</section>
+
+<section class="papier">
+  <div class="inner">
+    <div class="merkkasten">
+      <p class="label">Hinweis</p>
+      <p style="margin:0">Die Beschreibungen geben die Vorlage wieder und dienen dem
+      Unterricht. Jede Dehnung nur so weit führen, wie sie ohne Schmerz bleibt; der Atem
+      soll dabei ruhig weiterlaufen.</p>
+    </div>
+    <p class="quelle" id="oQuelle"></p>
+  </div>
+</section>
+
+<footer class="dunkel druckweg">
+  <div class="inner fliess">
+    <p>Healthlane Academy · KEY – Keep Educating Yourself</p>
+  </div>
+</footer>
+
+<script src="../js/wuxing.js"></script>
+<script src="../data/wandlungsphasen.js"></script>
+<script src="../data/meridiandehnung.js"></script>
+<script src="../js/dehnung.js"></script>
+</body>
+</html>

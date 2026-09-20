@@ -146,7 +146,7 @@ Erreichbar über den Abschnitt **Übungen** auf der Übersichtsseite.
 |---|---|
 | Die sechs heilenden Laute | fertig |
 | Kleiner Energiekreislauf | offen |
-| Meridian-Dehnung | offen |
+| Meridian-Dehnung | fertig, wartet auf Rechteklärung |
 
 Die sechs Laute folgen dem nährenden Zyklus ab Metall: Lunge, Nieren, Leber, Herz, Milz;
 der sechste gehört zum Dreifachen Erwärmer, der keine eigene Wandlungsphase hat.
@@ -154,6 +154,19 @@ der sechste gehört zum Dreifachen Erwärmer, der keine eigene Wandlungsphase ha
 **Die Zeichnungen** lagen in der Vorlage als ein einziges Bild vor, das alle sechs Haltungen
 als 2×3-Raster enthielt. Es ist in sechs Einzelbilder zerlegt und jeder Übung zugeordnet;
 die Ränder wurden gegen den weißen Grund geprüft, damit keine Figur angeschnitten ist.
+
+**Meridian-Dehnung** liegt auf dem Zweig `entwurf/meridian-dehnung` und wird deshalb
+**nicht** von GitHub Pages ausgeliefert. Grund: Die Vorlage nennt die Ko-Schule für Shiatsu
+Zürich sowie Veronika Rüfenacht und Gerda Tobler namentlich. Eine Datei, die im
+veröffentlichten Zweig liegt, ist über ihre Adresse abrufbar, auch wenn keine Karte
+darauf verlinkt – ein nicht verlinktes Blatt ist also nicht unveröffentlicht. Sobald die
+Freigabe vorliegt, genügt:
+
+```bash
+git checkout main && git merge entwurf/meridian-dehnung && git push
+```
+
+Zum Ansehen vorher: `git checkout entwurf/meridian-dehnung`, dann den lokalen Server starten.
 
 **Drucken:** Die Seite trägt ihre Druckvorlage selbst. Im Browser Cmd+P, Papierformat
 **A3 hoch**, Hintergrundgrafiken aktivieren. Es entsteht ein zweispaltiges Tableau ohne
