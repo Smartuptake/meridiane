@@ -17,6 +17,9 @@
     <nav>
       <a href="index.html">Übersicht</a>
       <a href="#organ">Das Organ</a>
+      <a href="#phasen">Wandlungsphasen</a>
+      <a href="#zustaende">Mangel und Fülle</a>
+      <a href="#ernaehrung">Ernährung</a>
       <a href="#folge">Punktfolge</a>
     </nav>
   </div>
@@ -75,29 +78,86 @@
 
 <section class="weiss" id="organ">
   <div class="inner">
-    <p class="label" id="oLabel">Das Organ</p>
+    <p class="label">Das Organ</p>
     <h2 id="oTitel" style="margin-top:12px">&nbsp;</h2>
     <div class="organ-grid" style="margin-top:48px">
       <div class="fliess" id="oText"></div>
-      <div>
-        <dl class="eigenschaften" id="oEigenschaften"></dl>
-      </div>
+      <div><dl class="eigenschaften" id="oEigenschaften"></dl></div>
     </div>
-    <h3 style="margin:64px 0 24px" id="oMusterTitel">&nbsp;</h3>
-    <ul class="muster" id="oMuster"></ul>
-    <div class="merkkasten" style="margin-top:48px">
-      <p class="label">Hinweis</p>
-      <p id="oHinweis" style="margin:0"></p>
+    <h3 style="margin:64px 0 0" id="oAufgabenTitel">&nbsp;</h3>
+    <div class="falttafel" id="oAufgaben"></div>
+  </div>
+</section>
+
+<section class="papier" id="phasen">
+  <div class="inner">
+    <p class="label">Wandlungsphasen</p>
+    <h2 style="margin-top:12px">Die fünf Wandlungsphasen<span class="hanzi">五行</span></h2>
+    <p class="lead" id="pLead"></p>
+    <div class="schaubilder" style="margin-top:48px">
+      <figure>
+        <svg id="svgWuxing" xmlns="http://www.w3.org/2000/svg"></svg>
+        <figcaption>Der nährende Zyklus läuft außen im Uhrzeigersinn, der bändigende
+        als Stern durch die Mitte.</figcaption>
+      </figure>
+      <figure>
+        <svg id="svgUhr" xmlns="http://www.w3.org/2000/svg"></svg>
+        <figcaption>Die Organuhr. Jeder Meridian hat über zwei Stunden seine Maximalzeit;
+        gegenüber auf der Uhr liegt seine Minimalzeit.</figcaption>
+      </figure>
+    </div>
+    <h3 style="margin:64px 0 24px">Zuordnungen der fünf Phasen</h3>
+    <div class="tafel-scroll">
+      <table class="zuordnung" id="tZuordnung"></table>
     </div>
   </div>
 </section>
 
-<section class="papier" id="folge">
+<section class="weiss" id="zustaende">
+  <div class="inner">
+    <p class="label">Mangel und Fülle</p>
+    <h2 id="zTitel" style="margin-top:12px">&nbsp;</h2>
+    <p class="lead" id="zHinweis"></p>
+    <div class="matrix" style="margin-top:48px">
+      <div class="matrix-kopf"></div>
+      <div class="matrix-kopf">Mangel · Xū 虛</div>
+      <div class="matrix-kopf">Fülle · Shí 實</div>
+      <div class="matrix-zeile">Yin</div>
+      <button class="matrix-feld" type="button" data-feld="0"></button>
+      <button class="matrix-feld" type="button" data-feld="2"></button>
+      <div class="matrix-zeile">Yang</div>
+      <button class="matrix-feld" type="button" data-feld="1"></button>
+      <button class="matrix-feld" type="button" data-feld="3"></button>
+    </div>
+    <div class="karte zustand" id="zDetail" style="margin-top:32px"></div>
+
+    <h3 style="margin:64px 0 0" id="aeTitel">&nbsp;</h3>
+    <div class="falttafel" id="oAeussere"></div>
+  </div>
+</section>
+
+<section class="papier" id="ernaehrung">
+  <div class="inner">
+    <p class="label">Ernährung</p>
+    <h2 id="nTitel" style="margin-top:12px">&nbsp;</h2>
+    <div class="falttafel" style="margin-top:40px" id="nFalt"></div>
+    <div class="merkkasten" style="margin-top:48px">
+      <p class="label">Merke</p>
+      <p id="nHinweis" style="margin:0"></p>
+    </div>
+  </div>
+</section>
+
+<section class="weiss" id="folge">
   <div class="inner">
     <p class="label">Punktfolge</p>
     <h2 style="margin-top:12px" id="fTitel">&nbsp;</h2>
     <div class="folge" style="margin-top:32px">
       <ol id="ptListe"></ol>
+    </div>
+    <div class="merkkasten" style="margin-top:48px">
+      <p class="label">Hinweis</p>
+      <p id="oHinweis" style="margin:0"></p>
     </div>
   </div>
 </section>
@@ -127,7 +187,9 @@
 </div>
 
 <script src="js/engine.js"></script>
+<script src="js/wuxing.js"></script>
 <script src="data/katalog.js"></script>
+<script src="data/wandlungsphasen.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

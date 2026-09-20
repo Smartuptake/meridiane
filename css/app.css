@@ -101,7 +101,7 @@ section.weiss{background:var(--hla-weiss)}
 .nav .inner{display:flex;align-items:center;gap:var(--hla-space-6);width:100%}
 .nav img{height:34px;width:auto;display:block}
 .nav a.home{text-decoration:none;display:block;line-height:0}
-.nav nav{margin-left:auto;display:flex;gap:var(--hla-space-6);align-items:center}
+.nav nav{margin-left:auto;display:flex;flex-wrap:wrap;gap:var(--hla-space-2) var(--hla-space-6);align-items:center;justify-content:flex-end}
 .nav nav a{
   font-size:.833rem;color:var(--hla-papier-hell);text-decoration:none;
   border-bottom:1px solid transparent;padding-bottom:2px;
@@ -110,7 +110,7 @@ section.weiss{background:var(--hla-weiss)}
 .nav nav a:hover,.nav nav a[aria-current]{border-bottom-color:var(--hla-kiesel)}
 @media (max-width:620px){.nav{height:auto;padding-block:var(--hla-space-3)}
   .nav .inner{flex-wrap:wrap;gap:var(--hla-space-3)}
-  .nav nav{margin-left:0;width:100%;gap:var(--hla-space-4)}}
+  .nav nav{margin-left:0;width:100%;gap:var(--hla-space-2) var(--hla-space-4);justify-content:flex-start}}
 
 /* --- Hero --- */
 .hero{padding-block:var(--hla-space-16) var(--hla-space-12)}
@@ -293,3 +293,110 @@ h2 .hanzi,h3 .hanzi{margin-left:.32em}
 /* Mustertexte bleiben in der Satzbreite (4.x: Textspalte 680 px) */
 .muster p{max-width:var(--hla-measure)}
 .muster li{padding-right:var(--hla-space-4)}
+
+/* ===========================================================
+   Falttafeln, Schaubilder, Zuordnungstafel, Yin-Yang-Matrix
+   =========================================================== */
+
+/* --- Falttafel: anklickbare Abschnitte --- */
+.falttafel{border-top:1px solid var(--hla-tusche);margin-top:var(--hla-space-6)}
+.falttafel > div{border-bottom:var(--hla-rule)}
+.falttafel button{
+  width:100%;display:grid;grid-template-columns:minmax(0,1fr) 22px;gap:var(--hla-space-4);
+  align-items:center;text-align:left;background:transparent;border:0;border-radius:0;
+  padding:var(--hla-space-4) 0;cursor:pointer;
+  transition:color var(--hla-duration) var(--hla-ease);
+}
+.falttafel button:hover{color:var(--hla-tusche-weich)}
+.falttafel .titel{
+  font-family:var(--hla-font-display);font-weight:500;font-size:1.333rem;line-height:1.2;
+}
+.falttafel .titel .hanzi{font-size:.72em;color:var(--hla-stein);margin-left:.4em}
+.falttafel .zeichen{width:22px;height:22px;display:block;justify-self:end;
+  transition:transform var(--hla-duration) var(--hla-ease)}
+.falttafel .zeichen polyline{stroke:var(--hla-stein);stroke-width:1.3;fill:none;
+  stroke-linecap:round;stroke-linejoin:round}
+.falttafel button[aria-expanded="true"] .zeichen{transform:rotate(180deg)}
+.falttafel button[aria-expanded="true"] .titel{color:var(--hla-tusche)}
+.falttafel .inhalt{padding:0 0 var(--hla-space-6);max-width:var(--hla-measure)}
+.falttafel .inhalt p{font-size:.944rem;margin:0 0 var(--hla-space-3)}
+.falttafel .inhalt p:last-child{margin-bottom:0}
+.falttafel .inhalt .punkte{font-size:.833rem;color:var(--hla-stein)}
+.falttafel dl.nahrung{margin:0;display:grid;grid-template-columns:minmax(0,1fr);gap:0}
+.falttafel dl.nahrung > div{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);
+  gap:var(--hla-space-4);padding:var(--hla-space-3) 0;border-bottom:var(--hla-rule)}
+.falttafel dl.nahrung > div:last-child{border-bottom:0}
+.falttafel dl.nahrung dt{font-size:.944rem;font-weight:700}
+.falttafel dl.nahrung dd{margin:0;font-size:.944rem;color:var(--hla-tusche-weich)}
+@media (max-width:640px){
+  .falttafel dl.nahrung > div{grid-template-columns:1fr;gap:2px}
+}
+
+/* --- Schaubilder --- */
+.schaubilder{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--hla-space-12)}
+@media (max-width:860px){.schaubilder{grid-template-columns:1fr;gap:var(--hla-space-16)}}
+.schaubilder figure{margin:0}
+.schaubilder svg{display:block;width:100%;height:auto;max-width:560px;margin:0 auto}
+.schaubilder figcaption{font-size:.833rem;color:var(--hla-stein);
+  max-width:46ch;margin:var(--hla-space-4) auto 0;text-align:center}
+
+/* --- Zuordnungstafel der fünf Phasen --- */
+.tafel-scroll{overflow-x:auto}
+table.zuordnung{border-collapse:collapse;width:100%;min-width:760px;font-size:.889rem}
+table.zuordnung th,table.zuordnung td{
+  text-align:left;vertical-align:top;padding:var(--hla-space-3) var(--hla-space-4)
+    var(--hla-space-3) 0;border-bottom:var(--hla-rule)}
+table.zuordnung thead th{border-bottom:1px solid var(--hla-tusche);
+  font-family:var(--hla-font-display);font-weight:500;font-size:1.222rem;line-height:1.15}
+table.zuordnung thead th .hanzi{font-size:.75em;color:var(--hla-stein);margin-left:.3em}
+table.zuordnung thead th small{display:block;font-family:var(--hla-font-text);
+  font-size:.722rem;font-weight:700;letter-spacing:var(--hla-tracking-label);
+  text-transform:uppercase;color:var(--hla-stein);margin-top:4px}
+table.zuordnung tbody th{font-weight:700;font-size:.722rem;
+  letter-spacing:var(--hla-tracking-label);text-transform:uppercase;
+  color:var(--hla-stein);white-space:nowrap;padding-right:var(--hla-space-6)}
+table.zuordnung .aktiv{background:var(--hla-nebel)}
+table.zuordnung thead th.aktiv{background:var(--hla-nebel)}
+
+/* --- Yin-Yang-Matrix --- */
+.matrix{display:grid;grid-template-columns:96px minmax(0,1fr) minmax(0,1fr);
+  gap:var(--hla-space-3);align-items:stretch}
+.matrix-kopf{font-weight:700;font-size:.722rem;letter-spacing:var(--hla-tracking-label);
+  text-transform:uppercase;color:var(--hla-stein);padding-bottom:var(--hla-space-1)}
+.matrix-kopf .hanzi{letter-spacing:0}
+.matrix-zeile{display:flex;align-items:center;font-family:var(--hla-font-display);
+  font-weight:500;font-size:1.556rem}
+button.matrix-feld{
+  display:block;text-align:left;background:var(--hla-weiss);border:var(--hla-rule);
+  border-radius:var(--hla-radius);padding:var(--hla-space-4) var(--hla-space-4)}
+button.matrix-feld:hover{border-color:var(--hla-stein)}
+button.matrix-feld[aria-pressed="true"]{background:var(--hla-nebel);border-color:var(--hla-tusche)}
+button.matrix-feld .f{font-family:var(--hla-font-display);font-weight:500;
+  font-size:1.333rem;line-height:1.15;display:block}
+button.matrix-feld .h{font-family:var(--hla-font-hanzi);font-size:.944rem;
+  color:var(--hla-tusche-weich);display:block;margin-top:2px}
+button.matrix-feld .k{font-size:.833rem;color:var(--hla-tusche-weich);
+  display:block;margin-top:var(--hla-space-2)}
+@media (max-width:760px){
+  .matrix{grid-template-columns:1fr;gap:var(--hla-space-2)}
+  .matrix-kopf:first-child{display:none}
+  .matrix-kopf{padding-top:var(--hla-space-3)}
+  .matrix-zeile{font-size:1.222rem;padding-top:var(--hla-space-3)}
+}
+
+/* --- Detailtafel eines Zustands --- */
+.karte.zustand{padding:var(--hla-space-6)}
+.karte.zustand h3{font-size:1.556rem}
+.karte.zustand h3 .hanzi{font-size:.72em;color:var(--hla-tusche-weich);margin-left:.35em}
+.karte.zustand .pinyin{font-size:.833rem;color:var(--hla-stein);margin:2px 0 0}
+.karte.zustand .en{font-size:.833rem;color:var(--hla-stein);margin:0}
+.karte.zustand dl{margin:var(--hla-space-4) 0 0;display:grid;
+  grid-template-columns:96px minmax(0,1fr);gap:var(--hla-space-3) var(--hla-space-4)}
+.karte.zustand dt{font-weight:700;font-size:.722rem;letter-spacing:var(--hla-tracking-label);
+  text-transform:uppercase;color:var(--hla-stein);padding-top:4px}
+.karte.zustand dd{margin:0;font-size:.944rem;max-width:var(--hla-measure)}
+@media (max-width:560px){.karte.zustand dl{grid-template-columns:1fr;gap:2px var(--hla-space-4)}
+  .karte.zustand dt{padding-top:var(--hla-space-3)}}
+/* Bildunterschriften der Schaubilder auf gleicher Höhe */
+.schaubilder figure{display:flex;flex-direction:column;height:100%}
+.schaubilder figcaption{margin-top:auto;padding-top:var(--hla-space-4)}

@@ -29,31 +29,148 @@ Meridian.register({
          "C428,226 394,236 352,252 L332,265",
   branches: [{ label: "Luo-Ast zu Di", d: "M210,514 C205,545 197,572 182,590 L152,612" }],
 
-  /* --- Das Organ, Kapitel für den Unterricht --- */
+  /* --- Das Organ --- */
   organ: {
     titel: "Die Lunge in der chinesischen Medizin",
-    pinyin: "Fèi", han: "肺",
+    pinyin: "Fèi", han: "肺", wx: "metall",
     text: [
       "Die Lunge heißt in den Klassikern Meister des Qi. Sie nimmt mit dem Atem das reine Qi " +
       "der Luft auf und bildet daraus zusammen mit dem Gu-Qi aus der Nahrung das Zong-Qi, das " +
       "Sammel-Qi der Brust. Damit steht sie am Anfang jeder Qi-Bildung im Körper.",
 
-      "Ihre Arbeit hat zwei Richtungen. Xuān fā 宣發 verteilt und zerstreut nach außen und oben: " +
-      "es bringt Qi und Flüssigkeit an die Oberfläche, zu Haut und Körperhaar, und trägt dorthin " +
-      "das Wei-Qi, das Abwehr-Qi. Sù jiàng 肅降 klärt und senkt ab: es führt Qi und Flüssigkeit " +
-      "nach unten zur Niere und zur Blase. Weil beide Bewegungen auch den Wasserweg regeln, " +
-      "heißt die Lunge die obere Quelle des Wassers.",
-
-      "Sie öffnet sich in die Nase; Geruchssinn und Stimme gehören zu ihr. Sie beherbergt die " +
-      "Po 魄, die Körperseele, die für das unmittelbare Empfinden und das Gespür im Körper steht. " +
-      "Ihre Emotion ist Trauer und Kummer. Anhaltende Trauer verbraucht Lungen-Qi; umgekehrt " +
-      "macht schwaches Lungen-Qi anfälliger für Schwermut und Rückzug.",
-
-      "Die Lunge gilt als das zarte Organ. Sie liegt am höchsten, steht über Nase und Haut in " +
+      "Sie gilt als das zarte Organ. Sie liegt am höchsten, steht über Nase und Haut in " +
       "ständigem Austausch mit der Umwelt und wird deshalb als erste von äußeren pathogenen " +
       "Faktoren erreicht. Mit ihrem gekoppelten Organ, dem Dickdarm, teilt sie ein Thema: " +
       "aufnehmen und wieder loslassen."
     ],
+
+    aufgabenTitel: "Die Aufgaben der Lunge",
+    aufgaben: [
+      { titel: "Sie herrscht über das Qi und die Atmung", han: "主氣司呼吸",
+        text: "Mit dem Einatmen nimmt die Lunge das klare Qi auf, mit dem Ausatmen gibt sie " +
+              "das trübe ab. Aus dem klaren Qi und dem Gu-Qi der Nahrung entsteht in der Brust " +
+              "das Zong-Qi, das Atmung und Herzschlag trägt. Weil alle Qi-Bewegungen im Körper " +
+              "vom Atemrhythmus abhängen, heißt es: die Lunge herrscht über das Qi des ganzen Körpers. " +
+              "Ist ihr Qi schwach, fehlt Kraft, Stimme und Ausdauer." },
+
+      { titel: "Sie verteilt und senkt ab", han: "宣發肅降",
+        text: "Zwei Richtungen halten sich die Waage. Xuān fā verteilt nach außen und oben: " +
+              "es bringt Qi und Flüssigkeit an die Oberfläche, zu Haut und Körperhaar, und trägt " +
+              "dorthin das Wei-Qi. Sù jiàng klärt und senkt nach unten ab, zur Niere und zur Blase. " +
+              "Stockt das Verteilen, entstehen Frösteln und verstopfte Nase; stockt das Absenken, " +
+              "entstehen Husten, Keuchen und Engegefühl in der Brust." },
+
+      { titel: "Sie regelt den Wasserweg", han: "通調水道",
+        text: "Weil beide Bewegungen auch die Flüssigkeiten führen, heißt die Lunge die obere " +
+              "Quelle des Wassers. Sie vernebelt Flüssigkeit zur Haut hin und senkt den Rest nach " +
+              "unten ab. Versagt das, sammelt sich Feuchtigkeit: Ödeme im Gesicht und an den " +
+              "Oberarmen, Schleim in der Brust, spärlicher Urin." },
+
+      { titel: "Sie beherrscht Haut und Körperhaar", han: "主皮毛",
+        text: "Die Lunge verteilt das Wei-Qi in die Oberfläche und steuert das Öffnen und " +
+              "Schließen der Poren. Davon hängt ab, wie dicht die Abwehr ist und ob jemand zur " +
+              "rechten Zeit schwitzt. Schwaches Lungen-Qi zeigt sich als eine Erkältung nach der " +
+              "anderen, als Schwitzen ohne Anlass und als trockene, glanzlose Haut." },
+
+      { titel: "Sie öffnet sich in die Nase", han: "開竅於鼻",
+        text: "Nase, Rachen und Stimme gehören zur Lunge. Ist ihr Qi frei, riecht man gut und " +
+              "die Stimme trägt. Wind-Kälte verstopft die Nase, Wind-Hitze macht den Rachen wund, " +
+              "Yin-Mangel trocknet beides aus und nimmt der Stimme den Klang." },
+
+      { titel: "Sie beherbergt die Po", han: "藏魄",
+        text: "Die Po ist die Körperseele: das unmittelbare Empfinden, der Reflex, das Gespür " +
+              "im Leib, das nicht durch den Verstand geht. Sie ist an den Atem gebunden und " +
+              "erlischt mit ihm. Ihre Emotion ist Trauer. Anhaltende Trauer verbraucht Lungen-Qi; " +
+              "umgekehrt macht schwaches Lungen-Qi anfälliger für Schwermut und Rückzug." }
+    ],
+
+    zustaendeTitel: "Mangel und Fülle von Yin und Yang",
+    zustaendeHinweis: "Mangel (Xū 虛) heißt: etwas fehlt. Fülle (Shí 實) heißt: etwas ist zu viel " +
+                      "da und blockiert. Bei Yin-Fülle sammelt sich Stoffliches von yin-artiger " +
+                      "Natur an – Schleim, Feuchtigkeit, Kälte. Bei Yang-Fülle staut sich Hitze.",
+    zustaende: [
+      { feld: "Yin-Mangel", en: "Lung Yin Deficiency", han: "肺陰虛", pinyin: "fèi yīn xū",
+        kurz: "Es fehlt Befeuchtung. Trockenheit und Leere-Hitze treten hervor.",
+        zeichen: "Trockener Reizhusten ohne Auswurf oder mit wenig zähem Schleim, trockener Hals " +
+                 "und Mund, Heiserkeit bis Stimmverlust, Nachtschweiß, Hitze in den fünf Herzen, " +
+                 "am Nachmittag gerötete Wangen, Abmagerung.",
+        zunge: "rot, wenig oder kein Belag, trocken, feine Risse im vorderen Drittel",
+        puls: "dünn und schnell",
+        punkte: "Lu 9 · Lu 5 · Ni 6 · Bl 13 · Ren 17" },
+
+      { feld: "Yang-Mangel", en: "Lung Qi / Yang Deficiency", han: "肺氣虛", pinyin: "fèi qì xū",
+        kurz: "Es fehlt Wärme und Antrieb. Das Qi hält die Oberfläche nicht mehr dicht.",
+        zeichen: "Kurzatmigkeit schon bei geringer Anstrengung, leise und kraftlose Stimme, " +
+                 "Widerwille zu sprechen, Schwitzen am Tag ohne Anlass, blasses Gesicht, " +
+                 "Erschöpfung, eine Erkältung nach der anderen, Kälteempfindlichkeit an Rücken " +
+                 "und Schultern, bei ausgeprägter Kälte klares dünnes Sekret. Von einem eigenen " +
+                 "Lungen-Yang-Mangel spricht die Lehre selten – die Schwäche zeigt sich als " +
+                 "Qi-Mangel mit Kältezeichen.",
+        zunge: "blass, feucht, dünner weißer Belag",
+        puls: "leer und schwach, besonders in der rechten Cun-Position",
+        punkte: "Lu 9 · Lu 1 · Ma 36 · Bl 13 · Du 12" },
+
+      { feld: "Yin-Fülle", en: "Phlegm-Damp obstructing the Lung", han: "痰濕阻肺", pinyin: "tán shī zǔ fèi",
+        kurz: "Stoffliches von yin-artiger Natur staut sich: Schleim, Feuchtigkeit, Kälte.",
+        zeichen: "Reichlich weißer, leicht zu lösender Schleim, Engegefühl in der Brust, " +
+                 "rasselnde oder pfeifende Atmung, Schweregefühl im Körper, Verschlimmerung durch " +
+                 "Milchprodukte, Süßes und feuchtes Wetter. Bei Kälte-Schleim ist der Auswurf " +
+                 "wässrig-weiß und alles bessert sich durch Wärme.",
+        zunge: "geschwollen, klebriger weißer Belag, oft Zahneindrücke am Rand",
+        puls: "schlüpfrig, bei Kälte zusätzlich langsam",
+        punkte: "Lu 5 · Ma 40 · Ren 17 · Mi 3 · Bl 13" },
+
+      { feld: "Yang-Fülle", en: "Heat or Phlegm-Heat in the Lung", han: "痰熱壅肺", pinyin: "tán rè yōng fèi",
+        kurz: "Hitze staut sich in der Lunge, oft zusammen mit Schleim.",
+        zeichen: "Lauter, bellender Husten, gelber zäher Schleim, teils übelriechend, Fieber, " +
+                 "Durst auf Kaltes, Brustschmerz beim Husten, trockener Stuhl, dunkler Urin. " +
+                 "Bei starker Hitze blutiger Auswurf.",
+        zunge: "rot, gelber klebriger Belag",
+        puls: "schnell, voll, schlüpfrig",
+        punkte: "Lu 5 · Lu 10 · Lu 11 · Di 11 · Di 4 · Bl 13" }
+    ],
+
+    aeussereTitel: "Wenn ein äußerer Faktor die Lunge erreicht",
+    aeussere: [
+      { name: "Wind-Kälte fesselt die Lunge", han: "風寒束肺", pinyin: "fēng hán shù fèi",
+        zeichen: "Plötzlich einsetzender Husten mit dünnem weißem Schleim, klarer Nasenfluss, " +
+                 "Frösteln, das sich durch Wärme bessert, kein Schweiß, steifer Nacken, " +
+                 "Kopfschmerz im Hinterkopf.",
+        punkte: "Lu 7 · Di 4 · Bl 12 · Gb 20" },
+      { name: "Wind-Hitze greift die Lunge an", han: "風熱犯肺", pinyin: "fēng rè fàn fèi",
+        zeichen: "Halsschmerz, gelblicher zäher Schleim, Fieber mit nur wenig Frösteln, Durst, " +
+                 "geschwollene Mandeln, trockene Nase.",
+        punkte: "Lu 11 · Lu 10 · Di 4 · Di 11" }
+    ],
+
+    nahrungTitel: "Was die Lunge stärkt und was ihr schadet",
+    nahrung: {
+      staerkt: [
+        { was: "Birne, roh oder gedünstet", warum: "befeuchtet die Lunge und löst trockenen Reizhusten" },
+        { was: "Weißer Rettich, Daikon", warum: "löst Schleim und bringt das Lungen-Qi wieder nach unten" },
+        { was: "Mandeln und Aprikosenkerne", warum: "befeuchten und senken das Qi ab, klassisch bei Husten" },
+        { was: "Lotoswurzel", warum: "befeuchtet und kühlt bei Trockenheit mit Hitze" },
+        { was: "Silberohr, weißer Baumpilz", warum: "nährt das Lungen-Yin, besonders im Herbst" },
+        { was: "Chinesischer Yams, Shan Yao", warum: "stärkt Lungen- und Milz-Qi zugleich" },
+        { was: "Reis-Congee", warum: "baut Qi auf, ohne die Mitte zu belasten" },
+        { was: "Honig", warum: "befeuchtet und lindert trockenen Hals" },
+        { was: "Ingwer, Frühlingszwiebel, Zwiebel", warum: "scharf, öffnet die Oberfläche bei Wind-Kälte – in Maßen" },
+        { was: "Weiße Gemüse: Blumenkohl, Kohlrabi, Pastinake, Tofu", warum: "die Farbe der Wandlungsphase Metall" },
+        { was: "Walnuss und Sesam", warum: "gegen Trockenheit im Herbst, nähren auch die Niere" }
+      ],
+      schadet: [
+        { was: "Milchprodukte im Übermaß, vor allem Käse, Sahne, Eiscreme", warum: "bilden Feuchtigkeit und Schleim" },
+        { was: "Zucker und Süßigkeiten", warum: "erzeugen Feuchtigkeit, aus der Schleim wird" },
+        { was: "Kalte Rohkost und eisgekühlte Getränke", warum: "schwächen Milz- und Lungen-Qi" },
+        { was: "Zu viel Scharfes, Alkohol, Frittiertes", warum: "trocknet aus und erzeugt Hitze in der Lunge" },
+        { was: "Große Mengen Weizenprodukte bei bestehender Feuchtigkeit", warum: "verstärken die Schleimbildung" },
+        { was: "Rauchen", warum: "kein Nahrungsmittel, aber der stärkste Trocknungs- und Hitzefaktor für die Lunge" }
+      ],
+      hinweis: "Der scharfe Geschmack gehört zur Lunge und öffnet sie – im Übermaß zerstreut er " +
+               "aber ihr Qi. Und: die Milz ist die Quelle des Schleims, die Lunge nur sein Behälter. " +
+               "Wer Schleim in der Lunge über die Ernährung angeht, setzt bei der Milz an."
+    },
+
     eigenschaften: [
       { k: "Wandlungsphase", v: "Metall 金" },
       { k: "Jahreszeit", v: "Herbst" },
@@ -66,37 +183,7 @@ Meridian.register({
       { k: "Geistaspekt", v: "Po 魄, Körperseele" },
       { k: "Gekoppelt", v: "Dickdarm" }
     ],
-    musterTitel: "Was auftritt, wenn die Lunge aus dem Gleichgewicht gerät",
-    muster: [
-      { name: "Lungen-Qi-Mangel", han: "肺氣虛", pinyin: "fèi qì xū",
-        zeichen: "Kurzatmigkeit schon bei geringer Anstrengung, leise und kraftlose Stimme, " +
-                 "wenig Antrieb, Schwitzen am Tag ohne Anlass, blasses Gesicht, eine Erkältung " +
-                 "nach der anderen, weil das Wei-Qi die Oberfläche nicht mehr dicht hält.",
-        punkte: "Lu 9 · Lu 1 · Ma 36 · Bl 13" },
 
-      { name: "Lungen-Yin-Mangel", han: "肺陰虛", pinyin: "fèi yīn xū",
-        zeichen: "Trockener Reizhusten ohne Auswurf oder mit wenig zähem Schleim, trockener Hals, " +
-                 "Heiserkeit bis Stimmverlust, Nachtschweiß, Hitze in den fünf Herzen, am " +
-                 "Nachmittag gerötete Wangen.",
-        punkte: "Lu 9 · Lu 5 · Ni 6 · Bl 13" },
-
-      { name: "Wind-Kälte fesselt die Lunge", han: "風寒束肺", pinyin: "fēng hán shù fèi",
-        zeichen: "Plötzlich einsetzender Husten mit dünnem weißem Schleim, klarer Nasenfluss, " +
-                 "Frösteln, das sich durch Wärme bessert, kein Schweiß, steifer Nacken, " +
-                 "Kopfschmerz im Hinterkopf.",
-        punkte: "Lu 7 · Di 4 · Bl 12 · Gb 20" },
-
-      { name: "Wind-Hitze greift die Lunge an", han: "風熱犯肺", pinyin: "fēng rè fàn fèi",
-        zeichen: "Halsschmerz, gelblicher zäher Schleim, Fieber mit nur wenig Frösteln, Durst, " +
-                 "geschwollene Mandeln, trockene Nase.",
-        punkte: "Lu 11 · Lu 10 · Di 4 · Di 11" },
-
-      { name: "Schleim-Feuchtigkeit blockiert die Lunge", han: "痰濕阻肺", pinyin: "tán shī zǔ fèi",
-        zeichen: "Reichlich weißer, leicht zu lösender Schleim, Engegefühl in der Brust, " +
-                 "rasselnde Atmung, Schweregefühl im Körper, verschlimmert durch " +
-                 "Milchprodukte und Süßes.",
-        punkte: "Lu 5 · Ma 40 · Ren 17 · Mi 3" }
-    ],
     hinweis: "Die Muster beschreiben die klassische Syndromlehre und dienen dem Unterricht. " +
              "Sie ersetzen weder Diagnose noch ärztliche Abklärung."
   },

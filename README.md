@@ -9,7 +9,7 @@ Antikpunkt (Ting, Yong, Yu, King, Ho).
 
 | Umlauf | Meridian | Status |
 |---|---|---|
-| 1 | Lunge (Lu / LU) | kalibriert, 11 Punkte, mit Organkapitel |
+| 1 | Lunge (Lu / LU) | vollständig: 11 Punkte, Organ, Wandlungsphasen, Mangel/Fülle, Ernährung |
 | 1 | Dickdarm, Magen, Milz | offen |
 | 2 | Herz, Dünndarm, Blase, Niere | offen |
 | 3 | Perikard, 3-Erwärmer, Gallenblase, Leber | offen |
@@ -44,6 +44,29 @@ bash werkzeuge/schriften-holen.sh
 Das Skript sammelt alle im Projekt vorkommenden Schriftzeichen ein und lädt Noto Serif SC
 nur für genau diese Zeichen – deshalb sind alle drei Schriften zusammen nur rund 330 KB groß.
 
+### Was eine Meridianseite enthält
+
+1. **Tafel** mit Figur, Verlauf und Punkten. Punkte werden angeklickt; daneben stehen
+   Lage, Wirkung, Stichtiefe, deutscher und englischer Name.
+2. **Das Organ**: Einordnung und die Aufgaben als aufklappbare Abschnitte.
+3. **Die fünf Wandlungsphasen**: Schaubild mit Sheng- und Ke-Zyklus, die Organuhr,
+   und die Zuordnungstafel mit Farbe, Jahreszeit, Sinnesorgan, Geschmack, Richtung
+   sowie positiven und negativen Emotionen für alle fünf Phasen.
+4. **Mangel und Fülle**: die vier Felder Yin-Mangel, Yang-Mangel, Yin-Fülle, Yang-Fülle
+   als anklickbare Matrix, jeweils mit Zeichen, Zungen- und Pulsbefund und Punkten.
+   Darunter die äußeren Faktoren.
+5. **Ernährung**: was das Organ stärkt und was ihm schadet, jeweils mit Begründung.
+6. **Punktfolge** als vollständige Liste.
+
+### Zwei inhaltliche Festlegungen
+
+- **Mangel statt Sufficiency.** Die vier Felder heißen Mangel (Xū 虛) und Fülle (Shí 實).
+  Ein Zustand, in dem Yin oder Yang ausreichend vorhanden ist, erzeugt keine Symptome –
+  gemeint ist der Mangel.
+- **Phasenschaubild einfarbig.** Die fünf Phasenfarben stehen als Wort in der
+  Zuordnungstafel, nicht als Farbfläche. Kapitel 3.2 lässt keine weiteren Farben zu,
+  und die Ausnahme in 3.3 gilt nur für Meridian- und Punktdarstellungen.
+
 ### Offene Gestaltungsfragen
 
 - **Figur statt Umrisszeichnung.** 11.4 sieht für Meridiandarstellungen einen Körperumriss
@@ -76,7 +99,9 @@ img/marke/          Logo und Linienmotiv aus dem Designhandbuch
 js/engine.js        Spline, Bogenlängen, Qi-Animation – kennt keinen einzelnen Meridian
 js/app.js           Seitenlogik der Meridianseite
 data/katalog.js     die zwölf Hauptmeridiane als Verzeichnis
-data/lu.js          ein Meridian: Verlauf, Punkte, Texte
+data/wandlungsphasen.js  die fünf Phasen und die Organuhr – gilt für alle Meridiane
+data/lu.js          ein Meridian: Verlauf, Punkte, Organ, Zustände, Ernährung
+js/wuxing.js        zeichnet Phasenschaubild und Organuhr
 img/front|back|side.png   die drei Figuren, 880 × 1168, freigestellt
 tools/kalibrator.html     Werkzeug zum Setzen der Punktlagen
 werkzeuge/schriften-holen.sh   holt und verkleinert die Schriften

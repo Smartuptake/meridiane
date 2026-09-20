@@ -4,11 +4,63 @@
   "use strict";
 
   var id = (new URLSearchParams(location.search).get("m") || "lu").toLowerCase();
+  window.__meridianId = id;
 
   function $(x) { return document.getElementById(x); }
   function han(t) {
     var s = document.createElement("span"); s.className = "hanzi"; s.textContent = t; return s;
   }
+  var NS = "http://www.w3.org/2000/svg";
+
+  /* Auf- und zuklappbarer Abschnitt. Der Winkel dreht sich, keine senkrechte Linie (5.2). */
+  function winkel() {
+    var svg = document.createElementNS(NS, "svg");
+    svg.setAttribute("class", "zeichen");
+    svg.setAttribute("viewBox", "0 0 22 22");
+    svg.setAttribute("aria-hidden", "true");
+    var pl = document.createElementNS(NS, "polyline");
+    pl.setAttribute("points", "5,9 11,15 17,9");
+    svg.appendChild(pl);
+    return svg;
+  }
+
+  var faltZaehler = 0;
+  function falttafel(host, eintraege, offen) {
+    eintraege.forEach(function (e, i) {
+      var wrap = document.createElement("div");
+      var btn = document.createElement("button");
+      var kennung = "falt-" + (faltZaehler++);
+      btn.type = "button";
+      btn.setAttribute("aria-expanded", i === offen ? "true" : "false");
+      btn.setAttribute("aria-controls", kennung);
+      var t = document.createElement("span");
+      t.className = "titel";
+      t.textContent = e.titel;
+      if (e.han) t.appendChild(han(e.han));
+      btn.appendChild(t);
+      btn.appendChild(winkel());
+
+      var inhalt = document.createElement("div");
+      inhalt.className = "inhalt";
+      inhalt.id = kennung;
+      inhalt.hidden = (i !== offen);
+      e.fuellen(inhalt);
+
+      btn.addEventListener("click", function () {
+        var auf = btn.getAttribute("aria-expanded") === "true";
+        btn.setAttribute("aria-expanded", auf ? "false" : "true");
+        inhalt.hidden = auf;
+      });
+      wrap.appendChild(btn); wrap.appendChild(inhalt); host.appendChild(wrap);
+    });
+  }
+
+  function absatz(host, text, klasse) {
+    var p = document.createElement("p");
+    if (klasse) p.className = klasse;
+    p.textContent = text; host.appendChild(p); return p;
+  }
+
   function katalogEintrag(id) {
     return (window.MeridianKatalog || []).filter(function (m) { return m.id === id; })[0];
   }
@@ -75,24 +127,42 @@
         var dd = document.createElement("dd"); dd.textContent = e.v;
         d.appendChild(dt); d.appendChild(dd); $("oEigenschaften").appendChild(d);
       });
-      $("oMusterTitel").textContent = o.musterTitel;
-      o.muster.forEach(function (m) {
-        var li = document.createElement("li");
-        var h = document.createElement("h3");
-        h.textContent = m.name;
-        if (m.han) h.appendChild(han(m.han));
-        var pin = document.createElement("p");
-        pin.className = "punkte"; pin.style.margin = "0 0 8px";
-        pin.textContent = m.pinyin;
-        var z = document.createElement("p"); z.textContent = m.zeichen;
-        var pk = document.createElement("p"); pk.className = "punkte";
-        pk.textContent = "Häufig verwendete Punkte: " + m.punkte;
-        li.appendChild(h); li.appendChild(pin); li.appendChild(z); li.appendChild(pk);
-        $("oMuster").appendChild(li);
-      });
+      /* Aufgaben des Organs, anklickbar */
+      $("oAufgabenTitel").textContent = o.aufgabenTitel;
+      falttafel($("oAufgaben"), o.aufgaben.map(function (a) {
+        return { titel: a.titel, han: a.han, fuellen: function (c) { absatz(c, a.text); } };
+      }), 0);
+
+      /* Wandlungsphasen */
+      phasenAbschnitt(o.wx);
+
+      /* Mangel und Fülle */
+      $("zTitel").textContent = o.zustaendeTitel;
+      $("zHinweis").textContent = o.zustaendeHinweis;
+      zustandsMatrix(o.zustaende);
+
+      /* Äußere Faktoren */
+      $("aeTitel").textContent = o.aeussereTitel;
+      falttafel($("oAeussere"), (o.aeussere || []).map(function (a) {
+        return { titel: a.name, han: a.han, fuellen: function (c) {
+          absatz(c, a.pinyin, "punkte");
+          absatz(c, a.zeichen);
+          absatz(c, "Häufig verwendete Punkte: " + a.punkte, "punkte");
+        } };
+      }), -1);
+
+      /* Ernährung */
+      $("nTitel").textContent = o.nahrungTitel;
+      falttafel($("nFalt"), [
+        { titel: "Was das Organ stärkt", fuellen: function (c) { nahrungsliste(c, o.nahrung.staerkt); } },
+        { titel: "Was ihm schadet",      fuellen: function (c) { nahrungsliste(c, o.nahrung.schadet); } }
+      ], 0);
+      $("nHinweis").textContent = o.nahrung.hinweis;
       $("oHinweis").textContent = o.hinweis;
     } else {
-      $("organ").style.display = "none";
+      ["organ", "phasen", "zustaende", "ernaehrung"].forEach(function (x) {
+        $(x).style.display = "none";
+      });
     }
 
     /* --- Tafel --- */
@@ -200,4 +270,119 @@
       else if (e.key === "g" || e.key === "G") { e.preventDefault(); offen ? schliessen() : oeffnen(); }
     });
   }
+
+  /* ---------- Nahrungsmittelliste ---------- */
+  function nahrungsliste(host, eintraege) {
+    var dl = document.createElement("dl");
+    dl.className = "nahrung";
+    eintraege.forEach(function (e) {
+      var d = document.createElement("div");
+      var dt = document.createElement("dt"); dt.textContent = e.was;
+      var dd = document.createElement("dd"); dd.textContent = e.warum;
+      d.appendChild(dt); d.appendChild(dd); dl.appendChild(d);
+    });
+    host.appendChild(dl);
+  }
+
+  /* ---------- Wandlungsphasen ---------- */
+  function phasenAbschnitt(aktiv) {
+    var W = window.Wandlungsphasen;
+    if (!W || !aktiv) { $("phasen").style.display = "none"; return; }
+    var p = W.phasen[aktiv];
+
+    $("pLead").textContent = "Dieses Organ gehört zur Wandlungsphase " + p.name + " " + p.han +
+      ". Sie wird von " + W.phasen[vorgaenger(aktiv)].name + " genährt, nährt selbst " +
+      W.phasen[nachfolger(aktiv)].name + ", bändigt " + W.phasen[W.kontrolle[aktiv]].name +
+      " und wird von " + W.phasen[baendiger(aktiv)].name + " gebändigt.";
+
+    Wuxing.diagramm($("svgWuxing"), aktiv);
+    Wuxing.organuhr($("svgUhr"), (window.__meridianId || "lu"));
+
+    var t = $("tZuordnung");
+    var thead = document.createElement("thead");
+    var kopf = document.createElement("tr");
+    kopf.appendChild(document.createElement("th"));
+    W.reihenfolge.forEach(function (k) {
+      var ph = W.phasen[k];
+      var th = document.createElement("th");
+      if (k === aktiv) th.className = "aktiv";
+      th.appendChild(document.createTextNode(ph.name));
+      th.appendChild(han(ph.han));
+      var s = document.createElement("small");
+      s.textContent = ph.zang + " · " + ph.fu;
+      th.appendChild(s);
+      kopf.appendChild(th);
+    });
+    thead.appendChild(kopf); t.appendChild(thead);
+
+    var tbody = document.createElement("tbody");
+    W.merkmale.forEach(function (m) {
+      var tr = document.createElement("tr");
+      var th = document.createElement("th"); th.scope = "row"; th.textContent = m.label;
+      tr.appendChild(th);
+      W.reihenfolge.forEach(function (k) {
+        var td = document.createElement("td");
+        if (k === aktiv) td.className = "aktiv";
+        td.textContent = W.phasen[k][m.k];
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+    t.appendChild(tbody);
+  }
+  function nachfolger(k) {
+    var R = window.Wandlungsphasen.reihenfolge;
+    return R[(R.indexOf(k) + 1) % R.length];
+  }
+  function vorgaenger(k) {
+    var R = window.Wandlungsphasen.reihenfolge;
+    return R[(R.indexOf(k) + R.length - 1) % R.length];
+  }
+  function baendiger(k) {
+    var K = window.Wandlungsphasen.kontrolle, r = null;
+    Object.keys(K).forEach(function (von) { if (K[von] === k) r = von; });
+    return r;
+  }
+
+  /* ---------- Yin-Yang-Matrix ---------- */
+  function zustandsMatrix(zustaende) {
+    var felder = Array.prototype.slice.call(document.querySelectorAll(".matrix-feld"));
+    var detail = $("zDetail");
+
+    felder.forEach(function (b) {
+      var z = zustaende[parseInt(b.dataset.feld, 10)];
+      if (!z) { b.disabled = true; return; }
+      var f = document.createElement("span"); f.className = "f"; f.textContent = z.feld;
+      var h = document.createElement("span"); h.className = "h"; h.textContent = z.han;
+      var k = document.createElement("span"); k.className = "k"; k.textContent = z.kurz;
+      b.appendChild(f); b.appendChild(h); b.appendChild(k);
+      b.addEventListener("click", function () { waehle(parseInt(b.dataset.feld, 10)); });
+    });
+
+    function waehle(i) {
+      var z = zustaende[i];
+      felder.forEach(function (b) {
+        b.setAttribute("aria-pressed", parseInt(b.dataset.feld, 10) === i ? "true" : "false");
+      });
+      detail.innerHTML = "";
+      var h3 = document.createElement("h3");
+      h3.textContent = z.feld;
+      h3.appendChild(han(z.han));
+      var pin = document.createElement("p"); pin.className = "pinyin"; pin.textContent = z.pinyin;
+      var en = document.createElement("p"); en.className = "en"; en.textContent = "englisch: " + z.en;
+      detail.appendChild(h3); detail.appendChild(pin); detail.appendChild(en);
+
+      var dl = document.createElement("dl");
+      [["Kurz", z.kurz], ["Zeichen", z.zeichen], ["Zunge", z.zunge],
+       ["Puls", z.puls], ["Punkte", z.punkte]].forEach(function (r) {
+        if (!r[1]) return;
+        var dt = document.createElement("dt"); dt.textContent = r[0];
+        var dd = document.createElement("dd"); dd.textContent = r[1];
+        dl.appendChild(dt); dl.appendChild(dd);
+      });
+      detail.appendChild(dl);
+    }
+    waehle(0);
+  }
+
 })();
