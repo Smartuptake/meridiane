@@ -509,7 +509,7 @@ a.karte.gesperrt{pointer-events:none;opacity:.55}
 }
 
 /* ===========================================================
-   Übungstableau: Meridian-Dehnung (Makko-Ho)
+   Übungstableau: Meridian-Dehnung
    Je Übung zwei Haltungen links, Erklärung rechts.
    =========================================================== */
 .dehn-liste{display:flex;flex-direction:column;gap:var(--hla-space-12)}
@@ -545,6 +545,7 @@ article.dehn{border-top:1px solid var(--hla-tusche);padding-top:var(--hla-space-
   .dehn-text{overflow:hidden}
   .dehn-paar{font-size:9pt;margin-top:1mm}
   .dehn-liste{display:block;column-count:2;column-gap:12mm}
+}
 
 /* ===========================================================
    Übungstableau: Der kleine Himmelskreislauf
@@ -609,4 +610,19 @@ ol.quellen .qnr{font-weight:700;color:var(--hla-stein)}
   #namen .falttafel{column-count:2;column-gap:10mm}
   #namen .falttafel > div{break-inside:avoid;page-break-inside:avoid}
   ol.quellen{font-size:7.5pt}
+}
+
+/* Logo im Druckkopf (Handbuch 9: Kopfzeile mit Marke, Haarlinie darunter) */
+.druckkopf .druckmarke{display:none;height:9mm;width:auto}
+table.stationen{min-width:820px}
+table.stationen tbody th{font-family:var(--hla-font-text);font-weight:700;
+  font-size:.889rem;letter-spacing:.06em;color:var(--hla-stein);text-transform:none;
+  white-space:nowrap}
+table.stationen td:first-of-type{font-weight:700}
+.lesezeichen.klein{width:14px;height:14px;flex:0 0 14px;display:inline-block;
+  vertical-align:-2px;margin-left:var(--hla-space-2)}
+@media print{
+  .druckkopf .druckmarke{display:block}
+  table.stationen{min-width:0;font-size:8pt}
+  #tabelle{break-before:auto}
 }

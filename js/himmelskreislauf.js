@@ -65,12 +65,11 @@
   bild.style.filter = "saturate(.85)";
   svg.appendChild(bild);
 
-  /* Beinast zuerst, gestrichelt und zurückhaltend */
-  svg.appendChild(el("path", { d: glatt(H.beinAst), fill: "none", stroke: STEIN,
-    "stroke-width": 2.6, "stroke-dasharray": "7 8", "stroke-linecap": "round" }));
-  svg.appendChild(el("path", { d: "M" + H.kneeAst[0][0] + "," + H.kneeAst[0][1] +
-    " L" + H.kneeAst[1][0] + "," + H.kneeAst[1][1], fill: "none", stroke: STEIN,
-    "stroke-width": 2.2, "stroke-dasharray": "5 6", "stroke-linecap": "round" }));
+  /* Beinäste zuerst: hinten hinab zur Fußsohle, vorne wieder hinauf */
+  [H.beinAb, H.beinAuf].forEach(function (pfad) {
+    svg.appendChild(el("path", { d: glatt(pfad), fill: "none", stroke: STEIN,
+      "stroke-width": 2.6, "stroke-dasharray": "7 8", "stroke-linecap": "round" }));
+  });
 
   /* Kreislauf: helle Unterlage, dann Tusche mit Richtungspfeilen */
   [H.duMai, H.renMai].forEach(function (pfad) {
@@ -232,4 +231,39 @@
     li.appendChild(n); li.appendChild(document.createTextNode(q.text));
     $("oQuellen").appendChild(li);
   });
+
+  /* --- Tabelle: Nummer, Name, Lage --- */
+  if ($("tStationen")) {
+    $("tTabelleTitel").textContent = H.tabelleTitel;
+    var t = $("tStationen");
+    var thead = document.createElement("thead");
+    var kopf = document.createElement("tr");
+    ["", "Station", "Chinesisch und Code", "Lage am Körper"].forEach(function (h) {
+      var th = document.createElement("th"); th.textContent = h; kopf.appendChild(th);
+    });
+    thead.appendChild(kopf); t.appendChild(thead);
+    var tb = document.createElement("tbody");
+    H.punkte.slice().sort(function (a, b) { return a.nr - b.nr; }).forEach(function (p) {
+      var tr = document.createElement("tr");
+      var nr = document.createElement("th"); nr.scope = "row";
+      nr.textContent = (p.nr < 10 ? "0" : "") + p.nr;
+      tr.appendChild(nr);
+      var nm = document.createElement("td");
+      nm.appendChild(document.createTextNode(p.name));
+      var art = document.createElementNS(NS, "svg");
+      art.setAttribute("viewBox", "0 0 22 22"); art.setAttribute("class", "lesezeichen klein");
+      if (p.art === "punkt") art.appendChild(el("circle", { cx: 11, cy: 11, r: 7, fill: SIEGELROT }));
+      else art.appendChild(el("rect", { x: 4, y: 4, width: 14, height: 14, fill: TUSCHE }));
+      nm.appendChild(art);
+      tr.appendChild(nm);
+      var ch = document.createElement("td");
+      ch.appendChild(han(p.hanT + (p.hanV !== p.hanT ? " / " + p.hanV : "")));
+      ch.appendChild(document.createTextNode(" · " + p.pinyin + " · " + p.code));
+      tr.appendChild(ch);
+      var o = document.createElement("td"); o.textContent = p.ort; tr.appendChild(o);
+      tb.appendChild(tr);
+    });
+    t.appendChild(tb);
+  }
+
 })();

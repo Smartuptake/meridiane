@@ -1,4 +1,4 @@
-/* Seitenlogik für das Makko-Ho-Tableau der Meridian-Dehnung. */
+/* Seitenlogik für das Übungstableau der Meridian-Dehnung. */
 (function () {
   "use strict";
   var D = window.Meridiandehnung, W = window.Wandlungsphasen;
@@ -22,7 +22,6 @@
     li.appendChild(b); li.appendChild(sp); $("hMeta").appendChild(li);
   });
   $("oOrdnung").textContent = D.ordnung;
-  $("oQuelle").textContent = D.quelle;
 
   if (window.Wuxing) Wuxing.diagramm($("svgWuxing"), null);
 

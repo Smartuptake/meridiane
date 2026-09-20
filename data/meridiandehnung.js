@@ -1,10 +1,10 @@
-/* Meridian-Dehnung – Makko-Ho.
-   Inhalt unverändert aus Meridiandehnung-komplett-mit-Erklärungen.pdf übernommen;
+/* Meridian-Dehnung.
+   Inhalt nach der bereitgestellten Vorlage;
    ergänzt um Wandlungsphase und Umlauf. Kurzformen nach dem Katalog der Anwendung
    (MP, Pe); die Schreibweise der Vorlage steht als Zweitnennung dabei. */
 window.Meridiandehnung = {
   titel: "Meridian-Dehnung",
-  untertitel: "Makko-Ho Übungen · Ausgangshaltung und Dehnung",
+  untertitel: "Ausgangshaltung und Dehnung",
 
   einleitung: "Sechs Übungspaare. Links steht jeweils die Ausgangshaltung, rechts die " +
               "Dehnung, daneben die Erklärung. Links und rechts beziehen sich auf den " +
@@ -16,9 +16,6 @@ window.Meridiandehnung = {
            "sowie Niere und Blase den zweiten, Perikard und Drei-Erwärmer sowie Leber " +
            "und Gallenblase den dritten.",
 
-  quelle: "Grundlage: „Makko-Ho Übungen“, Ko-Schule für Shiatsu, Zürich · " +
-          "Zusammenstellung: Veronika Rüfenacht; Originalillustrationen: Gerda Tobler. " +
-          "Figuren für dieses Tableau neu gestaltet.",
 
   uebungen: [
     {

@@ -155,18 +155,10 @@ der sechste gehört zum Dreifachen Erwärmer, der keine eigene Wandlungsphase ha
 als 2×3-Raster enthielt. Es ist in sechs Einzelbilder zerlegt und jeder Übung zugeordnet;
 die Ränder wurden gegen den weißen Grund geprüft, damit keine Figur angeschnitten ist.
 
-**Meridian-Dehnung** liegt auf dem Zweig `entwurf/meridian-dehnung` und wird deshalb
-**nicht** von GitHub Pages ausgeliefert. Grund: Die Vorlage nennt die Ko-Schule für Shiatsu
-Zürich sowie Veronika Rüfenacht und Gerda Tobler namentlich. Eine Datei, die im
-veröffentlichten Zweig liegt, ist über ihre Adresse abrufbar, auch wenn keine Karte
-darauf verlinkt – ein nicht verlinktes Blatt ist also nicht unveröffentlicht. Sobald die
-Freigabe vorliegt, genügt:
-
-```bash
-git checkout main && git merge entwurf/meridian-dehnung && git push
-```
-
-Zum Ansehen vorher: `git checkout entwurf/meridian-dehnung`, dann den lokalen Server starten.
+**Die neunzehn Stationen** des Himmelskreislaufs sind nicht geschätzt: Positionen,
+Verlauf und Markenformen stammen aus dem Inhaltsstrom der Vorlage. Der dortige
+Bildrahmen (524,288 × 786,432 bei 177,76 / 157,448) rechnet die PDF-Koordinaten
+verlustfrei in das Bildraster 746 × 1335 um.
 
 **Drucken:** Die Seite trägt ihre Druckvorlage selbst. Im Browser Cmd+P, Papierformat
 **A3 hoch**, Hintergrundgrafiken aktivieren. Es entsteht ein zweispaltiges Tableau ohne
