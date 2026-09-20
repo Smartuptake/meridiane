@@ -107,17 +107,25 @@
     qi.appendChild(el("circle", { r: 3, fill: TUSCHE }));
     svg.appendChild(qi);
 
+    /* Die Schiene liegt auf der Seite, auf der Platz ist: bei Meridianen
+       rechts der Bildmitte rechts, sonst links. Sonst queren die Hilfslinien
+       die ganze Figur und lange Etiketten laufen aus dem Bild. Die Legende
+       stellt sich auf die freie Gegenseite, darum steht das hier oben. */
+    var mittelX = P.reduce(function (a, p) { return a + p.x; }, 0) / P.length;
+    var rechts = (data.rail && data.rail.seite) ? data.rail.seite === "rechts" : mittelX > W / 2;
+
     /* Legende */
+    var lx = rechts ? 24 : 604;
     var legende = el("g", { "font-family": '"Lato", Arial, sans-serif', "font-size": 15 });
     legende.innerHTML =
-      '<line x1="604" y1="100" x2="634" y2="100" stroke="' + TUSCHE + '" stroke-width="3.2" stroke-linecap="round"/>' +
-      '<text x="646" y="105" fill="' + TUSCHE + '">äußerer Verlauf</text>' +
-      '<circle cx="619" cy="130" r="5" fill="' + SIEGELROT + '" stroke="' + WEISS + '" stroke-width="1.4"/>' +
-      '<text x="646" y="135" fill="' + TUSCHE + '">Akupunkturpunkt</text>' +
-      '<line x1="604" y1="160" x2="634" y2="160" stroke="' + STEIN + '" stroke-width="2" stroke-dasharray="6 7" stroke-linecap="round"/>' +
-      '<text x="646" y="165" fill="' + STEIN + '">innerer Verlauf</text>' +
-      '<line x1="604" y1="190" x2="634" y2="190" stroke="' + KIESEL + '" stroke-width="2.4" stroke-linecap="round"/>' +
-      '<text x="646" y="195" fill="' + STEIN + '">Gegenseite</text>';
+      '<line x1="' + lx + '" y1="100" x2="' + (lx+30) + '" y2="100" stroke="' + TUSCHE + '" stroke-width="3.2" stroke-linecap="round"/>' +
+      '<text x="' + (lx+42) + '" y="105" fill="' + TUSCHE + '">äußerer Verlauf</text>' +
+      '<circle cx="' + (lx+15) + '" cy="130" r="5" fill="' + SIEGELROT + '" stroke="' + WEISS + '" stroke-width="1.4"/>' +
+      '<text x="' + (lx+42) + '" y="135" fill="' + TUSCHE + '">Akupunkturpunkt</text>' +
+      '<line x1="' + lx + '" y1="160" x2="' + (lx+30) + '" y2="160" stroke="' + STEIN + '" stroke-width="2" stroke-dasharray="6 7" stroke-linecap="round"/>' +
+      '<text x="' + (lx+42) + '" y="165" fill="' + STEIN + '">innerer Verlauf</text>' +
+      '<line x1="' + lx + '" y1="190" x2="' + (lx+30) + '" y2="190" stroke="' + KIESEL + '" stroke-width="2.4" stroke-linecap="round"/>' +
+      '<text x="' + (lx+42) + '" y="195" fill="' + STEIN + '">Gegenseite</text>';
     svg.appendChild(legende);
 
     /* Bogenlängen für Reihenfolge und Qi-Weg */
@@ -139,8 +147,8 @@
     });
     P.sort(function (a, b) { return a._L - b._L; });
 
-    /* Schiene links: Kurzbezeichnung, im Großbild zusätzlich Pinyin (11.4) */
-    var railX = (data.rail && data.rail.x) || 150;
+    /* Schiene: Kurzbezeichnung, im Großbild zusätzlich Pinyin (11.4) */
+    var railX = (data.rail && data.rail.x) || (rechts ? W - 150 : 150);
     var ys = P.map(function (p) { return p.y; });
     var top = Math.min.apply(null, ys) - 15, bot = Math.max.apply(null, ys) + 12;
     if (bot - top < P.length * 30) {
@@ -159,7 +167,7 @@
       var i = p._rang;
       p._ly = P.length === 1 ? (top + bot) / 2 : top + (bot - top) * i / (P.length - 1);
 
-      p._lead = el("path", { d: "M" + railX + "," + p._ly + " L" + (p.x - 9) + "," + p.y,
+      p._lead = el("path", { d: "M" + railX + "," + p._ly + " L" + (p.x + (rechts ? 9 : -9)) + "," + p.y,
         fill: "none", stroke: HAARLINIE, "stroke-width": "1" });
       gLead.appendChild(p._lead);
 
@@ -178,7 +186,8 @@
       });
       gPts.appendChild(g);
 
-      p._txt = el("text", { x: railX - 9, y: p._ly + 5, "text-anchor": "end", fill: STEIN,
+      p._txt = el("text", { x: railX + (rechts ? 9 : -9), y: p._ly + 5,
+        "text-anchor": rechts ? "start" : "end", fill: STEIN,
         "font-family": '"Lato", Arial, sans-serif', "font-size": 18, "font-weight": 700,
         "letter-spacing": 0.8 });
       p._txt.textContent = LBL + " " + p.n;
@@ -258,12 +267,16 @@
         if (gLab.getAttribute("opacity") !== "0") {
           try {
             var b = gLab.getBBox();
-            x0 = Math.min(x0, b.x - 14); y0 = Math.min(y0, b.y - 14);
+            x0 = Math.min(x0, b.x - 14); x1 = Math.max(x1, b.x + b.width + 14);
+            y0 = Math.min(y0, b.y - 14);
             y1 = Math.max(y1, b.y + b.height + 14);
           } catch (e) { /* getBBox scheitert, wenn nichts gezeichnet ist */ }
         }
-        x0 = Math.max(0, x0); y0 = Math.max(0, y0);
-        x1 = Math.min(W, x1); y1 = Math.min(H, y1);
+        /* Seitlich darf der Ausschnitt über das Bild hinausgehen: bei einer
+           Schiene rechts ragen lange Namen wie Jiānzhōngshū über den Rand,
+           und dahinter liegt ohnehin nur Papier. */
+        x0 = Math.max(-160, x0); y0 = Math.max(0, y0);
+        x1 = Math.min(W + 160, x1); y1 = Math.min(H, y1);
         svg.setAttribute("viewBox", x0 + " " + y0 + " " + (x1 - x0) + " " + (y1 - y0));
       }
     };
