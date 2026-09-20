@@ -64,6 +64,20 @@
     var art = document.createElement("article");
     art.className = "laut";
 
+    if (l.bild) {
+      var fig = document.createElement("figure");
+      fig.className = "laut-bild";
+      var img = document.createElement("img");
+      img.src = "../img/uebungen/" + l.bild;
+      img.alt = l.bildAlt || (l.organ + ": Übungshaltung");
+      img.loading = "lazy";
+      img.decoding = "async";
+      fig.appendChild(img);
+      art.appendChild(fig);
+    }
+    var text = document.createElement("div");
+    text.className = "laut-text";
+
     var kopfz = document.createElement("div"); kopfz.className = "laut-kopf";
     var nr = document.createElement("span"); nr.className = "nr"; nr.textContent = l.nr;
     var block = document.createElement("div");
@@ -86,7 +100,7 @@
       block.appendChild(wd);
     }
     kopfz.appendChild(nr); kopfz.appendChild(block);
-    art.appendChild(kopfz);
+    text.appendChild(kopfz);
 
     var dl = document.createElement("dl"); dl.className = "schritte";
     l.schritte.forEach(function (s) {
@@ -94,15 +108,16 @@
       var dd = document.createElement("dd"); dd.textContent = s.x;
       dl.appendChild(dt); dl.appendChild(dd);
     });
-    art.appendChild(dl);
+    text.appendChild(dl);
 
     var an = document.createElement("p"); an.className = "anlaesse";
     var lb = document.createElement("span"); lb.className = "label";
     lb.textContent = "In der Vorlage genannte Anlässe";
     an.appendChild(lb);
     an.appendChild(document.createTextNode(l.anlaesse));
-    art.appendChild(an);
+    text.appendChild(an);
 
+    art.appendChild(text);
     host.appendChild(art);
   });
 })();

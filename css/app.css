@@ -417,7 +417,17 @@ table.uebersicht tbody th{font-family:var(--hla-font-text);font-size:.889rem;
   letter-spacing:.06em;color:var(--hla-stein);text-transform:none}
 
 .laut-liste{display:flex;flex-direction:column;gap:var(--hla-space-12)}
-article.laut{border-top:1px solid var(--hla-tusche);padding-top:var(--hla-space-6)}
+article.laut{border-top:1px solid var(--hla-tusche);padding-top:var(--hla-space-6);
+  display:grid;grid-template-columns:300px minmax(0,1fr);gap:var(--hla-space-8);align-items:start}
+.laut-bild{margin:0;align-self:start;background:var(--hla-weiss);
+  border:var(--hla-rule);border-radius:var(--hla-radius);padding:var(--hla-space-3);
+  display:flex;align-items:center;justify-content:center;min-height:120px}
+.laut-bild img{display:block;max-width:100%;height:auto;max-height:360px}
+.laut-text{min-width:0}
+@media (max-width:900px){
+  article.laut{grid-template-columns:1fr;gap:var(--hla-space-6)}
+  .laut-bild{max-width:300px}
+}
 .laut-kopf{display:grid;grid-template-columns:76px minmax(0,1fr);
   gap:var(--hla-space-4);align-items:start}
 .laut-kopf .nr{font-family:var(--hla-font-display);font-weight:500;font-size:2.444rem;
@@ -476,7 +486,11 @@ a.karte.gesperrt{pointer-events:none;opacity:.55}
   .tafel-scroll{overflow:visible}
   .laut-liste{display:block;column-count:2;column-gap:12mm}
   article.laut{break-inside:avoid;page-break-inside:avoid;
-    padding-top:4mm;margin-bottom:8mm;border-top:0.75pt solid #1F1D1B}
+    padding-top:4mm;margin-bottom:8mm;border-top:0.75pt solid #1F1D1B;
+    display:block}
+  .laut-bild{float:right;width:30mm;margin:0 0 3mm 4mm;padding:0;border:0;min-height:0}
+  .laut-bild img{max-height:none;width:100%}
+  .laut-text{overflow:hidden}
   .laut-kopf{grid-template-columns:14mm minmax(0,1fr);gap:3mm}
   .laut-kopf .nr{font-size:18pt;color:#A39B90}
   .laut-kopf h3{font-size:15pt}

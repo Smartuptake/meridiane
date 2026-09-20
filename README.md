@@ -102,6 +102,7 @@ data/katalog.js     die zwölf Hauptmeridiane als Verzeichnis
 data/wandlungsphasen.js  die fünf Phasen und die Organuhr – gilt für alle Meridiane
 data/sechs-laute.js      das Qigong-Tableau der sechs heilenden Laute
 uebungen/           Übungstableaus, am Bildschirm und als A3-Druck
+img/uebungen/       Übungszeichnungen, aus der Vorlage herausgelöst
 data/lu.js          ein Meridian: Verlauf, Punkte, Organ, Zustände, Ernährung
 js/wuxing.js        zeichnet Phasenschaubild und Organuhr
 img/front|back|side.png   die drei Figuren, 880 × 1168, freigestellt
@@ -149,6 +150,10 @@ Erreichbar über den Abschnitt **Übungen** auf der Übersichtsseite.
 
 Die sechs Laute folgen dem nährenden Zyklus ab Metall: Lunge, Nieren, Leber, Herz, Milz;
 der sechste gehört zum Dreifachen Erwärmer, der keine eigene Wandlungsphase hat.
+
+**Die Zeichnungen** lagen in der Vorlage als ein einziges Bild vor, das alle sechs Haltungen
+als 2×3-Raster enthielt. Es ist in sechs Einzelbilder zerlegt und jeder Übung zugeordnet;
+die Ränder wurden gegen den weißen Grund geprüft, damit keine Figur angeschnitten ist.
 
 **Drucken:** Die Seite trägt ihre Druckvorlage selbst. Im Browser Cmd+P, Papierformat
 **A3 hoch**, Hintergrundgrafiken aktivieren. Es entsteht ein zweispaltiges Tableau ohne
