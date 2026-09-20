@@ -1,15 +1,17 @@
 /* ===========================================================
    Meridian-Engine
-   Zeichnet einen Meridianverlauf auf eine Figur und lässt einen
-   Qi-Punkt in Flussrichtung daran entlanglaufen, mit Halt an
-   jedem eingetragenen Akupunkturpunkt.
+   Zeichnet einen Meridianverlauf auf eine Figur.
 
-   Die Engine kennt keinen einzelnen Meridian. Sie bekommt:
+   Gestaltung nach Designhandbuch Healthlane Academy 0.6, 11.4:
+   Verlauf in Tusche, Punkte in Siegelrot, Punktname als Pinyin
+   mit Kurzbezeichnung. Keine Verläufe, keine Schatten, keine
+   Leuchteffekte (Negativliste 14.3).
+
+   Die Engine kennt keinen einzelnen Meridian. Sie bekommt
      data.path    Stützpunkte des äußeren Verlaufs  [[x,y], …]
      data.points  die Punkte, die darauf liegen
-   und rechnet den Rest (Spline, Bogenlängen, Zeitplan) selbst.
-
-   Bildkoordinaten sind immer 880 × 1168 – das Raster aller Figuren.
+   und rechnet Spline und Bogenlängen selbst aus.
+   Bildraster aller Figuren: 880 × 1168.
    =========================================================== */
 (function (global) {
   "use strict";
@@ -17,10 +19,12 @@
   var NS = "http://www.w3.org/2000/svg";
   var W = 880, H = 1168;
 
+  var TUSCHE = "#1F1D1B", SIEGELROT = "#D32727", STEIN = "#736C63",
+      KIESEL = "#A39B90", HAARLINIE = "#DCD5C9", PAPIER = "#F7F4EE", WEISS = "#FFFFFF";
+
   var store = {};
-  function register(data) { store[data.id] = data; }
+  function register(d) { store[d.id] = d; }
   function get(id) { return store[id]; }
-  function all() { return Object.keys(store).map(function (k) { return store[k]; }); }
 
   function el(tag, attr) {
     var e = document.createElementNS(NS, tag);
@@ -35,291 +39,227 @@
     for (var i = 0; i < pts.length - 1; i++) {
       var p0 = pts[i - 1] || pts[i], p1 = pts[i],
           p2 = pts[i + 1], p3 = pts[i + 2] || pts[i + 1];
-      var c1x = p1[0] + (p2[0] - p0[0]) / 6 * tension,
-          c1y = p1[1] + (p2[1] - p0[1]) / 6 * tension,
-          c2x = p2[0] - (p3[0] - p1[0]) / 6 * tension,
-          c2y = p2[1] - (p3[1] - p1[1]) / 6 * tension;
-      d += "C" + c1x.toFixed(2) + "," + c1y.toFixed(2) + " " +
-                 c2x.toFixed(2) + "," + c2y.toFixed(2) + " " + p2[0] + "," + p2[1];
+      d += "C" + (p1[0] + (p2[0] - p0[0]) / 6 * tension).toFixed(2) + "," +
+                 (p1[1] + (p2[1] - p0[1]) / 6 * tension).toFixed(2) + " " +
+                 (p2[0] - (p3[0] - p1[0]) / 6 * tension).toFixed(2) + "," +
+                 (p2[1] - (p3[1] - p1[1]) / 6 * tension).toFixed(2) + " " +
+                 p2[0] + "," + p2[1];
     }
     return d;
   }
 
-  var DEFS =
-    '<filter id="fGlow" x="-120%" y="-120%" width="340%" height="340%">' +
-      '<feGaussianBlur stdDeviation="7" result="b1"/>' +
-      '<feMerge><feMergeNode in="b1"/><feMergeNode in="b1"/><feMergeNode in="SourceGraphic"/></feMerge>' +
-    '</filter>' +
-    '<radialGradient id="gQi">' +
-      '<stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>' +
-      '<stop offset="28%" stop-color="#fff6dd" stop-opacity=".92"/>' +
-      '<stop offset="58%" stop-color="#ffd98f" stop-opacity=".42"/>' +
-      '<stop offset="100%" stop-color="#ffb84d" stop-opacity="0"/>' +
-    '</radialGradient>';
-
-  /* ---------------------------------------------------------
-     mount(opts) → Steuerung
-     opts: { svg, data, imgBase, onPoint(point, index) }
-     --------------------------------------------------------- */
   function mount(opts) {
-    var svg = opts.svg, data = opts.data;
-    var imgBase = opts.imgBase || "img/";
-    var P = data.points.slice();
+    var svg = opts.svg, data = opts.data, imgBase = opts.imgBase || "img/";
     var LBL = data.codeDe || data.code;
+    var P = data.points.slice();
 
     svg.setAttribute("viewBox", "0 0 " + W + " " + H);
     svg.setAttribute("role", "img");
     svg.setAttribute("aria-label",
-      data.name + "meridian von " + LBL + " 1 bis " + LBL + " " + data.pointCount);
+      (data.titel || data.name) + ", " + P.length + " eingezeichnete Punkte von " +
+      LBL + " 1 bis " + LBL + " " + data.pointCount);
     svg.innerHTML = "";
 
-    var defs = el("defs", {}); defs.innerHTML = DEFS; svg.appendChild(defs);
-
-    svg.appendChild(el("image", {
+    /* Figur. Sättigung leicht zurückgenommen nach 11.3. */
+    var bild = el("image", {
       href: imgBase + data.view + ".png", x: 0, y: 0, width: W, height: H,
       preserveAspectRatio: "xMidYMid meet"
-    }));
+    });
+    bild.style.filter = "saturate(.85)";
+    svg.appendChild(bild);
 
     var D = spline(data.path);
 
-    /* Gegenseite – nur bei Ansichten mit Mittelachse sinnvoll */
-    var gMirror = el("g", { transform: "translate(" + W + ",0) scale(-1,1)", opacity: ".2" });
+    /* Gegenseite – nur andeutend, Kiesel */
+    var gMirror = el("g", { transform: "translate(" + W + ",0) scale(-1,1)", opacity: ".45" });
     if (data.mirror !== false) {
-      gMirror.appendChild(el("path", {
-        d: D, fill: "none", stroke: "#dfe8e7", "stroke-width": 3, "stroke-linecap": "round"
-      }));
+      gMirror.appendChild(el("path", { d: D, fill: "none", stroke: KIESEL,
+        "stroke-width": 2.4, "stroke-linecap": "round" }));
       P.forEach(function (p) {
-        gMirror.appendChild(el("circle", { cx: p.x, cy: p.y, r: 3.6, fill: "#dfe8e7" }));
+        gMirror.appendChild(el("circle", { cx: p.x, cy: p.y, r: 3, fill: KIESEL }));
       });
       svg.appendChild(gMirror);
     }
 
-    /* Innerer Verlauf und Äste – schematisch, punktlos */
-    var gInner = el("g", { opacity: ".55" });
-    if (data.inner) gInner.appendChild(el("path", {
-      d: data.inner, fill: "none", stroke: "#6fb3a5", "stroke-width": 2.6,
-      "stroke-dasharray": "7 9", "stroke-linecap": "round", opacity: ".8"
-    }));
+    /* Innerer Verlauf und Äste – schematisch, punktlos, Stein gestrichelt */
+    var gInner = el("g", { opacity: ".9" });
+    if (data.inner) gInner.appendChild(el("path", { d: data.inner, fill: "none",
+      stroke: STEIN, "stroke-width": 2, "stroke-dasharray": "6 7", "stroke-linecap": "round" }));
     (data.branches || []).forEach(function (b) {
-      gInner.appendChild(el("path", {
-        d: b.d, fill: "none", stroke: "#6fb3a5", "stroke-width": 2.4,
-        "stroke-dasharray": "6 8", "stroke-linecap": "round", opacity: ".7"
-      }));
+      gInner.appendChild(el("path", { d: b.d, fill: "none", stroke: STEIN,
+        "stroke-width": 1.8, "stroke-dasharray": "5 6", "stroke-linecap": "round" }));
     });
     svg.appendChild(gInner);
 
-    /* Kanal: Grundlinie, erleuchteter Teil, Kometenschweif */
-    var base  = el("path", { d: D, fill: "none", stroke: "#dfe8e7", "stroke-width": 4.2, "stroke-linecap": "round", opacity: ".38" });
-    var lit   = el("path", { d: D, fill: "none", stroke: "#ffe9b4", "stroke-width": 4.2, "stroke-linecap": "round", opacity: ".55" });
-    var trail = el("path", { d: D, fill: "none", stroke: "#fff8e6", "stroke-width": 5.4, "stroke-linecap": "round", filter: "url(#fGlow)", opacity: ".95" });
-    svg.appendChild(base); svg.appendChild(lit); svg.appendChild(trail);
+    /* Äußerer Verlauf: Tusche, mit heller Unterlage für Lesbarkeit auf Haut */
+    svg.appendChild(el("path", { d: D, fill: "none", stroke: PAPIER,
+      "stroke-width": 6.4, "stroke-linecap": "round", opacity: ".55" }));
+    var bahn = el("path", { d: D, fill: "none", stroke: TUSCHE,
+      "stroke-width": 3.2, "stroke-linecap": "round" });
+    svg.appendChild(bahn);
 
     var gLead = el("g", {}), gPts = el("g", {}), gLab = el("g", {});
     svg.appendChild(gLead); svg.appendChild(gPts); svg.appendChild(gLab);
 
-    /* Legende */
-    var legend = el("g", { "font-family": "IBM Plex Mono, monospace", "font-size": 15, "letter-spacing": ".6" });
-    legend.innerHTML =
-      '<line x1="604" y1="100" x2="634" y2="100" stroke="#dfe8e7" stroke-width="4" stroke-linecap="round" opacity=".55"/>' +
-      '<text x="646" y="105" fill="#a3b8bf">äußerer Verlauf</text>' +
-      '<circle cx="619" cy="130" r="4.4" fill="#e9f1f0"/>' +
-      '<circle cx="619" cy="130" r="10" fill="none" stroke="#cfa856" stroke-width="1" stroke-dasharray="3 4" opacity=".7"/>' +
-      '<text x="646" y="135" fill="#a3b8bf">Antik-/Hauptpunkt</text>' +
-      '<circle cx="619" cy="160" r="9" fill="url(#gQi)"/><circle cx="619" cy="160" r="3.4" fill="#fff"/>' +
-      '<text x="646" y="165" fill="#a3b8bf">fließendes Qi</text>' +
-      '<line x1="604" y1="190" x2="634" y2="190" stroke="#6fb3a5" stroke-width="2.6" stroke-dasharray="7 9" stroke-linecap="round"/>' +
-      '<text x="646" y="195" fill="#7fa9a2">innerer Verlauf</text>';
-    svg.appendChild(legend);
-
-    /* Qi-Punkt */
-    var qi = el("g", { opacity: 0 });
-    var qiHalo = el("circle", { r: 26, fill: "url(#gQi)" });
-    var qiRing = el("circle", { r: 11, fill: "none", stroke: "#fff6dd", "stroke-width": 1.6, opacity: ".7" });
-    var qiCore = el("circle", { r: 5.2, fill: "#ffffff", filter: "url(#fGlow)" });
-    qi.appendChild(qiHalo); qi.appendChild(qiRing); qi.appendChild(qiCore);
+    /* Qi-Anzeiger: schlichter Ring in Tusche, kein Leuchten */
+    var qi = el("g", { opacity: "0" });
+    qi.appendChild(el("circle", { r: 9, fill: "none", stroke: TUSCHE, "stroke-width": 2 }));
+    qi.appendChild(el("circle", { r: 3, fill: TUSCHE }));
     svg.appendChild(qi);
-    var pulse = el("circle", { r: 10, fill: "none", stroke: "#ffe9b4", "stroke-width": 2, opacity: 0 });
-    svg.appendChild(pulse);
 
-    /* Bogenlänge jedes Punktes auf dem Spline suchen */
-    var TOT = base.getTotalLength();
-    lit.style.strokeDasharray = TOT + " " + TOT;
-    lit.style.strokeDashoffset = TOT;
-    var TRAIL = 58;
-    trail.style.strokeDasharray = TRAIL + " " + (TOT + TRAIL);
-    trail.style.strokeDashoffset = TRAIL;
+    /* Legende */
+    var legende = el("g", { "font-family": '"Lato", Arial, sans-serif', "font-size": 15 });
+    legende.innerHTML =
+      '<line x1="604" y1="100" x2="634" y2="100" stroke="' + TUSCHE + '" stroke-width="3.2" stroke-linecap="round"/>' +
+      '<text x="646" y="105" fill="' + TUSCHE + '">äußerer Verlauf</text>' +
+      '<circle cx="619" cy="130" r="5" fill="' + SIEGELROT + '" stroke="' + WEISS + '" stroke-width="1.4"/>' +
+      '<text x="646" y="135" fill="' + TUSCHE + '">Akupunkturpunkt</text>' +
+      '<line x1="604" y1="160" x2="634" y2="160" stroke="' + STEIN + '" stroke-width="2" stroke-dasharray="6 7" stroke-linecap="round"/>' +
+      '<text x="646" y="165" fill="' + STEIN + '">innerer Verlauf</text>' +
+      '<line x1="604" y1="190" x2="634" y2="190" stroke="' + KIESEL + '" stroke-width="2.4" stroke-linecap="round"/>' +
+      '<text x="646" y="195" fill="' + STEIN + '">Gegenseite</text>';
+    svg.appendChild(legende);
 
-    var SAMP = 2400, samples = [];
+    /* Bogenlängen für Reihenfolge und Qi-Weg */
+    var messpfad = el("path", { d: D, fill: "none", stroke: "none" });
+    svg.appendChild(messpfad);
+    var TOT = messpfad.getTotalLength();
+    var SAMP = 2000, samples = [];
     for (var i = 0; i <= SAMP; i++) {
-      var L = TOT * i / SAMP, pt = base.getPointAtLength(L);
-      samples.push([pt.x, pt.y, L]);
+      var pt = messpfad.getPointAtLength(TOT * i / SAMP);
+      samples.push([pt.x, pt.y]);
     }
     P.forEach(function (p) {
-      var best = 1e9, bl = 0;
+      var best = 1e9, bi = 0;
       for (var i = 0; i < samples.length; i++) {
         var dx = samples[i][0] - p.x, dy = samples[i][1] - p.y, d2 = dx * dx + dy * dy;
-        if (d2 < best) { best = d2; bl = samples[i][2]; }
+        if (d2 < best) { best = d2; bi = i; }
       }
-      p._L = bl;
+      p._L = TOT * bi / SAMP;
     });
     P.sort(function (a, b) { return a._L - b._L; });
 
-    /* Marker, Hilfslinien und Schiene */
-    var railX = (data.rail && data.rail.x) || 118;
+    /* Schiene links: Kurzbezeichnung, im Großbild zusätzlich Pinyin (11.4) */
+    var railX = (data.rail && data.rail.x) || 150;
     var ys = P.map(function (p) { return p.y; });
-    var railTop = Math.min.apply(null, ys) - 15;
-    var railBot = Math.max.apply(null, ys) + 12;
-    if (railBot - railTop < P.length * 30) {
-      var mid = (railTop + railBot) / 2, half = P.length * 15;
-      railTop = mid - half; railBot = mid + half;
+    var top = Math.min.apply(null, ys) - 15, bot = Math.max.apply(null, ys) + 12;
+    if (bot - top < P.length * 30) {
+      var mid = (top + bot) / 2; top = mid - P.length * 15; bot = mid + P.length * 15;
     }
 
+    var detail = false;
     P.forEach(function (p, i) {
-      p._ly = P.length === 1 ? (railTop + railBot) / 2
-            : railTop + (railBot - railTop) * i / (P.length - 1);
+      p._ly = P.length === 1 ? (top + bot) / 2 : top + (bot - top) * i / (P.length - 1);
 
-      p._lead = el("path", {
-        d: "M" + railX + "," + p._ly + " L" + (p.x - 9) + "," + p.y,
-        fill: "none", stroke: "#4d6b74", "stroke-width": ".9", opacity: ".32"
-      });
+      p._lead = el("path", { d: "M" + railX + "," + p._ly + " L" + (p.x - 9) + "," + p.y,
+        fill: "none", stroke: HAARLINIE, "stroke-width": "1" });
       gLead.appendChild(p._lead);
 
       var g = el("g", { role: "button", tabindex: "0" });
       g.style.cursor = "pointer";
-      if (p.key) g.appendChild(el("circle", {
-        cx: p.x, cy: p.y, r: 12, fill: "none", stroke: "#cfa856",
-        "stroke-width": 1, "stroke-dasharray": "3 4", opacity: ".55"
-      }));
-      p._halo = el("circle", {
-        cx: p.x, cy: p.y, r: p.key ? 9 : 7, fill: "none",
-        stroke: "#dfe8e7", "stroke-width": 1.2, opacity: p.key ? ".4" : "0"
-      });
-      p._dot = el("circle", {
-        cx: p.x, cy: p.y, r: p.key ? 4.6 : 3.5, fill: "#e9f1f0",
-        stroke: "#0b1519", "stroke-width": 1.3
-      });
-      g.appendChild(p._halo); g.appendChild(p._dot);
-      g.appendChild(el("circle", { cx: p.x, cy: p.y, r: 16, fill: "transparent" }));
-      g.setAttribute("aria-label", LBL + " " + p.n + " " + p.pinyin);
-      g.addEventListener("click", function () { jumpTo(i); });
+      p._ring = el("circle", { cx: p.x, cy: p.y, r: 11, fill: "none",
+        stroke: SIEGELROT, "stroke-width": 1.4, opacity: "0" });
+      p._dot = el("circle", { cx: p.x, cy: p.y, r: p.key ? 5.4 : 4.4, fill: SIEGELROT,
+        stroke: WEISS, "stroke-width": 1.5 });
+      g.appendChild(p._ring); g.appendChild(p._dot);
+      g.appendChild(el("circle", { cx: p.x, cy: p.y, r: 17, fill: "transparent" }));
+      g.setAttribute("aria-label", LBL + " " + p.n + ", " + p.pinyin);
+      g.addEventListener("click", function (e) { e.stopPropagation(); select(i); });
       g.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); jumpTo(i); }
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.stopPropagation(); select(i); }
       });
       gPts.appendChild(g);
 
-      p._txt = el("text", {
-        x: railX - 8, y: p._ly + 6, "text-anchor": "end", fill: "#a3b8bf",
-        "font-family": "IBM Plex Mono, monospace", "font-size": 19, "letter-spacing": 1.4
-      });
+      p._txt = el("text", { x: railX - 9, y: p._ly + 5, "text-anchor": "end", fill: STEIN,
+        "font-family": '"Lato", Arial, sans-serif', "font-size": 18, "font-weight": 700,
+        "letter-spacing": 0.8 });
       p._txt.textContent = LBL + " " + p.n;
       p._txt.style.cursor = "pointer";
-      p._txt.addEventListener("click", function () { jumpTo(i); });
+      p._txt.addEventListener("click", function (e) { e.stopPropagation(); select(i); });
       gLab.appendChild(p._txt);
     });
 
-    /* ---------------- Ablauf ---------------- */
-    var DWELL = 950, PXMS = 0.105, MINTRAVEL = 330, RESET = 1100;
-    var speed = 1, playing = true, idx = 0, phase = "dwell",
-        t0 = 0, dur = DWELL, fromL = P[0]._L, toL = P[0]._L;
-    var reduce = global.matchMedia && global.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    function easeInOut(u) { return u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2; }
-
-    function place(L) {
-      var pt = base.getPointAtLength(L);
-      qi.setAttribute("transform", "translate(" + pt.x + "," + pt.y + ")");
-      qi.setAttribute("opacity", "1");
-      lit.style.strokeDashoffset = (TOT - L);
-      trail.style.strokeDashoffset = (TRAIL - L);
+    function beschriften() {
+      P.forEach(function (p) {
+        p._txt.textContent = detail ? (LBL + " " + p.n + "  " + p.pinyin) : (LBL + " " + p.n);
+        p._txt.setAttribute("font-size", detail ? 17 : 18);
+      });
     }
-    function setPhase(ph, d) { phase = ph; dur = d; t0 = performance.now(); }
-    function firePulse(p) {
-      pulse.setAttribute("cx", p.x); pulse.setAttribute("cy", p.y);
-      pulse.setAttribute("r", 9); pulse.setAttribute("opacity", ".85");
-      pulse._t = performance.now();
-    }
-    function highlight(i) {
+
+    /* Auswahl – ausschließlich durch Klick, nichts läuft von allein */
+    var aktiv = -1;
+    function select(i) {
+      aktiv = i;
       P.forEach(function (q, k) {
         var on = (k === i);
-        q._txt.setAttribute("fill", on ? "#ffe9b4" : "#a3b8bf");
-        q._txt.setAttribute("font-size", on ? 21 : 19);
-        q._lead.setAttribute("opacity", on ? ".85" : ".32");
-        q._lead.setAttribute("stroke", on ? "#cfa856" : "#4d6b74");
-        q._lead.setAttribute("stroke-width", on ? 1.3 : .9);
-        q._halo.setAttribute("stroke", on ? "#ffe9b4" : "#dfe8e7");
-        q._halo.setAttribute("opacity", on ? ".95" : (q.key ? ".4" : "0"));
-        q._halo.setAttribute("r", on ? (q.key ? 12 : 10) : (q.key ? 9 : 7));
-        q._dot.setAttribute("fill", on ? "#fff8e6" : "#e9f1f0");
+        q._dot.setAttribute("r", on ? (q.key ? 7 : 6.2) : (q.key ? 5.4 : 4.4));
+        q._ring.setAttribute("opacity", on ? "1" : "0");
+        q._txt.setAttribute("fill", on ? TUSCHE : STEIN);
+        q._lead.setAttribute("stroke", on ? STEIN : HAARLINIE);
       });
       if (opts.onPoint) opts.onPoint(P[i], i, P);
     }
-    function jumpTo(i) {
-      idx = i; place(P[i]._L); fromL = toL = P[i]._L;
-      highlight(i); setPhase("dwell", DWELL); firePulse(P[i]);
-    }
 
+    /* Qi-Fluss: abschaltbar, standardmäßig aus (10.4: nichts läuft automatisch) */
+    var fliesst = false, t0 = 0, raf = 0;
+    var DAUER = 14000;
     function frame(now) {
-      requestAnimationFrame(frame);
-      if (pulse._t) {
-        var pe = (now - pulse._t) / 700;
-        if (pe >= 1) { pulse.setAttribute("opacity", "0"); pulse._t = 0; }
-        else { pulse.setAttribute("r", 9 + pe * 22); pulse.setAttribute("opacity", (0.85 * (1 - pe)).toFixed(3)); }
-      }
-      var br = 1 + Math.sin(now / 420) * 0.12;
-      qiCore.setAttribute("r", (5.2 * br).toFixed(2));
-      qiHalo.setAttribute("r", (26 * br).toFixed(2));
-      qiRing.setAttribute("r", (11 * (2 - br)).toFixed(2));
-      qiRing.setAttribute("opacity", (0.75 - (br - 1) * 1.6).toFixed(3));
-
-      if (!playing) return;
-      var e = (now - t0) * speed;
-
-      if (phase === "dwell") {
-        if (e >= dur) {
-          if (idx >= P.length - 1) setPhase("hold", RESET);
-          else {
-            fromL = P[idx]._L; toL = P[idx + 1]._L;
-            setPhase("travel", Math.max(MINTRAVEL, (toL - fromL) / PXMS));
-          }
-        }
-      } else if (phase === "travel") {
-        var u = Math.min(1, e / dur);
-        place(fromL + (toL - fromL) * easeInOut(u));
-        if (u >= 1) { idx++; highlight(idx); firePulse(P[idx]); setPhase("dwell", DWELL); }
-      } else if (phase === "hold") {
-        var f = Math.max(0, 1 - e / dur);
-        qi.setAttribute("opacity", f.toFixed(3));
-        lit.setAttribute("opacity", (0.55 * f).toFixed(3));
-        if (e >= dur) {
-          lit.setAttribute("opacity", ".55");
-          idx = 0; place(P[0]._L); highlight(0); firePulse(P[0]); setPhase("dwell", DWELL);
-        }
-      }
+      if (!fliesst) return;
+      raf = requestAnimationFrame(frame);
+      var u = ((now - t0) % DAUER) / DAUER;
+      var pt = messpfad.getPointAtLength(TOT * u);
+      qi.setAttribute("transform", "translate(" + pt.x + "," + pt.y + ")");
+    }
+    function setFlow(on) {
+      fliesst = !!on;
+      qi.setAttribute("opacity", fliesst ? "1" : "0");
+      if (fliesst) { t0 = performance.now(); raf = requestAnimationFrame(frame); }
+      else cancelAnimationFrame(raf);
     }
 
-    place(P[0]._L); highlight(0); firePulse(P[0]);
-    if (reduce) playing = false; else setPhase("dwell", DWELL);
-    requestAnimationFrame(frame);
+    select(0);
 
     return {
-      points: P,
-      jumpTo: jumpTo,
-      next: function () { jumpTo(Math.min(P.length - 1, idx + 1)); },
-      prev: function () { jumpTo(Math.max(0, idx - 1)); },
-      isPlaying: function () { return playing; },
-      setPlaying: function (v) { playing = v; if (v) t0 = performance.now(); },
-      setSpeed: function (v) { speed = v; t0 = performance.now(); },
+      svg: svg, points: P, data: data,
+      select: select,
+      next: function () { select(Math.min(P.length - 1, aktiv + 1)); },
+      prev: function () { select(Math.max(0, aktiv - 1)); },
+      aktiv: function () { return aktiv; },
+      setFlow: setFlow,
+      isFlowing: function () { return fliesst; },
+      setDetail: function (v) { detail = !!v; beschriften(); },
       setLayer: function (which, on) {
-        if (which === "inner") gInner.setAttribute("opacity", on ? ".55" : "0");
-        if (which === "mirror") gMirror.setAttribute("opacity", on ? ".2" : "0");
+        if (which === "inner") gInner.setAttribute("opacity", on ? ".9" : "0");
+        if (which === "mirror") gMirror.setAttribute("opacity", on ? ".45" : "0");
         if (which === "labels") {
           gLab.setAttribute("opacity", on ? "1" : "0");
           gLead.setAttribute("opacity", on ? "1" : "0");
-          legend.setAttribute("opacity", on ? "1" : "0");
+          legende.setAttribute("opacity", on ? "1" : "0");
         }
+      },
+      /* Ausschnitt um Verlauf und Punkte, für das Großbild */
+      ausschnitt: function (eng) {
+        if (!eng) return svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+        var xs = [], ys2 = [];
+        data.path.forEach(function (a) { xs.push(a[0]); ys2.push(a[1]); });
+        P.forEach(function (p) { xs.push(p.x); ys2.push(p.y); });
+        var x0 = Math.min.apply(null, xs), x1 = Math.max.apply(null, xs),
+            y0 = Math.min.apply(null, ys2), y1 = Math.max.apply(null, ys2);
+        x0 -= 40; x1 += 60; y0 -= 60; y1 += 60;
+        /* Beschriftung mit einrechnen, sonst wird der längste Name abgeschnitten */
+        if (gLab.getAttribute("opacity") !== "0") {
+          try {
+            var b = gLab.getBBox();
+            x0 = Math.min(x0, b.x - 14); y0 = Math.min(y0, b.y - 14);
+            y1 = Math.max(y1, b.y + b.height + 14);
+          } catch (e) { /* getBBox scheitert, wenn nichts gezeichnet ist */ }
+        }
+        x0 = Math.max(0, x0); y0 = Math.max(0, y0);
+        x1 = Math.min(W, x1); y1 = Math.min(H, y1);
+        svg.setAttribute("viewBox", x0 + " " + y0 + " " + (x1 - x0) + " " + (y1 - y0));
       }
     };
   }
 
-  global.Meridian = { register: register, get: get, all: all, mount: mount, spline: spline, W: W, H: H };
+  global.Meridian = { register: register, get: get, mount: mount, spline: spline, W: W, H: H };
 })(window);

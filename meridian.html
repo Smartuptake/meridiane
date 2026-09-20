@@ -4,70 +4,128 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Meridian – Healthlane Academy</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Serif+SC:wght@400;600&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="stylesheet" href="fonts/fonts.css">
 <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
-<div class="wrap">
 
-<header>
-  <p class="eyebrow"><a href="index.html">← Alle Meridiane</a> · <span id="hChannel">…</span></p>
-  <h1 id="hTitle">…<span class="han" id="hHan"></span></h1>
-  <p class="lede" id="hIntro"></p>
-  <ul class="meta" id="hMeta"></ul>
+<div class="nav dunkel">
+  <div class="inner">
+    <a class="home" href="index.html" aria-label="Healthlane Academy, zur Übersicht">
+      <img src="img/marke/hla-logo-horizontal-negativ.svg" alt="Healthlane Academy">
+    </a>
+    <nav>
+      <a href="index.html">Übersicht</a>
+      <a href="#organ">Das Organ</a>
+      <a href="#folge">Punktfolge</a>
+    </nav>
+  </div>
+</div>
+
+<header class="dunkel hero">
+  <div class="inner">
+    <p class="label" id="hKanal">&nbsp;</p>
+    <h1 id="hTitel">&nbsp;</h1>
+    <p class="lead" id="hIntro"></p>
+    <ul class="meta" id="hMeta"></ul>
+  </div>
 </header>
 
-<div class="stage-grid">
-  <div class="figure-col">
-    <div class="stage"><svg class="plate" id="plate" xmlns="http://www.w3.org/2000/svg"></svg></div>
-    <div class="controls">
-      <button id="btnPlay" class="btn-primary" type="button">⏸ Pause</button>
-      <button id="btnRestart" type="button">↺ Von vorn</button>
-      <div class="speed" role="group" aria-label="Geschwindigkeit">
-        <button data-speed="0.5" type="button" aria-pressed="false">0,5×</button>
-        <button data-speed="1"   type="button" aria-pressed="true">1×</button>
-        <button data-speed="2"   type="button" aria-pressed="false">2×</button>
+<section class="papier">
+  <div class="inner">
+    <div class="tafel-grid">
+      <div>
+        <div class="tafel" id="tafel" role="button" tabindex="0"
+             aria-label="Meridiantafel vergrößern">
+          <svg id="plate" xmlns="http://www.w3.org/2000/svg"></svg>
+          <span class="grossbild-hinweis">Klicken für Großbild</span>
+        </div>
+        <div class="werkzeuge">
+          <button id="btnGross" type="button">Großbild</button>
+          <button id="btnFluss" type="button" aria-pressed="false">Qi-Fluss zeigen</button>
+          <button id="btnInner" type="button" aria-pressed="true">Innerer Verlauf</button>
+          <button id="btnMirror" type="button" aria-pressed="true">Gegenseite</button>
+          <button id="btnLabels" type="button" aria-pressed="true">Beschriftung</button>
+        </div>
+        <p class="hinweis" style="margin-top:8px">
+          Punkt auf der Figur oder in der Punktfolge anklicken.
+          <kbd>←</kbd> <kbd>→</kbd> blättert, <kbd>G</kbd> öffnet das Großbild.
+        </p>
       </div>
-      <button id="btnLabels" type="button" aria-pressed="true">Beschriftung</button>
-      <button id="btnInner"  type="button" aria-pressed="true">Innerer Verlauf</button>
-      <button id="btnMirror" type="button" aria-pressed="true">Gegenseite</button>
-    </div>
-    <p class="hint">Punkt auf der Figur oder in der Liste anklicken, um dorthin zu springen.
-      <kbd>←</kbd> <kbd>→</kbd> blättert, <kbd>Leertaste</kbd> pausiert.</p>
-  </div>
 
-  <div>
-    <div class="panel">
-      <div class="panel-head">
-        <p class="pt-code" id="dCode">–</p>
-        <p class="pt-name" id="dName">–</p>
-        <p class="pt-de"   id="dDe"></p>
-        <div class="pt-tags" id="dTags"></div>
+      <div id="punktSpalte">
+        <div class="karte">
+          <div class="punkt-kopf">
+            <p class="punkt-kennung" id="dKennung">&nbsp;</p>
+            <p class="punkt-name" id="dName">&nbsp;</p>
+            <p class="punkt-de" id="dDe"></p>
+            <p class="punkt-en" id="dEn"></p>
+            <div class="merkmale" id="dMerkmale"></div>
+          </div>
+          <dl class="angaben">
+            <dt>Lage</dt><dd id="dLage">–</dd>
+            <dt>Wirkung</dt><dd id="dWirkung">–</dd>
+            <dt>Stich</dt><dd id="dStich">–</dd>
+          </dl>
+        </div>
       </div>
-      <dl class="detail">
-        <dt>Lage</dt><dd id="dLoc">–</dd>
-        <dt>Wirkung</dt><dd id="dInd">–</dd>
-        <dt>Stich</dt><dd id="dNeedle">–</dd>
-      </dl>
     </div>
-    <div class="list-head">
-      <h2>Punktfolge</h2><span id="lRange">–</span>
-    </div>
-    <ol class="points" id="ptList"></ol>
   </div>
-</div>
+</section>
 
-<footer>
-  <p><strong style="color:var(--text-2)">Zum Verlauf:</strong> Durchgezogen gezeichnet ist der äußere,
-  punktetragende Verlauf. Innerer Verlauf und Luo-Äste sind schematisch gestrichelt angedeutet –
-  sie tragen keine Punkte. Die Gegenseite ist nur andeutend eingezeichnet; jeder Meridian verläuft beidseitig.</p>
-  <p>Die Punktlagen sind nach der proportionalen Cun-Maßlehre auf die Figur gesetzt und dienen der
-  Orientierung im Unterricht, nicht der Behandlung. Am Menschen wird immer palpiert.</p>
+<section class="weiss" id="organ">
+  <div class="inner">
+    <p class="label" id="oLabel">Das Organ</p>
+    <h2 id="oTitel" style="margin-top:12px">&nbsp;</h2>
+    <div class="organ-grid" style="margin-top:48px">
+      <div class="fliess" id="oText"></div>
+      <div>
+        <dl class="eigenschaften" id="oEigenschaften"></dl>
+      </div>
+    </div>
+    <h3 style="margin:64px 0 24px" id="oMusterTitel">&nbsp;</h3>
+    <ul class="muster" id="oMuster"></ul>
+    <div class="merkkasten" style="margin-top:48px">
+      <p class="label">Hinweis</p>
+      <p id="oHinweis" style="margin:0"></p>
+    </div>
+  </div>
+</section>
+
+<section class="papier" id="folge">
+  <div class="inner">
+    <p class="label">Punktfolge</p>
+    <h2 style="margin-top:12px" id="fTitel">&nbsp;</h2>
+    <div class="folge" style="margin-top:32px">
+      <ol id="ptListe"></ol>
+    </div>
+  </div>
+</section>
+
+<footer class="dunkel">
+  <div class="inner fliess">
+    <p><strong>Zum Verlauf:</strong> Durchgezogen gezeichnet ist der äußere, punktetragende
+    Verlauf. Innerer Verlauf und Luo-Äste sind schematisch gestrichelt angedeutet – sie tragen
+    keine Punkte. Die Gegenseite ist nur andeutend eingezeichnet; jeder Meridian verläuft beidseitig.</p>
+    <p>Die Punktlagen sind nach der proportionalen Cun-Maßlehre auf die Figur gesetzt und dienen
+    der Orientierung im Unterricht, nicht der Behandlung. Am Menschen wird immer palpiert.</p>
+    <p>Healthlane Academy · KEY – Keep Educating Yourself</p>
+  </div>
 </footer>
 
+<div class="grossbild" id="grossbild" role="dialog" aria-modal="true" aria-label="Großbild">
+  <div class="grossbild-kopf">
+    <span class="titel" id="gTitel"></span>
+    <span class="punkt-kennung" id="gPunkt" style="margin:0 0 0 16px"></span>
+    <div class="werkzeuge">
+      <button id="gAusschnitt" type="button" aria-pressed="false">Ausschnitt</button>
+      <button id="gFluss" type="button" aria-pressed="false">Qi-Fluss</button>
+      <button id="gSchliessen" class="primaer" type="button">Schließen</button>
+    </div>
+  </div>
+  <div class="grossbild-buehne" id="gBuehne"></div>
 </div>
+
 <script src="js/engine.js"></script>
 <script src="data/katalog.js"></script>
 <script src="js/app.js"></script>

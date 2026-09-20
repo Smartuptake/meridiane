@@ -1,183 +1,295 @@
 /* ===========================================================
-   Meridiane & Antikpunkte – gemeinsame Gestaltung
-   Ein bewusst dunkles Thema: das fließende Qi braucht einen
-   dunklen Grund, sonst verliert der Leuchtpunkt seine Wirkung.
+   Meridiane und Antikpunkte
+   Gestaltet nach dem Designhandbuch Healthlane Academy 0.6.
+   Leitbild: stille Kraft. Keine Verläufe, keine Schatten,
+   keine senkrechten Linien, Siegelrot nur wo es eine Funktion
+   trägt (3.3 Ausnahme Fachgrafik, 11.4 Meridiandarstellung).
    =========================================================== */
+
+/* --- Kernfarben und Abstufungen, Kapitel 3 --- */
 :root{
-  --ink:#0b1519;
-  --ink-2:#101f25;
-  --surface:#15262d;
-  --rule:#27434d;
-  --rule-soft:#1f373f;
-  --text:#e6eeef;
-  --text-2:#a3b8bf;
-  --text-3:#6f8b94;
-  --metal:#dfe8e7;
-  --qi:#ffe9b4;
-  --gold:#cfa856;
-  --gold-dim:#8e7238;
-  --jade:#6fb3a5;
+  --hla-tusche:#1F1D1B;
+  --hla-papier:#F7F4EE;
+  --hla-weiss:#FFFFFF;
+  --hla-siegelrot:#D32727;
+  --hla-tusche-weich:#55504A;
+  --hla-stein:#736C63;
+  --hla-kiesel:#A39B90;
+  --hla-haarlinie:#DCD5C9;
+  --hla-nebel:#EDE7DC;
+  --hla-rauch:#2B2825;
+  --hla-papier-hell:#F2EDE4;
 
-  /* Wandlungsphasen */
-  --wx-holz:#7fae6a;
-  --wx-feuer:#d4705f;
-  --wx-erde:#c9a15c;
-  --wx-metall:#c3ced2;
-  --wx-wasser:#5f93b5;
+  --hla-font-display:"Cormorant Garamond",Garamond,"Times New Roman",serif;
+  --hla-font-text:"Lato","Helvetica Neue",Arial,sans-serif;
+  --hla-font-hanzi:"Noto Serif SC","Songti SC",STSong,SimSun,serif;
 
-  color-scheme: dark;
+  --hla-tracking-label:.18em;
+  --hla-lh-text:1.65;
+  --hla-lh-display:1.08;
+
+  --hla-space-1:4px;  --hla-space-2:8px;  --hla-space-3:12px; --hla-space-4:16px;
+  --hla-space-6:24px; --hla-space-8:32px; --hla-space-12:48px; --hla-space-16:64px;
+  --hla-space-24:96px;
+
+  --hla-container:1200px;
+  --hla-measure:680px;
+  --hla-radius:2px;
+  --hla-rule:1px solid var(--hla-haarlinie);
+  --hla-ease:cubic-bezier(.25,.1,.25,1);
+  --hla-duration:400ms;
 }
+
 *{box-sizing:border-box}
-html,body{background:var(--ink)}
+html{background:var(--hla-papier)}
 body{
-  margin:0;color:var(--text);
-  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
-  font-size:15px;line-height:1.55;
-  background:
-    radial-gradient(120% 80% at 50% -10%, #17313a 0%, transparent 60%),
-    radial-gradient(90% 60% at 10% 110%, #122a2c 0%, transparent 55%),
-    var(--ink);
-  background-attachment:fixed;
+  margin:0;
+  background:var(--hla-papier);
+  color:var(--hla-tusche);
+  font-family:var(--hla-font-text);
+  font-size:18px;
+  font-weight:400;
+  line-height:var(--hla-lh-text);
   -webkit-font-smoothing:antialiased;
 }
-a{color:var(--qi)}
-.wrap{max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:28px 56px}
+.hanzi{font-family:var(--hla-font-hanzi);font-weight:400}
 
-/* ---------- Kopf ---------- */
-header{border-bottom:1px solid var(--rule-soft);padding-bottom:22px;margin-bottom:26px}
-.eyebrow{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;
-  letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin:0 0 10px}
-.eyebrow a{color:var(--gold);text-decoration:none;border-bottom:1px solid transparent}
-.eyebrow a:hover{border-bottom-color:var(--gold-dim)}
-h1{font-family:"Spectral",Georgia,serif;font-weight:600;
-  font-size:clamp(28px,5.2vw,44px);line-height:1.08;margin:0;
-  text-wrap:balance;letter-spacing:-.01em}
-h1 .han{font-family:"Noto Serif SC",serif;color:var(--metal);font-weight:400;
-  margin-left:.45em;font-size:.72em;letter-spacing:.06em}
-.lede{color:var(--text-2);max-width:62ch;margin:12px 0 0;font-size:15.5px}
-.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;padding:0;list-style:none}
-.meta li{display:flex;align-items:baseline;gap:7px;border:1px solid var(--rule);
-  border-radius:2px;padding:5px 10px;background:#12232a}
-.meta b{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--text-3);font-weight:400}
-.meta span{font-size:13.5px;color:var(--text)}
+/* --- Satz --- */
+h1,h2,h3{
+  font-family:var(--hla-font-display);
+  font-weight:500;               /* Cormorant nie fett (4.1 MUSS) */
+  line-height:var(--hla-lh-display);
+  margin:0;
+  text-wrap:balance;
+  font-variant-numeric:lining-nums;
+}
+h1{font-size:clamp(2.75rem,5.5vw,4.75rem)}
+h2{font-size:2.444rem}            /* 44 px */
+h3{font-size:1.556rem}            /* 28 px */
+p{margin:0 0 var(--hla-space-4)}
+.lead{                             /* Vorspann: Cormorant kursiv 400 */
+  font-family:var(--hla-font-display);
+  font-style:italic;font-weight:400;
+  font-size:1.444rem;line-height:1.35;
+  color:var(--hla-tusche-weich);
+  max-width:var(--hla-measure);
+  margin:var(--hla-space-4) 0 0;
+}
+.label{
+  font-family:var(--hla-font-text);font-weight:700;
+  font-size:.722rem;letter-spacing:var(--hla-tracking-label);
+  text-transform:uppercase;color:var(--hla-stein);
+  margin:0;
+}
+a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{text-decoration-color:var(--hla-stein)}
+:focus-visible{outline:2px solid var(--hla-tusche);outline-offset:3px}
+.dunkel :focus-visible{outline-color:var(--hla-papier-hell)}
 
-/* ---------- Bühne ---------- */
-.stage-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
-  gap:34px;align-items:start}
-@media (max-width:880px){.stage-grid{grid-template-columns:1fr;gap:26px}}
-.figure-col{display:flex;flex-direction:column;gap:14px}
-.stage{position:relative;border:1px solid var(--rule-soft);border-radius:3px;
-  background:linear-gradient(175deg,#132229 0%,#0c181d 55%,#0a1418 100%);overflow:hidden}
-.stage::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(75% 55% at 50% 32%, rgba(120,190,200,.07), transparent 70%)}
-svg.plate{display:block;width:100%;height:auto;max-width:100%}
+/* --- Bänder und Abschnitte (10.1: dunkler Einstieg, dann Papier/Weiß) --- */
+.dunkel{background:var(--hla-tusche);color:var(--hla-papier-hell)}
+.dunkel .label{color:var(--hla-kiesel)}
+.dunkel .lead{color:var(--hla-kiesel)}
+.inner{max-width:var(--hla-container);margin:0 auto;padding-inline:var(--hla-space-6)}
+section{padding-block:var(--hla-space-24)}
+section.papier{background:var(--hla-papier)}
+section.weiss{background:var(--hla-weiss)}
+@media (max-width:720px){section{padding-block:var(--hla-space-16)}}
 
-/* ---------- Bedienung ---------- */
-.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-button{font:inherit;font-size:13px;color:var(--text);background:#15262d;
-  border:1px solid var(--rule);border-radius:2px;padding:7px 13px;cursor:pointer;
-  transition:border-color .15s,background .15s,color .15s}
-button:hover{border-color:var(--gold-dim);background:#1a2f37}
-button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-button[aria-pressed="true"]{border-color:var(--gold);color:var(--qi);background:#1d2f2c}
-.btn-primary{background:#1e3129;border-color:var(--gold-dim);color:var(--qi);min-width:104px}
-.btn-primary:hover{background:#243a30;border-color:var(--gold)}
-.speed{display:flex;border:1px solid var(--rule);border-radius:2px;overflow:hidden}
-.speed button{border:0;border-radius:0;padding:7px 11px;
-  font-family:"IBM Plex Mono",monospace;font-size:12px}
-.speed button+button{border-left:1px solid var(--rule)}
-.hint{font-size:12px;color:var(--text-3);margin:0}
-kbd{font-family:"IBM Plex Mono",monospace;font-size:11px;border:1px solid var(--rule);
-  border-radius:2px;padding:1px 5px;color:var(--text-2)}
+/* --- Navigation, 84 px, Logo negativ links --- */
+.nav{background:var(--hla-tusche);height:84px;display:flex;align-items:center}
+.nav .inner{display:flex;align-items:center;gap:var(--hla-space-6);width:100%}
+.nav img{height:34px;width:auto;display:block}
+.nav a.home{text-decoration:none;display:block;line-height:0}
+.nav nav{margin-left:auto;display:flex;gap:var(--hla-space-6);align-items:center}
+.nav nav a{
+  font-size:.833rem;color:var(--hla-papier-hell);text-decoration:none;
+  border-bottom:1px solid transparent;padding-bottom:2px;
+  transition:border-color var(--hla-duration) var(--hla-ease);
+}
+.nav nav a:hover,.nav nav a[aria-current]{border-bottom-color:var(--hla-kiesel)}
+@media (max-width:620px){.nav{height:auto;padding-block:var(--hla-space-3)}
+  .nav .inner{flex-wrap:wrap;gap:var(--hla-space-3)}
+  .nav nav{margin-left:0;width:100%;gap:var(--hla-space-4)}}
 
-/* ---------- Detailtafel ---------- */
-.panel{border:1px solid var(--rule-soft);border-radius:3px;background:#101f25;overflow:hidden}
-.panel-head{padding:18px 20px 16px;border-bottom:1px solid var(--rule-soft);
-  background:linear-gradient(180deg,#16292f,#101f25)}
-.pt-code{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.2em;
-  color:var(--gold);margin:0 0 6px}
-.pt-name{font-family:"Spectral",Georgia,serif;font-size:26px;font-weight:600;margin:0;line-height:1.15}
-.pt-name .han{font-family:"Noto Serif SC",serif;font-weight:400;color:var(--metal);
-  margin-left:.4em;font-size:.86em}
-.pt-de{color:var(--text-2);font-style:italic;font-family:"Spectral",Georgia,serif;
-  font-size:16px;margin:4px 0 0}
-.pt-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.tag{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.08em;
-  border:1px solid var(--gold-dim);color:var(--qi);border-radius:2px;
-  padding:3px 7px;background:#1b2a24}
-.tag.plain{border-color:var(--rule);color:var(--text-2);background:transparent}
-.tag.wx{border-color:currentColor;background:transparent}
-.tag.wx-holz{color:var(--wx-holz)} .tag.wx-feuer{color:var(--wx-feuer)}
-.tag.wx-erde{color:var(--wx-erde)} .tag.wx-metall{color:var(--wx-metall)}
-.tag.wx-wasser{color:var(--wx-wasser)}
-dl.detail{margin:0;padding:16px 20px 18px;display:grid;
-  grid-template-columns:76px minmax(0,1fr);gap:9px 14px;align-items:baseline}
-dl.detail dt{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--text-3);padding-top:2px}
-dl.detail dd{margin:0;font-size:14.5px;color:var(--text)}
+/* --- Hero --- */
+.hero{padding-block:var(--hla-space-16) var(--hla-space-12)}
+.hero h1 .hanzi{font-size:.6em;color:var(--hla-kiesel);margin-left:.4em;letter-spacing:.05em}
+.meta{display:flex;flex-wrap:wrap;gap:0;list-style:none;margin:var(--hla-space-8) 0 0;padding:0;
+  border-top:1px solid var(--hla-rauch)}
+.meta li{padding:var(--hla-space-3) var(--hla-space-6) var(--hla-space-3) 0;min-width:140px}
+.meta b{display:block;font-weight:700;font-size:.722rem;letter-spacing:var(--hla-tracking-label);
+  text-transform:uppercase;color:var(--hla-stein);margin-bottom:2px}
+.meta span{font-size:.944rem;color:var(--hla-papier-hell)}
+.meta span .hanzi{color:var(--hla-kiesel)}
 
-/* ---------- Punktliste ---------- */
-.list-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
-  margin:26px 0 10px;padding-bottom:8px;border-bottom:1px solid var(--rule-soft)}
-.list-head h2{font-family:"Spectral",Georgia,serif;font-size:17px;font-weight:600;margin:0}
-.list-head span{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--text-3);letter-spacing:.1em}
-ol.points{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
-ol.points li{border-bottom:1px solid var(--rule-soft)}
-ol.points button{width:100%;display:grid;grid-template-columns:52px minmax(0,1fr) auto;
-  gap:12px;align-items:baseline;text-align:left;background:transparent;border:0;
-  border-left:2px solid transparent;border-radius:0;padding:9px 10px 9px 12px}
-ol.points button:hover{background:#15262d}
-ol.points button[aria-current="true"]{background:#1a2f2c;border-left-color:var(--gold)}
-.p-code{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--gold);letter-spacing:.06em}
-ol.points button[aria-current="true"] .p-code{color:var(--qi)}
-.p-name{font-size:14px;color:var(--text);overflow:hidden;text-overflow:ellipsis}
-.p-name i{font-style:normal;font-family:"Noto Serif SC",serif;color:var(--text-2);margin-left:.4em}
-.p-role{font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--text-3);
-  letter-spacing:.06em;white-space:nowrap}
-ol.points button[aria-current="true"] .p-role{color:var(--jade)}
+/* --- Schaltflächen (10.3: kein Rot) --- */
+button,.btn{
+  font-family:var(--hla-font-text);font-size:15px;line-height:1.2;
+  padding:13px 24px;border-radius:var(--hla-radius);cursor:pointer;
+  border:1px solid var(--hla-tusche);background:transparent;color:var(--hla-tusche);
+  transition:background var(--hla-duration) var(--hla-ease),color var(--hla-duration) var(--hla-ease),
+             border-color var(--hla-duration) var(--hla-ease);
+}
+button:hover{border-color:var(--hla-stein)}
+button.primaer{background:var(--hla-tusche);color:var(--hla-papier-hell);border-color:var(--hla-tusche)}
+button.primaer:hover{background:var(--hla-rauch);border-color:var(--hla-rauch)}
+button[aria-pressed="true"]{background:var(--hla-nebel);border-color:var(--hla-tusche)}
+button:disabled{opacity:.4;cursor:default}
+.werkzeuge{display:flex;flex-wrap:wrap;gap:var(--hla-space-2);align-items:center;
+  margin-top:var(--hla-space-4)}
+.werkzeuge .hinweis{font-size:.833rem;color:var(--hla-stein);margin:0}
+kbd{font-family:var(--hla-font-text);font-size:.722rem;font-weight:700;
+  letter-spacing:.06em;border:1px solid var(--hla-haarlinie);border-radius:var(--hla-radius);
+  padding:1px 6px;color:var(--hla-tusche-weich)}
 
-/* ---------- Fuß ---------- */
-footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--rule-soft);
-  color:var(--text-3);font-size:12.5px;max-width:78ch}
-footer p{margin:0 0 8px}
-@media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+/* --- Tafel mit Figur --- */
+.tafel-grid{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,1fr);
+  gap:var(--hla-space-12);align-items:start}
+@media (max-width:940px){.tafel-grid{grid-template-columns:1fr;gap:var(--hla-space-8)}}
+.tafel{
+  background:var(--hla-weiss);border:var(--hla-rule);border-radius:var(--hla-radius);
+  position:relative;cursor:zoom-in;
+}
+.tafel svg{display:block;width:100%;height:auto}
+.tafel .grossbild-hinweis{
+  position:absolute;right:var(--hla-space-3);bottom:var(--hla-space-3);
+  font-size:.722rem;font-weight:700;letter-spacing:var(--hla-tracking-label);
+  text-transform:uppercase;color:var(--hla-stein);
+  background:var(--hla-weiss);border:var(--hla-rule);border-radius:var(--hla-radius);
+  padding:5px 10px;pointer-events:none;
+}
 
-/* ===========================================================
-   Übersichtsseite: die drei Meridianumläufe
-   =========================================================== */
-.umlauf{margin:34px 0 0}
-.umlauf-head{display:flex;align-items:baseline;gap:14px;margin:0 0 14px;
-  padding-bottom:9px;border-bottom:1px solid var(--rule-soft)}
-.umlauf-head h2{font-family:"Spectral",Georgia,serif;font-size:19px;font-weight:600;margin:0}
-.umlauf-head .n{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.2em;
-  color:var(--gold);border:1px solid var(--gold-dim);border-radius:2px;padding:2px 7px}
-.umlauf-head .flow{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--text-3);
-  margin-left:auto;letter-spacing:.06em}
-.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-@media (max-width:900px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:520px){.cards{grid-template-columns:1fr}}
-a.card{display:block;text-decoration:none;color:inherit;background:#101f25;
-  border:1px solid var(--rule-soft);border-left:3px solid var(--wx);border-radius:2px;
-  padding:14px 15px 13px;transition:background .15s,border-color .15s,transform .15s}
-a.card:hover{background:#15262d;border-top-color:var(--rule);border-right-color:var(--rule);
-  border-bottom-color:var(--rule);transform:translateY(-1px)}
-a.card.pending{opacity:.62}
-a.card.pending:hover{opacity:.85}
-.card-top{display:flex;align-items:baseline;gap:8px}
-.card-code{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--wx);letter-spacing:.08em}
-.card-int{font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--text-3)}
-.card-han{font-family:"Noto Serif SC",serif;font-size:15px;color:var(--text-2);margin-left:auto}
-.card h3{font-family:"Spectral",Georgia,serif;font-size:19px;font-weight:600;margin:5px 0 2px}
-.card .sub{font-size:12.5px;color:var(--text-2);margin:0}
-.card .foot{display:flex;gap:10px;margin-top:10px;padding-top:9px;
-  border-top:1px solid var(--rule-soft);font-family:"IBM Plex Mono",monospace;
-  font-size:10.5px;color:var(--text-3);letter-spacing:.05em}
-.card .foot .status{margin-left:auto;color:var(--text-3)}
-.card .foot .status.ok{color:var(--jade)}
-.wx-holz{--wx:var(--wx-holz)} .wx-feuer{--wx:var(--wx-feuer)}
-.wx-erde{--wx:var(--wx-erde)} .wx-metall{--wx:var(--wx-metall)} .wx-wasser{--wx:var(--wx-wasser)}
-.note{border:1px solid var(--rule-soft);border-left:3px solid var(--gold-dim);
-  background:#101f25;border-radius:2px;padding:14px 16px;margin:32px 0 0;
-  font-size:13.5px;color:var(--text-2);max-width:78ch}
-.note strong{color:var(--text)}
+/* --- Punkttafel (Karte: Weiß, Haarlinie, kein Schatten) --- */
+.karte{background:var(--hla-weiss);border:var(--hla-rule);border-radius:var(--hla-radius)}
+.punkt-kopf{padding:var(--hla-space-6) var(--hla-space-6) var(--hla-space-4);
+  border-bottom:var(--hla-rule)}
+.punkt-kennung{font-weight:700;font-size:.722rem;letter-spacing:var(--hla-tracking-label);
+  text-transform:uppercase;color:var(--hla-stein);margin:0 0 var(--hla-space-2)}
+.punkt-name{font-family:var(--hla-font-display);font-weight:500;font-size:2rem;
+  line-height:1.1;margin:0;font-variant-numeric:lining-nums}
+.punkt-name .hanzi{font-size:.8em;color:var(--hla-tusche-weich);margin-left:.35em}
+.punkt-de{font-family:var(--hla-font-display);font-style:italic;font-size:1.222rem;
+  color:var(--hla-tusche-weich);margin:var(--hla-space-1) 0 0}
+.punkt-en{font-size:.833rem;color:var(--hla-stein);margin:2px 0 0}
+.merkmale{display:flex;flex-wrap:wrap;gap:var(--hla-space-2);margin-top:var(--hla-space-4)}
+.merkmal{font-size:.722rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  border:1px solid var(--hla-haarlinie);border-radius:var(--hla-radius);
+  padding:4px 9px;color:var(--hla-tusche-weich);background:var(--hla-nebel)}
+.merkmal.offen{background:transparent;color:var(--hla-stein)}
+dl.angaben{margin:0;padding:var(--hla-space-4) var(--hla-space-6) var(--hla-space-6);
+  display:grid;grid-template-columns:86px minmax(0,1fr);gap:var(--hla-space-3) var(--hla-space-4)}
+dl.angaben dt{font-weight:700;font-size:.722rem;letter-spacing:var(--hla-tracking-label);
+  text-transform:uppercase;color:var(--hla-stein);padding-top:5px}
+dl.angaben dd{margin:0;font-size:.944rem}
+
+/* --- Punktfolge --- */
+.folge{border-top:1px solid var(--hla-tusche)}
+.folge ol{list-style:none;margin:0;padding:0}
+.folge li{border-bottom:var(--hla-rule)}
+.folge button{
+  width:100%;display:grid;grid-template-columns:88px 230px minmax(0,1fr) auto;
+  gap:var(--hla-space-4);align-items:baseline;text-align:left;
+  background:transparent;border:0;border-radius:0;padding:var(--hla-space-3) var(--hla-space-2);
+}
+.folge button:hover{background:var(--hla-nebel)}
+.folge button[aria-current="true"]{background:var(--hla-nebel)}
+.folge .k{font-weight:700;font-size:.833rem;letter-spacing:.06em}
+.folge .p{font-size:.944rem}
+.folge .p .hanzi{color:var(--hla-tusche-weich);margin-left:.35em}
+.folge .e{font-size:.833rem;color:var(--hla-tusche-weich)}
+.folge .r{font-size:.722rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--hla-stein);white-space:nowrap;text-align:right}
+@media (max-width:760px){
+  .folge button{grid-template-columns:70px minmax(0,1fr);gap:var(--hla-space-2) var(--hla-space-3)}
+  .folge .e,.folge .r{grid-column:2;text-align:left}
+}
+
+/* --- Organabschnitt --- */
+.organ-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--hla-space-12)}
+@media (max-width:860px){.organ-grid{grid-template-columns:1fr;gap:var(--hla-space-8)}}
+.fliess{max-width:var(--hla-measure)}
+.fliess p{font-size:1rem}
+.eigenschaften{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;
+  border-top:1px solid var(--hla-tusche);margin:0;padding:0}
+.eigenschaften div{padding:var(--hla-space-3) var(--hla-space-4) var(--hla-space-3) 0;
+  border-bottom:var(--hla-rule)}
+.eigenschaften dt{font-weight:700;font-size:.722rem;letter-spacing:var(--hla-tracking-label);
+  text-transform:uppercase;color:var(--hla-stein)}
+.eigenschaften dd{margin:2px 0 0;font-size:.944rem}
+.muster{list-style:none;margin:0;padding:0;border-top:1px solid var(--hla-tusche)}
+.muster li{border-bottom:var(--hla-rule);padding:var(--hla-space-4) 0}
+.muster h3{font-size:1.333rem;margin:0 0 var(--hla-space-1)}
+.muster h3 .hanzi{font-size:.75em;color:var(--hla-tusche-weich);margin-left:.35em}
+.muster p{font-size:.944rem;margin:0;color:var(--hla-tusche-weich)}
+.muster .punkte{margin:var(--hla-space-2) 0 0;font-size:.833rem;color:var(--hla-stein)}
+
+/* --- Merkkasten (5.6): Fläche Nebel, kein Rahmen --- */
+.merkkasten{background:var(--hla-nebel);border-radius:var(--hla-radius);
+  padding:var(--hla-space-6);max-width:var(--hla-measure)}
+.merkkasten p:last-child{margin-bottom:0}
+.merkkasten .label{margin-bottom:var(--hla-space-2)}
+
+/* --- Übersichtskarten --- */
+.umlauf{margin-bottom:var(--hla-space-16)}
+.umlauf:last-child{margin-bottom:0}
+.umlauf-kopf{display:flex;align-items:baseline;gap:var(--hla-space-4);
+  border-bottom:1px solid var(--hla-tusche);padding-bottom:var(--hla-space-2);
+  margin-bottom:var(--hla-space-6)}
+.umlauf-kopf h2{font-size:1.556rem}
+.umlauf-kopf .folgekette{margin-left:auto;font-size:.833rem;color:var(--hla-stein);text-align:right}
+.karten{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--hla-space-4)}
+@media (max-width:940px){.karten{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.karten{grid-template-columns:1fr}}
+a.karte{display:block;text-decoration:none;background:var(--hla-weiss);
+  border:var(--hla-rule);border-radius:var(--hla-radius);padding:var(--hla-space-6);
+  transition:border-color var(--hla-duration) var(--hla-ease)}
+a.karte:hover{border-color:var(--hla-stein)}
+a.karte.offen{background:transparent}
+.karte-kopf{display:flex;align-items:baseline;gap:var(--hla-space-2)}
+.karte-kurz{font-weight:700;font-size:.944rem;letter-spacing:.06em}
+.karte-int{font-size:.722rem;letter-spacing:.1em;color:var(--hla-stein)}
+.karte-han{margin-left:auto;font-size:1.111rem;color:var(--hla-tusche-weich)}
+a.karte h3{font-size:1.444rem;margin:var(--hla-space-2) 0 2px}
+a.karte .zeile{font-size:.833rem;color:var(--hla-tusche-weich);margin:0}
+a.karte .fuss{display:flex;gap:var(--hla-space-3);margin-top:var(--hla-space-4);
+  padding-top:var(--hla-space-3);border-top:var(--hla-rule);
+  font-size:.722rem;letter-spacing:.06em;color:var(--hla-stein)}
+a.karte .fuss .stand{margin-left:auto;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+
+/* --- Großbild (Vollbild nur Figur, Verlauf, Punkte) --- */
+.grossbild{position:fixed;inset:0;z-index:100;background:var(--hla-papier);
+  display:none;flex-direction:column}
+.grossbild[data-offen]{display:flex}
+.grossbild-kopf{display:flex;align-items:center;gap:var(--hla-space-4);
+  padding:var(--hla-space-3) var(--hla-space-6);border-bottom:var(--hla-rule);
+  background:var(--hla-weiss)}
+.grossbild-kopf .titel{font-family:var(--hla-font-display);font-weight:500;font-size:1.333rem}
+.grossbild-kopf .titel .hanzi{font-size:.8em;color:var(--hla-tusche-weich);margin-left:.3em}
+.grossbild-kopf .werkzeuge{margin:0 0 0 auto}
+.grossbild-buehne{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;
+  padding:var(--hla-space-4)}
+.grossbild-buehne svg{max-height:100%;max-width:100%;width:auto;height:100%;display:block}
+@media (max-width:620px){
+  .grossbild-kopf{flex-wrap:wrap}
+  .grossbild-kopf .werkzeuge{margin-left:0;width:100%}
+}
+
+/* --- Fußbereich --- */
+footer.dunkel{padding-block:var(--hla-space-12)}
+footer .fliess p{font-size:.889rem;color:var(--hla-kiesel);max-width:74ch}
+footer .fliess p strong{color:var(--hla-papier-hell);font-weight:400}
+
+/* --- Bewegung nur weich, Einstellung respektieren (10.4 MUSS) --- */
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;transition-duration:.001ms!important}
+}
+
+/* Punkttafel bleibt beim Blättern sichtbar */
+@media (min-width:941px){ #punktSpalte{position:sticky;top:var(--hla-space-6)} }
+
+/* Abstand vor chinesischen Zeichen in Überschriften */
+h2 .hanzi,h3 .hanzi{margin-left:.32em}
+/* Mustertexte bleiben in der Satzbreite (4.x: Textspalte 680 px) */
+.muster p{max-width:var(--hla-measure)}
+.muster li{padding-right:var(--hla-space-4)}

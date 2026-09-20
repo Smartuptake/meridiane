@@ -9,10 +9,49 @@ Antikpunkt (Ting, Yong, Yu, King, Ho).
 
 | Umlauf | Meridian | Status |
 |---|---|---|
-| 1 | Lunge (Lu / LU) | kalibriert, 11 Punkte |
+| 1 | Lunge (Lu / LU) | kalibriert, 11 Punkte, mit Organkapitel |
 | 1 | Dickdarm, Magen, Milz | offen |
 | 2 | Herz, Dünndarm, Blase, Niere | offen |
 | 3 | Perikard, 3-Erwärmer, Gallenblase, Leber | offen |
+
+## Gestaltung
+
+Gestaltet nach dem **Designhandbuch Healthlane Academy, Entwurf 0.6**
+(`10-Administration/Designhandbuch`). Umgesetzt sind unter anderem:
+
+- Farben ausschließlich aus Kapitel 3: Tusche, Papier, Weiß, Siegelrot und die Abstufungen.
+  Keine weiteren Farben, keine Verläufe, keine Schatten (14.3).
+- Meridiantafel nach 11.4: Verlauf in Tusche, Punkte in Siegelrot, Beschriftung als
+  Pinyin mit Kurzbezeichnung. Mehrere rote Punkte sind hier zulässig – 3.3 nennt
+  Meridiandarstellungen ausdrücklich als Ausnahme von der Regel des einen Punkts.
+- Typografie nach Kapitel 4: Cormorant Garamond Medium für Titel (nie fett, nie unter
+  20 px), Lato für Text und Labels, Noto Serif SC für Hanzi.
+- Aufbau nach 10.1: dunkler Einstieg in Tusche, danach Abschnitte im Wechsel von
+  Papier und Weiß. Buttons ohne Rot, Karten mit Haarlinie und ohne Schatten.
+- Bewegung nach 10.4: nichts läuft von allein. Der Qi-Fluss ist ein Schalter und
+  standardmäßig aus; `prefers-reduced-motion` wird respektiert.
+
+### Schriften
+
+Kapitel 4.2 verlangt, die Schriften selbst zu hosten statt sie über Google-Server
+einzubinden. Sie liegen deshalb in `fonts/`. Neu holen, wenn ein weiterer Meridian
+neue Schriftzeichen mitbringt:
+
+```bash
+bash werkzeuge/schriften-holen.sh
+```
+
+Das Skript sammelt alle im Projekt vorkommenden Schriftzeichen ein und lädt Noto Serif SC
+nur für genau diese Zeichen – deshalb sind alle drei Schriften zusammen nur rund 330 KB groß.
+
+### Offene Gestaltungsfragen
+
+- **Figur statt Umrisszeichnung.** 11.4 sieht für Meridiandarstellungen einen Körperumriss
+  in Kiesel vor. Hier steht stattdessen eine fotorealistische Figur, weil sie im Unterricht
+  besser trägt; die Sättigung ist nach 11.3 zurückgenommen. Bewusste Abweichung von einem SOLL.
+- **Rot zweimal auf einer Ansicht.** Das Logo in der Navigation enthält den roten Ring, die
+  Tafel enthält die roten Punkte. Die Fachgrafik-Ausnahme aus 3.3 deckt die Punkte; ob das
+  Logo in der Navigation daneben bestehen bleibt, ist zu entscheiden.
 
 ## Lokal ansehen
 
@@ -31,13 +70,16 @@ Danach `http://localhost:8000/` im Browser öffnen.
 ```
 index.html          Übersicht, nach den drei Meridianumläufen gegliedert
 meridian.html       Renderer, aufgerufen mit ?m=lu
-css/app.css         gemeinsame Gestaltung
+css/app.css         Gestaltung auf Basis der HLA-Design-Tokens
+fonts/              selbst gehostete Schriften (Kapitel 4.2)
+img/marke/          Logo und Linienmotiv aus dem Designhandbuch
 js/engine.js        Spline, Bogenlängen, Qi-Animation – kennt keinen einzelnen Meridian
 js/app.js           Seitenlogik der Meridianseite
 data/katalog.js     die zwölf Hauptmeridiane als Verzeichnis
 data/lu.js          ein Meridian: Verlauf, Punkte, Texte
 img/front|back|side.png   die drei Figuren, 880 × 1168, freigestellt
 tools/kalibrator.html     Werkzeug zum Setzen der Punktlagen
+werkzeuge/schriften-holen.sh   holt und verkleinert die Schriften
 ```
 
 Alle Bildkoordinaten beziehen sich auf das Raster **880 × 1168** – das gilt für alle
