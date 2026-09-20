@@ -507,3 +507,68 @@ a.karte.gesperrt{pointer-events:none;opacity:.55}
   p.quelle{font-size:7.5pt;margin-top:3mm}
   h2,h3{page-break-after:avoid}
 }
+
+/* ===========================================================
+   Übungstableau: Der kleine Himmelskreislauf
+   =========================================================== */
+.namenszeile{font-family:var(--hla-font-hanzi);font-size:1rem;color:var(--hla-kiesel);
+  margin:var(--hla-space-2) 0 0;letter-spacing:.02em}
+.hk-grid{display:grid;grid-template-columns:minmax(300px,480px) minmax(0,1fr);
+  gap:var(--hla-space-12);align-items:start}
+@media (max-width:920px){.hk-grid{grid-template-columns:1fr;gap:var(--hla-space-8)}}
+.hk-grid .tafel{cursor:default;padding:var(--hla-space-4)}
+.hk-neben h2{font-size:1.778rem}
+dl.gefaesse{margin:var(--hla-space-6) 0 0;border-top:1px solid var(--hla-tusche)}
+dl.gefaesse > div{padding:var(--hla-space-3) 0;border-bottom:var(--hla-rule)}
+dl.gefaesse dt{font-family:var(--hla-font-display);font-weight:500;font-size:1.333rem;line-height:1.2}
+dl.gefaesse dd{margin:var(--hla-space-1) 0 0;font-size:.889rem;color:var(--hla-tusche-weich)}
+dl.gefaesse dd .en{display:block;font-size:.833rem;color:var(--hla-stein);margin-top:2px}
+ul.lesen{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--hla-space-2)}
+ul.lesen li{display:flex;align-items:center;gap:var(--hla-space-3);font-size:.889rem}
+ul.lesen li.ohne{padding-left:34px;color:var(--hla-stein);font-size:.833rem}
+.lesezeichen{width:22px;height:22px;flex:0 0 22px;display:block}
+p.abk{font-size:.833rem;color:var(--hla-stein);margin:var(--hla-space-6) 0 0}
+p.klammern{font-size:.833rem;color:var(--hla-stein);margin:var(--hla-space-4) 0 0;
+  max-width:var(--hla-measure)}
+
+.hk-punkte{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:var(--hla-space-4);margin-top:var(--hla-space-8)}
+@media (max-width:1000px){.hk-punkte{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.hk-punkte{grid-template-columns:1fr}}
+article.hk-karte{background:var(--hla-weiss);border:var(--hla-rule);
+  border-radius:var(--hla-radius);padding:var(--hla-space-4)}
+article.hk-karte.zentrum{background:var(--hla-nebel)}
+article.hk-karte[aria-current="true"]{border-color:var(--hla-tusche)}
+.hk-kopf{display:flex;align-items:center;gap:var(--hla-space-2)}
+.hk-nr{font-family:var(--hla-font-text);font-weight:700;font-size:.833rem;
+  letter-spacing:var(--hla-tracking-label);color:var(--hla-stein)}
+article.hk-karte h3{font-size:1.222rem;margin:var(--hla-space-2) 0 0;line-height:1.18}
+.hk-nomen{font-size:.833rem;color:var(--hla-tusche-weich);margin:var(--hla-space-1) 0 0}
+.hk-en{font-size:.778rem;color:var(--hla-stein);margin:2px 0 0}
+.hk-text{font-size:.889rem;margin:var(--hla-space-3) 0 0}
+
+ol.quellen{list-style:none;margin:0;padding:0;display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--hla-space-2) var(--hla-space-8)}
+@media (max-width:760px){ol.quellen{grid-template-columns:1fr}}
+ol.quellen li{font-size:.833rem;color:var(--hla-tusche-weich);
+  display:grid;grid-template-columns:34px minmax(0,1fr);gap:var(--hla-space-2);
+  padding:var(--hla-space-2) 0;border-bottom:var(--hla-rule)}
+ol.quellen .qnr{font-weight:700;color:var(--hla-stein)}
+
+@media print{
+  .hk-grid{display:block}
+  .hk-grid .tafel{float:left;width:78mm;border:0;padding:0;margin:0 8mm 4mm 0}
+  .hk-neben{overflow:hidden}
+  .hk-punkte{display:block;column-count:3;column-gap:8mm;margin-top:4mm}
+  article.hk-karte{break-inside:avoid;page-break-inside:avoid;border:0;
+    border-top:0.5pt solid #DCD5C9;border-radius:0;padding:2mm 0;margin-bottom:2mm;
+    background:transparent!important}
+  article.hk-karte h3{font-size:10pt}
+  .hk-nomen,.hk-en{font-size:7.5pt}
+  .hk-text{font-size:8pt;margin-top:1mm}
+  #namen .falttafel .inhalt{display:block!important}
+  #namen .falttafel .zeichen{display:none}
+  #namen .falttafel{column-count:2;column-gap:10mm}
+  #namen .falttafel > div{break-inside:avoid;page-break-inside:avoid}
+  ol.quellen{font-size:7.5pt}
+}

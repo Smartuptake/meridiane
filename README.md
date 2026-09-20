@@ -145,7 +145,7 @@ Erreichbar über den Abschnitt **Übungen** auf der Übersichtsseite.
 | Tableau | Stand |
 |---|---|
 | Die sechs heilenden Laute | fertig |
-| Kleiner Energiekreislauf | offen |
+| Der kleine Himmelskreislauf | fertig, wartet auf Rechteklärung |
 | Meridian-Dehnung | offen |
 
 Die sechs Laute folgen dem nährenden Zyklus ab Metall: Lunge, Nieren, Leber, Herz, Milz;
