@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Die sechs heilenden Laute – Healthlane Academy</title>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+
+<div class="nav dunkel druckweg">
+  <div class="inner">
+    <a class="home" href="../index.html" aria-label="Healthlane Academy, zur Übersicht">
+      <img src="../img/marke/hla-logo-horizontal-negativ.svg" alt="Healthlane Academy">
+    </a>
+    <nav>
+      <a href="../index.html">Meridiane</a>
+      <a href="../index.html#uebungen" aria-current="page">Übungen</a>
+    </nav>
+  </div>
+</div>
+
+<header class="dunkel hero druckweg">
+  <div class="inner">
+    <p class="label" id="hLabel">&nbsp;</p>
+    <h1 id="hTitel">&nbsp;</h1>
+    <p class="lead" id="hLead"></p>
+    <ul class="meta" id="hMeta"></ul>
+  </div>
+</header>
+
+<!-- Kopf nur für den Druck, nach Handbuch 9: Label links, Haarlinie -->
+<div class="druckkopf" aria-hidden="true">
+  <span class="label">Qigong · Übungstableau</span>
+  <span class="marke">Healthlane Academy</span>
+</div>
+
+<section class="papier" id="ordnung">
+  <div class="inner">
+    <p class="label">Ordnung der sechs Laute</p>
+    <h2 style="margin-top:12px">Die Reihenfolge folgt dem nährenden Zyklus</h2>
+    <div class="ordnung-grid" style="margin-top:40px">
+      <p class="fliess" id="oOrdnung"></p>
+      <figure class="druckweg">
+        <svg id="svgWuxing" xmlns="http://www.w3.org/2000/svg"></svg>
+        <figcaption>Metall nährt Wasser, Wasser nährt Holz, Holz nährt Feuer,
+        Feuer nährt Erde – in dieser Folge werden die Laute geübt.</figcaption>
+      </figure>
+    </div>
+    <div class="tafel-scroll" style="margin-top:56px">
+      <table class="zuordnung uebersicht" id="tUebersicht"></table>
+    </div>
+  </div>
+</section>
+
+<section class="weiss" id="laute">
+  <div class="inner">
+    <p class="label druckweg">Die Übungen</p>
+    <h2 style="margin-top:12px" class="druckweg">Haltung, Atem, Laut und innere Vorstellung</h2>
+    <div class="laut-liste" id="lauteListe" style="margin-top:48px"></div>
+  </div>
+</section>
+
+<section class="papier">
+  <div class="inner">
+    <div class="merkkasten">
+      <p class="label">Hinweis</p>
+      <p id="oHinweis" style="margin:0"></p>
+    </div>
+    <p class="quelle" id="oQuelle"></p>
+  </div>
+</section>
+
+<footer class="dunkel druckweg">
+  <div class="inner fliess">
+    <p>Die Angaben geben die Vorlage wieder und dienen dem Unterricht. Sie sind keine
+    Heilversprechen und ersetzen keine ärztliche Abklärung.</p>
+    <p>Healthlane Academy · KEY – Keep Educating Yourself</p>
+  </div>
+</footer>
+
+<script src="../js/wuxing.js"></script>
+<script src="../data/wandlungsphasen.js"></script>
+<script src="../data/sechs-laute.js"></script>
+<script src="../js/laute.js"></script>
+</body>
+</html>

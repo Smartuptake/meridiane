@@ -49,10 +49,10 @@ window.Wandlungsphasen = {
     wasser: {
       name: "Wasser", han: "水", pinyin: "shuǐ",
       zang: "Niere", fu: "Blase",
-      farbe: "schwarz, blauschwarz", jahreszeit: "Winter", sinnesorgan: "Ohren",
+      farbe: "schwarz, dunkelblau", jahreszeit: "Winter", sinnesorgan: "Ohren",
       geschmack: "salzig", richtung: "Norden",
       klima: "Kälte", gewebe: "Knochen und Mark", klang: "Stöhnen", geist: "Zhi 志, Wille",
-      positiv: "Willenskraft, Ausdauer, Vertrauen, Weisheit, Ruhe",
+      positiv: "Willenskraft, Ausdauer, Vertrauen, Weisheit, Sanftmut",
       negativ: "Angst, Furcht, Schreck, Misstrauen, Erschöpfung"
     }
   },

@@ -14,7 +14,10 @@
     <a class="home" href="index.html" aria-label="Healthlane Academy">
       <img src="img/marke/hla-logo-horizontal-negativ.svg" alt="Healthlane Academy">
     </a>
-    <nav><a href="index.html" aria-current="page">Meridiane</a></nav>
+    <nav>
+      <a href="index.html" aria-current="page">Meridiane</a>
+      <a href="#uebungen">Übungen</a>
+    </nav>
   </div>
 </div>
 
@@ -37,6 +40,16 @@
 <section class="papier"><div class="inner" id="u1"></div></section>
 <section class="weiss"><div class="inner" id="u2"></div></section>
 <section class="papier"><div class="inner" id="u3"></div></section>
+
+<section class="papier" id="uebungen">
+  <div class="inner">
+    <p class="label">Übungen</p>
+    <h2 style="margin-top:12px">Übungstableaus<span class="hanzi">氣功</span></h2>
+    <p class="lead">Übungsreihen aus dem Qigong, die sich unmittelbar auf Organe und Meridiane
+    beziehen. Jedes Tableau ist am Bildschirm zu lesen und auf A3 druckbar.</p>
+    <div class="uebungen-karten" style="margin-top:48px" id="uebungenKarten"></div>
+  </div>
+</section>
 
 <section class="weiss">
   <div class="inner">
@@ -62,6 +75,43 @@
 
 <script src="data/katalog.js"></script>
 <script>
+(function () {
+  var UEBUNGEN = [
+    { nr: "01", titel: "Die sechs heilenden Laute", han: "六字訣",
+      zeile: "Sechs Laute für Lunge, Nieren, Leber, Herz, Milz und den Dreifachen Erwärmer.",
+      fuss: "6 Übungen · Sitzen und Liegen",
+      href: "uebungen/sechs-heilende-laute.html", fertig: true },
+    { nr: "02", titel: "Kleiner Energiekreislauf", han: "小周天",
+      zeile: "Ren Mai und Du Mai als geschlossener Kreis von Atem und Aufmerksamkeit.",
+      fuss: "in Vorbereitung", href: "#", fertig: false },
+    { nr: "03", titel: "Meridian-Dehnung", han: "經絡伸展",
+      zeile: "Dehnungen entlang der zwölf Hauptmeridiane, paarweise nach Umläufen geordnet.",
+      fuss: "in Vorbereitung", href: "#", fertig: false }
+  ];
+  var host = document.getElementById("uebungenKarten");
+  UEBUNGEN.forEach(function (u) {
+    var a = document.createElement("a");
+    a.className = "karte" + (u.fertig ? "" : " offen gesperrt");
+    a.href = u.href;
+    if (!u.fertig) a.setAttribute("aria-disabled", "true");
+
+    var kopf = document.createElement("div"); kopf.className = "karte-kopf";
+    var nr = document.createElement("span"); nr.className = "uebung-nr"; nr.textContent = u.nr;
+    var hz = document.createElement("span"); hz.className = "karte-han hanzi"; hz.textContent = u.han;
+    kopf.appendChild(nr); kopf.appendChild(hz);
+
+    var h3 = document.createElement("h3"); h3.textContent = u.titel;
+    var z = document.createElement("p"); z.className = "zeile"; z.textContent = u.zeile;
+    var fuss = document.createElement("div"); fuss.className = "fuss";
+    var f = document.createElement("span"); f.textContent = u.fuss;
+    var st = document.createElement("span"); st.className = "stand";
+    st.textContent = u.fertig ? "öffnen" : "in Arbeit";
+    fuss.appendChild(f); fuss.appendChild(st);
+
+    a.appendChild(kopf); a.appendChild(h3); a.appendChild(z); a.appendChild(fuss);
+    host.appendChild(a);
+  });
+})();
 (function () {
   var UMLAUF = {
     1: { titel: "Erster Umlauf",  kette: "Lunge → Dickdarm → Magen → Milz" },

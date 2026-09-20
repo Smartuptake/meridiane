@@ -100,6 +100,8 @@ js/engine.js        Spline, Bogenlängen, Qi-Animation – kennt keinen einzelne
 js/app.js           Seitenlogik der Meridianseite
 data/katalog.js     die zwölf Hauptmeridiane als Verzeichnis
 data/wandlungsphasen.js  die fünf Phasen und die Organuhr – gilt für alle Meridiane
+data/sechs-laute.js      das Qigong-Tableau der sechs heilenden Laute
+uebungen/           Übungstableaus, am Bildschirm und als A3-Druck
 data/lu.js          ein Meridian: Verlauf, Punkte, Organ, Zustände, Ernährung
 js/wuxing.js        zeichnet Phasenschaubild und Organuhr
 img/front|back|side.png   die drei Figuren, 880 × 1168, freigestellt
@@ -133,6 +135,24 @@ Die **Seitenansicht** taugt noch nicht für die Gallenblase: der Arm hängt gera
 und verdeckt die seitliche Rumpfwand um die Taille – genau dort, wo Gb 24 bis Gb 30 liegen.
 Vor der Gallenblase muss `img/side.png` neu erzeugt werden, mit angehobenem oder nach
 hinten geführtem Arm. Für Dü, Bl und 3E reicht die Rückansicht wie sie ist.
+
+## Übungstableaus
+
+Unter `uebungen/` liegen Qigong-Tableaus, die sich auf Organe und Meridiane beziehen.
+Erreichbar über den Abschnitt **Übungen** auf der Übersichtsseite.
+
+| Tableau | Stand |
+|---|---|
+| Die sechs heilenden Laute | fertig |
+| Kleiner Energiekreislauf | offen |
+| Meridian-Dehnung | offen |
+
+Die sechs Laute folgen dem nährenden Zyklus ab Metall: Lunge, Nieren, Leber, Herz, Milz;
+der sechste gehört zum Dreifachen Erwärmer, der keine eigene Wandlungsphase hat.
+
+**Drucken:** Die Seite trägt ihre Druckvorlage selbst. Im Browser Cmd+P, Papierformat
+**A3 hoch**, Hintergrundgrafiken aktivieren. Es entsteht ein zweispaltiges Tableau ohne
+Navigation und Fußbereich. Ein zweites Dokument, das auseinanderlaufen könnte, gibt es nicht.
 
 ## Zu den Punktzahlen
 

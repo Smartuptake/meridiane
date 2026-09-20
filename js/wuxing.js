@@ -33,8 +33,8 @@
     svg.setAttribute("viewBox", "0 0 530 490");
     svg.setAttribute("role", "img");
     svg.setAttribute("aria-label",
-      "Die fünf Wandlungsphasen im nährenden und im kontrollierenden Zyklus. " +
-      "Hervorgehoben: " + W.phasen[aktiv].name + ".");
+      "Die fünf Wandlungsphasen im nährenden und im kontrollierenden Zyklus." +
+      (aktiv ? " Hervorgehoben: " + W.phasen[aktiv].name + "." : ""));
     svg.innerHTML = "";
 
     var defs = el("defs", {});
