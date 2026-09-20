@@ -1,11 +1,11 @@
-/* Lungenmeridian – Hand-Taiyin – 手太陰肺經
+/* Lungenmeridian – Hand-Taiyin – 手太阴肺经
    Punktlagen kalibriert auf img/front.png (880 × 1168).
    Proportionen: vordere Achselfalte y≈337, Ellenbeugefalte y≈417,
    Handgelenksfalte y≈528 → Achsel–Ellenbeuge 9 Cun, Ellenbeuge–Handgelenk 12 Cun. */
 Meridian.register({
   id: "lu", code: "LU", codeDe: "Lu", ord: 1,
-  name: "Lunge", titel: "Lungenmeridian", nameHan: "肺經",
-  channel: "Hand-Taiyin", channelHan: "手太陰",
+  name: "Lunge", titel: "Lungenmeridian", nameHan: "肺经",
+  channel: "Hand-Taiyin", channelHan: "手太阴",
   element: "Metall", elementHan: "金", wx: "metall",
   yin: true, coupled: "li", coupledName: "Dickdarm",
   clock: "03 – 05 Uhr", pointCount: 11, direction: "Brust → Hand",
@@ -46,21 +46,21 @@ Meridian.register({
 
     aufgabenTitel: "Die Aufgaben der Lunge",
     aufgaben: [
-      { titel: "Sie herrscht über das Qi und die Atmung", han: "主氣司呼吸",
+      { titel: "Sie herrscht über das Qi und die Atmung", han: "主气司呼吸",
         text: "Mit dem Einatmen nimmt die Lunge das klare Qi auf, mit dem Ausatmen gibt sie " +
               "das trübe ab. Aus dem klaren Qi und dem Gu-Qi der Nahrung entsteht in der Brust " +
               "das Zong-Qi, das Atmung und Herzschlag trägt. Weil alle Qi-Bewegungen im Körper " +
               "vom Atemrhythmus abhängen, heißt es: die Lunge herrscht über das Qi des ganzen Körpers. " +
               "Ist ihr Qi schwach, fehlt Kraft, Stimme und Ausdauer." },
 
-      { titel: "Sie verteilt und senkt ab", han: "宣發肅降",
+      { titel: "Sie verteilt und senkt ab", han: "宣发肃降",
         text: "Zwei Richtungen halten sich die Waage. Xuān fā verteilt nach außen und oben: " +
               "es bringt Qi und Flüssigkeit an die Oberfläche, zu Haut und Körperhaar, und trägt " +
               "dorthin das Wei-Qi. Sù jiàng klärt und senkt nach unten ab, zur Niere und zur Blase. " +
               "Stockt das Verteilen, entstehen Frösteln und verstopfte Nase; stockt das Absenken, " +
               "entstehen Husten, Keuchen und Engegefühl in der Brust." },
 
-      { titel: "Sie regelt den Wasserweg", han: "通調水道",
+      { titel: "Sie regelt den Wasserweg", han: "通调水道",
         text: "Weil beide Bewegungen auch die Flüssigkeiten führen, heißt die Lunge die obere " +
               "Quelle des Wassers. Sie vernebelt Flüssigkeit zur Haut hin und senkt den Rest nach " +
               "unten ab. Versagt das, sammelt sich Feuchtigkeit: Ödeme im Gesicht und an den " +
@@ -72,7 +72,7 @@ Meridian.register({
               "rechten Zeit schwitzt. Schwaches Lungen-Qi zeigt sich als eine Erkältung nach der " +
               "anderen, als Schwitzen ohne Anlass und als trockene, glanzlose Haut." },
 
-      { titel: "Sie öffnet sich in die Nase", han: "開竅於鼻",
+      { titel: "Sie öffnet sich in die Nase", han: "开窍于鼻",
         text: "Nase, Rachen und Stimme gehören zur Lunge. Ist ihr Qi frei, riecht man gut und " +
               "die Stimme trägt. Wind-Kälte verstopft die Nase, Wind-Hitze macht den Rachen wund, " +
               "Yin-Mangel trocknet beides aus und nimmt der Stimme den Klang." },
@@ -85,11 +85,11 @@ Meridian.register({
     ],
 
     zustaendeTitel: "Mangel und Fülle von Yin und Yang",
-    zustaendeHinweis: "Mangel (Xū 虛) heißt: etwas fehlt. Fülle (Shí 實) heißt: etwas ist zu viel " +
+    zustaendeHinweis: "Mangel (Xū 虚) heißt: etwas fehlt. Fülle (Shí 实) heißt: etwas ist zu viel " +
                       "da und blockiert. Bei Yin-Fülle sammelt sich Stoffliches von yin-artiger " +
                       "Natur an – Schleim, Feuchtigkeit, Kälte. Bei Yang-Fülle staut sich Hitze.",
     zustaende: [
-      { feld: "Yin-Mangel", en: "Lung Yin Deficiency", han: "肺陰虛", pinyin: "fèi yīn xū",
+      { feld: "Yin-Mangel", en: "Lung Yin Deficiency", han: "肺阴虚", pinyin: "fèi yīn xū",
         kurz: "Es fehlt Befeuchtung. Trockenheit und Leere-Hitze treten hervor.",
         zeichen: "Trockener Reizhusten ohne Auswurf oder mit wenig zähem Schleim, trockener Hals " +
                  "und Mund, Heiserkeit bis Stimmverlust, Nachtschweiß, Hitze in den fünf Herzen, " +
@@ -98,7 +98,7 @@ Meridian.register({
         puls: "dünn und schnell",
         punkte: "Lu 9 · Lu 5 · Ni 6 · Bl 13 · Ren 17" },
 
-      { feld: "Yang-Mangel", en: "Lung Qi / Yang Deficiency", han: "肺氣虛", pinyin: "fèi qì xū",
+      { feld: "Yang-Mangel", en: "Lung Qi / Yang Deficiency", han: "肺气虚", pinyin: "fèi qì xū",
         kurz: "Es fehlt Wärme und Antrieb. Das Qi hält die Oberfläche nicht mehr dicht.",
         zeichen: "Kurzatmigkeit schon bei geringer Anstrengung, leise und kraftlose Stimme, " +
                  "Widerwille zu sprechen, Schwitzen am Tag ohne Anlass, blasses Gesicht, " +
@@ -110,7 +110,7 @@ Meridian.register({
         puls: "leer und schwach, besonders in der rechten Cun-Position",
         punkte: "Lu 9 · Lu 1 · Ma 36 · Bl 13 · Du 12" },
 
-      { feld: "Yin-Fülle", en: "Phlegm-Damp obstructing the Lung", han: "痰濕阻肺", pinyin: "tán shī zǔ fèi",
+      { feld: "Yin-Fülle", en: "Phlegm-Damp obstructing the Lung", han: "痰湿阻肺", pinyin: "tán shī zǔ fèi",
         kurz: "Stoffliches von yin-artiger Natur staut sich: Schleim, Feuchtigkeit, Kälte.",
         zeichen: "Reichlich weißer, leicht zu lösender Schleim, Engegefühl in der Brust, " +
                  "rasselnde oder pfeifende Atmung, Schweregefühl im Körper, Verschlimmerung durch " +
@@ -120,7 +120,7 @@ Meridian.register({
         puls: "schlüpfrig, bei Kälte zusätzlich langsam",
         punkte: "Lu 5 · Ma 40 · Ren 17 · Mi 3 · Bl 13" },
 
-      { feld: "Yang-Fülle", en: "Heat or Phlegm-Heat in the Lung", han: "痰熱壅肺", pinyin: "tán rè yōng fèi",
+      { feld: "Yang-Fülle", en: "Heat or Phlegm-Heat in the Lung", han: "痰热壅肺", pinyin: "tán rè yōng fèi",
         kurz: "Hitze staut sich in der Lunge, oft zusammen mit Schleim.",
         zeichen: "Lauter, bellender Husten, gelber zäher Schleim, teils übelriechend, Fieber, " +
                  "Durst auf Kaltes, Brustschmerz beim Husten, trockener Stuhl, dunkler Urin. " +
@@ -132,12 +132,12 @@ Meridian.register({
 
     aeussereTitel: "Wenn ein äußerer Faktor die Lunge erreicht",
     aeussere: [
-      { name: "Wind-Kälte fesselt die Lunge", han: "風寒束肺", pinyin: "fēng hán shù fèi",
+      { name: "Wind-Kälte fesselt die Lunge", han: "风寒束肺", pinyin: "fēng hán shù fèi",
         zeichen: "Plötzlich einsetzender Husten mit dünnem weißem Schleim, klarer Nasenfluss, " +
                  "Frösteln, das sich durch Wärme bessert, kein Schweiß, steifer Nacken, " +
                  "Kopfschmerz im Hinterkopf.",
         punkte: "Lu 7 · Di 4 · Bl 12 · Gb 20" },
-      { name: "Wind-Hitze greift die Lunge an", han: "風熱犯肺", pinyin: "fēng rè fàn fèi",
+      { name: "Wind-Hitze greift die Lunge an", han: "风热犯肺", pinyin: "fēng rè fàn fèi",
         zeichen: "Halsschmerz, gelblicher zäher Schleim, Fieber mit nur wenig Frösteln, Durst, " +
                  "geschwollene Mandeln, trockene Nase.",
         punkte: "Lu 11 · Lu 10 · Di 4 · Di 11" }
@@ -196,7 +196,7 @@ Meridian.register({
       ind:"Husten, Asthma, Engegefühl und Schmerz in der Brust, Schulterschmerz, Fülle-Hitze in der Lunge.",
       nd:"Schräg oder tangential nach lateral, 0,5–0,8 Cun. Nicht senkrecht tief – Pleuragefahr." },
 
-    { n:2, pinyin:"Yúnmén", han:"雲門", de:"Wolkentor", en:"Cloud Gate",
+    { n:2, pinyin:"Yúnmén", han:"云门", de:"Wolkentor", en:"Cloud Gate",
       x:326, y:249, key:false, role:"",
       tags:["Fensterpunkt des Himmels"],
       loc:"Infraklavikuläre Grube unterhalb des Schlüsselbeins, 6 Cun lateral der Mittellinie, im Sulcus deltoideopectoralis.",
@@ -210,13 +210,13 @@ Meridian.register({
       ind:"Asthma, Nasenbluten, Schmerz an der Oberarminnenseite, innere Unruhe, Benommenheit.",
       nd:"Senkrecht 0,5–1 Cun." },
 
-    { n:4, pinyin:"Xiábái", han:"俠白", de:"Weiß umfassend", en:"Guarding White",
+    { n:4, pinyin:"Xiábái", han:"侠白", de:"Weiß umfassend", en:"Guarding White",
       x:285, y:374, key:false, role:"", tags:[],
       loc:"4 Cun unterhalb der vorderen Achselfalte bzw. 5 Cun oberhalb der Ellenbeugefalte, radial des Bizeps.",
       ind:"Husten, Kurzatmigkeit, Enge in der Brust, Herzbeschwerden, Schmerz an der Oberarminnenseite.",
       nd:"Senkrecht 0,5–1 Cun." },
 
-    { n:5, pinyin:"Chǐzé", han:"尺澤", de:"Sumpf der Ellenbeuge", en:"Cubit Marsh",
+    { n:5, pinyin:"Chǐzé", han:"尺泽", de:"Sumpf der Ellenbeuge", en:"Cubit Marsh",
       x:260, y:417, key:true, role:"HO · SED",
       antik:"ho", wx:"wasser",
       tags:["Ho / He – Meerpunkt","Sedierungspunkt"],
@@ -238,7 +238,7 @@ Meridian.register({
       ind:"Erkältung mit Wind-Kälte, Kopfschmerz, Nackensteife, Husten, Gesichtslähmung, Handgelenkschmerz.",
       nd:"Schräg nach proximal, 0,3–0,5 Cun." },
 
-    { n:8, pinyin:"Jīngqú", han:"經渠", de:"Entwässerungsgraben", en:"Channel Ditch",
+    { n:8, pinyin:"Jīngqú", han:"经渠", de:"Entwässerungsgraben", en:"Channel Ditch",
       x:208, y:519, key:false, role:"KING · BEN",
       antik:"king", wx:"metall",
       tags:["King / Jing – Strom-/Flusspunkt","Ben-Punkt"],
@@ -246,7 +246,7 @@ Meridian.register({
       ind:"Husten, Asthma, Halsschmerz, Fieber ohne Schweiß, Schmerz im Handgelenk.",
       nd:"Senkrecht 0,2–0,3 Cun, an der Arterie vorbei. Klassisch nicht moxibustieren." },
 
-    { n:9, pinyin:"Tàiyuān", han:"太淵", de:"Tiefster, großer Wasserstrudel", en:"Great Abyss",
+    { n:9, pinyin:"Tàiyuān", han:"太渊", de:"Tiefster, großer Wasserstrudel", en:"Great Abyss",
       x:201, y:528, key:true, role:"YU · YUAN · TON",
       antik:"yu", wx:"erde",
       tags:["Yu / Shu – größerer Flusspunkt","Yuan-Punkt","Tonisierungspunkt","Hui-Punkt der Gefäße"],
@@ -254,7 +254,7 @@ Meridian.register({
       ind:"Lungen-Qi-Schwäche, chronischer Husten, Kurzatmigkeit, schwache Stimme, Gefäß- und Pulsstörungen.",
       nd:"Senkrecht 0,2–0,3 Cun, Arterie meiden." },
 
-    { n:10, pinyin:"Yújì", han:"魚際", de:"Fischbauchgrenze", en:"Fish Border",
+    { n:10, pinyin:"Yújì", han:"鱼际", de:"Fischbauchgrenze", en:"Fish Border",
       x:174, y:539, key:false, role:"YONG",
       antik:"yong", wx:"feuer",
       tags:["Yong / Ying – kleiner Flusspunkt"],

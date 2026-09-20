@@ -1,7 +1,7 @@
 /* Healthlane Academy - selbst gehostete Schriften.
    Designhandbuch 4.2 MUSS: nicht ueber Google-Server einbinden.
    Erzeugt von werkzeuge/schriften-holen.sh - nicht von Hand aendern.
-   Cormorant Garamond, Lato, Noto Serif SC: SIL Open Font License. */
+   Cormorant Garamond, Lato, LXGW WenKai: SIL Open Font License. */
 
 @font-face {
   font-family: 'Cormorant Garamond';
@@ -211,10 +211,10 @@
 }
 
 @font-face {
-  font-family: 'Noto Serif SC';
+  font-family: 'LXGW WenKai TC';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(notosc-subset.woff2) format('woff2');
-  unicode-range: U+4e09, U+4e2d, U+4e3b, U+4e94, U+4f38, U+4fe0, U+516d, U+5217, U+529f, U+5305, U+53f8, U+5438, U+5468, U+547c, U+5546, U+571f, U+58c5, U+5927, U+5929-592a, U+5b54, U+5b57, U+5ba3, U+5bd2, U+5be6, U+5c0f, U+5c11, U+5c3a, U+5c55, U+5e9c, U+5fc3, U+5fd7, U+610f, U+624b, U+65bc, U+6700, U+6728, U+675f, U+6bdb, U+6c23, U+6c34, U+6df5, U+6e20, U+6fa4, U+6fd5, U+706b, U+7126, U+71b1, U+72af, U+75f0, U+767c-767d, U+76ae, U+795e, U+7ac5, U+7d61, U+7d93, U+7f3a, U+8085, U+809d, U+80ba, U+80c3, U+80f1, U+813e, U+814e, U+8178, U+8180, U+81bd, U+85cf, U+865b, U+884c, U+8a23, U+8abf, U+901a, U+9053, U+91d1, U+9580, U+958b, U+963b, U+964d, U+9670, U+969b, U+96f2, U+98a8, U+9b42, U+9b44, U+9b5a, U+9f3b;
+  src: url(kaiti-subset.woff2) format('woff2');
+  unicode-range: U+4e09-4e0a, U+4e2d, U+4e39, U+4e3b, U+4e8e, U+4e91, U+4e94, U+4efb, U+4f1a, U+4f38, U+4f53, U+4fa0, U+516d, U+5217, U+529f, U+5305, U+5370, U+53d1, U+53f8, U+5438, U+5468, U+547c-547d, U+5546, U+571f, U+5782, U+5802, U+58c5, U+5927, U+5929-592a, U+5939, U+59d4, U+5b54, U+5b57, U+5b9e, U+5ba3, U+5bab, U+5bd2, U+5c0f, U+5c11, U+5c3a, U+5c55, U+5e9c, U+5f00, U+5f3a, U+5fc3, U+5fd7, U+610f, U+624b, U+642d, U+6700, U+6728, U+675f, U+677e, U+6795, U+679c, U+6865, U+690e, U+6bdb, U+6c14, U+6c34, U+6cc9, U+6cfd, U+6d8c, U+6e0a, U+6e20, U+6e7f, U+706b, U+70ed, U+7126, U+72af, U+7389, U+7391, U+7487, U+7530, U+75f0, U+767d, U+76ae, U+7763, U+795e, U+7a81, U+7a8d, U+7cbe, U+7ecf, U+7edc, U+7f3a, U+8083, U+809d, U+80a0, U+80ba, U+80be, U+80c3, U+80c6, U+80f1, U+8109-810a, U+8110-8111, U+8118, U+813e, U+8180, U+81bb, U+85cf, U+865a, U+884c, U+8bc0, U+8c03, U+901a, U+9053, U+91d1, U+957f, U+95e8, U+9619, U+9634, U+963b, U+9645, U+964d, U+9876, U+98ce, U+9b42, U+9b44, U+9c7c, U+9e64, U+9f3b;
 }

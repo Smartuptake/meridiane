@@ -22,7 +22,7 @@
 
   --hla-font-display:"Cormorant Garamond",Garamond,"Times New Roman",serif;
   --hla-font-text:"Lato","Helvetica Neue",Arial,sans-serif;
-  --hla-font-hanzi:"Noto Serif SC","Songti SC",STSong,SimSun,serif;
+  --hla-font-hanzi:"Kaiti SC","Kaiti TC",STKaiti,KaiTi,"楷体","LXGW WenKai TC",serif;
 
   --hla-tracking-label:.18em;
   --hla-lh-text:1.65;
@@ -625,4 +625,24 @@ table.stationen td:first-of-type{font-weight:700}
   .druckkopf .druckmarke{display:block}
   table.stationen{min-width:0;font-size:8pt}
   #tabelle{break-before:auto}
+}
+
+/* Übersichtstabelle mit Figur als Referenz daneben */
+.tabelle-grid{display:grid;grid-template-columns:260px minmax(0,1fr);
+  gap:var(--hla-space-8);align-items:start}
+@media (max-width:900px){.tabelle-grid{grid-template-columns:1fr;gap:var(--hla-space-6)}}
+.tabelle-figur{position:sticky;top:var(--hla-space-6)}
+.tabelle-figur .tafel{cursor:default;padding:var(--hla-space-2)}
+.tabelle-figur .hinweis{font-size:.722rem;color:var(--hla-stein);
+  margin:var(--hla-space-2) 0 0;text-align:center}
+@media (max-width:900px){.tabelle-figur{position:static;max-width:260px;margin:0 auto}}
+table.stationen tbody tr{cursor:pointer;transition:background var(--hla-duration) var(--hla-ease)}
+table.stationen tbody tr:hover,
+table.stationen tbody tr[aria-current="true"]{background:var(--hla-nebel)}
+table.stationen tbody tr:focus-visible{outline:2px solid var(--hla-tusche);outline-offset:-2px}
+@media print{
+  .tabelle-grid{display:grid;grid-template-columns:44mm minmax(0,1fr);gap:6mm}
+  .tabelle-figur{position:static}
+  .tabelle-figur .hinweis{display:none}
+  table.stationen tbody tr{background:transparent!important}
 }

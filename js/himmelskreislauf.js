@@ -1,17 +1,23 @@
-/* Der kleine Himmelskreislauf: Schaubild und Stationen.
+/* Der kleine Himmelskreislauf: Schaubild, Stationen und Übersichtstabelle.
    Formensprache der Vorlage: Kreis = Akupunkturpunkt, Quadrat = Energiezentrum.
-   Farben nach Designhandbuch – Verlauf in Tusche, Punkte in Siegelrot (3.3, 11.4). */
+   Farben nach Designhandbuch – Verlauf in Tusche, Punkte in Siegelrot (3.3, 11.4).
+   Das Schaubild wird zweimal gezeichnet: oben groß, neben der Tabelle als Referenz. */
 (function () {
   "use strict";
   var H = window.Himmelskreislauf;
   var NS = "http://www.w3.org/2000/svg";
   var W = 746, HH = 1335;
   var TUSCHE = "#1F1D1B", SIEGELROT = "#D32727", STEIN = "#736C63",
-      KIESEL = "#A39B90", WEISS = "#FFFFFF", PAPIER = "#F7F4EE";
+      WEISS = "#FFFFFF", PAPIER = "#F7F4EE";
 
   function $(x) { return document.getElementById(x); }
   function el(t, a) { var e = document.createElementNS(NS, t); for (var k in a) e.setAttribute(k, a[k]); return e; }
   function han(t) { var s = document.createElement("span"); s.className = "hanzi"; s.textContent = t; return s; }
+  function marke(art, cx, cy, gross) {
+    var e = document.createElementNS(NS, art === "punkt" ? "circle" : "rect");
+    if (art === "punkt") e.setAttribute("r", 7); else { e.setAttribute("width", 14); e.setAttribute("height", 14); }
+    return e;
+  }
   function glatt(pts) {
     var d = "M" + pts[0][0] + "," + pts[0][1];
     for (var i = 0; i < pts.length - 1; i++) {
@@ -23,7 +29,7 @@
     return d;
   }
 
-  /* --- Kopf --- */
+  /* ---------------- Kopf ---------------- */
   document.title = H.titel + " – Healthlane Academy";
   $("hLabel").textContent = H.untertitel;
   $("hTitel").textContent = H.titel;
@@ -45,114 +51,115 @@
   $("oEinleitungLang").textContent = H.einleitungLang;
   $("oEinleitungHinweis").textContent = H.einleitungHinweis;
 
-  /* --- Schaubild --- */
-  var svg = $("plate");
-  svg.setAttribute("viewBox", "0 0 " + W + " " + HH);
-  svg.setAttribute("role", "img");
-  svg.setAttribute("aria-label",
-    "Sitzende Figur im Profil. Der kleine Himmelskreislauf läuft am Lenkergefäß den " +
-    "Rücken hinauf und am Konzeptionsgefäß an der Vorderseite hinab; neunzehn Stationen " +
-    "sind nummeriert eingezeichnet.");
+  /* ---------------- Schaubild, beliebig oft zeichenbar ---------------- */
+  var tafeln = [];
+  function zeichneTafel(svg, mitZahlen) {
+    svg.setAttribute("viewBox", "0 0 " + W + " " + HH);
+    svg.setAttribute("role", "img");
+    svg.setAttribute("aria-label",
+      "Sitzende Figur im Profil. Der kleine Himmelskreislauf läuft am Lenkergefäß den " +
+      "Rücken hinauf und am Konzeptionsgefäß an der Vorderseite hinab; neunzehn Stationen " +
+      "sind nummeriert eingezeichnet.");
+    svg.innerHTML = "";
 
-  var defs = el("defs", {});
-  defs.innerHTML =
-    '<marker id="pfeil" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4.6" markerHeight="4.6" ' +
-    'orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="' + TUSCHE + '"/></marker>';
-  svg.appendChild(defs);
+    var bild = el("image", { href: "../img/uebungen/himmelskreislauf-figur.jpg",
+                             x: 0, y: 0, width: W, height: HH });
+    bild.style.filter = "saturate(.85)";
+    svg.appendChild(bild);
 
-  var bild = el("image", { href: "../img/uebungen/himmelskreislauf-figur.jpg",
-                           x: 0, y: 0, width: W, height: HH });
-  bild.style.filter = "saturate(.85)";
-  svg.appendChild(bild);
-
-  /* Beinäste zuerst: hinten hinab zur Fußsohle, vorne wieder hinauf */
-  [H.beinAb, H.beinAuf].forEach(function (pfad) {
-    svg.appendChild(el("path", { d: glatt(pfad), fill: "none", stroke: STEIN,
-      "stroke-width": 2.6, "stroke-dasharray": "7 8", "stroke-linecap": "round" }));
-  });
-
-  /* Kreislauf: helle Unterlage, dann Tusche mit Richtungspfeilen */
-  [H.duMai, H.renMai].forEach(function (pfad) {
-    svg.appendChild(el("path", { d: glatt(pfad), fill: "none", stroke: PAPIER,
-      "stroke-width": 8, "stroke-linecap": "round", opacity: ".6" }));
-  });
-  [H.duMai, H.renMai].forEach(function (pfad) {
-    svg.appendChild(el("path", { d: glatt(pfad), fill: "none", stroke: TUSCHE,
-      "stroke-width": 3.4, "stroke-linecap": "round", "marker-mid": "url(#pfeil)" }));
-  });
-  /* Richtungspfeile an je zwei Stellen */
-  [[H.duMai, 0.30], [H.duMai, 0.72], [H.renMai, 0.35], [H.renMai, 0.75]].forEach(function (a) {
-    var mess = el("path", { d: glatt(a[0]), fill: "none", stroke: "none" });
-    svg.appendChild(mess);
-    var L = mess.getTotalLength();
-    var p = mess.getPointAtLength(L * a[1]), q = mess.getPointAtLength(L * a[1] + 1);
-    var w = Math.atan2(q.y - p.y, q.x - p.x) * 180 / Math.PI;
-    svg.appendChild(el("path", { d: "M-7,-5 L5,0 L-7,5 z", fill: TUSCHE,
-      transform: "translate(" + p.x.toFixed(1) + "," + p.y.toFixed(1) + ") rotate(" + w.toFixed(1) + ")" }));
-  });
-
-  var gPunkte = el("g", {});
-  svg.appendChild(gPunkte);
-
-  var karten = {};
-  H.punkte.forEach(function (p) {
-    var g = el("g", { role: "button", tabindex: "0" });
-    g.style.cursor = "pointer";
-    g.setAttribute("aria-label", p.nr + " " + p.name);
-
-    if (p.art === "punkt") {
-      p._marke = el("circle", { cx: p.x, cy: p.y, r: 9, fill: SIEGELROT,
-        stroke: WEISS, "stroke-width": 2 });
-    } else {
-      p._marke = el("rect", { x: p.x - 8.5, y: p.y - 8.5, width: 17, height: 17,
-        fill: TUSCHE, stroke: WEISS, "stroke-width": 2 });
-    }
-    g.appendChild(p._marke);
-
-    var links = p.x < 450;
-    var t = el("text", {
-      x: p.x + (links ? -17 : 17), y: p.y + 8,
-      "text-anchor": links ? "end" : "start",
-      fill: TUSCHE, stroke: WEISS, "stroke-width": 4, "paint-order": "stroke",
-      "font-family": '"Lato", Arial, sans-serif', "font-size": 24, "font-weight": 700
+    [H.beinAb, H.beinAuf].forEach(function (pfad) {
+      svg.appendChild(el("path", { d: glatt(pfad), fill: "none", stroke: STEIN,
+        "stroke-width": 2.6, "stroke-dasharray": "7 8", "stroke-linecap": "round" }));
     });
-    t.textContent = p.nr;
-    g.appendChild(t);
-    g.appendChild(el("circle", { cx: p.x, cy: p.y, r: 20, fill: "transparent" }));
+    [H.duMai, H.renMai].forEach(function (pfad) {
+      svg.appendChild(el("path", { d: glatt(pfad), fill: "none", stroke: PAPIER,
+        "stroke-width": 8, "stroke-linecap": "round", opacity: ".6" }));
+    });
+    [H.duMai, H.renMai].forEach(function (pfad) {
+      svg.appendChild(el("path", { d: glatt(pfad), fill: "none", stroke: TUSCHE,
+        "stroke-width": 3.4, "stroke-linecap": "round" }));
+    });
+    [[H.duMai, 0.30], [H.duMai, 0.72], [H.renMai, 0.35], [H.renMai, 0.75]].forEach(function (a) {
+      var mess = el("path", { d: glatt(a[0]), fill: "none", stroke: "none" });
+      svg.appendChild(mess);
+      var L = mess.getTotalLength();
+      var p = mess.getPointAtLength(L * a[1]), q = mess.getPointAtLength(L * a[1] + 1);
+      var w = Math.atan2(q.y - p.y, q.x - p.x) * 180 / Math.PI;
+      svg.appendChild(el("path", { d: "M-7,-5 L5,0 L-7,5 z", fill: TUSCHE,
+        transform: "translate(" + p.x.toFixed(1) + "," + p.y.toFixed(1) + ") rotate(" + w.toFixed(1) + ")" }));
+    });
 
-    function waehle() {
+    var marken = {};
+    H.punkte.forEach(function (p) {
+      var g = el("g", { role: "button", tabindex: "0" });
+      g.style.cursor = "pointer";
+      g.setAttribute("aria-label", p.nr + " " + p.name);
+      var m;
+      if (p.art === "punkt") {
+        m = el("circle", { cx: p.x, cy: p.y, r: 9, fill: SIEGELROT, stroke: WEISS, "stroke-width": 2 });
+      } else {
+        m = el("rect", { x: p.x - 8.5, y: p.y - 8.5, width: 17, height: 17,
+                         fill: TUSCHE, stroke: WEISS, "stroke-width": 2 });
+      }
+      g.appendChild(m);
+      if (mitZahlen) {
+        var links = p.x < 450;
+        var t = el("text", { x: p.x + (links ? -17 : 17), y: p.y + 8,
+          "text-anchor": links ? "end" : "start", fill: TUSCHE, stroke: WEISS,
+          "stroke-width": 4, "paint-order": "stroke",
+          "font-family": '"Lato", Arial, sans-serif', "font-size": 24, "font-weight": 700 });
+        t.textContent = p.nr;
+        g.appendChild(t);
+      }
+      g.appendChild(el("circle", { cx: p.x, cy: p.y, r: 20, fill: "transparent" }));
+      g.addEventListener("click", function () { waehle(p.nr, true); });
+      g.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); waehle(p.nr, true); }
+      });
+      marken[p.nr] = { el: m, art: p.art, x: p.x, y: p.y };
+      svg.appendChild(g);
+    });
+    tafeln.push(marken);
+    return marken;
+  }
+
+  var karten = {}, zeilen = {};
+  function waehle(nr, blaettern) {
+    tafeln.forEach(function (marken) {
       H.punkte.forEach(function (q) {
-        var an = (q === p);
-        if (q.art === "punkt") q._marke.setAttribute("r", an ? 12 : 9);
+        var m = marken[q.nr], an = (q.nr === nr);
+        if (!m) return;
+        if (m.art === "punkt") m.el.setAttribute("r", an ? 12 : 9);
         else {
           var s = an ? 22 : 17;
-          q._marke.setAttribute("x", q.x - s / 2); q._marke.setAttribute("y", q.y - s / 2);
-          q._marke.setAttribute("width", s); q._marke.setAttribute("height", s);
+          m.el.setAttribute("x", m.x - s / 2); m.el.setAttribute("y", m.y - s / 2);
+          m.el.setAttribute("width", s); m.el.setAttribute("height", s);
         }
-        if (karten[q.nr]) karten[q.nr].setAttribute("aria-current", an ? "true" : "false");
       });
-      if (karten[p.nr]) karten[p.nr].scrollIntoView({ block: "center", behavior: "smooth" });
-    }
-    g.addEventListener("click", waehle);
-    g.addEventListener("keydown", function (e) {
-      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); waehle(); }
     });
-    gPunkte.appendChild(g);
-  });
+    Object.keys(karten).forEach(function (k) {
+      karten[k].setAttribute("aria-current", +k === nr ? "true" : "false");
+    });
+    Object.keys(zeilen).forEach(function (k) {
+      zeilen[k].setAttribute("aria-current", +k === nr ? "true" : "false");
+    });
+    if (blaettern && karten[nr]) karten[nr].scrollIntoView({ block: "center", behavior: "smooth" });
+  }
 
-  /* --- Gefäße --- */
+  zeichneTafel($("plate"), true);
+
+  /* ---------------- Gefäße und Leseanleitung ---------------- */
   H.gefaesse.forEach(function (v) {
     var d = document.createElement("div");
     var dt = document.createElement("dt"); dt.textContent = v.name;
     var dd = document.createElement("dd");
-    dd.appendChild(han(v.hanT + (v.hanV !== v.hanT ? " / " + v.hanV : "")));
+    dd.appendChild(han(v.hanV || v.hanT));
     dd.appendChild(document.createTextNode(" · " + v.pinyinT + " | " + v.pinyin));
     var e2 = document.createElement("span"); e2.className = "en";
     e2.textContent = v.en + " · " + v.lage;
     dd.appendChild(e2);
     d.appendChild(dt); d.appendChild(dd); $("oGefaesse").appendChild(d);
   });
-
   H.leseanleitung.forEach(function (l) {
     var li = document.createElement("li");
     if (l.zeichen) {
@@ -163,42 +170,73 @@
       else s.appendChild(el("line", { x1: 2, y1: 11, x2: 20, y2: 11, stroke: STEIN,
         "stroke-width": 2.4, "stroke-dasharray": "5 5", "stroke-linecap": "round" }));
       li.appendChild(s);
-    } else {
-      li.classList.add("ohne");
-    }
+    } else { li.classList.add("ohne"); }
     li.appendChild(document.createTextNode(l.text));
     $("oLesen").appendChild(li);
   });
 
-  /* --- Die neunzehn Stationen --- */
+  /* ---------------- Übersichtstabelle mit Figur daneben ---------------- */
+  $("tTabelleTitel").textContent = H.tabelleTitel;
+  zeichneTafel($("plate2"), false);
+  var t = $("tStationen");
+  var thead = document.createElement("thead"), kopf = document.createElement("tr");
+  ["", "Station", "Chinesisch und Code", "Lage am Körper"].forEach(function (h) {
+    var th = document.createElement("th"); th.textContent = h; kopf.appendChild(th);
+  });
+  thead.appendChild(kopf); t.appendChild(thead);
+  var tb = document.createElement("tbody");
+  H.punkte.slice().sort(function (a, b) { return a.nr - b.nr; }).forEach(function (p) {
+    var tr = document.createElement("tr");
+    tr.tabIndex = 0;
+    tr.addEventListener("click", function () { waehle(p.nr, false); });
+    tr.addEventListener("mouseenter", function () { waehle(p.nr, false); });
+    tr.addEventListener("focus", function () { waehle(p.nr, false); });
+    var nr = document.createElement("th"); nr.scope = "row";
+    nr.textContent = (p.nr < 10 ? "0" : "") + p.nr;
+    tr.appendChild(nr);
+    var nm = document.createElement("td");
+    nm.appendChild(document.createTextNode(p.name));
+    var art = document.createElementNS(NS, "svg");
+    art.setAttribute("viewBox", "0 0 22 22"); art.setAttribute("class", "lesezeichen klein");
+    if (p.art === "punkt") art.appendChild(el("circle", { cx: 11, cy: 11, r: 7, fill: SIEGELROT }));
+    else art.appendChild(el("rect", { x: 4, y: 4, width: 14, height: 14, fill: TUSCHE }));
+    nm.appendChild(art); tr.appendChild(nm);
+    var ch = document.createElement("td");
+    ch.appendChild(han(p.hanV || p.hanT));
+    ch.appendChild(document.createTextNode(" · " + p.pinyin + " · " + p.code));
+    tr.appendChild(ch);
+    var o = document.createElement("td"); o.textContent = p.ort; tr.appendChild(o);
+    zeilen[p.nr] = tr;
+    tb.appendChild(tr);
+  });
+  t.appendChild(tb);
+
+  /* ---------------- Die neunzehn Stationen als Karten ---------------- */
   var host = $("punkteListe");
   H.punkte.forEach(function (p) {
     var a = document.createElement("article");
     a.className = "hk-karte" + (p.art === "zentrum" ? " zentrum" : "");
     karten[p.nr] = a;
-
-    var kopf = document.createElement("div"); kopf.className = "hk-kopf";
+    var kopfz = document.createElement("div"); kopfz.className = "hk-kopf";
     var nr = document.createElement("span"); nr.className = "hk-nr";
     nr.textContent = (p.nr < 10 ? "0" : "") + p.nr;
     var art = document.createElementNS(NS, "svg");
     art.setAttribute("viewBox", "0 0 22 22"); art.setAttribute("class", "lesezeichen");
     if (p.art === "punkt") art.appendChild(el("circle", { cx: 11, cy: 11, r: 7, fill: SIEGELROT }));
     else art.appendChild(el("rect", { x: 4, y: 4, width: 14, height: 14, fill: TUSCHE }));
-    kopf.appendChild(nr); kopf.appendChild(art);
-
+    kopfz.appendChild(nr); kopfz.appendChild(art);
     var h3 = document.createElement("h3"); h3.textContent = p.name;
     var nom = document.createElement("p"); nom.className = "hk-nomen";
-    nom.appendChild(han(p.hanT + (p.hanV !== p.hanT ? " / " + p.hanV : "")));
+    nom.appendChild(han(p.hanV || p.hanT));
     nom.appendChild(document.createTextNode(" · " + p.pinyinT + " | " + p.pinyin));
     var en = document.createElement("p"); en.className = "hk-en";
     en.textContent = p.en + " · " + p.code;
     var tx = document.createElement("p"); tx.className = "hk-text"; tx.textContent = p.text;
-
-    a.appendChild(kopf); a.appendChild(h3); a.appendChild(nom); a.appendChild(en); a.appendChild(tx);
+    a.appendChild(kopfz); a.appendChild(h3); a.appendChild(nom); a.appendChild(en); a.appendChild(tx);
     host.appendChild(a);
   });
 
-  /* --- Erläuterungen als Falttafel --- */
+  /* ---------------- Erläuterungen und Quellen ---------------- */
   H.erlaeuterungen.forEach(function (e, i) {
     var wrap = document.createElement("div");
     var btn = document.createElement("button");
@@ -206,8 +244,8 @@
     var kennung = "erl-" + i;
     btn.setAttribute("aria-expanded", i === 0 ? "true" : "false");
     btn.setAttribute("aria-controls", kennung);
-    var t = document.createElement("span"); t.className = "titel"; t.textContent = e.titel;
-    btn.appendChild(t);
+    var ti = document.createElement("span"); ti.className = "titel"; ti.textContent = e.titel;
+    btn.appendChild(ti);
     var sv = document.createElementNS(NS, "svg");
     sv.setAttribute("class", "zeichen"); sv.setAttribute("viewBox", "0 0 22 22");
     sv.setAttribute("aria-hidden", "true");
@@ -215,7 +253,7 @@
     btn.appendChild(sv);
     var inhalt = document.createElement("div");
     inhalt.className = "inhalt"; inhalt.id = kennung; inhalt.hidden = (i !== 0);
-    var p = document.createElement("p"); p.textContent = e.text; inhalt.appendChild(p);
+    var pp = document.createElement("p"); pp.textContent = e.text; inhalt.appendChild(pp);
     btn.addEventListener("click", function () {
       var auf = btn.getAttribute("aria-expanded") === "true";
       btn.setAttribute("aria-expanded", auf ? "false" : "true");
@@ -224,46 +262,10 @@
     wrap.appendChild(btn); wrap.appendChild(inhalt);
     $("oErlaeuterungen").appendChild(wrap);
   });
-
   H.quellen.forEach(function (q) {
     var li = document.createElement("li");
     var n = document.createElement("span"); n.className = "qnr"; n.textContent = "[" + q.nr + "]";
     li.appendChild(n); li.appendChild(document.createTextNode(q.text));
     $("oQuellen").appendChild(li);
   });
-
-  /* --- Tabelle: Nummer, Name, Lage --- */
-  if ($("tStationen")) {
-    $("tTabelleTitel").textContent = H.tabelleTitel;
-    var t = $("tStationen");
-    var thead = document.createElement("thead");
-    var kopf = document.createElement("tr");
-    ["", "Station", "Chinesisch und Code", "Lage am Körper"].forEach(function (h) {
-      var th = document.createElement("th"); th.textContent = h; kopf.appendChild(th);
-    });
-    thead.appendChild(kopf); t.appendChild(thead);
-    var tb = document.createElement("tbody");
-    H.punkte.slice().sort(function (a, b) { return a.nr - b.nr; }).forEach(function (p) {
-      var tr = document.createElement("tr");
-      var nr = document.createElement("th"); nr.scope = "row";
-      nr.textContent = (p.nr < 10 ? "0" : "") + p.nr;
-      tr.appendChild(nr);
-      var nm = document.createElement("td");
-      nm.appendChild(document.createTextNode(p.name));
-      var art = document.createElementNS(NS, "svg");
-      art.setAttribute("viewBox", "0 0 22 22"); art.setAttribute("class", "lesezeichen klein");
-      if (p.art === "punkt") art.appendChild(el("circle", { cx: 11, cy: 11, r: 7, fill: SIEGELROT }));
-      else art.appendChild(el("rect", { x: 4, y: 4, width: 14, height: 14, fill: TUSCHE }));
-      nm.appendChild(art);
-      tr.appendChild(nm);
-      var ch = document.createElement("td");
-      ch.appendChild(han(p.hanT + (p.hanV !== p.hanT ? " / " + p.hanV : "")));
-      ch.appendChild(document.createTextNode(" · " + p.pinyin + " · " + p.code));
-      tr.appendChild(ch);
-      var o = document.createElement("td"); o.textContent = p.ort; tr.appendChild(o);
-      tb.appendChild(tr);
-    });
-    t.appendChild(tb);
-  }
-
 })();

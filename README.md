@@ -25,7 +25,7 @@ Gestaltet nach dem **Designhandbuch Healthlane Academy, Entwurf 0.6**
   Pinyin mit Kurzbezeichnung. Mehrere rote Punkte sind hier zulässig – 3.3 nennt
   Meridiandarstellungen ausdrücklich als Ausnahme von der Regel des einen Punkts.
 - Typografie nach Kapitel 4: Cormorant Garamond Medium für Titel (nie fett, nie unter
-  20 px), Lato für Text und Labels, Noto Serif SC für Hanzi.
+  20 px), Lato für Text und Labels, Kaiti für Hanzi.
 - Aufbau nach 10.1: dunkler Einstieg in Tusche, danach Abschnitte im Wechsel von
   Papier und Weiß. Buttons ohne Rot, Karten mit Haarlinie und ohne Schatten.
 - Bewegung nach 10.4: nichts läuft von allein. Der Qi-Fluss ist ein Schalter und
@@ -41,8 +41,10 @@ neue Schriftzeichen mitbringt:
 bash werkzeuge/schriften-holen.sh
 ```
 
-Das Skript sammelt alle im Projekt vorkommenden Schriftzeichen ein und lädt Noto Serif SC
-nur für genau diese Zeichen – deshalb sind alle drei Schriften zusammen nur rund 330 KB groß.
+Die chinesischen Zeichen stehen durchgehend in der **vereinfachten Form** und in einer
+**Kaiti-Schrift**. Wo das Betriebssystem eine Kaiti mitbringt, wird sie benutzt; sonst greift
+die selbst gehostete LXGW WenKai. Das Skript sammelt alle im Projekt vorkommenden
+Schriftzeichen ein und lädt sie nur für genau diese Zeichen – deshalb sind alle drei Schriften zusammen nur rund 330 KB groß.
 
 ### Was eine Meridianseite enthält
 

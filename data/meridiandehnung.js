@@ -92,7 +92,7 @@ window.Meridiandehnung = {
       ],
       schritte: [
         { t: "Ausgangshaltung", x: "Im Schneidersitz sitzen. Das linke Bein liegt vorne." },
-        { t: "Arme und Hände", x: "Die Arme überkreuzen und die Hände mit den Handflächen nach oben auf die Knie legen. Der rechte Arm liegt vorne." },
+        { t: "Arme und Hände", x: "Die Arme überkreuzen und die Hände mit den Handflächen nach unten auf die Knie legen. Der rechte Arm liegt vorne." },
         { t: "Dehnung", x: "Den Oberkörper mit geradem Rücken nach vorne senken." },
         { t: "Seitenwechsel", x: "Die Gegenseite in der gleichen Form dehnen; dafür die Bein- und Armkreuzung wechseln." }
       ]
