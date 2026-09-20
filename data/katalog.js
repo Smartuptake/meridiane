@@ -6,7 +6,7 @@
 window.MeridianKatalog = [
   { umlauf:1, id:"lu", titel:"Lungenmeridian", code:"LU", codeDe:"Lu", name:"Lunge",        han:"肺", channel:"Hand-Taiyin",   element:"Metall", wx:"metall", yin:true,  clock:"03–05", points:11, view:"front", fertig:true  },
   { umlauf:1, id:"li", titel:"Dickdarmmeridian", code:"LI", codeDe:"Di", name:"Dickdarm",     han:"大肠", channel:"Hand-Yangming", element:"Metall", wx:"metall", yin:false, clock:"05–07", points:20, view:"front", fertig:true },
-  { umlauf:1, id:"st", titel:"Magenmeridian", code:"ST", codeDe:"Ma", name:"Magen",        han:"胃", channel:"Fuß-Yangming",  element:"Erde",   wx:"erde",   yin:false, clock:"07–09", points:45, view:"front", fertig:false },
+  { umlauf:1, id:"st", titel:"Magenmeridian", code:"ST", codeDe:"Ma", name:"Magen",        han:"胃", channel:"Fuß-Yangming",  element:"Erde",   wx:"erde",   yin:false, clock:"07–09", points:45, view:"front", fertig:true },
   { umlauf:1, id:"sp", titel:"Milzmeridian", code:"SP", codeDe:"MP", name:"Milz",         han:"脾", channel:"Fuß-Taiyin",    element:"Erde",   wx:"erde",   yin:true,  clock:"09–11", points:21, view:"front", fertig:false },
 
   { umlauf:2, id:"ht", titel:"Herzmeridian", code:"HT", codeDe:"He", name:"Herz",         han:"心", channel:"Hand-Shaoyin",  element:"Feuer",  wx:"feuer",  yin:true,  clock:"11–13", points:9,  view:"front", fertig:false },

@@ -11,7 +11,8 @@ Antikpunkt (Ting, Yong, Yu, King, Ho).
 |---|---|---|
 | 1 | Lunge (Lu / LU) | vollständig: 11 Punkte, Organ, Wandlungsphasen, Mangel/Fülle, Ernährung |
 | 1 | Dickdarm (Di / LI) | vollständig: 11 Kernpunkte von Di 1 bis Di 20 |
-| 1 | Magen, Milz | offen |
+| 1 | Magen (Ma / ST) | vollständig: 17 Kernpunkte von Ma 1 bis Ma 45 |
+| 1 | Milz | offen |
 | 2 | Herz, Dünndarm, Blase, Niere | offen |
 | 3 | Perikard, 3-Erwärmer, Gallenblase, Leber | offen |
 
@@ -73,6 +74,15 @@ Schriftzeichen ein und lädt sie nur für genau diese Zeichen – deshalb sind a
   einen Ansichtswechsel mitten im Meridian.
 - **Der Kreuzungspunkt ist eingezeichnet.** Der Meridian kreuzt unterhalb der Nase die
   Mittellinie; Di 20 liegt deshalb auf der Gegenseite der Figur.
+
+### Zum Magenmeridian
+
+Der längste Verlauf auf der Vorderseite und der einzige, der Gesicht, Rumpf und Bein
+zugleich berührt. Aufgenommen sind alle Antikpunkte des Skripts (Ma 34 bis Ma 45) sowie
+Ma 1, Ma 4, Ma 6, Ma 8, Ma 12 und Ma 25, ohne die der Kopf- und Rumpfverlauf nicht
+darstellbar wäre. Ma 38 ist ausgelassen – das Skript führt ihn nur als Bezugspunkt für
+Ma 40. Der aufsteigende Ast zur Stirnecke und der Abzweig zu Ma 40 sind gestrichelt
+eingezeichnet.
 
 ### Zwei inhaltliche Festlegungen
 
