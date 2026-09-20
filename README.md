@@ -13,8 +13,9 @@ Antikpunkt (Ting, Yong, Yu, King, Ho).
 | 1 | Dickdarm (Di / LI) | vollständig: 11 Kernpunkte von Di 1 bis Di 20 |
 | 1 | Magen (Ma / ST) | vollständig: 17 Kernpunkte von Ma 1 bis Ma 45 |
 | 1 | Milz (MP / SP) | vollständig: 11 Kernpunkte von MP 1 bis MP 21 |
+| 2 | Herz (He / HT) | vollständig: alle 9 Punkte |
 
-| 2 | Herz, Dünndarm, Blase, Niere | offen |
+| 2 | Dünndarm, Blase, Niere | offen |
 | 3 | Perikard, 3-Erwärmer, Gallenblase, Leber | offen |
 
 ## Gestaltung
@@ -76,10 +77,15 @@ Schriftzeichen ein und lädt sie nur für genau diese Zeichen – deshalb sind a
 - **Der Kreuzungspunkt ist eingezeichnet.** Der Meridian kreuzt unterhalb der Nase die
   Mittellinie; Di 20 liegt deshalb auf der Gegenseite der Figur.
 
-### Erster Umlauf vollständig
+### Stand der Umläufe
 
-Lunge, Dickdarm, Magen und Milz stehen. Damit ist der erste der drei Meridianumläufe
-abgeschlossen. Alle vier liegen auf der Vorderansicht.
+Der erste Umlauf – Lunge, Dickdarm, Magen, Milz – ist abgeschlossen. Vom zweiten steht
+das Herz. Alle fünf liegen auf der Vorderansicht; mit Dünndarm und Blase wird erstmals
+die Rückansicht gebraucht.
+
+Beim Herzmeridian sind **alle neun Punkte** eingezeichnet, keine Auswahl – er ist der
+kürzeste der zwölf. Er läuft auf der Ulnarseite, also an der Innenkante des Arms, und
+damit genau gegenüber von Lunge und Dickdarm.
 
 ### Zum Magenmeridian
 
