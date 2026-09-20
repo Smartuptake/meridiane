@@ -148,7 +148,15 @@
     }
 
     var detail = false;
-    P.forEach(function (p, i) {
+    /* Die Schiene folgt der Höhe am Körper, nicht der Flussrichtung – sonst
+       kreuzen sich die Hilfslinien bei aufsteigenden Meridianen. */
+    var nachHoehe = P.slice().sort(function (a, b) { return a.y - b.y; });
+    nachHoehe.forEach(function (p, rang) {
+      p._rang = rang;
+    });
+
+    P.forEach(function (p) {
+      var i = p._rang;
       p._ly = P.length === 1 ? (top + bot) / 2 : top + (bot - top) * i / (P.length - 1);
 
       p._lead = el("path", { d: "M" + railX + "," + p._ly + " L" + (p.x - 9) + "," + p.y,

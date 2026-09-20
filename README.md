@@ -10,7 +10,8 @@ Antikpunkt (Ting, Yong, Yu, King, Ho).
 | Umlauf | Meridian | Status |
 |---|---|---|
 | 1 | Lunge (Lu / LU) | vollständig: 11 Punkte, Organ, Wandlungsphasen, Mangel/Fülle, Ernährung |
-| 1 | Dickdarm, Magen, Milz | offen |
+| 1 | Dickdarm (Di / LI) | vollständig: 11 Kernpunkte von Di 1 bis Di 20 |
+| 1 | Magen, Milz | offen |
 | 2 | Herz, Dünndarm, Blase, Niere | offen |
 | 3 | Perikard, 3-Erwärmer, Gallenblase, Leber | offen |
 
@@ -59,6 +60,19 @@ Schriftzeichen ein und lädt sie nur für genau diese Zeichen – deshalb sind a
    Darunter die äußeren Faktoren.
 5. **Ernährung**: was das Organ stärkt und was ihm schadet, jeweils mit Begründung.
 6. **Punktfolge** als vollständige Liste.
+
+### Entscheidungen beim Dickdarm
+
+- **Elf Kernpunkte statt aller zwanzig.** Aufgenommen sind alle Antikpunkte des Skripts
+  (Di 1 bis Di 7 sowie Di 11) und dazu Di 10, Di 15 und Di 20, ohne die der Verlauf zum
+  Gesicht nicht darstellbar wäre.
+- **Vorderansicht trotz dorsalem Verlauf.** Di 1 bis Di 5 liegen auf der radial-dorsalen
+  Seite von Hand und Unterarm. In anatomischer Haltung – Handflächen nach vorn – fällt die
+  radiale Seite mit der seitlichen Körperkontur zusammen, sodass der Verlauf in der
+  Vorderansicht als Projektion auf die laterale Armkante korrekt ablesbar ist. Das erspart
+  einen Ansichtswechsel mitten im Meridian.
+- **Der Kreuzungspunkt ist eingezeichnet.** Der Meridian kreuzt unterhalb der Nase die
+  Mittellinie; Di 20 liegt deshalb auf der Gegenseite der Figur.
 
 ### Zwei inhaltliche Festlegungen
 
