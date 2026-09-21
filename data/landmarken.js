@@ -138,7 +138,53 @@
    Fünfter Mittelfußknochen, Höcker (536, 1078)
 
    ---------------------------------------------------------------
-   ARM – img/front.png, rechter Arm
+   ARM – rechter Arm, vorn und hinten
    ---------------------------------------------------------------
-   noch nicht neu vermessen (Stand 21.09.2026)
+   Der Arm steht schräg – rund 28 Grad zur Senkrechten. Ein Cun ist
+   deshalb entlang der Armachse zu rechnen, nicht senkrecht. Wer die
+   Höhendifferenz nimmt, macht den Arm um ein Achtel zu kurz.
+
+   img/front.png, Handfläche nach vorn, Daumen also außen (kleine x)
+   vordere Achselfalte, Höhe     y 344, Achse (307, 344)
+   Ellenbeugefalte, Mitte        (270, 421)
+   Handgelenksfalte, Mitte       (206, 530)
+   Ellenbogen (breiteste Stelle) y 420, 61 px breit
+   Handgelenk (schmalste Stelle) y 515 bis 525, 40 px breit
+   Oberarm   9 Cun = 85 px  → 9,5 px je Cun
+   Unterarm 12 Cun = 126 px → 10,5 px je Cun
+
+   img/back.png, Handrücken zu sehen, Daumen also innen (große x)
+   hintere Achselfalte, Höhe     y 338, Achse (565, 338)
+   Olekranon                     (605, 422)
+   Epicondylus medialis          (580, 415)
+   Handgelenksfalte, Mitte       (662, 521)
+   Oberarm   9 Cun = 93 px  → 10,3 px je Cun
+   Unterarm 12 Cun = 115 px → 9,6 px je Cun
+
+   Achtung bei den Seiten: von vorn liegt die Speiche (Daumenseite) bei
+   den kleineren x, von hinten bei den größeren. Beim Wechsel der
+   Ansicht kehrt sich das um. Dü 1 saß deswegen auf der falschen Seite
+   des kleinen Fingers.
+
+   Finger, img/front.png bei y 600, von außen nach innen:
+     Zeigefinger 148–159, Mittelfinger 165–176,
+     Ringfinger 181–190, kleiner Finger 196–204
+   Finger, img/back.png bei y 590, von innen nach außen:
+     kleiner Finger 671–679, Ringfinger 685–694,
+     Mittelfinger 698–709, Zeigefinger 715–725
+
+   ---------------------------------------------------------------
+   SEITE – img/side.png
+   ---------------------------------------------------------------
+   Die Figur steht im Profil nach links; zu sehen ist ihre linke Seite.
+   Der Arm hängt hinter dem Rumpf, die Fingerspitzen enden bei y 645.
+   Die Höhenskala stimmt mit der Vorderansicht überein – nachgeprüft:
+   Spitze des Außenknöchels (467, 1050), vorn y 1050.
+
+   Nasenspitze                   (357, 112)
+   Trochanter (gerechnet)        y 540
+   Kniegelenksspalt              y 827
+   Außenknöchel, Spitze          (467, 1050)
+   Hosensaum                     y 613
+   Oberschenkel außen  Trochanter 540 → Kniekehle 800 = 19 Cun → 13,7 px
    =============================================================== */
