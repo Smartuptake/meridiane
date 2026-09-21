@@ -84,6 +84,139 @@ Meridian.skelett({
       innenknoechel:  { text: "Spitze des Innenkn\u00f6chels", p: [167, 72] },
       aussenknoechel: { text: "Spitze des Au\u00dfenkn\u00f6chels", p: [104, 78] }
     }
+  },
+  /* ---------------------------------------------------------------
+     Rechte Hand. Handfläche: Daumen links, Finger nach unten – so
+     steht der rechte Arm auf der Vorderansicht, Handfläche nach vorn.
+     Handrücken: dieselbe Hand gespiegelt, Daumen rechts – so steht er
+     auf der Rückansicht. Das Erbsenbein liegt hohlhandseitig und ist
+     darum nur auf der Handfläche eingezeichnet.
+     Vom Unterarm sind gut drei Cun zu sehen; weiter oben liegende
+     Punkte bleiben vorerst beim Foto.
+     --------------------------------------------------------------- */
+
+  handflaeche: {
+    titel: "Handfl\u00e4che, rechte Hand",
+    feld: [4, -52, 192, 400],
+
+    knochen: [
+      { name: "Speiche mit Griffelfortsatz", d: "M63.9,-39 Q64,-44 69,-44 L103,-44 Q108,-44 108.1,-39 L109.9,35 Q110,40 108.2,44.7 L105.8,51.3 Q104,56 100.2,59.2 L95.8,62.8 Q92,66 88.1,62.9 L85.9,61.1 Q82,58 80.9,53.1 L79.1,44.9 Q78,40 73.1,38.8 L66.9,37.2 Q62,36 62.1,31 Z", stark: true },
+      { name: "Elle mit Griffelfortsatz", d: "M113.9,-39 Q114,-44 119,-44 L145,-44 Q150,-44 150.1,-39 L151.9,27 Q152,32 150.8,36.9 L149.2,43.1 Q148,48 145.5,52.3 L142.5,57.7 Q140,62 135.7,59.4 L134.3,58.6 Q130,56 128.8,51.1 L127.2,44.9 Q126,40 121.4,38 L116.6,36 Q112,34 112.1,29 Z", stark: true },
+      { name: "Kahnbein", d: "M67.5,66.3 Q70,62 74.9,61.2 L89.1,58.8 Q94,58 95.8,62.7 L99.2,71.3 Q101,76 98,80 L95,84 Q92,88 87,87.4 L79,86.6 Q74,86 70.6,82.3 L66.4,77.7 Q63,74 65.5,69.7 Z", stark: true },
+      { name: "Mondbein", d: "M94.4,62.7 Q96,58 101,58 L113,58 Q118,58 120.2,62.5 L122.8,67.5 Q125,72 122.2,76.2 L119.8,79.8 Q117,84 112,83.4 L104,82.6 Q99,82 96.5,77.7 L94.5,74.3 Q92,70 93.6,65.3 Z", stark: true },
+      { name: "Dreiecksbein", d: "M118.4,64.3 Q121,60 126,60.5 L136,61.5 Q141,62 142.7,66.7 L144.3,71.3 Q146,76 142.3,79.4 L138.7,82.6 Q135,86 130.2,84.6 L125.8,83.4 Q121,82 118.8,77.5 L117.2,74.5 Q115,70 117.6,65.7 Z", stark: true },
+      { name: "Erbsenbein", d: "M129.3,84.7 Q132,82 137,82 L143,82 Q148,82 149.9,86.6 L151.1,89.4 Q153,94 149.1,97.1 L146.9,98.9 Q143,102 138.2,100.5 L134.8,99.5 Q130,98 128.2,93.5 L127.8,92.5 Q126,88 128.7,85.3 Z", stark: true },
+      { name: "Großes Vieleckbein", d: "M62.9,91.9 Q66,88 70.9,87.2 L85.1,84.8 Q90,84 92,88.6 L95,95.4 Q97,100 94,104 L90,109 Q87,113 82.1,112.1 L74.9,110.9 Q70,110 66.8,106.2 L62.2,100.8 Q59,97 62.1,93.1 Z" },
+      { name: "Kleines Vieleckbein", d: "M90.2,90.6 Q92,87 96,86.6 L106,85.4 Q110,85 111.3,88.8 L113.7,95.2 Q115,99 112.5,102.1 L109.5,105.9 Q107,109 103,108.5 L96,107.5 Q92,107 90.2,103.4 L88.8,100.6 Q87,97 88.8,93.4 Z" },
+      { name: "Kopfbein", d: "M110.1,89.6 Q112,85 117,85 L129,85 Q134,85 135.8,89.7 L138.2,96.3 Q140,101 137,105 L134,109 Q131,113 126,112.4 L119,111.6 Q114,111 111.8,106.5 L109.2,101.5 Q107,97 108.9,92.4 Z", stark: true },
+      { name: "Hakenbein", d: "M133.3,92.1 Q136,88 140.9,89.1 L148.1,90.9 Q153,92 154,96.9 L155,101.1 Q156,106 152.5,109.5 L150.5,111.5 Q147,115 142.2,113.5 L138.8,112.5 Q134,111 132.6,106.2 L131.4,101.8 Q130,97 132.7,92.9 Z" },
+      { name: "1. Mittelhandknochen", d: "M64.7,108.1 L35.9,153.6 A12,12 0 0 0 56.4,166 L83.5,119.5 A11,11 0 0 0 64.7,108.1 Z", stark: true },
+      { name: "2. Mittelhandknochen", d: "M91.1,112.9 L81.1,196.7 A11,11 0 0 0 103,198.8 L109,114.6 A9,9 0 0 0 91.1,112.9 Z" },
+      { name: "3. Mittelhandknochen", d: "M113,115.6 L109,203.5 A11,11 0 0 0 131,204 L131,116 A9,9 0 0 0 113,115.6 Z" },
+      { name: "4. Mittelhandknochen", d: "M132,116.4 L136,198.5 A10,10 0 0 0 156,197 L148,115.2 A8,8 0 0 0 132,116.4 Z" },
+      { name: "5. Mittelhandknochen", d: "M144.1,115.5 L158.2,189.9 A10,10 0 0 0 177.7,185.6 L159.8,112.1 A8,8 0 0 0 144.1,115.5 Z" },
+      { name: "Grundglied des Daumens", d: "M33.5,170.6 L22.5,204.9 A10,10 0 0 0 41.3,211.6 L54.3,177.9 A11,11 0 0 0 33.5,170.6 Z", stark: true },
+      { name: "Endglied des Daumens", d: "M21.2,218 L15.2,244 A9,9 0 0 0 32.8,248 L38.8,222 A9,9 0 0 0 21.2,218 Z", stark: true },
+      { name: "Grundglied des Zeigefinger", d: "M81,211.2 L78,243.3 A8,8 0 0 0 93.9,245.2 L98.9,213.4 A9,9 0 0 0 81,211.2 Z" },
+      { name: "Mittelglied des Zeigefinger", d: "M79,253.5 L76.5,291.6 A6.5,6.5 0 0 0 89.5,292.6 L93,254.6 A7,7 0 0 0 79,253.5 Z" },
+      { name: "Endglied des Zeigefinger", d: "M77,301.7 L76,319.7 A6,6 0 0 0 88,320.3 L89,302.3 A6,6 0 0 0 77,301.7 Z" },
+      { name: "Grundglied des Mittelfinger", d: "M110.4,218 L110.4,254 A7.6,7.6 0 0 0 125.6,254.4 L127.6,218.5 A8.6,8.6 0 0 0 110.4,218 Z" },
+      { name: "Mittelglied des Mittelfinger", d: "M111.4,264.1 L111.9,304.1 A6.2,6.2 0 0 0 124.1,304.1 L124.6,264.1 A6.7,6.7 0 0 0 111.4,264.1 Z" },
+      { name: "Endglied des Mittelfinger", d: "M112.3,313.7 L111.3,331.7 A5.7,5.7 0 0 0 122.7,332.3 L123.7,314.3 A5.7,5.7 0 0 0 112.3,313.7 Z" },
+      { name: "Grundglied des Ringfinger", d: "M138.9,213 L142.9,244.9 A7.2,7.2 0 0 0 157.2,243.6 L155.2,211.5 A8.2,8.2 0 0 0 138.9,213 Z" },
+      { name: "Mittelglied des Ringfinger", d: "M143.7,254.6 L147.2,290.6 A5.8,5.8 0 0 0 158.8,289.6 L156.3,253.6 A6.3,6.3 0 0 0 143.7,254.6 Z" },
+      { name: "Endglied des Ringfinger", d: "M147.6,299.7 L146.6,315.7 A5.4,5.4 0 0 0 157.4,316.3 L158.4,300.3 A5.4,5.4 0 0 0 147.6,299.7 Z" },
+      { name: "Grundglied des kleinen Fingers", d: "M162.4,203.8 L170.4,237.6 A6.8,6.8 0 0 0 183.7,234.8 L177.7,200.6 A7.8,7.8 0 0 0 162.4,203.8 Z" },
+      { name: "Mittelglied des kleinen Fingers", d: "M171.2,247.4 L175.7,265.3 A5.5,5.5 0 0 0 186.4,263 L182.8,244.9 A6,6 0 0 0 171.2,247.4 Z" },
+      { name: "Endglied des kleinen Fingers", d: "M175.9,273.6 L174.9,287.6 A5.1,5.1 0 0 0 185.1,288.4 L186.1,274.4 A5.1,5.1 0 0 0 175.9,273.6 Z" }
+    ],
+
+    punkte: {
+      "Lu 7":  [ 74,  14], "Lu 8":  [ 78,  30], "Lu 9":  [ 82,  60],
+      "Lu 10": [ 58, 140], "Lu 11": [ 14, 246],
+      "Di 1":  [ 76, 314], "Di 2":  [ 82, 214], "Di 3":  [ 84, 188],
+      "Di 4":  [ 88, 156], "Di 5":  [ 70,  74],
+      "He 4":  [142,  14], "He 5":  [143,  30], "He 6":  [144,  46],
+      "He 7":  [146,  78], "He 8":  [156, 178], "He 9":  [174, 282],
+      "Pe 5":  [113, -30], "Pe 6":  [113,  -2], "Pe 7":  [114,  66],
+      "Pe 8":  [108, 174], "Pe 9":  [118, 332]
+    },
+
+    marken: {
+      handgelenksfalte: { text: "Distale Handgelenksbeugefalte", l: [ 68,  66, 150,  62] },
+      erbsenbein:       { text: "Erbsenbein", p: [140,  92] },
+      fcu:              { text: "Sehne des ellenseitigen Handbeugers", l: [146,  16, 146,  72] },
+      zwei_sehnen:      { text: "Die beiden Sehnen in der Mitte des Handgelenks",
+                          l: [110,  16, 112,  64] },
+      speichenarterie:  { text: "Speichenschlagader", l: [ 82,  16,  84,  58] },
+      griffel_speiche:  { text: "Griffelfortsatz der Speiche", p: [ 84,  58] },
+      daumensehnen:     { text: "Sehnen der Daumenstrecker", l: [ 60,  56,  74,  86] },
+      daumenballen:     { text: "Daumenballen", p: [ 62, 150] },
+      mhk12:            { text: "Zwischenraum 1. und 2. Mittelhandknochen", l: [ 76, 152,  90, 120] },
+      mhk23:            { text: "Zwischenraum 2. und 3. Mittelhandknochen", l: [110, 160, 112, 124] },
+      mhk45:            { text: "Zwischenraum 4. und 5. Mittelhandknochen", l: [158, 166, 150, 124] },
+      zeigefinger_gg:   { text: "Grundgelenk des Zeigefingers", p: [ 92, 198] },
+      zeigefinger_rad:  { text: "Speichenseite des Zeigefingers", l: [ 76, 300,  74, 318] },
+      kleinfinger_rad:  { text: "Speichenseite des kleinen Fingers", l: [174, 268, 173, 286] },
+      mittelfinger:     { text: "Spitze des Mittelfingers", p: [118, 332] },
+      daumen_rad:       { text: "Speichenseite des Daumens", l: [ 16, 230,  12, 250] }
+    }
+  },
+
+  handruecken: {
+    titel: "Handr\u00fccken, rechte Hand",
+    feld: [4, -52, 192, 400],
+
+    knochen: [
+      { name: "Speiche mit Griffelfortsatz", d: "M137.9,31 Q138,36 133.1,37.2 L126.9,38.8 Q122,40 120.9,44.9 L119.1,53.1 Q118,58 114.1,61.1 L111.9,62.9 Q108,66 104.2,62.8 L99.8,59.2 Q96,56 94.2,51.3 L91.8,44.7 Q90,40 90.1,35 L91.9,-39 Q92,-44 97,-44 L131,-44 Q136,-44 136.1,-39 Z", stark: true },
+      { name: "Elle mit Griffelfortsatz", d: "M87.9,29 Q88,34 83.4,36 L78.6,38 Q74,40 72.8,44.9 L71.2,51.1 Q70,56 65.7,58.6 L64.3,59.4 Q60,62 57.5,57.7 L54.5,52.3 Q52,48 50.8,43.1 L49.2,36.9 Q48,32 48.1,27 L49.9,-39 Q50,-44 55,-44 L81,-44 Q86,-44 86.1,-39 Z", stark: true },
+      { name: "Kahnbein", d: "M134.5,69.7 Q137,74 133.6,77.7 L129.4,82.3 Q126,86 121,86.6 L113,87.4 Q108,88 105,84 L102,80 Q99,76 100.8,71.3 L104.2,62.7 Q106,58 110.9,58.8 L125.1,61.2 Q130,62 132.5,66.3 Z", stark: true },
+      { name: "Mondbein", d: "M106.4,65.3 Q108,70 105.5,74.3 L103.5,77.7 Q101,82 96,82.6 L88,83.4 Q83,84 80.2,79.8 L77.8,76.2 Q75,72 77.2,67.5 L79.8,62.5 Q82,58 87,58 L99,58 Q104,58 105.6,62.7 Z", stark: true },
+      { name: "Dreiecksbein", d: "M82.4,65.7 Q85,70 82.8,74.5 L81.2,77.5 Q79,82 74.2,83.4 L69.8,84.6 Q65,86 61.3,82.6 L57.7,79.4 Q54,76 55.7,71.3 L57.3,66.7 Q59,62 64,61.5 L74,60.5 Q79,60 81.6,64.3 Z", stark: true },
+      { name: "Großes Vieleckbein", d: "M137.9,93.1 Q141,97 137.8,100.8 L133.2,106.2 Q130,110 125.1,110.9 L117.9,112.1 Q113,113 110,109 L106,104 Q103,100 105,95.4 L108,88.6 Q110,84 114.9,84.8 L129.1,87.2 Q134,88 137.1,91.9 Z" },
+      { name: "Kleines Vieleckbein", d: "M111.2,93.4 Q113,97 111.2,100.6 L109.8,103.4 Q108,107 104,107.5 L97,108.5 Q93,109 90.5,105.9 L87.5,102.1 Q85,99 86.3,95.2 L88.7,88.8 Q90,85 94,85.4 L104,86.6 Q108,87 109.8,90.6 Z" },
+      { name: "Kopfbein", d: "M91.1,92.4 Q93,97 90.8,101.5 L88.2,106.5 Q86,111 81,111.6 L74,112.4 Q69,113 66,109 L63,105 Q60,101 61.8,96.3 L64.2,89.7 Q66,85 71,85 L83,85 Q88,85 89.9,89.6 Z", stark: true },
+      { name: "Hakenbein", d: "M67.3,92.9 Q70,97 68.6,101.8 L67.4,106.2 Q66,111 61.2,112.5 L57.8,113.5 Q53,115 49.5,111.5 L47.5,109.5 Q44,106 45,101.1 L46,96.9 Q47,92 51.9,90.9 L59.1,89.1 Q64,88 66.7,92.1 Z" },
+      { name: "1. Mittelhandknochen", d: "M116.5,119.5 L143.6,166 A12,12 0 0 0 164.1,153.6 L135.3,108.1 A11,11 0 0 0 116.5,119.5 Z", stark: true },
+      { name: "2. Mittelhandknochen", d: "M91,114.6 L97,198.8 A11,11 0 0 0 118.9,196.7 L108.9,112.9 A9,9 0 0 0 91,114.6 Z" },
+      { name: "3. Mittelhandknochen", d: "M69,116 L69,204 A11,11 0 0 0 91,203.5 L87,115.6 A9,9 0 0 0 69,116 Z" },
+      { name: "4. Mittelhandknochen", d: "M52,115.2 L44,197 A10,10 0 0 0 64,198.5 L68,116.4 A8,8 0 0 0 52,115.2 Z" },
+      { name: "5. Mittelhandknochen", d: "M40.2,112.1 L22.3,185.6 A10,10 0 0 0 41.8,189.9 L55.9,115.5 A8,8 0 0 0 40.2,112.1 Z" },
+      { name: "Grundglied des Daumens", d: "M145.7,177.9 L158.7,211.6 A10,10 0 0 0 177.5,204.9 L166.5,170.6 A11,11 0 0 0 145.7,177.9 Z", stark: true },
+      { name: "Endglied des Daumens", d: "M161.2,222 L167.2,248 A9,9 0 0 0 184.8,244 L178.8,218 A9,9 0 0 0 161.2,222 Z", stark: true },
+      { name: "Grundglied des Zeigefinger", d: "M101.1,213.4 L106.1,245.2 A8,8 0 0 0 122,243.3 L119,211.2 A9,9 0 0 0 101.1,213.4 Z" },
+      { name: "Mittelglied des Zeigefinger", d: "M107,254.6 L110.5,292.6 A6.5,6.5 0 0 0 123.5,291.6 L121,253.5 A7,7 0 0 0 107,254.6 Z" },
+      { name: "Endglied des Zeigefinger", d: "M111,302.3 L112,320.3 A6,6 0 0 0 124,319.7 L123,301.7 A6,6 0 0 0 111,302.3 Z" },
+      { name: "Grundglied des Mittelfinger", d: "M72.4,218.5 L74.4,254.4 A7.6,7.6 0 0 0 89.6,254 L89.6,218 A8.6,8.6 0 0 0 72.4,218.5 Z" },
+      { name: "Mittelglied des Mittelfinger", d: "M75.4,264.1 L75.9,304.1 A6.2,6.2 0 0 0 88.1,304.1 L88.6,264.1 A6.7,6.7 0 0 0 75.4,264.1 Z" },
+      { name: "Endglied des Mittelfinger", d: "M76.3,314.3 L77.3,332.3 A5.7,5.7 0 0 0 88.7,331.7 L87.7,313.7 A5.7,5.7 0 0 0 76.3,314.3 Z" },
+      { name: "Grundglied des Ringfinger", d: "M44.8,211.5 L42.8,243.6 A7.2,7.2 0 0 0 57.1,244.9 L61.1,213 A8.2,8.2 0 0 0 44.8,211.5 Z" },
+      { name: "Mittelglied des Ringfinger", d: "M43.7,253.6 L41.2,289.6 A5.8,5.8 0 0 0 52.8,290.6 L56.3,254.6 A6.3,6.3 0 0 0 43.7,253.6 Z" },
+      { name: "Endglied des Ringfinger", d: "M41.6,300.3 L42.6,316.3 A5.4,5.4 0 0 0 53.4,315.7 L52.4,299.7 A5.4,5.4 0 0 0 41.6,300.3 Z" },
+      { name: "Grundglied des kleinen Fingers", d: "M22.3,200.6 L16.3,234.8 A6.8,6.8 0 0 0 29.6,237.6 L37.6,203.8 A7.8,7.8 0 0 0 22.3,200.6 Z" },
+      { name: "Mittelglied des kleinen Fingers", d: "M17.2,244.9 L13.6,263 A5.5,5.5 0 0 0 24.3,265.3 L28.8,247.4 A6,6 0 0 0 17.2,244.9 Z" },
+      { name: "Endglied des kleinen Fingers", d: "M13.9,274.4 L14.9,288.4 A5.1,5.1 0 0 0 25.1,287.6 L24.1,273.6 A5.1,5.1 0 0 0 13.9,274.4 Z" }
+    ],
+
+    punkte: {
+      "D\u00fc 1": [ 14, 282], "D\u00fc 2": [ 24, 200], "D\u00fc 3": [ 26, 176],
+      "D\u00fc 4": [ 36, 120], "D\u00fc 5": [ 50,  70], "D\u00fc 6": [ 52,  40],
+      "3E 1": [ 42, 298], "3E 2": [ 36, 214], "3E 3": [ 42, 178],
+      "3E 4": [ 86,  64], "3E 5": [ 87,  -2], "3E 6": [ 87, -30], "3E 7": [ 66, -28]
+    },
+
+    marken: {
+      handgelenksfalte_d: { text: "Handgelenksfalte auf dem Handr\u00fccken", l: [ 50,  62, 132,  66] },
+      griffel_elle:       { text: "Griffelfortsatz der Elle", p: [ 54,  58] },
+      strecksehne:        { text: "Sehne des gemeinsamen Fingerstreckers", l: [ 88,  16,  86,  66] },
+      mhk45_d:            { text: "Zwischenraum 4. und 5. Mittelhandknochen", l: [ 42, 166,  50, 124] },
+      kleinfinger_gg:     { text: "Grundgelenk des kleinen Fingers", p: [ 32, 188] },
+      handkante:          { text: "Ellenseitige Handkante, Rot-Wei\u00df-Grenze", l: [ 26, 120,  20, 240] },
+      kleinfinger_uln:    { text: "Ellenseite des kleinen Fingers", l: [ 16, 268,  15, 286] },
+      ringfinger_uln:     { text: "Kleinfingerseite des Ringfingers", l: [ 44, 284,  43, 302] },
+      finger45:           { text: "Zwischenraum Ring- und kleiner Finger", l: [ 30, 222,  32, 204] },
+      elle_rand:          { text: "Rand der Elle", l: [ 60, -30,  56,  30] }
+    }
   }
 
 });

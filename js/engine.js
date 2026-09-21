@@ -331,7 +331,7 @@
         return q.skelett && SKELETTE[q.skelett] && SKELETTE[q.skelett].punkte &&
                SKELETTE[q.skelett].punkte[LBL + " " + q.n];
       });
-      var LUPE_H = hatSkelett ? 400 : 318, LUPE_BILD_H = hatSkelett ? 268 : 186;
+      var LUPE_H = hatSkelett ? 420 : 318, LUPE_BILD_H = hatSkelett ? 288 : 186;
 
       /* So viel Vergrößerung, dass auch das engste Punktpaar auseinanderrückt */
       var eng = 1e9;
@@ -518,7 +518,15 @@
               return q[0] > fx + 6 && q[0] < fx + LUPE_BILD_B - 6 &&
                      q[1] > fy + 6 && q[1] < fy + LUPE_BILD_H - 6;
             };
-            var e = drin(b) ? b : (drin(a) ? a : [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2]);
+            var ps = schirm(lage(p)[0], lage(p)[1]);
+            var weit = function (q) {
+              return Math.hypot(q[0] - ps[0], q[1] - ps[1]);
+            };
+            var e;
+            if (drin(a) && drin(b)) e = weit(a) > weit(b) ? a : b;
+            else if (drin(a)) e = a;
+            else if (drin(b)) e = b;
+            else e = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
             var g0 = (e === a) ? b : a;
             var dx = e[0] - g0[0], dy = e[1] - g0[1], len = Math.sqrt(dx * dx + dy * dy) || 1;
             scheibe(gInhalt, nr, e[0] + dx / len * 12, e[1] + dy / len * 12, true);
