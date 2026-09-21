@@ -102,7 +102,23 @@
   </div>
 </section>
 
-<section id="tafel-abschnitt">
+<section id="elemente">
+  <div class="inner">
+    <p class="label">Auf einen Blick</p>
+    <h2 style="margin-top:12px">Die Fünf-Elemente-Tafel<span class="hanzi">五行食</span></h2>
+    <p class="lead" style="margin-top:20px;max-width:var(--hla-measure)">Temperaturverhalten
+    von oben nach unten, Wandlungsphase von links nach rechts – und in jedem Feld, was
+    dorthin gehört. Drei Felder bleiben leer: es gibt in dieser Tafel kein heißes Holz,
+    kein heißes Wasser und kein kaltes Metall.</p>
+    <div class="et-huelle" id="elementetafel"></div>
+    <p style="margin-top:20px;font-size:.833rem;color:var(--hla-stein);
+              max-width:var(--hla-measure)">Die Tafel nennt die vierte Stufe
+    <em>erfrischend</em>, die Nahrungsmittelliste weiter unten nennt dieselbe Stufe
+    <em>kühl</em>. Gemeint ist das Gleiche.</p>
+  </div>
+</section>
+
+<section class="weiss" id="tafel-abschnitt">
   <div class="inner">
     <p class="label">Die Tafel</p>
     <h2 style="margin-top:12px">Nahrungsmittel nachschlagen<span class="hanzi">食物</span></h2>
@@ -143,7 +159,7 @@
   </div>
 </section>
 
-<section class="weiss" id="zubereitung">
+<section id="zubereitung">
   <div class="inner">
     <p class="label">Die Zubereitung</p>
     <h2 style="margin-top:12px">Kochen verändert die Wirkung<span class="hanzi">烹</span></h2>
@@ -182,6 +198,23 @@
   </div>
 </section>
 
+<section class="weiss" id="rezepte-abschnitt">
+  <div class="inner">
+    <p class="label">Aus der Küche</p>
+    <h2 style="margin-top:12px">Rezepte für die Mitte<span class="hanzi">食谱</span></h2>
+    <p class="lead" style="margin-top:20px;max-width:var(--hla-measure)">Acht Gerichte aus
+    Stefans Aufzeichnungen. Alle folgen derselben Linie: warm, gekocht, weich – der Magen
+    soll möglichst wenig Arbeit haben, damit möglichst viel für den Körper übrig bleibt.</p>
+    <div class="rezepte" id="rezepte"></div>
+
+    <div class="merkkasten" style="margin-top:40px">
+      <p class="label">Nahrungsmittel zur Stärkung des Mittleren Erwärmers</p>
+      <dl class="phase-liste" id="staerkend" style="margin-top:12px"></dl>
+      <p style="margin:12px 0 0;font-size:.833rem;color:var(--hla-stein)">nach J. Kastner</p>
+    </div>
+  </div>
+</section>
+
 <section id="praxis">
   <div class="inner">
     <p class="label">In der Praxis</p>
@@ -195,7 +228,10 @@
           <li>Gekochtes, Gedünstetes, Suppen – Wärme und Flüssigkeit zugleich</li>
           <li>Gedünstetes Obst statt rohem: die Süße bleibt, die Kälte geht</li>
           <li>Wärmende Gewürze in kleinen Mengen: Ingwer, Fenchel, Kümmel, Anis</li>
-          <li>Regelmäßige Zeiten, in Ruhe essen – die Mitte lebt vom Rhythmus</li>
+          <li>Regelmäßigkeit in der Nahrungsaufnahme – die Mitte lebt vom Rhythmus</li>
+          <li>Morgens wie ein König, mittags wie ein Bürger, abends wie ein Bettelmann</li>
+          <li>Letzte Mahlzeit bis neunzehn Uhr</li>
+          <li>Entspannte Geisteshaltung beim Essen – kein Grübeln, keine Ablenkung</li>
           <li>Rechtzeitig aufhören: der Magen soll nicht ganz voll werden</li>
         </ul>
       </div>
@@ -209,6 +245,8 @@
           <li>Spätes, schweres Abendessen – am Abend liegt die Minimalzeit des Magens</li>
           <li>Kaffee auf leeren Magen: Hitze und Trockenheit ohne Grundlage</li>
           <li>Milchprodukte im Übermaß – sie erzeugen Feuchtigkeit und Schleim</li>
+          <li>Völlerei ebenso wie Fasten und Hungern – beides trifft die Mitte</li>
+          <li>Vor und während dem Essen viel trinken; wenn, dann warm</li>
           <li>Essen im Stehen, unter Zeitdruck, im Streit</li>
         </ul>
       </div>
@@ -236,6 +274,8 @@
 
 <script src="data/wandlungsphasen.js"></script>
 <script src="data/nahrungsmittel.js"></script>
+<script src="data/elementetafel.js"></script>
+<script src="data/rezepte.js"></script>
 <script src="js/diaetetik.js"></script>
 </body>
 </html>

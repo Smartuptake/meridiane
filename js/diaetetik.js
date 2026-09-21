@@ -281,5 +281,87 @@
     ziel.textContent = N.offen.map(function (o) { return o.n; }).join(" · ");
   }
 
-  geschmaecker(); thermik(); tafel(); offen();
+  /* --- Die Fünf-Elemente-Tafel ---------------------------------- */
+  function elementetafel() {
+    var ziel = $("elementetafel"); if (!ziel || !window.Elementetafel) return;
+    var E = window.Elementetafel;
+    var t = el("table", "elementetafel");
+
+    var thead = document.createElement("thead");
+    var kz = document.createElement("tr");
+    var ecke = document.createElement("th");
+    ecke.scope = "col"; ecke.textContent = "Thermik";
+    kz.appendChild(ecke);
+    W.reihenfolge.forEach(function (k) {
+      var ph = W.phasen[k], m = E.merkbild[k];
+      var th = document.createElement("th"); th.scope = "col";
+      th.style.setProperty("--phase", ph.hex);
+      th.style.setProperty("--phase-hell", ph.hell);
+      th.appendChild(document.createTextNode(ph.name + " · " + GESCHMACK[k].titel));
+      var s = el("span", "merk");
+      s.textContent = m.was + " – " + m.text;
+      th.appendChild(s);
+      kz.appendChild(th);
+    });
+    thead.appendChild(kz); t.appendChild(thead);
+
+    var tb = document.createElement("tbody");
+    E.stufen.forEach(function (st) {
+      var tr = document.createElement("tr");
+      var th = document.createElement("th"); th.scope = "row";
+      th.style.setProperty("--stufe", STUFE_FARBE[st.k] || "transparent");
+      th.textContent = st.name;
+      tr.appendChild(th);
+      W.reihenfolge.forEach(function (k) {
+        var td = document.createElement("td");
+        var inhalt = st.felder[k];
+        if (inhalt) { td.textContent = inhalt; }
+        else { td.className = "leer"; td.textContent = "–"; }
+        tr.appendChild(td);
+      });
+      tb.appendChild(tr);
+    });
+    t.appendChild(tb);
+    ziel.appendChild(t);
+  }
+
+  /* --- Rezepte --------------------------------------------------- */
+  function rezepte() {
+    var ziel = $("rezepte"); if (!ziel || !window.Rezepte) return;
+    window.Rezepte.liste.forEach(function (r) {
+      var k = el("article", "rezept");
+      var h = el("h3"); h.textContent = r.name; h.appendChild(hanzi(r.han));
+      k.appendChild(h);
+      var w = el("p", "wann"); w.textContent = r.wann; k.appendChild(w);
+      var wi = el("p", "wirkt"); wi.textContent = r.wirkt; k.appendChild(wi);
+
+      var h4 = el("h4"); h4.textContent = "Dafür"; k.appendChild(h4);
+      var ul = document.createElement("ul");
+      r.zutaten.forEach(function (z) {
+        var li = document.createElement("li"); li.textContent = z; ul.appendChild(li);
+      });
+      k.appendChild(ul);
+
+      var h5 = el("h4"); h5.textContent = "So geht es"; k.appendChild(h5);
+      var ol = document.createElement("ol");
+      r.schritte.forEach(function (z) {
+        var li = document.createElement("li"); li.textContent = z; ol.appendChild(li);
+      });
+      k.appendChild(ol);
+      ziel.appendChild(k);
+    });
+
+    var st = $("staerkend");
+    if (st && window.Rezepte.staerkend) {
+      window.Rezepte.staerkend.gruppen.forEach(function (g) {
+        var d = el("div");
+        var dt = document.createElement("dt"); dt.textContent = g.was;
+        var dd = document.createElement("dd"); dd.textContent = g.liste;
+        d.appendChild(dt); d.appendChild(dd);
+        st.appendChild(d);
+      });
+    }
+  }
+
+  geschmaecker(); thermik(); elementetafel(); tafel(); rezepte(); offen();
 })();

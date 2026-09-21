@@ -846,3 +846,46 @@ ul.wirkrichtung li.luecke{margin-bottom:var(--hla-space-3)}
 .info-karte h3{margin:0 0 var(--hla-space-3);font-family:var(--hla-font-display);
   font-weight:500;font-size:1.333rem;line-height:1.15}
 .info-karte p{margin:0;font-size:.889rem;line-height:1.45}
+
+/* --- Fünf-Elemente-Tafel: Thermik über Wandlungsphasen --- */
+.et-huelle{overflow-x:auto;margin-top:var(--hla-space-8);
+  -webkit-overflow-scrolling:touch}
+table.elementetafel{border-collapse:collapse;width:100%;min-width:900px;
+  font-size:.833rem;background:var(--hla-weiss)}
+table.elementetafel th,table.elementetafel td{
+  border:1px solid var(--hla-haarlinie);padding:var(--hla-space-3) var(--hla-space-4);
+  text-align:left;vertical-align:top}
+table.elementetafel thead th{border-bottom:1px solid var(--hla-tusche);
+  border-top:3px solid var(--phase);background:var(--phase-hell);
+  font-family:var(--hla-font-text);font-weight:700;font-size:.778rem;line-height:1.3}
+table.elementetafel thead th:first-child{border-top-color:var(--hla-tusche);
+  background:var(--hla-nebel)}
+table.elementetafel thead .merk{display:block;margin-top:4px;font-weight:400;
+  font-size:.9em;color:var(--hla-tusche-weich)}
+table.elementetafel tbody th{width:9ch;font-weight:700;font-size:.722rem;
+  letter-spacing:var(--hla-tracking-label);text-transform:uppercase;
+  color:var(--hla-stein);background:var(--hla-nebel);white-space:nowrap}
+table.elementetafel tbody th::before{content:"";display:block;width:16px;height:5px;
+  border-radius:2px;background:var(--stufe);margin-bottom:6px}
+table.elementetafel td.leer{color:var(--hla-kiesel);text-align:center}
+
+/* --- Rezeptkarten --- */
+.rezepte{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:var(--hla-space-6);margin-top:var(--hla-space-8)}
+.rezept{background:var(--hla-weiss);border:var(--hla-rule);
+  border-radius:var(--hla-radius);padding:var(--hla-space-6);
+  display:flex;flex-direction:column}
+.rezept h3{margin:0;font-family:var(--hla-font-display);font-weight:500;
+  font-size:1.444rem;line-height:1.1}
+.rezept h3 .hanzi{font-size:.7em;color:var(--hla-stein);margin-left:.35em}
+.rezept .wann{margin:var(--hla-space-2) 0 0;font-size:.722rem;font-weight:700;
+  letter-spacing:var(--hla-tracking-label);text-transform:uppercase;color:var(--hla-stein)}
+.rezept .wirkt{margin:var(--hla-space-4) 0 0;font-family:var(--hla-font-display);
+  font-style:italic;font-size:1.056rem;line-height:1.4;color:var(--hla-tusche-weich)}
+.rezept h4{margin:var(--hla-space-5) 0 var(--hla-space-2);font-family:var(--hla-font-text);
+  font-size:.667rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--hla-stein)}
+.rezept ul{margin:0;padding-left:1.1em;font-size:.889rem;line-height:1.45}
+.rezept ol{margin:0;padding-left:1.3em;font-size:.889rem;line-height:1.5}
+.rezept li{margin-bottom:5px}
+.rezept ol{margin-top:auto}
