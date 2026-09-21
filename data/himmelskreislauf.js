@@ -5,7 +5,7 @@
    selbst als schematisch projiziert. */
 window.Himmelskreislauf = {
   titel: "Der kleine Himmelskreislauf",
-  untertitel: "Xiao Zhoutian · Leitbahnen, Energiezentren und Akupunkturpunkte",
+  untertitel: "Xiǎo zhōutiān 小周天 · Leitbahnen, Energiezentren und Akupunkturpunkte",
   namenszeile: "小周天 · xiǎo zhōu tiān | Xiao Zhoutian · Microcosmic Orbit",
 
   einleitung: "Hinten aufwärts, vorne abwärts: Im Übungsmodell verbindet die Zunge am " +
@@ -16,8 +16,8 @@ window.Himmelskreislauf = {
             "und Punktcode. Ein Sternchen verweist auf die Erläuterungen.",
 
   leseanleitung: [
-    { zeichen: "kreis", text: "Kreis: benannter Akupunkturpunkt." },
-    { zeichen: "quadrat", text: "Quadrat: Energiezentrum oder Zuordnung." },
+    { zeichen: "kreis", text: "Roter Punkt: benannter Akupunkturpunkt auf der Körperoberfläche." },
+    { zeichen: "kugel", text: "Kugel mit Kern: Energiezentrum im Körperinneren – kein Oberflächenpunkt." },
     { zeichen: "strich", text: "Gestrichelt: ergänzende Beinverbindungen." },
     { zeichen: "", text: "Alle Positionen sind schematisch projiziert." }
   ],

@@ -97,21 +97,35 @@
       var m;
       if (p.art === "punkt") {
         m = el("circle", { cx: p.x, cy: p.y, r: 9, fill: SIEGELROT, stroke: WEISS, "stroke-width": 2 });
+        g.appendChild(m);
       } else {
-        m = el("rect", { x: p.x - 8.5, y: p.y - 8.5, width: 17, height: 17,
-                         fill: TUSCHE, stroke: WEISS, "stroke-width": 2 });
+        /* Ein Energiezentrum ist kein Oberflaechenpunkt, sondern ein Raum
+           im Koerperinneren. Es steht darum als Kugel: heller Hof, Kontur,
+           dunkler Kern. Ohne Verlauf und ohne Schatten (Handbuch 3.2), der
+           helle Hof traegt das Zeichen auch auf dunklem Haar. */
+        g.appendChild(el("circle", { cx: p.x, cy: p.y, r: 20,
+          fill: PAPIER, opacity: ".5" }));
+        g.appendChild(el("circle", { cx: p.x, cy: p.y, r: 20, fill: "none",
+          stroke: WEISS, "stroke-width": 4.5, opacity: ".8" }));
+        g.appendChild(el("circle", { cx: p.x, cy: p.y, r: 20, fill: "none",
+          stroke: TUSCHE, "stroke-width": 2 }));
+        g.appendChild(el("circle", { cx: p.x, cy: p.y, r: 11, fill: "none",
+          stroke: TUSCHE, "stroke-width": 1, "stroke-dasharray": "3 4", opacity: ".75" }));
+        m = el("circle", { cx: p.x, cy: p.y, r: 5.5, fill: TUSCHE,
+          stroke: WEISS, "stroke-width": 1.6 });
+        g.appendChild(m);
       }
-      g.appendChild(m);
       if (mitZahlen) {
         var links = p.x < 450;
-        var t = el("text", { x: p.x + (links ? -17 : 17), y: p.y + 8,
+        var abstand = p.art === "punkt" ? 17 : 28;
+        var t = el("text", { x: p.x + (links ? -abstand : abstand), y: p.y + 8,
           "text-anchor": links ? "end" : "start", fill: TUSCHE, stroke: WEISS,
           "stroke-width": 4, "paint-order": "stroke",
           "font-family": '"LXGW WenKai TC", "Lato", Arial, "Kaiti SC", sans-serif', "font-size": 24, "font-weight": 700 });
         t.textContent = p.nr;
         g.appendChild(t);
       }
-      g.appendChild(el("circle", { cx: p.x, cy: p.y, r: 20, fill: "transparent" }));
+      g.appendChild(el("circle", { cx: p.x, cy: p.y, r: p.art === "punkt" ? 20 : 22, fill: "transparent" }));
       g.addEventListener("click", function () { waehle(p.nr, true); });
       g.addEventListener("keydown", function (e) {
         if (e.key === "Enter" || e.key === " ") { e.preventDefault(); waehle(p.nr, true); }
@@ -166,7 +180,10 @@
       var s = document.createElementNS(NS, "svg");
       s.setAttribute("viewBox", "0 0 22 22"); s.setAttribute("class", "lesezeichen");
       if (l.zeichen === "kreis") s.appendChild(el("circle", { cx: 11, cy: 11, r: 7, fill: SIEGELROT }));
-      else if (l.zeichen === "quadrat") s.appendChild(el("rect", { x: 4, y: 4, width: 14, height: 14, fill: TUSCHE }));
+      else if (l.zeichen === "kugel") {
+        s.appendChild(el("circle", { cx: 11, cy: 11, r: 9, fill: PAPIER, stroke: TUSCHE, "stroke-width": 1.6 }));
+        s.appendChild(el("circle", { cx: 11, cy: 11, r: 3, fill: TUSCHE }));
+      }
       else s.appendChild(el("line", { x1: 2, y1: 11, x2: 20, y2: 11, stroke: STEIN,
         "stroke-width": 2.4, "stroke-dasharray": "5 5", "stroke-linecap": "round" }));
       li.appendChild(s);
