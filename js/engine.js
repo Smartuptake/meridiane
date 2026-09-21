@@ -163,9 +163,13 @@
       p._rang = rang;
     });
 
-    P.forEach(function (p) {
-      var i = p._rang;
-      p._ly = P.length === 1 ? (top + bot) / 2 : top + (bot - top) * i / (P.length - 1);
+    /* Achtung: der Platz auf der Schiene richtet sich nach der Körperhöhe
+       (_rang), die Auswahl aber nach der Flussrichtung (i). Werden die beiden
+       verwechselt, öffnet ein Klick bei aufsteigenden Meridianen den falschen
+       Punkt. */
+    P.forEach(function (p, i) {
+      var rang = p._rang;
+      p._ly = P.length === 1 ? (top + bot) / 2 : top + (bot - top) * rang / (P.length - 1);
 
       p._lead = el("path", { d: "M" + railX + "," + p._ly + " L" + (p.x + (rechts ? 9 : -9)) + "," + p.y,
         fill: "none", stroke: HAARLINIE, "stroke-width": "1" });
