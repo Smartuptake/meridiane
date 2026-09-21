@@ -1,7 +1,9 @@
 /* Drei-Erwärmer-Meridian – Hand-Shaoyang – 手少阳三焦经
-   Kalibriert auf img/back.png (880 × 1168). Landmarken wie beim Dünndarm:
-   Handgelenk y ≈ 508, Ellenbogenhöcker y ≈ 420, dazwischen 12 Cun, also
-   8,6 Bildpunkte je Cun. Der Meridian läuft auf der Streckseite in der
+   Kalibriert auf img/back.png (880 × 1168). Landmarken wie beim Dünndarm,
+   am 21.09.2026 neu vermessen: Handgelenksfalte auf dem Handrücken y 521,
+   Olekranon (605, 422), dazwischen 12 Cun = 115 px, also 9,6 Bildpunkte
+   je Cun entlang der Armachse. Vorher lag die Handgelenksfalte 13 px zu
+   hoch; dadurch saßen 3E 4 bis 3E 7 zu weit oben. Der Meridian läuft auf der Streckseite in der
    Mitte zwischen Elle und Speiche. Die vier Finger enden bei x 679, 699,
    714 und 726; Dü 1 liegt laut si.js bei 680 am kleinen Finger, damit ist
    der Ringfinger der zweite von außen und 3E 1 sitzt an dessen
@@ -28,11 +30,11 @@ Meridian.register({
          "3E 5 und 3E 6 liegen am Körper nur einen Cun auseinander und rücken hier " +
          "etwas weiter auseinander, damit beide anklickbar bleiben.",
 
-  cun: { handgelenk: [652, 508], ellenbogen: [594, 413],
+  cun: { handgelenk: [662, 521], ellenbogen: [600, 413],
          hinweis: "3E 4 → Ellenbogenhöcker = 12 Cun; 3E 5 liegt 2, 3E 6 und 3E 7 liegen 3 Cun über 3E 4" },
 
-  path: [[694,612],[686,594],[682,580],[675,566],[664,540],[652,508],[644,494],[637,481],
-         [628,487],[626,474],[612,447],[594,413],[586,390],[578,368],[570,345],[566,320],
+  path: [[693,612],[690,598],[687,586],[679,564],[670,542],[662,521],[653,505],[648,496],
+         [640,501],[636,488],[618,450],[600,413],[590,390],[578,368],[570,345],[566,320],
          [562,285],[545,272],[525,262],[505,258],[490,232],[478,202],[469,170],[471,138],
          [478,128],[483,116],[481,100],[479,78]],
 
@@ -210,65 +212,73 @@ Meridian.register({
 
   points: [
     { n:1, pinyin:"Guānchōng", han:"关冲", de:"Ansturm am Tor", en:"Passage Hub",
-      x:694, y:612, key:true, role:"TING",
+      x:693, y:612, key:true, role:"TING",
       antik:"ting", wx:"metall",
       tags:["Ting / Jing – Brunnen-/Quellpunkt"],
+      wirkung:["Ting / Jing – Brunnen-/Quellpunkt", "Metallpunkt der Dreifach-Erwärmer-Leitbahn", "", "Klärt Hitze und öffnet die Sinne", "Befreit die Kehle", "Belebt bei Bewusstlosigkeit"],
       loc:"An der Kleinfingerseite des Ringfingers, ein Fen (0,1 Cun) proximal des Nagelfalzwinkels.",
       ind:"Kopfschmerz, rote und schmerzende Augen, Halsschmerz, steife Zunge, Ohrgeräusche, Hörminderung, Fieber, Hitzschlag, Bewusstlosigkeit.",
       nd:"Schräg 0,1 Cun oder Mikroaderlass." },
 
     { n:2, pinyin:"Yèmén", han:"液门", de:"Tor der Flüssigkeiten", en:"Humor Gate",
-      x:682, y:580, key:false, role:"YONG",
+      x:687, y:586, key:false, role:"YONG",
       antik:"yong", wx:"wasser",
       tags:["Yong / Ying – kleiner Flusspunkt"],
+      wirkung:["Yong / Ying – kleiner Flusspunkt", "Wasserpunkt der Dreifach-Erwärmer-Leitbahn", "", "Klärt Hitze aus Kopf, Ohr und Kehle", "Befeuchtet bei Trockenheit", "Lindert Kopfschmerz an der Schläfe"],
       loc:"Auf dem Handrücken zwischen Ring- und kleinem Finger, dicht vor dem Rand der Schwimmhaut, an der Grenze zwischen rotem und weißem Fleisch.",
       ind:"Trockener Mund und trockene Augen, Halsschmerz, rote Augen, Ohrgeräusche, Kopfschmerz, Fieber mit Frösteln, Schmerz und Taubheit in Hand und Arm. Der Name sagt die Richtung: er öffnet das Tor für die Säfte.",
       nd:"Senkrecht 0,3 bis 0,5 Cun." },
 
     { n:3, pinyin:"Zhōngzhǔ", han:"中渚", de:"Insel in der Mitte", en:"Central Islet",
-      x:675, y:566, key:true, role:"YU · TON",
+      x:679, y:564, key:true, role:"YU · TON",
       antik:"yu", wx:"holz",
       tags:["Yu / Shu – Bachpunkt","Tonisierungspunkt","Ohrpunkt"],
+      wirkung:["Yu / Shu – Bachpunkt", "Holzpunkt der Dreifach-Erwärmer-Leitbahn", "Tonisierungspunkt", "", "Der Ohrpunkt der Leitbahn: bei Ohrensausen und Schwerhörigkeit", "Klärt Hitze und vertreibt Wind", "Öffnet die Leitbahn an Hand und Arm"],
       loc:"Auf dem Handrücken in der Vertiefung zwischen dem vierten und fünften Mittelhandknochen, dicht hinter den Grundgelenken.",
       ind:"Ohrgeräusche und Hörminderung – einer der Hauptpunkte dafür. Dazu Kopfschmerz, Schwindel, Halsschmerz, rote Augen, Schmerz in Schulter, Ellenbogen und Arm, Taubheit der Finger, Fieber. Als Tonisierungspunkt der Aufbaupunkt des Meridians.",
       nd:"Senkrecht 0,3 bis 0,5 Cun." },
 
     { n:4, pinyin:"Yángchí", han:"阳池", de:"Yang-Teich", en:"Yang Pool",
-      x:652, y:508, key:true, role:"YUAN",
+      x:662, y:521, key:true, role:"YUAN",
       antik:"yuan", wx:"",
       tags:["Yuan-Quellpunkt"],
+      wirkung:["Yuan-Quellpunkt", "", "Löst Schmerz und Steife im Handgelenk", "Ordnet den Dreifachen Erwärmer", "Klärt Hitze aus der Leitbahn"],
       loc:"In der Mitte der Handgelenksfalte auf der Streckseite, in der Vertiefung seitlich der Sehne des gemeinsamen Fingerstreckers.",
       ind:"Schmerz und Schwäche im Handgelenk, Sehnenscheidenentzündung, Schmerz in Schulter und Arm, trockener Mund, Durst, Ohrgeräusche, Fieber. Als Yuan-Punkt der Zugang zum Ursprungs-Qi über den Meridian, der es verteilt.",
       nd:"Senkrecht 0,3 bis 0,5 Cun." },
 
     { n:5, pinyin:"Wàiguān", han:"外关", de:"Äußerer Pass", en:"Outer Pass",
-      x:644, y:494, key:true, role:"LUO",
+      x:653, y:505, key:true, role:"LUO",
       antik:"luo", wx:"",
       tags:["Luo-Punkt zum Perikard","Öffnungspunkt des Yangwei Mai","Paarpunkt zu Gb 41","Gegenstück zu Pe 6"],
+      wirkung:["Luo-Punkt – zieht zum Perikard", "Öffnungspunkt des Yangwei Mai", "Paarpunkt zu Gb 41", "Einer der Acht Kreuzungspunkte", "", "Vertreibt äußeren Wind – der Punkt bei beginnender Erkältung", "Öffnet das Gehör", "Löst Schmerz an der Leitbahnseite des Körpers", "Das Gegenstück zu Pe 6 auf der Beugeseite"],
       loc:"Zwei Cun oberhalb der Handgelenksfalte auf der Streckseite, zwischen Elle und Speiche – genau gegenüber von Pe 6 auf der Beugeseite.",
       ind:"Der meistbenutzte Punkt des Meridians: beginnende Erkältung mit Frösteln und steifem Nacken, Fieber, Kopfschmerz an der Schläfe, Ohrgeräusche und Hörminderung, rote Augen, Schmerz in Schulter, Ellenbogen und Hand, Zittern der Hände, Wechselfieber.",
       nd:"Senkrecht 0,5 bis 1 Cun zwischen den Knochen. Zusammen mit Pe 6 zwischen Daumen und Zeigefinger zu drücken – die einfachste Selbsthilfe des Meridians." },
 
     { n:6, pinyin:"Zhīgōu", han:"支沟", de:"Verzweigter Graben", en:"Branch Ditch",
-      x:637, y:481, key:true, role:"KING",
+      x:648, y:496, key:true, role:"KING",
       antik:"king", wx:"feuer",
       tags:["King / Jing – Flusspunkt","Hauptpunkt bei Verstopfung"],
+      wirkung:["King / Jing – Strom-/Flusspunkt", "Feuerpunkt der Dreifach-Erwärmer-Leitbahn", "", "Der Hauptpunkt bei Verstopfung", "Bewegt das Qi in den Rippenseiten", "Klärt Hitze aus dem Dreifachen Erwärmer"],
       loc:"Drei Cun oberhalb der Handgelenksfalte auf der Streckseite, zwischen Elle und Speiche, also einen Cun über 3E 5. Auf der Tafel stehen die beiden etwas weiter auseinander.",
       ind:"Der klassische Punkt bei Verstopfung, besonders wenn sie durch Trockenheit oder nach einer fieberhaften Erkrankung entsteht. Dazu Schmerz zwischen den Rippen, Gürtelrose, Ohrgeräusche, Halsschmerz, Schmerz in Schulter und Arm, Wechselfieber.",
       nd:"Senkrecht 0,5 bis 1 Cun zwischen den Knochen." },
 
     { n:7, pinyin:"Huìzōng", han:"会宗", de:"Zusammenkunft der Ahnen", en:"Convergence and Gathering",
-      x:628, y:487, key:false, role:"XI",
+      x:640, y:501, key:false, role:"XI",
       antik:"xi", wx:"",
       tags:["Xi-Spaltpunkt"],
+      wirkung:["Xi-Cleft – Akkumulationspunkt", "", "Akutpunkt bei Schmerz im Arm", "Beruhigt bei Krämpfen", "Öffnet das Gehör"],
       loc:"Auf gleicher Höhe wie 3E 6, also drei Cun über der Handgelenksfalte, aber einen Cun zur Kleinfingerseite hin, am Rand der Elle.",
       ind:"Als Xi-Punkt bei Akutem: plötzlicher Ohrenschmerz, plötzlich einsetzende Schwerhörigkeit, akuter Schmerz im Arm, Krampfanfälle, Schmerz zwischen den Rippen.",
       nd:"Senkrecht 0,5 bis 1 Cun." },
 
     { n:10, pinyin:"Tiānjǐng", han:"天井", de:"Himmlischer Brunnen", en:"Celestial Well",
-      x:594, y:413, key:true, role:"HO · SED",
+      x:600, y:413, key:true, role:"HO · SED",
       antik:"ho", wx:"erde",
       tags:["Ho / He – Meerpunkt","Sedierungspunkt","Punkt bei Knoten und Schwellungen"],
+      wirkung:["Ho / He – Meerpunkt", "Erdpunkt der Dreifach-Erwärmer-Leitbahn", "Sedierungspunkt", "", "Löst Knoten und Schwellungen – der Punkt bei geschwollenen Lymphknoten", "Wandelt Schleim", "Klärt Hitze aus der Leitbahn", "Beruhigt den Geist"],
       loc:"Einen Cun oberhalb der Spitze des Ellenbogenhöckers, in der Vertiefung, die sich bei gebeugtem Ellenbogen zeigt.",
       ind:"Schmerz im Ellenbogen und an der Rückseite des Oberarms, steifer Nacken. Klassisch außerdem der Punkt bei Knoten und Verhärtungen: geschwollene Lymphknoten am Hals, Kröpfe, Knoten unter der Haut. Dazu Schwermut, Angst und Migräne. Als Sedierungspunkt bei Fülle des Meridians.",
       nd:"Senkrecht 0,5 bis 1 Cun bei gebeugtem Ellenbogen." },
@@ -277,6 +287,7 @@ Meridian.register({
       x:562, y:285, key:true, role:"",
       antik:"", wx:"",
       tags:["Hauptpunkt an der Schulter"],
+      wirkung:["Hauptpunkt an der Schulter", "", "Öffnet die Leitbahn an der Schulter", "Vertreibt Wind und Feuchtigkeit", "Löst Schmerz beim Heben des Arms"],
       loc:"An der Schulter, in der hinteren der beiden Vertiefungen, die sich zeigen, wenn der Arm waagerecht gehoben wird – hinter und unter dem Schulterdach.",
       ind:"Schmerz und Bewegungseinschränkung der Schulter, besonders beim Heben und Abspreizen des Arms, Schwere im Arm, Lähmung nach Schlaganfall. Zusammen mit Di 15 das Paar bei der schmerzhaften Schultersteife.",
       nd:"Senkrecht 0,8 bis 1,2 Cun, bei gehobenem Arm." },
@@ -285,6 +296,7 @@ Meridian.register({
       x:505, y:258, key:false, role:"",
       antik:"", wx:"",
       tags:["Nacken- und Schulterpunkt","Kreuzungspunkt mit dem Yangwei Mai"],
+      wirkung:["Nacken- und Schulterpunkt", "Kreuzungspunkt mit dem Yangwei Mai", "", "Löst Steife in Nacken und Schulter", "Bewegt das Qi am Schulterblatt", "Vertreibt Wind"],
       loc:"Auf dem Kapuzenmuskel, in der Vertiefung am oberen inneren Winkel des Schulterblatts, etwa einen Cun unterhalb von Gb 21.",
       ind:"Steifer und schmerzender Nacken, Schmerz in Schulter und oberem Rücken, Spannung zwischen Hals und Schulter, Fieber ohne Schwitzen, Schmerz im Ellenbogen.",
       nd:"Senkrecht oder schräg 0,5 bis 0,8 Cun. Nicht tief stechen – darunter liegt die Lungenspitze." },
@@ -293,6 +305,7 @@ Meridian.register({
       x:471, y:138, key:true, role:"",
       antik:"", wx:"",
       tags:["wichtigster Ohrpunkt","Kreuzungspunkt mit der Gallenblase"],
+      wirkung:["Der wichtigste Ohrpunkt der Leitbahn", "Kreuzungspunkt mit der Gallenblase", "", "Öffnet das Gehör bei Ohrensausen und Schwerhörigkeit", "Vertreibt Wind aus dem Gesicht", "Löst Gesichtslähmung und Kieferklemme"],
       loc:"Hinter dem Ohrläppchen, in der Vertiefung zwischen dem Unterkieferwinkel und dem Warzenfortsatz. Bei angelegtem Ohrläppchen liegt der Punkt genau darunter.",
       ind:"Ohrgeräusche, Hörminderung, Ohrenschmerz, Druck im Ohr, Gesichtslähmung, Zahnschmerz, Kiefersperre, Schwellung der Wange, Schwindel. Der wichtigste Punkt am Ohr überhaupt und der erste bei jeder Gesichtslähmung.",
       nd:"Senkrecht 0,5 bis 1 Cun in Richtung der Nasenspitze. Sehr empfindlich." },
@@ -301,6 +314,7 @@ Meridian.register({
       x:483, y:116, key:false, role:"",
       antik:"", wx:"",
       tags:["Ohrpunkt vor dem Tragus"],
+      wirkung:["Ohrpunkt vor dem Tragus", "", "Öffnet das Gehör", "Lindert Ohrenschmerz und Ausfluss", "Löst Zahnschmerz im Oberkiefer"],
       loc:"Vor dem Ohr, in der Vertiefung über dem kleinen Knorpelvorsprung am Ohreingang, die bei geöffnetem Mund deutlicher wird. Der Punkt liegt vor dem Ohr und steht hier an der Kopfkante als Projektion.",
       ind:"Ohrgeräusche, Hörminderung, Ausfluss aus dem Ohr, Ohrenschmerz, Zahnschmerz im Oberkiefer, Schmerz im Kiefergelenk, steifer Kiefer.",
       nd:"Senkrecht 0,5 bis 1 Cun bei geöffnetem Mund." },
@@ -309,6 +323,7 @@ Meridian.register({
       x:479, y:78, key:true, role:"",
       antik:"", wx:"",
       tags:["Endpunkt des Meridians","Augen- und Schläfenpunkt"],
+      wirkung:["Endpunkt der Dreifach-Erwärmer-Leitbahn", "", "Klärt Hitze aus den Augen", "Lindert Kopfschmerz an der Schläfe", "Beruhigt Lidzucken"],
       loc:"In der Vertiefung am äußeren Ende der Augenbraue. Der Punkt liegt im Gesicht und steht hier an der Kopfkante als Projektion.",
       ind:"Kopfschmerz an der Schläfe und Migräne, Schmerz und Röte am äußeren Augenwinkel, Lidzucken, herabhängendes Lid, verschwommenes Sehen, Schwindel, Zahnschmerz.",
       nd:"Flach 0,3 bis 0,5 Cun nach hinten. Kein Moxa im Gesicht." }

@@ -1,6 +1,9 @@
 /* Herzmeridian – Hand-Shaoyin – 手少阴心经
-   Punktlagen kalibriert auf img/front.png (880 × 1168).
-   He 3 (Ellenbeuge, ulnar) bis He 7 (Handgelenk, ulnar) = 12 Cun.
+   Punktlagen kalibriert auf img/front.png (880 × 1168). Arm am 21.09.2026
+   neu vermessen: vordere Achselfalte auf Höhe y 344, Ellenbeugefalte
+   y 421, Handgelenksfalte y 530. Oberarm 9 Cun = 85 px (9,5 px je Cun),
+   Unterarm 12 Cun = 126 px (10,5 px je Cun). Der Arm steht schräg; ein
+   Cun ist deshalb entlang der Armachse zu rechnen, nicht senkrecht.
    Der Verlauf liegt auf der Ulnarseite, also an der Innenkante des Arms. */
 Meridian.register({
   id: "ht", code: "HT", codeDe: "He", ord: 5,
@@ -17,10 +20,10 @@ Meridian.register({
          "des Oberarms und über die Ulnarseite des Unterarms abwärts und endet an He 9 am " +
          "Nagelfalz des kleinen Fingers.",
 
-  cun: { ellenbeuge: [294, 414], handgelenk: [228, 526],
+  cun: { ellenbeuge: [296, 419], handgelenk: [228, 526],
          hinweis: "He 3 → He 7 = 12 Cun; He 4, He 5 und He 6 liegen 1,5, 1 und 0,5 Cun über He 7" },
 
-  path: [[334,327],[320,350],[306,385],[300,400],[294,414],[280,435],[264,462],[250,490],
+  path: [[330,340],[318,362],[306,393],[301,406],[296,419],[281,437],[264,462],[250,490],
          [240,508],[236,512],[234,517],[231,521],[228,526],[215,545],[207,562],[200,578],
          [197,600],[195,618]],
 
@@ -188,23 +191,26 @@ Meridian.register({
 
   points: [
     { n:1, pinyin:"Jíquán", han:"极泉", de:"Höchste Quelle", en:"Highest Spring",
-      x:334, y:327, key:false, role:"",
+      x:330, y:340, key:false, role:"",
       tags:["Anfangspunkt des Meridians"],
+      wirkung:["Anfangspunkt der Herz-Leitbahn", "", "Öffnet die Brust und löst Beklemmung", "Bewegt das Qi in Achsel und Oberarm", "Lindert Schmerz im Herzbereich"],
       loc:"In der Mitte der Achselhöhle, dort wo die A. axillaris pulsiert, bei erhobenem Arm.",
       ind:"Schmerz in der Brust und in der Herzgegend, Schmerz und Taubheit im Arm, geschwollene Lymphknoten in der Achsel, Trockenheit im Hals.",
       nd:"Senkrecht 0,3–0,5 Cun, die Arterie meiden. Alternativ vorsichtige Druckbehandlung." },
 
     { n:2, pinyin:"Qīnglíng", han:"青灵", de:"Blaugrüner Geist", en:"Cyan Spirit",
-      x:306, y:385, key:false, role:"",
+      x:306, y:393, key:false, role:"",
       tags:[],
+      wirkung:["Lokalpunkt am Oberarm", "", "Öffnet die Leitbahn an der Innenseite des Oberarms", "Lindert Schmerz in Schulter und Arm", "Klärt den Kopf"],
       loc:"3 Cun proximal von He 3, in der Rinne medial des M. biceps brachii.",
       ind:"Schmerz in Schulter und Arm, Kopfschmerz, Gelbfärbung der Augen, Schmerz in der Brustseite.",
       nd:"Senkrecht 0,5–1 Cun." },
 
     { n:3, pinyin:"Shàohǎi", han:"少海", de:"Kleines Meer", en:"Lesser Sea",
-      x:294, y:414, key:true, role:"HO",
+      x:296, y:419, key:true, role:"HO",
       antik:"ho", wx:"wasser",
       tags:["Ho / He – Meerpunkt","kühlt Herz-Feuer"],
+      wirkung:["Ho / He – Meerpunkt", "Wasserpunkt der Herz-Leitbahn", "", "Kühlt Herz-Feuer", "Beruhigt den Geist bei Unruhe und Zittern", "Öffnet die Leitbahn am Ellenbogen"],
       loc:"Bei gebeugtem Ellenbogen am ulnaren Ende der Ellenbeugefalte, in der Mitte zwischen der Falte und dem Epicondylus medialis humeri.",
       ind:"Herzschmerz, Zittern der Hand, Taubheit im Arm, Vergesslichkeit, Schwindel, geschwollene Lymphknoten.",
       nd:"Senkrecht 0,5–1 Cun." },
@@ -213,6 +219,7 @@ Meridian.register({
       x:236, y:512, key:false, role:"KING",
       antik:"king", wx:"metall",
       tags:["King / Jing – Strom-/Flusspunkt"],
+      wirkung:["King / Jing – Strom-/Flusspunkt", "Metallpunkt der Herz-Leitbahn", "", "Beruhigt den Geist", "Löst plötzliche Sprachlosigkeit", "Ordnet den Herzrhythmus"],
       loc:"1,5 Cun proximal der Handgelenksfalte, radial der Sehne des M. flexor carpi ulnaris.",
       ind:"Plötzlicher Stimmverlust, Herzschmerz, Krampf im Unterarm, Beklemmung.",
       nd:"Senkrecht 0,3–0,5 Cun." },
@@ -220,6 +227,7 @@ Meridian.register({
     { n:5, pinyin:"Tōnglǐ", han:"通里", de:"Innere Verbindung", en:"Connecting Li",
       x:234, y:517, key:true, role:"LUO",
       tags:["Luo-Punkt – Verbindungspunkt","zieht zum Yuan-Punkt Dü 4"],
+      wirkung:["Luo-Punkt – zieht zum Yuan-Punkt Dü 4", "", "Beruhigt den Geist", "Öffnet die Sprache – der Punkt bei plötzlicher Stimmlosigkeit", "Ordnet den Herzrhythmus", "Reguliert die Blase"],
       loc:"1 Cun proximal der Handgelenksfalte, radial der Sehne des M. flexor carpi ulnaris.",
       ind:"Herzklopfen, Sprachstörung nach Schlaganfall, plötzlicher Stimmverlust, Beklemmung, Angst, Schmerz im Handgelenk.",
       nd:"Senkrecht 0,3–0,5 Cun." },
@@ -228,6 +236,7 @@ Meridian.register({
       x:231, y:521, key:false, role:"XI",
       antik:null, wx:null,
       tags:["Xi-Cleft – Akkumulationspunkt","der Punkt gegen Nachtschweiß"],
+      wirkung:["Xi-Cleft – Akkumulationspunkt", "", "Der Punkt gegen Nachtschweiß", "Kühlt Leerhitze und nährt das Herz-Yin", "Stillt Blutungen bei Hitze"],
       loc:"0,5 Cun proximal der Handgelenksfalte, radial der Sehne des M. flexor carpi ulnaris.",
       ind:"Nachtschweiß, plötzliches Herzklopfen mit Angst, Nasenbluten, Bluthusten, Hitzewallungen.",
       nd:"Senkrecht 0,3–0,5 Cun." },
@@ -236,6 +245,7 @@ Meridian.register({
       x:228, y:526, key:true, role:"YU · YUAN · SED",
       antik:"yu", wx:"erde",
       tags:["Yu / Shu – größerer Flusspunkt","Yuan-Quellpunkt","Sedierungspunkt","der Hauptpunkt für den Shen"],
+      wirkung:["Yu / Shu – Bachpunkt", "Erdpunkt der Herz-Leitbahn", "Yuan-Quellpunkt", "Sedierungspunkt", "", "Der Hauptpunkt für den Shen: beruhigt den Geist", "Bringt Schlaf bei Unruhe und Grübeln", "Nährt das Herz-Blut", "Klärt Hitze im Herzen"],
       loc:"An der Handgelenksfalte, radial der Sehne des M. flexor carpi ulnaris, am radialen Rand des Os pisiforme.",
       ind:"Schlaflosigkeit, innere Unruhe, Angst, Herzklopfen, Vergesslichkeit, Schreckhaftigkeit – der meistgenutzte Punkt zur Beruhigung des Geistes.",
       nd:"Senkrecht 0,3–0,5 Cun." },
@@ -244,6 +254,7 @@ Meridian.register({
       x:200, y:578, key:false, role:"YONG · BEN",
       antik:"yong", wx:"feuer",
       tags:["Yong / Ying – kleiner Flusspunkt","Ben-Punkt"],
+      wirkung:["Yong / Ying – kleiner Flusspunkt", "Feuerpunkt der Herz-Leitbahn", "Ben-Punkt", "", "Kühlt Herz-Feuer", "Klärt Hitze aus dem Kleinfinger und der Handfläche", "Beruhigt Herzklopfen"],
       loc:"In der Handfläche zwischen dem vierten und fünften Mittelhandknochen – dort, wo die Spitze des kleinen Fingers bei locker geschlossener Faust aufliegt.",
       ind:"Herzklopfen, Schmerz in der Brust, brennender Urin, Juckreiz im Genitalbereich, kleiner Finger krampft.",
       nd:"Senkrecht 0,3–0,5 Cun." },
@@ -252,6 +263,7 @@ Meridian.register({
       x:195, y:618, key:true, role:"TING · TON",
       antik:"ting", wx:"holz",
       tags:["Ting / Jing – Brunnen-/Quellpunkt","Tonisierungspunkt","Wiederbelebungspunkt"],
+      wirkung:["Ting / Jing – Brunnen-/Quellpunkt", "Holzpunkt der Herz-Leitbahn", "Tonisierungspunkt", "", "Belebt bei Bewusstlosigkeit – ein Notfallpunkt", "Klärt Hitze aus dem Herzen", "Öffnet die Sinne"],
       loc:"An der radialen Seite des kleinen Fingers, ein Fen (0,1 Cun) proximal des Nagelfalzwinkels.",
       ind:"Bewusstlosigkeit, Hitzschlag, Fieber, Herzschmerz, Beklemmung, Angstzustände.",
       nd:"Schräg 0,1 Cun oder Mikroaderlass mit der Dreikantnadel." }

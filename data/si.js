@@ -1,7 +1,13 @@
 /* Dünndarmmeridian – Hand-Taiyang – 手太阳小肠经
    Der erste Meridian auf der Rückansicht. Punktlagen kalibriert auf
    img/back.png (880 × 1168). Von hinten gesehen liegt der rechte Arm
-   auf der rechten Bildseite. Dü 5 (Handgelenk) bis Dü 8 (Ellenbogen) = 12 Cun. */
+   auf der rechten Bildseite – und die Elle, also die Kleinfingerseite,
+   liegt dann links, bei den kleineren x.
+   Arm am 21.09.2026 neu vermessen: hintere Achselfalte y 338, Olekranon
+   (605, 422), Epicondylus medialis (580, 415), Handgelenksfalte auf dem
+   Handrücken y 521. Dü 5 → Dü 8 = 12 Cun = 115 px, also 9,6 px je Cun
+   entlang der Armachse. Vorher war die Handgelenksfalte 16 px zu hoch
+   angenommen; dadurch saßen Dü 5 bis Dü 7 zu weit oben. */
 Meridian.register({
   id: "si", code: "SI", codeDe: "Dü", ord: 6,
   name: "Dünndarm", titel: "Dünndarmmeridian", nameHan: "小肠经",
@@ -19,11 +25,11 @@ Meridian.register({
          "Rückansicht. Die beiden letzten Punkte liegen im Gesicht und sind deshalb an der " +
          "Kopfkante als Projektion eingezeichnet.",
 
-  cun: { handgelenk: [635, 505], ellenbogen: [584, 418],
+  cun: { handgelenk: [646, 521], ellenbogen: [592, 419],
          hinweis: "Dü 5 → Dü 8 = 12 Cun; Dü 6 liegt 1, Dü 7 liegt 5 Cun über Dü 5" },
 
-  path: [[680,608],[672,583],[662,560],[653,530],[635,505],[631,498],[614,469],[600,445],
-         [584,418],[570,395],[556,370],[544,348],[536,332],[518,318],[496,300],[488,268],
+  path: [[676,608],[674,584],[664,562],[653,533],[646,521],[642,513],[624,479],[608,449],
+         [592,419],[576,394],[562,368],[550,346],[540,330],[520,316],[496,300],[486,266],
          [478,240],[468,220],[468,198],[468,176],[467,158],[470,138]],
 
   inner: "M470,232 C452,276 442,330 440,384 C438,430 440,466 448,496",
@@ -183,69 +189,78 @@ Meridian.register({
 
   points: [
     { n:1, pinyin:"Shàozé", han:"少泽", de:"Kleiner Sumpf", en:"Lesser Marsh",
-      x:680, y:608, key:true, role:"TING",
+      x:676, y:608, key:true, role:"TING",
       antik:"ting", wx:"metall",
       tags:["Ting / Jing – Brunnen-/Quellpunkt","fördert den Milchfluss"],
+      wirkung:["Ting / Jing – Brunnen-/Quellpunkt", "Metallpunkt der Dünndarm-Leitbahn", "", "Fördert den Milchfluss – der klassische Stillpunkt", "Klärt Hitze und öffnet die Sinne", "Belebt bei Bewusstlosigkeit", "Macht die Augen hell"],
       loc:"An der ulnaren Seite des kleinen Fingers, ein Fen (0,1 Cun) proximal des Nagelfalzwinkels.",
       ind:"Fieber, Bewusstlosigkeit, Halsschmerz, Kopfschmerz, zu wenig Muttermilch, Brustentzündung im Wochenbett.",
       nd:"Schräg 0,1 Cun oder Mikroaderlass." },
 
     { n:2, pinyin:"Qiángǔ", han:"前谷", de:"Vorderes Tal", en:"Front Valley",
-      x:672, y:583, key:false, role:"YONG",
+      x:674, y:584, key:false, role:"YONG",
       antik:"yong", wx:"wasser",
       tags:["Yong / Ying – kleiner Flusspunkt"],
+      wirkung:["Yong / Ying – kleiner Flusspunkt", "Wasserpunkt der Dünndarm-Leitbahn", "", "Klärt Hitze aus Kopf und Kehle", "Lindert Ohrenschmerz", "Öffnet die Leitbahn an der Hand"],
       loc:"Distal des Grundgelenks des kleinen Fingers, an der ulnaren Seite, an der Grenze zwischen rotem und weißem Fleisch.",
       ind:"Fieber, Halsschmerz, Ohrgeräusche, Augenschmerz, Taubheit im kleinen Finger, zu wenig Muttermilch.",
       nd:"Senkrecht 0,2–0,3 Cun." },
 
     { n:3, pinyin:"Hòuxī", han:"后溪", de:"Hinterer Bach", en:"Back Ravine",
-      x:662, y:560, key:true, role:"YU · TON",
+      x:664, y:562, key:true, role:"YU · TON",
       antik:"yu", wx:"holz",
       tags:["Yu / Shu – größerer Flusspunkt","Tonisierungspunkt","Öffnungspunkt des Du Mai"],
+      wirkung:["Yu / Shu – Bachpunkt", "Holzpunkt der Dünndarm-Leitbahn", "Tonisierungspunkt", "Öffnungspunkt des Du Mai", "Paarpunkt zu Bl 62", "", "Der Punkt bei Nackensteife und Rückenschmerz", "Öffnet den Du Mai und die ganze Wirbelsäule", "Vertreibt Wind und klärt den Geist", "Besänftigt Krämpfe"],
       loc:"Proximal des Grundgelenks des kleinen Fingers, an der ulnaren Handkante – am Ende der Falte, die bei locker geschlossener Faust entsteht.",
       ind:"Steifer Nacken, Rückenschmerz entlang der Wirbelsäule, Kopfschmerz, Ohrgeräusche, Nachtschweiß, Krampfanfall. Einer der wirksamsten Punkte bei akuter Nackensteife.",
       nd:"Senkrecht 0,5–1 Cun." },
 
     { n:4, pinyin:"Wàngǔ", han:"腕骨", de:"Handwurzelknochen", en:"Wrist Bone",
-      x:653, y:530, key:false, role:"YUAN",
+      x:653, y:533, key:false, role:"YUAN",
       tags:["Yuan-Quellpunkt"],
+      wirkung:["Yuan-Quellpunkt", "", "Leitet Feuchtigkeit und Hitze aus", "Löst Schmerz in Handgelenk und Schulter", "Klärt gelbe Verfärbung der Haut"],
       loc:"An der ulnaren Handkante, in der Vertiefung zwischen der Basis des fünften Mittelhandknochens und dem Os triquetrum.",
       ind:"Schmerz und Steife im Handgelenk, Kopfschmerz, Gelbsucht, Ohrgeräusche, Fieber ohne Schweiß.",
       nd:"Senkrecht 0,3–0,5 Cun." },
 
     { n:5, pinyin:"Yánggǔ", han:"阳谷", de:"Yang-Tal", en:"Yang Valley",
-      x:635, y:505, key:false, role:"KING · BEN",
+      x:646, y:521, key:false, role:"KING · BEN",
       antik:"king", wx:"feuer",
       tags:["King / Jing – Strom-/Flusspunkt","Ben-Punkt"],
+      wirkung:["King / Jing – Strom-/Flusspunkt", "Feuerpunkt der Dünndarm-Leitbahn", "Ben-Punkt", "", "Klärt Hitze und beruhigt den Geist", "Löst Schmerz im Handgelenk", "Lindert Ohrensausen"],
       loc:"An der ulnaren Seite des Handgelenks, in der Vertiefung zwischen dem Processus styloideus ulnae und dem Os triquetrum.",
       ind:"Schmerz im Handgelenk, Ohrgeräusche und Hörminderung, Schwellung am Hals, Zahnschmerz, Schwindel.",
       nd:"Senkrecht 0,3–0,5 Cun." },
 
     { n:6, pinyin:"Yǎnglǎo", han:"养老", de:"Den Alten pflegen", en:"Nursing the Aged",
-      x:631, y:498, key:false, role:"XI",
+      x:642, y:513, key:false, role:"XI",
       tags:["Xi-Cleft – Akkumulationspunkt","Akutpunkt"],
+      wirkung:["Xi-Cleft – Akkumulationspunkt", "", "Akutpunkt bei Schulter- und Armschmerz", "Macht die Augen hell", "Löst steife Gelenke – der Punkt, der den Alten hilft"],
       loc:"1 Cun proximal von Dü 5, in der Spalte am Processus styloideus ulnae. Tastprobe: die Handfläche auf die Brust legen, dann öffnet sich die Spalte.",
       ind:"Sehstörung und trübes Sehen, akuter Schmerz in Schulter, Arm oder Rücken, Steife im Nacken – klassisch bei Beschwerden des Alters.",
       nd:"Schräg 0,3–0,5 Cun." },
 
     { n:7, pinyin:"Zhīzhèng", han:"支正", de:"Verzweigung zum Geraden", en:"Branch to the Correct",
-      x:614, y:469, key:true, role:"LUO",
+      x:624, y:479, key:true, role:"LUO",
       tags:["Luo-Punkt – Verbindungspunkt","zieht zum Yuan-Punkt He 7"],
+      wirkung:["Luo-Punkt – zieht zum Yuan-Punkt He 7", "", "Beruhigt den Geist", "Vertreibt Wind aus der Leitbahn", "Löst Schwere und Steife im Arm"],
       loc:"5 Cun proximal von Dü 5, auf der Verbindungslinie von Dü 5 zu Dü 8.",
       ind:"Schmerz und Schwäche im Arm, Nackensteife, Kopfschmerz, Unruhe und Angst über die Verbindung zum Herzen, Warzen.",
       nd:"Senkrecht 0,5–0,8 Cun." },
 
     { n:8, pinyin:"Xiǎohǎi", han:"小海", de:"Kleines Meer", en:"Small Sea",
-      x:584, y:418, key:true, role:"HO · SED",
+      x:592, y:419, key:true, role:"HO · SED",
       antik:"ho", wx:"erde",
       tags:["Ho / He – Meerpunkt","Sedierungspunkt"],
+      wirkung:["Ho / He – Meerpunkt", "Erdpunkt der Dünndarm-Leitbahn", "Sedierungspunkt", "", "Klärt Hitze aus der Leitbahn", "Löst Schmerz in Ellenbogen und Nacken", "Beruhigt bei Krämpfen"],
       loc:"In der Rinne zwischen dem Olecranon und dem Epicondylus medialis humeri – dort, wo der Ellennerv verläuft und der Stoß den bekannten Blitz auslöst.",
       ind:"Schmerz im Ellenbogen und an der Ulnarkante des Arms, Taubheit im kleinen Finger, Zahnschmerz, Schwellung am Hals, Krampfanfall.",
       nd:"Senkrecht 0,3–0,5 Cun, vorsichtig – der Nerv liegt direkt darunter." },
 
     { n:9, pinyin:"Jiānzhēn", han:"肩贞", de:"Wahre Schulter", en:"True Shoulder",
-      x:536, y:332, key:false, role:"",
+      x:540, y:330, key:false, role:"",
       tags:[],
+      wirkung:["Lokalpunkt an der Schulter", "", "Öffnet die Leitbahn an der Schulter", "Löst Schmerz, der in den Arm zieht", "Lindert Ohrensausen"],
       loc:"1 Cun oberhalb des Endes der hinteren Achselfalte, bei herabhängendem Arm.",
       ind:"Schulterschmerz, eingeschränkte Armhebung, Schmerz im Schulterblatt, Taubheit im Arm, Ohrgeräusche.",
       nd:"Senkrecht 1–1,5 Cun. Nicht nach medial stechen – Pleuragefahr." },
@@ -253,13 +268,15 @@ Meridian.register({
     { n:11, pinyin:"Tiānzōng", han:"天宗", de:"Himmlische Ahnenverehrung", en:"Celestial Gathering",
       x:496, y:300, key:true, role:"",
       tags:["der Schulterblattpunkt"],
+      wirkung:["Der Schulterblattpunkt", "", "Löst gestautes Qi am Schulterblatt – meist deutlich druckempfindlich", "Öffnet die Brust und die Rippenseiten", "Lindert Schmerz in Schulter und Oberarm"],
       loc:"In der Mitte der Fossa infraspinata des Schulterblatts, etwa im Schnittpunkt der Diagonalen – bei Druck meist deutlich druckempfindlich.",
       ind:"Schulterschmerz und Bewegungseinschränkung, Schmerz im Schulterblatt, Schmerz an der Außenseite des Arms, Brustspannen und Schmerz in der Brust.",
       nd:"Senkrecht oder schräg 0,5–1 Cun." },
 
     { n:15, pinyin:"Jiānzhōngshū", han:"肩中俞", de:"Mittlerer Schulter-Transportpunkt", en:"Central Shoulder Shu",
-      x:468, y:220, key:false, role:"",
+      x:461, y:214, key:false, role:"",
       tags:[],
+      wirkung:["Nacken- und Schulterpunkt", "", "Vertreibt Wind aus dem Nacken", "Stillt Husten und öffnet die Lunge", "Löst Steife in Schulter und Nacken"],
       loc:"2 Cun lateral des unteren Randes des Dornfortsatzes des siebten Halswirbels, auf Höhe von Du 14.",
       ind:"Husten, Asthma, Schmerz und Steife im Nacken und in der Schulter, Sehstörung.",
       nd:"Schräg 0,3–0,6 Cun. Nicht senkrecht tief – Pleuragefahr." },
@@ -267,6 +284,7 @@ Meridian.register({
     { n:18, pinyin:"Quánliáo", han:"颧髎", de:"Jochbeinloch", en:"Cheek Bone Crevice",
       x:467, y:158, key:false, role:"",
       tags:["im Gesicht – hier als Projektion an der Kopfkante"],
+      wirkung:["Kreuzungspunkt mit dem Dreifachen Erwärmer", "", "Vertreibt Wind aus dem Gesicht", "Lindert Zahnschmerz im Oberkiefer", "Löst Gesichtslähmung und Lidzucken"],
       loc:"Am Gesicht, in der Vertiefung am unteren Rand des Jochbeins, senkrecht unter dem äußeren Augenwinkel. Von hinten nicht sichtbar; in dieser Tafel an der Kopfkante angedeutet.",
       ind:"Gesichtslähmung, Zucken des Augenlids, Zahnschmerz im Oberkiefer, Gesichtsschmerz, geschwollene Wange.",
       nd:"Senkrecht 0,3–0,5 Cun." },
@@ -274,6 +292,7 @@ Meridian.register({
     { n:19, pinyin:"Tīnggōng", han:"听宫", de:"Palast des Hörens", en:"Palace of Hearing",
       x:470, y:138, key:true, role:"",
       tags:["Endpunkt des Meridians","Treffpunkt mit Gb und 3E"],
+      wirkung:["Endpunkt der Dünndarm-Leitbahn", "Treffpunkt mit Gallenblase und Dreifachem Erwärmer", "", "Der Hauptpunkt am Ohr: öffnet das Gehör", "Lindert Ohrensausen und Ohrenschmerz", "Beruhigt den Geist"],
       loc:"Vor dem Tragus, in der Vertiefung, die sich bei geöffnetem Mund bildet. Von hinten nicht sichtbar; in dieser Tafel an der Kopfkante angedeutet.",
       ind:"Ohrgeräusche, Hörminderung, Ohrenschmerz, Mittelohrentzündung, Schmerz im Kiefergelenk, Zahnschmerz.",
       nd:"Bei geöffnetem Mund senkrecht 0,5–1 Cun. Der Mund bleibt während der Nadelung offen." }

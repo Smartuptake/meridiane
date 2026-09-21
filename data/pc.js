@@ -1,9 +1,10 @@
 /* Perikardmeridian – Hand-Jueyin – 手厥阴心包经
-   Kalibriert auf img/front.png (880 × 1168). Armlandmarken wie bei Lunge
-   und Herz: Ellenbeuge y ≈ 415, Handgelenksfalte y ≈ 527, dazwischen
-   12 Cun. Der Perikardmeridian läuft in der Mitte zwischen beiden – an
-   der Ellenbeuge liegt Lu 5 bei x 260 und He 3 bei x 294, Pe 3 also bei
-   281; am Handgelenk Lu 9 bei 201 und He 7 bei 228, Pe 7 also bei 214. */
+   Kalibriert auf img/front.png (880 × 1168). Armlandmarken am 21.09.2026
+   neu vermessen: Ellenbeugefalte y 421, Handgelenksfalte y 530,
+   dazwischen 12 Cun, also 10,5 px je Cun entlang der Armachse.
+   Der Perikardmeridian läuft in der Mitte zwischen Lunge und Herz – an
+   der Ellenbeuge liegt Lu 5 bei x 258 und He 3 bei x 296, Pe 3 also bei
+   277; am Handgelenk Lu 9 bei 202 und He 7 bei 228, Pe 7 also bei 212. */
 Meridian.register({
   id: "pc", code: "PC", codeDe: "Pe", ord: 9,
   name: "Perikard", titel: "Perikardmeridian", nameHan: "心包经",
@@ -23,11 +24,11 @@ Meridian.register({
          "Meridian, und mit Pe 6 Nèiguān enthält er einen der meistbenutzten Punkte " +
          "der ganzen Akupunktur.",
 
-  cun: { ellenbeuge: [281, 415], handgelenk: [214, 527],
+  cun: { ellenbeuge: [277, 419], handgelenk: [212, 528],
          hinweis: "Pe 3 → Pe 7 = 12 Cun; Pe 4, Pe 5 und Pe 6 liegen 5, 3 und 2 Cun über Pe 7" },
 
-  path: [[353,310],[336,325],[318,340],[300,360],[292,382],[281,415],[262,447],[242,480],
-         [231,499],[225,508],[214,527],[200,540],[185,563],[174,592],[161,625]],
+  path: [[353,310],[336,325],[318,340],[299,361],[289,388],[277,419],[259,450],[239,483],
+         [228,501],[223,510],[212,528],[199,541],[185,563],[174,592],[161,625]],
 
   inner: "M353,310 C382,306 406,308 424,318 C440,328 446,346 446,366 C446,394 442,414 438,430",
   branches: [
@@ -202,6 +203,7 @@ Meridian.register({
       x:353, y:310, key:false, role:"",
       antik:"", wx:"",
       tags:["Beginn des Meridians","Treffpunkt mit Gallenblase und Drei-Erwärmer"],
+      wirkung:["Anfangspunkt der Perikard-Leitbahn", "Treffpunkt mit Gallenblase und Dreifachem Erwärmer", "", "Öffnet die Brust und löst Enge", "Wandelt Schleim in der Brust", "Lindert Schmerz in der Rippenseite"],
       loc:"Im vierten Zwischenrippenraum, einen Cun seitlich der Brustwarze, also fünf Cun seitlich der vorderen Mittellinie.",
       ind:"Engegefühl und Schmerz in der Brust, Husten, Kurzatmigkeit, Schwellung unter der Achsel, Brustdrüsenentzündung, zu wenig Muttermilch, Schmerz zwischen den Rippen.",
       nd:"Flach 0,2 bis 0,4 Cun nach außen. Nie senkrecht – darunter liegt die Lunge." },
@@ -210,46 +212,52 @@ Meridian.register({
       x:300, y:360, key:false, role:"",
       antik:"", wx:"",
       tags:["Oberarmpunkt"],
+      wirkung:["Lokalpunkt am Oberarm", "", "Öffnet die Brust", "Löst Schmerz in Herzgegend und Oberarm", "Bewegt das Qi in der Leitbahn"],
       loc:"Zwei Cun unterhalb der vorderen Achselfalte, zwischen den beiden Köpfen des Bizeps.",
       ind:"Schmerz in Brust, Rücken und an der Arminnenseite, Husten, Herzklopfen, Engegefühl in der Brust, Bewegungseinschränkung der Schulter.",
       nd:"Senkrecht 0,5 bis 0,8 Cun." },
 
     { n:3, pinyin:"Qūzé", han:"曲泽", de:"Gekrümmter Teich", en:"Marsh at the Bend",
-      x:281, y:415, key:true, role:"HO",
+      x:277, y:419, key:true, role:"HO",
       antik:"ho", wx:"wasser",
       tags:["Ho / He – Meerpunkt","Punkt bei Hitze im Blut"],
+      wirkung:["Ho / He – Meerpunkt", "Wasserpunkt der Perikard-Leitbahn", "", "Kühlt Hitze im Blut – der Punkt bei Sommerhitze und Erbrechen", "Beruhigt den Geist", "Harmonisiert den Magen"],
       loc:"In der Ellenbeugefalte, an der Kleinfingerseite der Bizepssehne. Bei leicht gebeugtem Ellenbogen gut zu tasten.",
       ind:"Herzschmerz, Herzklopfen, Unruhe mit Hitzegefühl, Magenschmerz, Erbrechen, Durchfall mit Hitze, Sommerhitze mit Erbrechen, Zittern und Krampf in Arm und Hand, Ellenbogenschmerz.",
       nd:"Senkrecht 0,5 bis 1 Cun. Bei Hitze und Sommerhitze klassisch Mikroaderlass an den sichtbaren Venen der Ellenbeuge." },
 
     { n:4, pinyin:"Xīmén", han:"郄门", de:"Tor der Spalte", en:"Cleft Gate",
-      x:242, y:480, key:true, role:"XI",
+      x:239, y:483, key:true, role:"XI",
       antik:"xi", wx:"",
       tags:["Xi-Spaltpunkt","Punkt bei akutem Herzschmerz"],
+      wirkung:["Xi-Cleft – Akkumulationspunkt", "", "Akutpunkt bei Schmerz in der Herzgegend", "Bewegt das Blut und löst Stauung", "Beruhigt den Geist", "Stillt Blutungen bei Hitze"],
       loc:"Fünf Cun oberhalb der Handgelenksfalte, zwischen den beiden gut tastbaren Sehnen in der Mitte des Unterarms.",
       ind:"Als Xi-Punkt der Punkt für Akutes: plötzlicher Herzschmerz, heftiges Herzklopfen, Panik, Blut im Auswurf oder Nasenbluten, Brustschmerz. Bei Xi-Punkten der Yin-Meridiane steht immer auch die Blutung mit im Bild.",
       nd:"Senkrecht 0,5 bis 1 Cun zwischen den Sehnen." },
 
     { n:5, pinyin:"Jiānshǐ", han:"间使", de:"Der Gesandte dazwischen", en:"Intermediary Courier",
-      x:231, y:499, key:false, role:"KING",
+      x:228, y:501, key:false, role:"KING",
       antik:"king", wx:"metall",
       tags:["King / Jing – Flusspunkt","Punkt bei Schleim"],
+      wirkung:["King / Jing – Strom-/Flusspunkt", "Metallpunkt der Perikard-Leitbahn", "", "Wandelt Schleim, der den Geist umnebelt", "Harmonisiert den Magen", "Ordnet die Regel"],
       loc:"Drei Cun oberhalb der Handgelenksfalte, zwischen den beiden Sehnen.",
       ind:"Der Schleimpunkt des Meridians: Benommenheit, wirres Reden, Schwermut, Krampfanfälle, Beklemmung in der Brust mit Schleimgefühl. Dazu Magenschmerz, Erbrechen, Wechselfieber, Schmerz in Achsel und Arm.",
       nd:"Senkrecht 0,5 bis 1 Cun." },
 
     { n:6, pinyin:"Nèiguān", han:"内关", de:"Innerer Pass", en:"Inner Pass",
-      x:225, y:508, key:true, role:"LUO",
+      x:223, y:510, key:true, role:"LUO",
       antik:"luo", wx:"",
       tags:["Luo-Punkt zum Drei-Erwärmer","Öffnungspunkt des Yinwei Mai","Paarpunkt zu MP 4","einer der meistbenutzten Punkte überhaupt"],
+      wirkung:["Luo-Punkt – zieht zum Dreifachen Erwärmer", "Öffnungspunkt des Yinwei Mai", "Paarpunkt zu MP 4", "Einer der Acht Kreuzungspunkte", "", "Öffnet die Brust und beruhigt den Geist", "Der Punkt bei Übelkeit und Erbrechen – auch bei Reisekrankheit", "Harmonisiert den Magen und senkt sein Qi ab", "Löst gestautes Leber-Qi in der Brust"],
       loc:"Zwei Cun oberhalb der Handgelenksfalte, zwischen den Sehnen des langen Handflächenmuskels und des radialen Handbeugers. Beide Sehnen treten hervor, wenn man die Faust ballt.",
       ind:"Übelkeit und Erbrechen jeder Herkunft – Reise, Schwangerschaft, Narkose, Chemotherapie. Dazu Herzklopfen, Engegefühl und Schmerz in der Brust, Angst, Panik, Schlaflosigkeit, Magenschmerz, Schluckauf, Schwindel, Karpaltunnelsyndrom, Schmerz an der Arminnenseite.",
       nd:"Senkrecht 0,5 bis 1 Cun zwischen den Sehnen. Als Akupressur mit festem Daumendruck über ein bis zwei Minuten beidseits – der Punkt, den man Patienten mitgeben kann." },
 
     { n:7, pinyin:"Dàlíng", han:"大陵", de:"Großer Hügel", en:"Great Mound",
-      x:214, y:527, key:true, role:"YU · YUAN · SED",
+      x:212, y:528, key:true, role:"YU · YUAN · SED",
       antik:"yu", wx:"erde",
       tags:["Yu / Shu – Bachpunkt","Yuan-Quellpunkt","Sedierungspunkt"],
+      wirkung:["Yu / Shu – Bachpunkt", "Erdpunkt der Perikard-Leitbahn", "Yuan-Quellpunkt", "Sedierungspunkt", "", "Klärt Hitze aus dem Herzen und beruhigt den Geist", "Harmonisiert den Magen", "Öffnet die Brust", "Löst Schmerz im Handgelenk"],
       loc:"In der Mitte der Handgelenksfalte, zwischen denselben beiden Sehnen wie Pe 6.",
       ind:"Herzklopfen mit Unruhe, Schlaflosigkeit, Angst, unpassendes Lachen, Schmerz in Brust und Rippen, Magenschmerz, Erbrechen, Mundgeruch, Schmerz und Schwellung des Handgelenks, Karpaltunnelsyndrom. Als Sedierungspunkt bei Fülle und Hitze im Perikard.",
       nd:"Senkrecht 0,3 bis 0,5 Cun zwischen den Sehnen." },
@@ -258,6 +266,7 @@ Meridian.register({
       x:185, y:563, key:true, role:"YONG",
       antik:"yong", wx:"feuer",
       tags:["Yong / Ying – kleiner Flusspunkt","Feuerpunkt des Feuermeridians"],
+      wirkung:["Yong / Ying – kleiner Flusspunkt", "Feuerpunkt der Perikard-Leitbahn", "", "Kühlt Feuer im Herzen – der Punkt bei Mundgeschwüren", "Beruhigt den Geist bei großer Unruhe", "Klärt Hitze aus der Handfläche"],
       loc:"In der Handfläche zwischen dem zweiten und dritten Mittelhandknochen – dort, wo die Spitze des Mittelfingers hinfällt, wenn man die Faust ballt.",
       ind:"Der stärkste Punkt des Meridians gegen Hitze: Aphthen und Mundgeruch, brennende Handflächen, Fieber, Unruhe bis zur Verzweiflung, wirres Reden, Erbrechen, Nasenbluten. Der Name sagt, woher die Mühsal kommt – es ist der Punkt der Erschöpften.",
       nd:"Senkrecht 0,3 bis 0,5 Cun. Sehr schmerzhaft; sparsam verwenden." },
@@ -266,6 +275,7 @@ Meridian.register({
       x:161, y:625, key:true, role:"TING · TON",
       antik:"ting", wx:"holz",
       tags:["Ting / Jing – Brunnen-/Quellpunkt","Tonisierungspunkt","Notfallpunkt"],
+      wirkung:["Ting / Jing – Brunnen-/Quellpunkt", "Holzpunkt der Perikard-Leitbahn", "Tonisierungspunkt", "", "Belebt bei Bewusstlosigkeit und Hitzschlag – ein Notfallpunkt", "Klärt Hitze und öffnet die Sinne", "Kühlt das Herz"],
       loc:"In der Mitte der Spitze des Mittelfingers.",
       ind:"Notfallpunkt bei Bewusstlosigkeit, Ohnmacht, Hitzschlag, Fieberkrämpfen bei Kindern und Bewusstseinstrübung bei hohem Fieber. Dazu Zungensteifheit, Aphthen, brennende Handflächen, Herzschmerz.",
       nd:"Schräg 0,1 Cun oder Mikroaderlass. Im Notfall genügt kräftiger Nagelrand-Druck, bis Hilfe da ist." }
