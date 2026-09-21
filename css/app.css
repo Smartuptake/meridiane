@@ -760,3 +760,10 @@ table.zuordnung thead th .phase-symbol{display:block;margin-bottom:var(--hla-spa
 .umlauf-grid figcaption{font-size:.722rem;color:var(--hla-stein);
   margin-top:var(--hla-space-3);line-height:1.45}
 @media (max-width:900px){ .umlauf-grid{grid-template-columns:1fr} }
+
+/* --- Wirkrichtung eines Punktes --- */
+ul.wirkrichtung{list-style:none;margin:0;padding:0}
+ul.wirkrichtung li{position:relative;padding-left:14px;line-height:1.5}
+ul.wirkrichtung li::before{content:"";position:absolute;left:0;top:.62em;
+  width:6px;height:1px;background:var(--hla-kiesel)}
+ul.wirkrichtung li.luecke{margin-bottom:var(--hla-space-3)}

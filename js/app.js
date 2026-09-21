@@ -198,6 +198,17 @@
         sp.className = "merkmal" + (k > 1 ? " offen" : "");
         sp.textContent = t; m.appendChild(sp);
       });
+      /* Wirkrichtung: erst die Punktart (Antikpunkt, Yuan, Luo ...), dann
+         nach einer Leerzeile die Wirkungen. Leere Eintraege trennen. */
+      var w = $("dWirkrichtung"); w.innerHTML = "";
+      if (p.wirkung && p.wirkung.length) {
+        var ul = document.createElement("ul"); ul.className = "wirkrichtung";
+        p.wirkung.forEach(function (t) {
+          if (!t) { if (ul.lastChild) ul.lastChild.classList.add("luecke"); return; }
+          var li = document.createElement("li"); li.textContent = t; ul.appendChild(li);
+        });
+        w.appendChild(ul);
+      } else { w.textContent = "–"; }
       $("dLage").textContent = p.loc || "–";
       $("dWirkung").textContent = p.ind || "–";
       $("dStich").textContent = p.nd || "–";
