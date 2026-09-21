@@ -20,7 +20,8 @@ Meridian.register({
     ["Öffnungspunkt", "Dü 3 Hòuxī"],
     ["Paarpunkt", "Bl 62 Shēnmài"],
     ["Punkte", "28"],
-    ["Kennung", "Du · GV"]
+    ["Kennung", "Du · GV"],
+    ["Bezeichnung", "Außerordentliches Gefäß · Qí jīng 奇经"]
   ],
 
   intro: "Das Lenkergefäß ist das Gegenstück zum Konzeptionsgefäß: Es läuft auf der " +

@@ -97,7 +97,7 @@
        Wandlungsphase noch Organuhr und gehören zu keinem Umlauf. Beide
        bringen darum ihre eigene Rubrik und Merkmalsliste mit. */
     $("hKanal").textContent = data.rubrik ||
-      (data.channel + " " + (data.channelHan || "") +
+      ("Leitbahn · " + data.channel + " " + (data.channelHan || "") +
        " · " + (data.yin ? "Yin" : "Yang") + " · Umlauf " + (data.ord <= 4 ? 1 : data.ord <= 8 ? 2 : 3));
     var h1 = $("hTitel"); h1.textContent = titel;
     if (data.nameHan) h1.appendChild(han(data.nameHan));
@@ -107,7 +107,8 @@
      ["Organuhr", data.clock],
      ["Punkte", String(data.pointCount)],
      ["Flussrichtung", data.direction],
-     ["Kennung", lbl + " · " + data.code]
+     ["Kennung", lbl + " · " + data.code],
+     ["Bezeichnung", "Leitbahn · Meridian · Jīngluò 经络"]
     ]).forEach(function (r) {
       var li = document.createElement("li");
       var b = document.createElement("b"); b.textContent = r[0];

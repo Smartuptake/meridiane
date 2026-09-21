@@ -1,5 +1,5 @@
 /* Zwei Schaubilder für die Qi-Fluss-Seite:
-   1. die Bahnen aller Meridiane auf einer Figur, in den Farben ihrer
+   1. alle Leitbahnen auf einer Figur, in den Farben ihrer
       Wandlungsphase – die beiden unpaarigen Gefäße in Tusche;
    2. der große Umlauf als Kette aus zwölf Stationen in drei Reihen.
    Beide greifen auf dieselben Quellen zu wie die Einzeltafeln:
@@ -29,7 +29,7 @@
     return P[k] || { hex: TUSCHE, hell: PAPIERHELL, name: "", symbol: "" };
   }
 
-  /* ---------- 1. Alle Bahnen auf einer Figur ---------- */
+  /* ---------- 1. Alle Leitbahnen auf einer Figur ---------- */
   /* ansicht: "front", "back" oder "side" */
   function bahnen(svg, ansicht, imgBase) {
     var W = Meridian.W, H = Meridian.H;
@@ -39,7 +39,7 @@
 
     svg.setAttribute("viewBox", "0 0 " + W + " " + H);
     svg.setAttribute("role", "img");
-    svg.setAttribute("aria-label", "Alle Meridiane der Ansicht " + ansicht +
+    svg.setAttribute("aria-label", "Alle Leitbahnen der Ansicht " + ansicht +
       ", eingefärbt nach ihrer Wandlungsphase.");
     svg.innerHTML = "";
 
@@ -50,7 +50,7 @@
 
     function zeichne(host, d, farbe, breite, deckung) {
       /* Schmaler Saum in Papier, damit die Linie auf der Haut lesbar
-         bleibt. Bei vielen Bahnen zugleich darf er nicht breit sein,
+         bleibt. Bei vielen Leitbahnen zugleich darf er nicht breit sein,
          sonst wirkt die ganze Figur milchig. */
       host.appendChild(el("path", { d: d, fill: "none", stroke: PAPIER,
         "stroke-width": breite + 1.8, "stroke-linecap": "round", opacity: ".45" }));
@@ -89,7 +89,7 @@
     return liste;
   }
 
-  /* Legende zu einer Ansicht: welche Bahn in welcher Farbe */
+  /* Legende zu einer Ansicht: welche Leitbahn in welcher Farbe */
   function bahnenLegende(host, ansicht) {
     host.innerHTML = "";
     (global.MeridianKatalog || []).filter(function (m) { return m.view === ansicht; })
@@ -125,7 +125,7 @@
     svg.setAttribute("viewBox", "0 0 1040 646");
     svg.setAttribute("role", "img");
     svg.setAttribute("aria-label",
-      "Der große Umlauf: zwölf Meridiane in drei Umläufen zu je vier, " +
+      "Der große Umlauf: zwölf Leitbahnen in drei Umläufen zu je vier, " +
       "jeder Umlauf beginnt und endet in der Brust.");
     svg.innerHTML = "";
 

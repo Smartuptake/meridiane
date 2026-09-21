@@ -21,7 +21,8 @@ Meridian.register({
     ["Öffnungspunkt", "Lu 7 Lièquē"],
     ["Paarpunkt", "Ni 6 Zhàohǎi"],
     ["Punkte", "24"],
-    ["Kennung", "Ren · CV"]
+    ["Kennung", "Ren · CV"],
+    ["Bezeichnung", "Außerordentliches Gefäß · Qí jīng 奇经"]
   ],
 
   intro: "Das Konzeptionsgefäß ist kein Organmeridian, sondern eines der acht " +
