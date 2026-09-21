@@ -1,7 +1,10 @@
 /* Milzmeridian – Fuß-Taiyin – 足太阴脾经
    Punktlagen kalibriert auf img/front.png (880 × 1168).
-   Spitze des medialen Knöchels y≈998, Kniegelenksspalt y≈818 → 16 Cun,
-   rund 11,3 px je Cun. Der Verlauf liegt auf der Innenseite des Beins. */
+   Am 21.09.2026 nachgemessen: die Spitze des Innenknöchels liegt bei y≈1042,
+   nicht bei 998 – 998 ist die schmalste Stelle des Knöchels. Innen wird nicht
+   mit 16, sondern mit 13 Cun gerechnet: Condylus medialis der Tibia (MP 9,
+   y≈840) → Spitze des Innenknöchels = 13 Cun, also 15,5 px je Cun.
+   Der Verlauf liegt auf der Innenseite des Beins. */
 Meridian.register({
   id: "sp", code: "SP", codeDe: "MP", ord: 4,
   name: "Milz", titel: "Milzmeridian", nameHan: "脾经",
@@ -17,12 +20,12 @@ Meridian.register({
          "Unterschenkels hinauf, über die Innenseite des Oberschenkels in den Bauch, vier Cun " +
          "neben der Mittellinie empor – und endet an MP 21 seitlich am Brustkorb.",
 
-  cun: { knoechel: [388, 998], knie: [394, 818],
-         hinweis: "Innenknöchel → Kniegelenksspalt = 16 Cun; MP 6 liegt 3 Cun über dem Knöchel" },
+  cun: { knoechel: [392, 1042], knie: [397, 840],
+         hinweis: "Spitze des Innenknöchels → Condylus medialis der Tibia = 13 Cun; MP 6 liegt 3 Cun über dem Knöchel" },
 
-  path: [[374,1116],[382,1100],[388,1080],[390,1050],[388,1012],[386,988],[384,964],
-         [389,920],[396,874],[394,840],[399,805],[404,768],[412,710],[420,650],[426,600],
-         [420,560],[400,520],[380,480],[366,440],[360,400],[352,370],[348,352]],
+  path: [[379,1113],[384,1104],[383,1092],[391,1080],[389,1052],[387,1022],[385,995],
+         [388,950],[397,887],[397,840],[398,800],[398,764],[408,710],[418,650],[425,600],
+         [420,560],[400,520],[380,480],[371,436],[360,400],[352,370],[348,352]],
 
   inner: "M382,432 C410,418 428,392 432,356 C436,312 436,276 438,248",
   branches: [{ label: "Ast zum Herzen", d: "M430,348 C448,330 462,312 466,296" }],
@@ -183,76 +186,86 @@ Meridian.register({
 
   points: [
     { n:1, pinyin:"Yǐnbái", han:"隐白", de:"Verborgenes Weiß", en:"Hidden White",
-      x:374, y:1116, key:true, role:"TING",
+      x:379, y:1113, key:true, role:"TING",
       antik:"ting", wx:"holz",
       tags:["Ting / Jing – Brunnen-/Quellpunkt","hält das Blut"],
+      wirkung:["Ting / Jing – Brunnen-/Quellpunkt", "Holzpunkt der Milz-Leitbahn", "", "Hält das Blut in den Gefäßen", "Stillt Blutungen, besonders zu starke Regel", "Klärt den Geist und beruhigt bei Albträumen"],
       loc:"Auf der medialen Seite der Großzehe, ein Fen (0,1 Cun) proximal des Nagelfalzwinkels.",
       ind:"Zu starke Regelblutung, Blut im Stuhl, Nasenbluten, Albträume, Unruhe im Denken, Bewusstlosigkeit.",
       nd:"Schräg 0,1 Cun. Bei Blutungen klassisch Moxa statt Nadel." },
 
     { n:2, pinyin:"Dàdū", han:"大都", de:"Die große Stadt", en:"Great Metropolis",
-      x:382, y:1100, key:false, role:"YONG · TON",
+      x:384, y:1104, key:false, role:"YONG · TON",
       antik:"yong", wx:"feuer",
       tags:["Yong / Ying – kleiner Flusspunkt","Tonisierungspunkt"],
+      wirkung:["Yong / Ying – kleiner Flusspunkt", "Feuerpunkt der Milz-Leitbahn", "Tonisierungspunkt", "", "Stärkt die Milz und wärmt die Mitte", "Löst Völlegefühl nach dem Essen", "Klärt Hitze"],
       loc:"An der medialen, tibialen Seite der Großzehe, distal des Zehengrundgelenks, an der Grenze zwischen rotem und weißem Fleisch.",
       ind:"Völle im Bauch, Erbrechen, Durchfall, Fieber ohne Schweiß, Schweregefühl im Körper.",
       nd:"Senkrecht 0,3–0,5 Cun." },
 
     { n:3, pinyin:"Tàibái", han:"太白", de:"Das größte Weiße", en:"Supreme White",
-      x:388, y:1080, key:true, role:"YU · YUAN · BEN",
+      x:383, y:1092, key:true, role:"YU · YUAN · BEN",
       antik:"yu", wx:"erde",
       tags:["Yu / Shu – größerer Flusspunkt","Yuan-Quellpunkt","Ben-Punkt"],
+      wirkung:["Yu / Shu – Bachpunkt", "Erdpunkt der Milz-Leitbahn", "Yuan-Quellpunkt", "Ben-Punkt", "", "Stärkt Milz und Magen", "Löst Feuchtigkeit", "Ordnet die Verdauung", "Kräftigt den Fuß"],
       loc:"An der medialen Seite des Fußes, proximal des Kopfes des ersten Mittelfußknochens, an der Grenze zwischen rotem und weißem Fleisch.",
       ind:"Bauchschmerz und Völle, Durchfall, Verstopfung, schwere Glieder, Erschöpfung – der Grundpunkt zum Stärken der Milz.",
       nd:"Senkrecht 0,5–0,8 Cun." },
 
     { n:4, pinyin:"Gōngsūn", han:"公孙", de:"Enkel des Herzogs", en:"Yellow Emperor",
-      x:390, y:1050, key:true, role:"LUO",
+      x:391, y:1080, key:true, role:"LUO",
       tags:["Luo-Punkt – Verbindungspunkt","zieht zum Yuan-Punkt Ma 42","Öffnungspunkt des Chong Mai"],
+      wirkung:["Luo-Punkt – zieht zum Yuan-Punkt Ma 42", "Öffnungspunkt des Chong Mai", "", "Ordnet Magen und Darm", "Löst Nahrungsstau und Bauchschmerz", "Reguliert den Chong Mai und die Regel", "Beruhigt den Geist"],
       loc:"In einer Vertiefung distal und inferior der Basis des ersten Mittelfußknochens, an der Grenze zwischen weißem und rotem Fleisch.",
       ind:"Magenschmerz, Erbrechen, Durchfall, Bauchkrämpfe, Regelbeschwerden, Unruhe – klassisch gepaart mit Pe 6.",
       nd:"Senkrecht 0,6–1,2 Cun." },
 
     { n:5, pinyin:"Shāngqiū", han:"商丘", de:"Kleiner Fersenberg", en:"Shang Hill",
-      x:388, y:1012, key:false, role:"KING · SED",
+      x:389, y:1052, key:false, role:"KING · SED",
       antik:"king", wx:"metall",
       tags:["King / Jing – Strom-/Flusspunkt","Sedierungspunkt"],
+      wirkung:["King / Jing – Strom-/Flusspunkt", "Metallpunkt der Milz-Leitbahn", "Sedierungspunkt", "", "Löst Feuchtigkeit aus der Mitte", "Stärkt die Milz", "Öffnet die Leitbahn am Sprunggelenk"],
       loc:"In der Vertiefung am Treffpunkt der vorderen und unteren Grenze des Innenknöchels.",
       ind:"Schwellung und Schmerz im Sprunggelenk, Völle im Bauch, Durchfall, schwere Glieder, Gelbsucht.",
       nd:"Senkrecht 0,3–0,5 Cun." },
 
     { n:6, pinyin:"Sānyīnjiāo", han:"三阴交", de:"Verbindung der drei Yin", en:"Three Yin Intersection",
-      x:384, y:964, key:true, role:"GRUPPEN-LUO",
+      x:385, y:995, key:true, role:"GRUPPEN-LUO",
       tags:["Treffpunkt der drei Fuß-Yin-Meridiane","Gruppen-Luo-Punkt","einer der meistgenutzten Punkte"],
+      wirkung:["Treffpunkt der drei Fuß-Yin-Leitbahnen", "Gruppen-Luo-Punkt", "", "Stärkt Milz und Magen", "Nährt Leber und Niere, Blut und Yin", "Reguliert die Regel und den Unterbauch", "Beruhigt den Geist", "In der Schwangerschaft streng gemieden"],
       loc:"3 Cun proximal der Spitze des Innenknöchels, am Hinterrand der Tibia.",
       ind:"Alle Regel- und Unterleibsbeschwerden, Verdauungsstörungen, Schlaflosigkeit, Nässe in den Beinen, Hauterkrankungen.",
       nd:"Senkrecht 1–1,5 Cun. In der Schwangerschaft streng verboten – der Punkt bewegt das Blut kräftig nach unten." },
 
     { n:8, pinyin:"Dìjī", han:"地机", de:"Drehpunkt der Erde", en:"Earth Pivot",
-      x:396, y:874, key:false, role:"XI",
+      x:397, y:887, key:false, role:"XI",
       tags:["Xi-Cleft – Akkumulationspunkt","Akutpunkt bei Blut"],
-      loc:"10 Cun proximal des Innenknöchels, 3 Cun distal von MP 9, am Hinterrand der Tibia.",
+      wirkung:["Xi-Cleft – Akkumulationspunkt", "", "Akutpunkt bei Schmerz in der Regel", "Bewegt das Blut und löst Stauung", "Leitet Feuchtigkeit aus"],
+      loc:"3 Cun distal von MP 9 und 10 Cun proximal der Spitze des Innenknöchels, am Hinterrand der Tibia.",
       ind:"Akute Regelschmerzen, akuter Bauchschmerz, Durchfall, Wasseransammlung, Schmerz im Unterschenkel.",
       nd:"Senkrecht 1–1,5 Cun." },
 
     { n:9, pinyin:"Yīnlíngquán", han:"阴陵泉", de:"Quelle am Yin-Hügel", en:"Yin Mound Spring",
-      x:394, y:840, key:true, role:"HO",
+      x:397, y:840, key:true, role:"HO",
       antik:"ho", wx:"wasser",
       tags:["Ho / He – Meerpunkt","der Punkt gegen Nässe"],
+      wirkung:["Ho / He – Meerpunkt", "Wasserpunkt der Milz-Leitbahn", "", "Der Punkt gegen Nässe – leitet Feuchtigkeit aus", "Löst Ödeme und schweres Gefühl", "Öffnet das Wasser im Unteren Erwärmer", "Behandelt das Knie von innen"],
       loc:"Auf der medialen Seite des Knies, in der Vertiefung zwischen dem Condylus medialis der Tibia und dem Hinterrand der Tibia – etwa auf Höhe der Tuberositas tibiae.",
       ind:"Feuchtigkeit in jeder Form: Ödeme, Wasser im Knie, schwere Beine, weicher Stuhl, trüber oder spärlicher Urin, Ausfluss.",
       nd:"Senkrecht 1–2 Cun." },
 
     { n:10, pinyin:"Xuèhǎi", han:"血海", de:"Meer des Blutes", en:"Sea of Blood",
-      x:404, y:768, key:true, role:"",
+      x:398, y:764, key:true, role:"",
       tags:["kühlt und bewegt das Blut"],
+      wirkung:["Blutpunkt der Milz-Leitbahn", "", "Kühlt das Blut bei Hitze in der Haut", "Bewegt das Blut und ordnet die Regel", "Lindert Juckreiz und Hautausschläge"],
       loc:"2 Cun proximal des oberen medialen Randes der Patella, auf dem Bauch des M. vastus medialis. Tastprobe: die Handfläche auf die Kniescheibe legen, der Daumen zeigt auf den Punkt.",
       ind:"Hauterkrankungen mit Juckreiz, Ekzeme, Nesselsucht, unregelmäßige oder schmerzhafte Regel, Blutstauung.",
       nd:"Senkrecht 1–1,5 Cun." },
 
     { n:15, pinyin:"Dàhéng", han:"大横", de:"Große Querverbindung", en:"Great Horizontal",
-      x:366, y:435, key:false, role:"",
+      x:371, y:436, key:false, role:"",
       tags:["Treffpunkt mit dem Yinwei Mai"],
+      wirkung:["Treffpunkt mit dem Yinwei Mai", "", "Ordnet den Darm und löst Verstopfung", "Bewegt das Qi im Bauch", "Löst Feuchtigkeit im Unteren Erwärmer"],
       loc:"4 Cun lateral der Mitte des Nabels, auf Höhe von Ren 8.",
       ind:"Bauchschmerz mit Krämpfen, Verstopfung, Durchfall, Schweregefühl im Bauch.",
       nd:"Senkrecht 1–2 Cun." },
@@ -260,6 +273,7 @@ Meridian.register({
     { n:21, pinyin:"Dàbāo", han:"大包", de:"Große Umhüllung", en:"Great Embracement",
       x:348, y:352, key:true, role:"GROSSES LUO",
       tags:["Großes Luo der Milz","Endpunkt des Meridians","versorgt alle Luo-Gefäße"],
+      wirkung:["Großes Luo der Milz", "Endpunkt der Milz-Leitbahn", "", "Versorgt alle Luo-Gefäße des Körpers", "Löst Schmerz am ganzen Körper", "Öffnet die Brust und die Rippenseiten"],
       loc:"In der mittleren Axillarlinie, im sechsten Zwischenrippenraum.",
       ind:"Schmerz am ganzen Körper, Schwäche aller Glieder, Schmerz in der Brustseite, Atemnot. Von hier geht nach der Vorlage ein eigenes Luo-Netz aus.",
       nd:"Schräg oder tangential 0,5–0,8 Cun. Nicht senkrecht tief – Pleuragefahr." }
