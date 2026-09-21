@@ -7,6 +7,8 @@
    dazwischen 8 Cun, also 10,25 Bildpunkte je Cun senkrecht; waagerecht
    1 Cun = 16,6 Bildpunkte (Brustwarzen x 370 und 502, 8 Cun auseinander).
    Bauchlinie 0,5 Cun neben der Mitte (x 429), Brustlinie 2 Cun (x 403).
+   Schambein y 560, Nabel → Schambein = 5 Cun, also 24,8 px je Cun im
+   Unterbauch – der Oberbauch der Figur ist kurz, der Unterbauch lang.
    Der Fuß ist in der Figur stark verkürzt; Ni 2 bis Ni 6 richten sich
    darum nach dem sichtbaren Knöchel, nicht nach dem Cun-Maß. */
 Meridian.register({
@@ -42,7 +44,7 @@ Meridian.register({
          [375,1048],[376,1030],[381,1018],
          [386,1011],[388,965],[393,910],[396,870],[397,820],
          [402,790],[407,750],[412,710],[418,670],[424,640],[428,612],
-         [429,570],[429,530],[429,487],[429,467],[429,436],[429,402],[429,374],
+         [429,600],[429,580],[429,560],[429,510],[429,436],[429,402],[429,374],
          [420,356],[410,340],[403,327],[403,310],[403,277],[403,243]],
 
   inner: "M429,470 C444,452 450,424 448,392 C446,352 442,320 441,292 C440,266 439,250 438,236",
@@ -309,7 +311,7 @@ Meridian.register({
       nd:"Senkrecht 0,8 bis 1,2 Cun." },
 
     { n:11, pinyin:"Hénggǔ", han:"横骨", de:"Querknochen", en:"Pubic Bone",
-      x:429, y:487, key:false, role:"",
+      x:429, y:560, key:false, role:"",
       antik:"", wx:"",
       tags:["Beginn der Bauchlinie","Kreuzungspunkt mit dem Chong Mai"],
       wirkung:["Beginn der Bauchlinie", "Kreuzungspunkt mit dem Chong Mai", "", "Ordnet das Wasserlassen", "Festigt die Essenz", "Löst Schmerz im Unterbauch"],
@@ -318,7 +320,7 @@ Meridian.register({
       nd:"Senkrecht 0,8 bis 1,2 Cun, vorher Blase entleeren lassen." },
 
     { n:13, pinyin:"Qìxué", han:"气穴", de:"Höhle des Qi", en:"Qi Hole",
-      x:429, y:467, key:true, role:"",
+      x:429, y:510, key:true, role:"",
       antik:"", wx:"",
       tags:["Kreuzungspunkt mit dem Chong Mai","Frauenpunkt"],
       wirkung:["Kreuzungspunkt mit dem Chong Mai", "", "Stärkt Niere und Essenz", "Ordnet die Regel und den Kinderwunsch", "Wärmt den Unteren Erwärmer"],

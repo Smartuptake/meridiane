@@ -24,7 +24,7 @@ Meridian.register({
 
   path: [[419,103],[421,141],[415,152],[407,175],[398,195],[386,207],[371,215],[371,270],
          [371,313],[382,360],[396,400],[404,436],[404,480],[401,508],[389,560],[377,640],
-         [367,700],[356,765],[354,827],[356,869],[357,910],[360,952],[366,1000],[371,1048],
+         [367,700],[356,772],[354,827],[356,869],[357,910],[360,952],[366,1000],[371,1048],
          [365,1062],[355,1082],[349,1097],[351,1114]],
 
   inner: "M371,222 C398,282 418,336 428,386 C436,424 438,452 428,478 " +
@@ -228,7 +228,7 @@ Meridian.register({
       nd:"Senkrecht 1–1,5 Cun. In der Schwangerschaft meiden." },
 
     { n:34, pinyin:"Liángqiū", han:"梁丘", de:"Kuppe des Hügels", en:"Ridge Mound",
-      x:356, y:765, key:false, role:"XI",
+      x:356, y:772, key:false, role:"XI",
       tags:["Xi-Cleft – Akkumulationspunkt","Akutpunkt"],
       wirkung:["Xi-Cleft – Akkumulationspunkt", "", "Akutpunkt bei plötzlichem Magenschmerz", "Senkt gegenläufiges Magen-Qi ab", "Öffnet die Leitbahn am Knie"],
       loc:"2 Cun proximal des seitlichen Oberrandes der Patella, 4 Cun oberhalb des Kniegelenksspalts, direkt oberhalb von Ma 35.",

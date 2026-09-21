@@ -4,7 +4,8 @@
    schmalste Stelle des Knöchels), Kniegelenksspalt y 827, Condylus medialis
    der Tibia y 840. Innen gelten 13 Cun zwischen Condylus und Knöchelspitze,
    also 15,5 Bildpunkte je Cun am Unterschenkel. Am Oberschenkel Schambein
-   y 487 bis Knie y 827, dazwischen 18 Cun, also 18,9 Bildpunkte je Cun.
+   y 560 bis Condylus medialis y 818, dazwischen 18 Cun, also 14,3
+   Bildpunkte je Cun.
    Waagerecht 1 Cun = 16,6 Bildpunkte (Brustwarzen 370 und 502, 8 Cun);
    Mittellinie x 437, Nabel y 436, Brustwarze y 310, Rippenabstand 17. */
 Meridian.register({
@@ -31,8 +32,8 @@ Meridian.register({
          hinweis: "Spitze des Innenknöchels → Condylus medialis der Tibia = 13 Cun; Le 5 liegt 5, Le 6 liegt 7 Cun über dem Knöchel" },
 
   path: [[363,1113],[361,1100],[368,1082],[374,1062],[380,1046],[383,1005],[385,965],[390,934],
-         [394,890],[397,851],[399,815],[402,740],[402,680],[402,620],[404,582],[403,525],
-         [396,487],[385,470],[372,440],[361,415],[362,388],[369,344]],
+         [394,890],[397,851],[399,815],[402,761],[402,700],[404,665],[404,632],[404,589],
+         [396,560],[385,470],[372,440],[361,415],[362,388],[369,344]],
 
   inner: "M396,492 C414,488 428,486 437,486 C440,470 438,452 436,436 C432,410 424,384 414,360",
   branches: [
@@ -314,7 +315,7 @@ Meridian.register({
       nd:"Senkrecht 0,8 bis 1,2 Cun bei gebeugtem Knie." },
 
     { n:9, pinyin:"Yīnbāo", han:"阴包", de:"Hülle des Yin", en:"Yin Bladder",
-      x:402, y:740, key:false, role:"",
+      x:402, y:761, key:false, role:"",
       antik:"", wx:"",
       tags:["Oberschenkelpunkt"],
       wirkung:["Lokalpunkt am Oberschenkel", "", "Ordnet die Regel", "Öffnet die Leitbahn an der Innenseite des Oberschenkels", "Reguliert das Wasser"],
@@ -323,7 +324,7 @@ Meridian.register({
       nd:"Senkrecht 0,8 bis 1,2 Cun." },
 
     { n:10, pinyin:"Zúwǔlǐ", han:"足五里", de:"Fünf Meilen am Fuß", en:"Leg Five Li",
-      x:404, y:582, key:false, role:"",
+      x:404, y:632, key:false, role:"",
       antik:"", wx:"",
       tags:["Leistenpunkt"],
       wirkung:["Lokalpunkt in der Leiste", "", "Leitet Feuchtigkeit und Hitze aus dem Unteren Erwärmer", "Ordnet das Wasserlassen", "Öffnet die Leitbahn in der Leiste"],
@@ -332,7 +333,7 @@ Meridian.register({
       nd:"Senkrecht 0,8 bis 1,2 Cun. Vorsicht: hier verlaufen große Gefäße – vorher tasten." },
 
     { n:11, pinyin:"Yīnlián", han:"阴廉", de:"Kante des Yin", en:"Yin Corner",
-      x:403, y:522, key:false, role:"",
+      x:404, y:589, key:false, role:"",
       antik:"", wx:"",
       tags:["Leistenpunkt","Frauenpunkt"],
       wirkung:["Lokalpunkt in der Leiste", "", "Ordnet die Regel und den Kinderwunsch", "Bewegt Qi und Blut im Unterbauch", "Öffnet die Leitbahn in der Leiste"],
@@ -341,7 +342,7 @@ Meridian.register({
       nd:"Senkrecht 0,8 bis 1,2 Cun. Auch hier vorher die Schlagader tasten." },
 
     { n:12, pinyin:"Jímài", han:"急脉", de:"Hastiges Gefäß", en:"Urgent Pulse",
-      x:396, y:487, key:false, role:"",
+      x:396, y:560, key:false, role:"",
       antik:"", wx:"",
       tags:["Punkt an der Leistenbeuge"],
       wirkung:["Punkt an der Leistenbeuge", "", "Ordnet das Qi im Genitalbereich", "Löst Schmerz in der Leiste", "Wärmt die Leber-Leitbahn bei Kälte"],

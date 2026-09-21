@@ -24,7 +24,7 @@ Meridian.register({
          hinweis: "Spitze des Innenknöchels → Condylus medialis der Tibia = 13 Cun; MP 6 liegt 3 Cun über dem Knöchel" },
 
   path: [[379,1113],[384,1104],[383,1092],[391,1080],[389,1052],[387,1022],[385,995],
-         [388,950],[397,887],[397,840],[398,800],[398,764],[408,710],[418,650],[425,600],
+         [388,950],[397,887],[397,840],[398,800],[398,772],[408,710],[418,650],[425,600],
          [420,560],[400,520],[380,480],[371,436],[360,400],[352,370],[348,352]],
 
   inner: "M382,432 C410,418 428,392 432,356 C436,312 436,276 438,248",
@@ -255,7 +255,7 @@ Meridian.register({
       nd:"Senkrecht 1–2 Cun." },
 
     { n:10, pinyin:"Xuèhǎi", han:"血海", de:"Meer des Blutes", en:"Sea of Blood",
-      x:398, y:764, key:true, role:"",
+      x:398, y:772, key:true, role:"",
       tags:["kühlt und bewegt das Blut"],
       wirkung:["Blutpunkt der Milz-Leitbahn", "", "Kühlt das Blut bei Hitze in der Haut", "Bewegt das Blut und ordnet die Regel", "Lindert Juckreiz und Hautausschläge"],
       loc:"2 Cun proximal des oberen medialen Randes der Patella, auf dem Bauch des M. vastus medialis. Tastprobe: die Handfläche auf die Kniescheibe legen, der Daumen zeigt auf den Punkt.",
