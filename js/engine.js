@@ -127,7 +127,7 @@
 
     /* Legende */
     var lx = rechts ? 24 : 604;
-    var legende = el("g", { "font-family": '"Lato", Arial, sans-serif', "font-size": 15 });
+    var legende = el("g", { "font-family": '"LXGW WenKai TC", "Lato", Arial, "Kaiti SC", sans-serif', "font-size": 15 });
     legende.innerHTML =
       '<line x1="' + lx + '" y1="100" x2="' + (lx+30) + '" y2="100" stroke="' + TUSCHE + '" stroke-width="3.2" stroke-linecap="round"/>' +
       '<text x="' + (lx+42) + '" y="105" fill="' + TUSCHE + '">äußerer Verlauf</text>' +
@@ -206,7 +206,7 @@
 
       p._txt = el("text", { x: railX + (rechts ? 9 : -9), y: p._ly + 5,
         "text-anchor": rechts ? "start" : "end", fill: STEIN,
-        "font-family": '"Lato", Arial, sans-serif', "font-size": 18, "font-weight": 700,
+        "font-family": '"LXGW WenKai TC", "Lato", Arial, "Kaiti SC", sans-serif', "font-size": 18, "font-weight": 700,
         "letter-spacing": 0.8 });
       p._txt.textContent = LBL + " " + p.n;
       p._txt.style.cursor = "pointer";

@@ -107,7 +107,7 @@
         var t = el("text", { x: p.x + (links ? -17 : 17), y: p.y + 8,
           "text-anchor": links ? "end" : "start", fill: TUSCHE, stroke: WEISS,
           "stroke-width": 4, "paint-order": "stroke",
-          "font-family": '"Lato", Arial, sans-serif', "font-size": 24, "font-weight": 700 });
+          "font-family": '"LXGW WenKai TC", "Lato", Arial, "Kaiti SC", sans-serif', "font-size": 24, "font-weight": 700 });
         t.textContent = p.nr;
         g.appendChild(t);
       }

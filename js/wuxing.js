@@ -9,8 +9,9 @@
   var NS = "http://www.w3.org/2000/svg";
   var TUSCHE = "#1F1D1B", STEIN = "#736C63", KIESEL = "#A39B90",
       HAARLINIE = "#DCD5C9", NEBEL = "#EDE7DC", WEISS = "#FFFFFF", PAPIERHELL = "#F2EDE4";
-  var LATO = '"Lato", Arial, sans-serif';
-  var HANZI = '"Noto Serif SC", "Songti SC", serif';
+  var LATO = '"LXGW WenKai TC", "Lato", Arial, "Kaiti SC", sans-serif';
+  /* Kaiti, wie ueberall sonst: der eigene Teilsatz zuerst. */
+  var HANZI = '"LXGW WenKai TC", "Kaiti SC", "Kaiti TC", STKaiti, KaiTi, serif';
 
   function el(t, a) { var e = document.createElementNS(NS, t); for (var k in a) e.setAttribute(k, a[k]); return e; }
   function txt(x, y, s, o) {

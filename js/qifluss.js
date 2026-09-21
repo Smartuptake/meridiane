@@ -11,8 +11,9 @@
   var NS = "http://www.w3.org/2000/svg";
   var TUSCHE = "#1F1D1B", STEIN = "#736C63", KIESEL = "#A39B90",
       HAARLINIE = "#DCD5C9", PAPIER = "#F7F4EE", PAPIERHELL = "#F2EDE4", WEISS = "#FFFFFF";
-  var LATO = '"Lato", Arial, sans-serif';
-  var CORMORANT = '"Cormorant Garamond", Garamond, serif';
+  /* Kaiti vorn, damit auch chinesische Zeichen in SVG-Text richtig stehen */
+  var LATO = '"LXGW WenKai TC", "Lato", Arial, "Kaiti SC", sans-serif';
+  var CORMORANT = '"LXGW WenKai TC", "Cormorant Garamond", Garamond, "Kaiti SC", serif';
 
   function el(t, a) { var e = document.createElementNS(NS, t); for (var k in a) e.setAttribute(k, a[k]); return e; }
   function txt(x, y, s, o) {

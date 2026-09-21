@@ -29,9 +29,17 @@
   --hla-wx-metall:#8C9296;  --hla-wx-metall-hell:#F1F3F3;
   --hla-wx-wasser:#2E4160;  --hla-wx-wasser-hell:#E3E7EE;
 
-  --hla-font-display:"Cormorant Garamond",Garamond,"Times New Roman",serif;
-  --hla-font-text:"Lato","Helvetica Neue",Arial,sans-serif;
-  --hla-font-hanzi:"Kaiti SC","Kaiti TC",STKaiti,KaiTi,"楷体","LXGW WenKai TC",serif;
+  /* "LXGW WenKai TC" steht in jedem Stapel vorn. Die Schrift ist per
+     @font-face auf eine unicode-range beschraenkt, die ausschliesslich
+     die chinesischen Zeichen des Projekts enthaelt - lateinische Zeichen
+     fallen deshalb von selbst auf Cormorant beziehungsweise Lato durch.
+     So steht jedes chinesische Zeichen ueberall in Kaiti, auch mitten im
+     Fliesstext, ohne dass es einzeln ausgezeichnet werden muss. Die
+     System-Kaitis stehen hinten als Auffangnetz fuer Zeichen, die nicht
+     im Teilsatz sind. */
+  --hla-font-display:"LXGW WenKai TC","Cormorant Garamond",Garamond,"Times New Roman","Kaiti SC","Kaiti TC",STKaiti,KaiTi,"楷体",serif;
+  --hla-font-text:"LXGW WenKai TC","Lato","Helvetica Neue",Arial,"Kaiti SC","Kaiti TC",STKaiti,KaiTi,"楷体",sans-serif;
+  --hla-font-hanzi:"LXGW WenKai TC","Kaiti SC","Kaiti TC",STKaiti,KaiTi,"楷体",serif;
 
   --hla-tracking-label:.18em;
   --hla-lh-text:1.65;
