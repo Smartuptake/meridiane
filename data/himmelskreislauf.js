@@ -18,6 +18,7 @@ window.Himmelskreislauf = {
   leseanleitung: [
     { zeichen: "kreis", text: "Roter Punkt: benannter Akupunkturpunkt auf der Körperoberfläche." },
     { zeichen: "kugel", text: "Kugel mit Kern: Energiezentrum im Körperinneren – kein Oberflächenpunkt." },
+    { zeichen: "feld", text: "Großes farbiges Feld: eines der drei Zinnoberfelder (Dan Tian) auf der Mittelachse." },
     { zeichen: "strich", text: "Gestrichelt: ergänzende Beinverbindungen." },
     { zeichen: "", text: "Alle Positionen sind schematisch projiziert." }
   ],
@@ -36,6 +37,39 @@ window.Himmelskreislauf = {
   beinAuf: [[137,1285],[130,1084],[142,805],[269,773],[415,758]],
 
   tabelleTitel: "Die neunzehn Stationen und ihre Lage",
+
+  /* Die drei Zinnoberfelder. Nach Stefans Ursprungsdatei
+     (50-Schaubilder/Himmelskreislauf-1.png und -2.png): keine
+     Oberflaechenpunkte, sondern Felder auf der Mittelachse im
+     Koerperinneren, jeweils zwischen einem hinteren Punkt am
+     Lenkergefaess und einem vorderen am Konzeptionsgefaess.
+     Farben wie in der Vorlage - oben blau, Mitte gruen, unten orange -,
+     gedaempft auf die Tokens des Designhandbuchs. */
+  dantian: [
+    /* Deckungsgleich mit Station 1: die Kristallkammer ist der Kern des
+       oberen Zinnoberfeldes, nicht etwas daneben. */
+    { stufe: "oben", x: 455, y: 95, farbe: "#2E4160", hell: "#E3E7EE", r: 30,
+      name: "Oberes Zinnoberfeld", kurz: "Oberer Dan Tian",
+      han: "上丹田", pinyin: "shàng dāntián", en: "Upper Dan Tian",
+      zwischen: "in der Mitte des Kopfes, Station 1 bildet seinen Kern",
+      text: "Das Feld des Shen 神, des Geistes. Es liegt in der Mitte des Kopfes auf " +
+            "Höhe der Augenbrauen. Hier sammelt sich, was die Vorlage die Kristallkammer " +
+            "nennt; in der Übung ruht die Aufmerksamkeit zuletzt hier." },
+    { stufe: "mitte", x: 480, y: 423, farbe: "#4E7A4B", hell: "#E6EDE4", r: 32,
+      name: "Mittleres Zinnoberfeld", kurz: "Mittlerer Dan Tian",
+      han: "中丹田", pinyin: "zhōng dāntián", en: "Middle Dan Tian",
+      zwischen: "zwischen Shānzhōng 膻中 vorn und dem Wirbelsäulenpass hinten",
+      text: "Das Feld des Qi 气. Es liegt hinter der Brustmitte, auf Herzhöhe. Hier " +
+            "wandelt sich, was der untere Dan Tian gesammelt hat; Enge in der Brust " +
+            "und flacher Atem sind seine Zeichen." },
+    { stufe: "unten", x: 480, y: 665, farbe: "#BE8526", hell: "#F5ECDC", r: 38,
+      name: "Unteres Zinnoberfeld", kurz: "Unterer Dan Tian",
+      han: "下丹田", pinyin: "xià dāntián", en: "Lower Dan Tian",
+      zwischen: "zwischen Qìhǎi 气海 vorn und Mìngmén 命门 hinten",
+      text: "Das Feld des Jing 精, der Essenz – und der Ofen des ganzen Kreislaufs. Es " +
+            "liegt im Unterbauch unterhalb des Nabels, auf halbem Weg zur Wirbelsäule. " +
+            "Jede Übung beginnt und endet hier; das größte der drei Felder." }
+  ],
 
   punkte: [
     { nr:1, art:"zentrum", x:455, y:93, ort:"Im Kopf, oberes Zinnoberfeld. Kein Oberflächenpunkt.", name:"Kristallkammer",

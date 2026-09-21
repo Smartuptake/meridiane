@@ -9,6 +9,8 @@
   var W = 746, HH = 1335;
   var TUSCHE = "#1F1D1B", SIEGELROT = "#D32727", STEIN = "#736C63",
       WEISS = "#FFFFFF", PAPIER = "#F7F4EE";
+  var LATO = '"LXGW WenKai TC", "Lato", Arial, "Kaiti SC", sans-serif';
+  var HANZI = '"LXGW WenKai TC", "Kaiti SC", "Kaiti TC", STKaiti, KaiTi, serif';
 
   function $(x) { return document.getElementById(x); }
   function el(t, a) { var e = document.createElementNS(NS, t); for (var k in a) e.setAttribute(k, a[k]); return e; }
@@ -87,6 +89,37 @@
       var w = Math.atan2(q.y - p.y, q.x - p.x) * 180 / Math.PI;
       svg.appendChild(el("path", { d: "M-7,-5 L5,0 L-7,5 z", fill: TUSCHE,
         transform: "translate(" + p.x.toFixed(1) + "," + p.y.toFixed(1) + ") rotate(" + w.toFixed(1) + ")" }));
+    });
+
+    /* Die drei Zinnoberfelder liegen unter den Stationen: sie sind Raeume,
+       keine Punkte. Weicher Hof, zwei Ringe, kein Kern - so lassen sie sich
+       von den Energiezentren der Stationen unterscheiden. Kein Verlauf und
+       kein Schatten nach Handbuch 3.2. */
+    (H.dantian || []).forEach(function (f) {
+      var g = el("g", {});
+      g.appendChild(el("circle", { cx: f.x, cy: f.y, r: f.r + 7,
+        fill: f.hell, opacity: ".55" }));
+      g.appendChild(el("circle", { cx: f.x, cy: f.y, r: f.r,
+        fill: f.hell, stroke: WEISS, "stroke-width": 5, opacity: ".9" }));
+      g.appendChild(el("circle", { cx: f.x, cy: f.y, r: f.r,
+        fill: "none", stroke: f.farbe, "stroke-width": 2.4 }));
+      g.appendChild(el("circle", { cx: f.x, cy: f.y, r: f.r - 9,
+        fill: "none", stroke: f.farbe, "stroke-width": 1.2, opacity: ".7" }));
+      g.appendChild(el("circle", { cx: f.x, cy: f.y, r: f.r - 18,
+        fill: "none", stroke: f.farbe, "stroke-width": 1, "stroke-dasharray": "3 4", opacity: ".6" }));
+      if (mitZahlen) {
+        var t = el("text", { x: f.x, y: f.y + 6, "text-anchor": "middle",
+          fill: f.farbe, stroke: WEISS, "stroke-width": 3.5, "paint-order": "stroke",
+          "font-family": HANZI, "font-size": 27 });
+        t.textContent = f.han;
+        g.appendChild(t);
+        var b = el("text", { x: f.x, y: f.y + f.r + 22, "text-anchor": "middle",
+          fill: f.farbe, stroke: WEISS, "stroke-width": 4, "paint-order": "stroke",
+          "font-family": LATO, "font-size": 17, "font-weight": 700 });
+        b.textContent = f.kurz;
+        g.appendChild(b);
+      }
+      svg.appendChild(g);
     });
 
     var marken = {};
@@ -180,6 +213,12 @@
       var s = document.createElementNS(NS, "svg");
       s.setAttribute("viewBox", "0 0 22 22"); s.setAttribute("class", "lesezeichen");
       if (l.zeichen === "kreis") s.appendChild(el("circle", { cx: 11, cy: 11, r: 7, fill: SIEGELROT }));
+      else if (l.zeichen === "feld") {
+        s.appendChild(el("circle", { cx: 11, cy: 11, r: 9.5, fill: "#F5ECDC",
+          stroke: "#BE8526", "stroke-width": 1.6 }));
+        s.appendChild(el("circle", { cx: 11, cy: 11, r: 5, fill: "none",
+          stroke: "#BE8526", "stroke-width": 1 }));
+      }
       else if (l.zeichen === "kugel") {
         s.appendChild(el("circle", { cx: 11, cy: 11, r: 9, fill: PAPIER, stroke: TUSCHE, "stroke-width": 1.6 }));
         s.appendChild(el("circle", { cx: 11, cy: 11, r: 3, fill: TUSCHE }));
