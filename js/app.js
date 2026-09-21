@@ -285,6 +285,34 @@
   }
 
   /* ---------- Wandlungsphasen ---------- */
+  /* Kleine Marke einer Wandlungsphase: Symbol in ihrer Farbe auf getöntem
+     Grund. Benutzt dieselbe Quelle wie die Schaubilder. */
+  function phasenMarke(ph) {
+    var NS = "http://www.w3.org/2000/svg";
+    var svg = document.createElementNS(NS, "svg");
+    svg.setAttribute("class", "wx-marke");
+    svg.setAttribute("viewBox", "0 0 28 28");
+    svg.setAttribute("aria-hidden", "true");
+    svg.setAttribute("focusable", "false");
+    var r = document.createElementNS(NS, "rect");
+    r.setAttribute("x", "0.7"); r.setAttribute("y", "0.7");
+    r.setAttribute("width", "26.6"); r.setAttribute("height", "26.6");
+    r.setAttribute("rx", "2");
+    r.setAttribute("fill", ph.hell); r.setAttribute("stroke", ph.hex);
+    r.setAttribute("stroke-width", "1.2");
+    svg.appendChild(r);
+    var g = document.createElementNS(NS, "g");
+    g.setAttribute("transform", "translate(5,5) scale(0.75)");
+    var pa = document.createElementNS(NS, "path");
+    pa.setAttribute("d", ph.symbol);
+    pa.setAttribute("fill", "none"); pa.setAttribute("stroke", ph.hex);
+    pa.setAttribute("stroke-width", "1.9");
+    pa.setAttribute("stroke-linecap", "round");
+    pa.setAttribute("stroke-linejoin", "round");
+    g.appendChild(pa); svg.appendChild(g);
+    return svg;
+  }
+
   function phasenAbschnitt(aktiv) {
     var W = window.Wandlungsphasen;
     if (!W || !aktiv) { $("phasen").style.display = "none"; return; }
@@ -306,6 +334,7 @@
       var ph = W.phasen[k];
       var th = document.createElement("th");
       if (k === aktiv) th.className = "aktiv";
+      th.appendChild(phasenMarke(ph));
       th.appendChild(document.createTextNode(ph.name));
       th.appendChild(han(ph.han));
       var s = document.createElement("small");

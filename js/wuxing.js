@@ -1,6 +1,8 @@
 /* Zwei Schaubilder: die fünf Wandlungsphasen und die Organuhr.
-   Einfarbig nach Designhandbuch 3.2 – die Phasenfarben stehen als Wort
-   in der Zuordnungstafel, nicht als Farbfläche. */
+   Jede Phase trägt ihre eigene Farbe und ihr Symbol; beides steht in
+   data/wandlungsphasen.js, damit Tafel, Schaubild und Qi-Fluss-Seite
+   dieselbe Quelle benutzen. Metall ist eigentlich weiß und auf hellem
+   Grund nicht darstellbar – es steht als helles Silber mit Kontur. */
 (function (global) {
   "use strict";
 
@@ -20,6 +22,20 @@
     });
     t.textContent = s; return t;
   }
+  /* Symbol einer Phase, auf Kantenlänge groesse zentriert um (x,y) */
+  function symbol(x, y, groesse, d, farbe, staerke) {
+    var f = groesse / 24;
+    var g = el("g", {
+      transform: "translate(" + (x - groesse / 2).toFixed(1) + "," +
+                 (y - groesse / 2).toFixed(1) + ") scale(" + f.toFixed(3) + ")"
+    });
+    g.appendChild(el("path", {
+      d: d, fill: "none", stroke: farbe, "stroke-width": staerke || 1.7,
+      "stroke-linecap": "round", "stroke-linejoin": "round"
+    }));
+    return g;
+  }
+
   function pol(cx, cy, r, grad) {
     var a = (grad - 90) * Math.PI / 180;
     return [cx + r * Math.cos(a), cy + r * Math.sin(a)];
@@ -28,9 +44,9 @@
   /* ---------------- Fünf Wandlungsphasen ---------------- */
   function diagramm(svg, aktiv) {
     var W = global.Wandlungsphasen, R = W.reihenfolge;
-    var cx = 265, cy = 248, r = 148, knoten = 40;
+    var cx = 265, cy = 252, r = 150, knoten = 44;
 
-    svg.setAttribute("viewBox", "0 0 530 490");
+    svg.setAttribute("viewBox", "0 0 530 500");
     svg.setAttribute("role", "img");
     svg.setAttribute("aria-label",
       "Die fünf Wandlungsphasen im nährenden und im kontrollierenden Zyklus." +
@@ -83,14 +99,16 @@
       var g = el("g", {});
       g.appendChild(el("circle", {
         cx: xy[0], cy: xy[1], r: knoten,
-        fill: an ? TUSCHE : WEISS, stroke: an ? TUSCHE : HAARLINIE,
-        "stroke-width": an ? 2 : 1.2
+        fill: an ? p.hex : p.hell, stroke: p.hex,
+        "stroke-width": an ? 2.4 : 1.4
       }));
-      g.appendChild(txt(xy[0], xy[1] - 4, p.han, {
-        size: 22, family: HANZI, fill: an ? PAPIERHELL : TUSCHE
+      g.appendChild(symbol(xy[0], xy[1] - 21, 24, p.symbol,
+        an ? PAPIERHELL : p.hex, an ? 2.1 : 1.9));
+      g.appendChild(txt(xy[0], xy[1] + 6, p.han, {
+        size: 21, family: HANZI, fill: an ? PAPIERHELL : TUSCHE
       }));
-      g.appendChild(txt(xy[0], xy[1] + 16, p.name, {
-        size: 13, weight: an ? 700 : 400, fill: an ? PAPIERHELL : TUSCHE
+      g.appendChild(txt(xy[0], xy[1] + 24, p.name, {
+        size: 12.5, weight: an ? 700 : 400, fill: an ? PAPIERHELL : TUSCHE
       }));
       /* Zang und Fu außerhalb des Knotens, nach außen versetzt */
       var aus = pol(cx, cy, r + knoten + 20, winkel[k]);
@@ -102,10 +120,10 @@
     });
 
     var leg = el("g", {});
-    leg.appendChild(el("line", { x1: 24, y1: 462, x2: 54, y2: 462, stroke: TUSCHE, "stroke-width": 1.8 }));
-    leg.appendChild(txt(62, 466, "nährt · Sheng-Zyklus", { anchor: "start", size: 13, fill: TUSCHE }));
-    leg.appendChild(el("line", { x1: 236, y1: 462, x2: 266, y2: 462, stroke: KIESEL, "stroke-width": 1.2, "stroke-dasharray": "5 5" }));
-    leg.appendChild(txt(274, 466, "bändigt · Ke-Zyklus", { anchor: "start", size: 13, fill: STEIN }));
+    leg.appendChild(el("line", { x1: 24, y1: 474, x2: 54, y2: 474, stroke: TUSCHE, "stroke-width": 1.8 }));
+    leg.appendChild(txt(62, 478, "nährt · Sheng-Zyklus", { anchor: "start", size: 13, fill: TUSCHE }));
+    leg.appendChild(el("line", { x1: 236, y1: 474, x2: 266, y2: 474, stroke: KIESEL, "stroke-width": 1.2, "stroke-dasharray": "5 5" }));
+    leg.appendChild(txt(274, 478, "bändigt · Ke-Zyklus", { anchor: "start", size: 13, fill: STEIN }));
     svg.appendChild(leg);
   }
 
@@ -131,12 +149,14 @@
              " A" + rI + "," + rI + " 0 0 0 " + i1[0].toFixed(1) + "," + i1[1].toFixed(1) + " Z";
     }
 
+    var P = (global.Wandlungsphasen || {}).phasen || {};
     U.forEach(function (o) {
       var an = (o.id === aktivId), bis = o.von + 2;
+      var ph = P[o.wx] || { hex: TUSCHE, hell: WEISS };
       var g = el("g", {});
       g.appendChild(el("path", {
         d: sektor(o.von, bis),
-        fill: an ? TUSCHE : WEISS, stroke: an ? TUSCHE : HAARLINIE, "stroke-width": 1
+        fill: an ? ph.hex : ph.hell, stroke: ph.hex, "stroke-width": an ? 1.8 : 1
       }));
       var mitte = pol(cx, cy, (rA + rI) / 2, (o.von + 1) * 15);
       g.appendChild(txt(mitte[0], mitte[1] + 5, o.codeDe, {

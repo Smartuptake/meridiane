@@ -20,6 +20,15 @@
   --hla-rauch:#2B2825;
   --hla-papier-hell:#F2EDE4;
 
+  /* Die fuenf Wandlungsphasen. Gedaempft gewaehlt, damit sie auf Papier
+     neben Tusche bestehen. Metall ist eigentlich weiss und auf hellem
+     Grund nicht zeigbar - es steht darum als helles Silber mit Kontur. */
+  --hla-wx-holz:#4E7A4B;    --hla-wx-holz-hell:#E6EDE4;
+  --hla-wx-feuer:#D32727;   --hla-wx-feuer-hell:#F8E4E3;
+  --hla-wx-erde:#BE8526;    --hla-wx-erde-hell:#F5ECDC;
+  --hla-wx-metall:#8C9296;  --hla-wx-metall-hell:#F1F3F3;
+  --hla-wx-wasser:#2E4160;  --hla-wx-wasser-hell:#E3E7EE;
+
   --hla-font-display:"Cormorant Garamond",Garamond,"Times New Roman",serif;
   --hla-font-text:"Lato","Helvetica Neue",Arial,sans-serif;
   --hla-font-hanzi:"Kaiti SC","Kaiti TC",STKaiti,KaiTi,"楷体","LXGW WenKai TC",serif;
@@ -646,3 +655,7 @@ table.stationen tbody tr:focus-visible{outline:2px solid var(--hla-tusche);outli
   .tabelle-figur .hinweis{display:none}
   table.stationen tbody tr{background:transparent!important}
 }
+
+/* --- Marke einer Wandlungsphase (Symbol in ihrer Farbe) --- */
+.wx-marke{display:block;width:26px;height:26px;margin-bottom:var(--hla-space-2)}
+table.zuordnung thead th .wx-marke{margin-bottom:var(--hla-space-2)}
