@@ -16,6 +16,6 @@ window.MeridianKatalog = [
 
   { umlauf:3, id:"pc", titel:"Perikardmeridian", code:"PC", codeDe:"Pe", name:"Perikard",     han:"心包", channel:"Hand-Jueyin",   element:"Feuer",  wx:"feuer",  yin:true,  clock:"19–21", points:9,  view:"front", fertig:true },
   { umlauf:3, id:"te", titel:"Drei-Erwärmer-Meridian", code:"TE", codeDe:"3E", name:"Drei-Erwärmer",han:"三焦", channel:"Hand-Shaoyang", element:"Feuer",  wx:"feuer",  yin:false, clock:"21–23", points:23, view:"back",  fertig:true },
-  { umlauf:3, id:"gb", titel:"Gallenblasenmeridian", code:"GB", codeDe:"Gb", name:"Gallenblase",  han:"胆", channel:"Fuß-Shaoyang",  element:"Holz",   wx:"holz",   yin:false, clock:"23–01", points:44, view:"side",  fertig:false },
+  { umlauf:3, id:"gb", titel:"Gallenblasenmeridian", code:"GB", codeDe:"Gb", name:"Gallenblase",  han:"胆", channel:"Fuß-Shaoyang",  element:"Holz",   wx:"holz",   yin:false, clock:"23–01", points:44, view:"side",  fertig:true },
   { umlauf:3, id:"lr", titel:"Lebermeridian", code:"LR", codeDe:"Le", name:"Leber",        han:"肝", channel:"Fuß-Jueyin",    element:"Holz",   wx:"holz",   yin:true,  clock:"01–03", points:14, view:"front", fertig:true }
 ];
