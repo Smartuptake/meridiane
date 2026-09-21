@@ -19,6 +19,7 @@
       <a href="#bahnen">Die Leitbahnen</a>
       <a href="#umlauf">Der große Umlauf</a>
       <a href="#uhr">Organuhr</a>
+      <a href="wandlungsphasen.html">Wandlungsphasen</a>
       <a href="#gefaesse">Die beiden Gefäße</a>
       <a href="index.html#uebungen">Übungen</a>
     </nav>
@@ -96,8 +97,15 @@
     hinab und kommt als Yin-Bahn wieder in der Brust an. Dort übernimmt der nächste Umlauf.
     Wer diesen Bau einmal gesehen hat, muss die Reihenfolge nicht auswendig lernen.</p>
 
-    <div class="tafel-scroll" style="margin-top:48px">
-      <svg id="svgUmlauf" xmlns="http://www.w3.org/2000/svg" style="min-width:900px"></svg>
+    <div class="umlauf-grid" style="margin-top:48px">
+      <figure>
+        <svg id="svgFigurUmlauf" xmlns="http://www.w3.org/2000/svg"></svg>
+        <figcaption>Dieselben zwölf Leitbahnen am Körper. Die Farben stimmen mit den Kästen
+        rechts überein.</figcaption>
+      </figure>
+      <div class="tafel-scroll">
+        <svg id="svgUmlauf" xmlns="http://www.w3.org/2000/svg" style="min-width:760px"></svg>
+      </div>
     </div>
 
     <div class="merkkasten" style="margin-top:48px">
@@ -125,8 +133,9 @@
       </figure>
       <figure>
         <svg id="svgWuxingBild" xmlns="http://www.w3.org/2000/svg"></svg>
-        <figcaption>Die fünf Wandlungsphasen mit ihren Organpaaren. Der nährende Zyklus läuft
-        außen im Uhrzeigersinn, der bändigende als Stern durch die Mitte.</figcaption>
+        <figcaption>Die fünf Wandlungsphasen mit ihren Organpaaren. Alle Entsprechungen im
+        Einzelnen stehen auf der Seite <a href="wandlungsphasen.html">Die fünf
+        Wandlungsphasen</a>.</figcaption>
       </figure>
     </div>
   </div>
@@ -184,6 +193,9 @@
     QiFluss.bahnenLegende(document.getElementById("leg" + v.charAt(0).toUpperCase() + v.slice(1)), v);
   });
   QiFluss.umlauf(document.getElementById("svgUmlauf"));
+  /* Kleine Figur neben dem Umlauf: nur die zwoelf Hauptleitbahnen der
+     Vorderansicht, damit Farbe und Kasten zusammenfinden. */
+  QiFluss.bahnen(document.getElementById("svgFigurUmlauf"), "front");
   Wuxing.organuhr(document.getElementById("svgUhrBild"), "");
   Wuxing.diagramm(document.getElementById("svgWuxingBild"), "");
 

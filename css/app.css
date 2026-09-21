@@ -724,3 +724,39 @@ table.zuordnung thead th .wx-marke{margin-bottom:var(--hla-space-2)}
   .bahnen-grid{gap:8mm}
   .bahnen-seite{grid-template-columns:minmax(0,4fr) minmax(0,6fr);gap:8mm}
 }
+
+/* --- Seite der fuenf Wandlungsphasen --- */
+.phasen-karten{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:var(--hla-space-6)}
+.phase-karte{background:var(--hla-weiss);border:1px solid var(--hla-haarlinie);
+  border-top:3px solid var(--phase);border-radius:var(--hla-radius);
+  padding:var(--hla-space-6);display:flex;flex-direction:column}
+.phase-kopf{display:flex;align-items:center;gap:var(--hla-space-4);
+  padding-bottom:var(--hla-space-4);border-bottom:var(--hla-rule)}
+.phase-kopf .phase-symbol{flex:0 0 auto;background:var(--phase-hell);
+  border-radius:var(--hla-radius);padding:5px;box-sizing:content-box}
+.phase-karte h3{margin:0;font-family:var(--hla-font-display);font-weight:500;
+  font-size:1.556rem;line-height:1.1}
+.phase-karte h3 .hanzi{font-size:.72em;color:var(--phase);margin-left:.3em}
+.phase-pinyin{margin:2px 0 0;font-size:.722rem;font-weight:700;
+  letter-spacing:var(--hla-tracking-label);text-transform:uppercase;color:var(--hla-stein)}
+.phase-liste{margin:var(--hla-space-4) 0 0;flex:1 1 auto}
+.phase-liste div{display:grid;grid-template-columns:minmax(0,11ch) minmax(0,1fr);
+  gap:var(--hla-space-3);padding:5px 0;border-bottom:1px solid var(--hla-nebel)}
+.phase-liste dt{font-size:.667rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--hla-stein);margin:0}
+.phase-liste dd{margin:0;font-size:.889rem;line-height:1.4}
+.phase-bahnen{margin:var(--hla-space-4) 0 0;font-size:.833rem;color:var(--hla-stein)}
+.phase-bahnen a{color:var(--phase);text-decoration:none;font-weight:700;
+  border-bottom:1px solid transparent}
+.phase-bahnen a:hover{border-bottom-color:var(--phase)}
+table.zuordnung thead th .phase-symbol{display:block;margin-bottom:var(--hla-space-2)}
+
+/* --- Figur neben dem Umlauf-Schaubild --- */
+.umlauf-grid{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,9fr);
+  gap:var(--hla-space-8);align-items:start}
+.umlauf-grid figure{margin:0}
+.umlauf-grid svg{width:100%;height:auto;display:block}
+.umlauf-grid figcaption{font-size:.722rem;color:var(--hla-stein);
+  margin-top:var(--hla-space-3);line-height:1.45}
+@media (max-width:900px){ .umlauf-grid{grid-template-columns:1fr} }
