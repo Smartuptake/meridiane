@@ -40,6 +40,7 @@
 <section class="papier"><div class="inner" id="u1"></div></section>
 <section class="weiss"><div class="inner" id="u2"></div></section>
 <section class="papier"><div class="inner" id="u3"></div></section>
+<section class="weiss"><div class="inner" id="u4"></div></section>
 
 <section class="papier" id="uebungen">
   <div class="inner">
@@ -118,9 +119,11 @@
   var UMLAUF = {
     1: { titel: "Erster Umlauf",  kette: "Lunge → Dickdarm → Magen → Milz" },
     2: { titel: "Zweiter Umlauf", kette: "Herz → Dünndarm → Blase → Niere" },
-    3: { titel: "Dritter Umlauf", kette: "Perikard → 3-Erwärmer → Gallenblase → Leber" }
+    3: { titel: "Dritter Umlauf", kette: "Perikard → 3-Erwärmer → Gallenblase → Leber" },
+    4: { titel: "Die beiden unpaarigen Gefäße",
+         kette: "Konzeptionsgefäß vorn · Lenkergefäß hinten" }
   };
-  [1, 2, 3].forEach(function (u) {
+  [1, 2, 3, 4].forEach(function (u) {
     var host = document.getElementById("u" + u);
     var sec = document.createElement("div"); sec.className = "umlauf";
 
@@ -145,10 +148,13 @@
 
       var h3 = document.createElement("h3"); h3.textContent = m.name;
       var z = document.createElement("p"); z.className = "zeile";
-      z.textContent = m.channel + " · " + (m.yin ? "Yin" : "Yang") + " · " + m.element;
+      z.textContent = m.umlauf === 4
+        ? m.channel + " · " + (m.yin ? "Yin" : "Yang") + " · außerordentliches Gefäß"
+        : m.channel + " · " + (m.yin ? "Yin" : "Yang") + " · " + m.element;
 
       var fuss = document.createElement("div"); fuss.className = "fuss";
-      var uhr = document.createElement("span"); uhr.textContent = m.clock + " Uhr";
+      var uhr = document.createElement("span");
+      uhr.textContent = m.umlauf === 4 ? "ohne Organuhr" : m.clock + " Uhr";
       var pk = document.createElement("span"); pk.textContent = m.points + " Punkte";
       var st = document.createElement("span"); st.className = "stand";
       st.textContent = m.fertig ? "fertig" : "in Arbeit";

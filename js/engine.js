@@ -135,8 +135,11 @@
       '<text x="' + (lx+42) + '" y="135" fill="' + TUSCHE + '">Akupunkturpunkt</text>' +
       '<line x1="' + lx + '" y1="160" x2="' + (lx+30) + '" y2="160" stroke="' + STEIN + '" stroke-width="2" stroke-dasharray="6 7" stroke-linecap="round"/>' +
       '<text x="' + (lx+42) + '" y="165" fill="' + STEIN + '">innerer Verlauf</text>' +
-      '<line x1="' + lx + '" y1="190" x2="' + (lx+30) + '" y2="190" stroke="' + KIESEL + '" stroke-width="2.4" stroke-linecap="round"/>' +
-      '<text x="' + (lx+42) + '" y="195" fill="' + STEIN + '">Gegenseite</text>';
+      /* Ren Mai, Du Mai und die Gallenblase in der Seitenansicht haben
+         keine Gegenseite – dann entfällt auch die Zeile dafür. */
+      (data.mirror === false ? '' :
+        '<line x1="' + lx + '" y1="190" x2="' + (lx+30) + '" y2="190" stroke="' + KIESEL + '" stroke-width="2.4" stroke-linecap="round"/>' +
+        '<text x="' + (lx+42) + '" y="195" fill="' + STEIN + '">Gegenseite</text>');
     svg.appendChild(legende);
 
     /* Bogenlängen für Reihenfolge und Qi-Weg */

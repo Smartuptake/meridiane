@@ -93,18 +93,22 @@
     document.title = titel + " – Healthlane Academy";
 
     /* --- Kopf --- */
-    $("hKanal").textContent = data.channel + " " + (data.channelHan || "") +
-                              " · " + (data.yin ? "Yin" : "Yang") + " · Umlauf " + (data.ord <= 4 ? 1 : data.ord <= 8 ? 2 : 3);
+    /* Ren Mai und Du Mai sind keine Organmeridiane: sie haben weder
+       Wandlungsphase noch Organuhr und gehören zu keinem Umlauf. Beide
+       bringen darum ihre eigene Rubrik und Merkmalsliste mit. */
+    $("hKanal").textContent = data.rubrik ||
+      (data.channel + " " + (data.channelHan || "") +
+       " · " + (data.yin ? "Yin" : "Yang") + " · Umlauf " + (data.ord <= 4 ? 1 : data.ord <= 8 ? 2 : 3));
     var h1 = $("hTitel"); h1.textContent = titel;
     if (data.nameHan) h1.appendChild(han(data.nameHan));
     $("hIntro").textContent = data.intro || "";
-    [["Element", data.element + " " + (data.elementHan || "")],
+    (data.meta || [["Element", data.element + " " + (data.elementHan || "")],
      ["Kopplung", data.coupledName || "–"],
      ["Organuhr", data.clock],
      ["Punkte", String(data.pointCount)],
      ["Flussrichtung", data.direction],
      ["Kennung", lbl + " · " + data.code]
-    ].forEach(function (r) {
+    ]).forEach(function (r) {
       var li = document.createElement("li");
       var b = document.createElement("b"); b.textContent = r[0];
       var sp = document.createElement("span"); sp.textContent = r[1];
@@ -116,6 +120,9 @@
     /* --- Organabschnitt --- */
     var o = data.organ;
     if (o) {
+      if (o.label) $("lblOrgan").textContent = o.label;
+      if (o.zustandLabel) $("lblZustand").textContent = o.zustandLabel;
+      if (o.nahrungLabel) $("lblNahrung").textContent = o.nahrungLabel;
       $("oTitel").textContent = o.titel;
       if (o.han) $("oTitel").appendChild(han(o.han));
       o.text.forEach(function (t) {
@@ -154,8 +161,10 @@
       /* Ernährung */
       $("nTitel").textContent = o.nahrungTitel;
       falttafel($("nFalt"), [
-        { titel: "Was das Organ stärkt", fuellen: function (c) { nahrungsliste(c, o.nahrung.staerkt); } },
-        { titel: "Was ihm schadet",      fuellen: function (c) { nahrungsliste(c, o.nahrung.schadet); } }
+        { titel: o.nahrung.staerktTitel || "Was das Organ stärkt",
+          fuellen: function (c) { nahrungsliste(c, o.nahrung.staerkt); } },
+        { titel: o.nahrung.schadetTitel || "Was ihm schadet",
+          fuellen: function (c) { nahrungsliste(c, o.nahrung.schadet); } }
       ], 0);
       $("nHinweis").textContent = o.nahrung.hinweis;
       $("oHinweis").textContent = o.hinweis;
