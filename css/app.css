@@ -767,3 +767,82 @@ ul.wirkrichtung li{position:relative;padding-left:14px;line-height:1.5}
 ul.wirkrichtung li::before{content:"";position:absolute;left:0;top:.62em;
   width:6px;height:1px;background:var(--hla-kiesel)}
 ul.wirkrichtung li.luecke{margin-bottom:var(--hla-space-3)}
+
+/* ===========================================================
+   Diätetik: Thermik-Leiter und Nahrungsmitteltafel
+   =========================================================== */
+
+/* --- Die fünf Temperaturstufen als Leiter --- */
+.thermik{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:var(--hla-space-4);margin-top:var(--hla-space-8)}
+@media (max-width:820px){.thermik{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.thermik{grid-template-columns:1fr}}
+.thermik-stufe{background:var(--hla-weiss);border:1px solid var(--hla-haarlinie);
+  border-top:3px solid var(--stufe);border-radius:var(--hla-radius);
+  padding:var(--hla-space-5);display:flex;flex-direction:column}
+.thermik-stufe h3{margin:0;font-family:var(--hla-font-display);font-weight:500;
+  font-size:1.333rem;line-height:1.1}
+.thermik-stufe h3 .hanzi{font-size:.72em;color:var(--hla-stein);margin-left:.3em}
+.thermik-stufe p{margin:var(--hla-space-3) 0 0;font-size:.889rem;line-height:1.45}
+.thermik-stufe .zahl{margin-top:auto;padding-top:var(--hla-space-4);
+  font-size:.722rem;font-weight:700;letter-spacing:var(--hla-tracking-label);
+  text-transform:uppercase;color:var(--hla-stein)}
+
+/* --- Suchfeld und Filter über der Tafel --- */
+.nm-filter{display:flex;flex-wrap:wrap;gap:var(--hla-space-4);align-items:flex-end;
+  margin-top:var(--hla-space-8);padding-bottom:var(--hla-space-5);
+  border-bottom:var(--hla-rule)}
+.nm-filter > div{display:flex;flex-direction:column;gap:6px}
+.nm-filter label{font-size:.667rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--hla-stein)}
+.nm-filter select,.nm-filter input{font-family:var(--hla-font-text);font-size:.944rem;
+  padding:7px 10px;border:1px solid var(--hla-haarlinie);border-radius:var(--hla-radius);
+  background:var(--hla-weiss);color:var(--hla-tusche);min-width:172px}
+.nm-filter input{min-width:228px}
+.nm-filter select:focus,.nm-filter input:focus{outline:2px solid var(--hla-stein);
+  outline-offset:1px}
+.nm-zaehler{margin-left:auto;font-size:.833rem;color:var(--hla-stein);padding-bottom:8px}
+
+/* --- Die Tafel selbst --- */
+.nm-gruppe{margin-top:var(--hla-space-8)}
+.nm-gruppe > h3{margin:0 0 var(--hla-space-4);font-family:var(--hla-font-display);
+  font-weight:500;font-size:1.444rem;padding-bottom:var(--hla-space-2);
+  border-bottom:1px solid var(--hla-tusche)}
+.nm-gruppe > h3 .hanzi{font-size:.7em;color:var(--hla-stein);margin-left:.4em}
+.nm-gruppe > h3 small{float:right;font-family:var(--hla-font-text);font-size:.6em;
+  font-weight:400;letter-spacing:var(--hla-tracking-label);text-transform:uppercase;
+  color:var(--hla-stein);padding-top:.7em}
+.nm-liste{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));
+  gap:0 var(--hla-space-5)}
+.nm-eintrag{display:grid;grid-template-columns:14px minmax(0,1fr) auto;
+  align-items:center;gap:var(--hla-space-3);padding:7px 0;
+  border-bottom:1px solid var(--hla-nebel);font-size:.889rem}
+.nm-punkt{width:10px;height:10px;border-radius:50%;background:var(--phase,transparent);
+  border:1px solid var(--hla-haarlinie)}
+.nm-eintrag .name{min-width:0;overflow-wrap:anywhere}
+.nm-eintrag .therm{font-size:.722rem;font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--hla-stein);white-space:nowrap}
+.nm-eintrag .therm::before{content:"";display:inline-block;width:8px;height:8px;
+  margin-right:6px;vertical-align:middle;border-radius:2px;background:var(--stufe)}
+.nm-leer{margin-top:var(--hla-space-8);color:var(--hla-stein);font-style:italic}
+
+/* --- Legende unter der Tafel --- */
+.nm-legende{display:flex;flex-wrap:wrap;gap:var(--hla-space-5);
+  margin-top:var(--hla-space-8);padding-top:var(--hla-space-5);
+  border-top:var(--hla-rule);font-size:.833rem;color:var(--hla-stein)}
+.nm-legende span{display:inline-flex;align-items:center;gap:8px}
+.nm-legende i{width:10px;height:10px;border-radius:50%;display:inline-block;
+  border:1px solid var(--hla-haarlinie)}
+
+/* --- Zwei Spalten für Fließtext neben einem Merkkasten --- */
+.zweispalt{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
+  gap:var(--hla-space-10)}
+@media (max-width:860px){.zweispalt{grid-template-columns:1fr;gap:var(--hla-space-8)}}
+.zweispalt > div > p{max-width:var(--hla-measure)}
+
+/* --- Schlichte Textkarte, etwa für die Zubereitungsarten --- */
+.info-karte{background:var(--hla-weiss);border:var(--hla-rule);
+  border-radius:var(--hla-radius);padding:var(--hla-space-6)}
+.info-karte h3{margin:0 0 var(--hla-space-3);font-family:var(--hla-font-display);
+  font-weight:500;font-size:1.333rem;line-height:1.15}
+.info-karte p{margin:0;font-size:.889rem;line-height:1.45}
