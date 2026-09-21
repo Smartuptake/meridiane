@@ -1,10 +1,20 @@
 /* Konzeptionsgefäß – Ren Mai – 任脉
    Kein Organmeridian, sondern eines der acht außerordentlichen Gefäße.
    Kalibriert auf img/front.png (880 × 1168), vordere Mittellinie x 437.
-   Senkrecht: Nabel y 434, Brustbeinwinkel y 350, dazwischen 8 Cun, also
-   10,5 Bildpunkte je Cun; Schambeinoberkante y 486, fünf Cun unter dem
-   Nabel. An Hals und Kopf nachgemessen: Kinnfurche y 150, Zungenbein
-   y 176, Drosselgrube y 232. */
+   Senkrecht neu vermessen am 21.09.2026: Nabel y 436, Brustbeinwinkel
+   y 354, dazwischen 8 Cun, also 10,25 Bildpunkte je Cun im Oberbauch.
+   Schambeinoberkante y 560, fünf Cun unter dem Nabel, also 24,8
+   Bildpunkte je Cun im Unterbauch.
+
+   Dass die beiden Werte so weit auseinanderliegen, ist kein Rechenfehler:
+   der Nabel dieser Figur sitzt auffallend hoch. Der Cun ist ein
+   Verhältnismaß und gilt immer nur für seinen Abschnitt – die Punkte
+   unter dem Nabel stehen deshalb weiter auseinander als die darüber.
+   Vorher war das Schambein aus dem Oberbauchmaß hochgerechnet und lag
+   74 Bildpunkte zu hoch; Ren 2 bis Ren 6 saßen entsprechend zu hoch.
+
+   An Hals und Kopf nachgemessen: Kinnfurche y 150, Zungenbein y 176,
+   Drosselgrube y 232. Siehe data/landmarken.js. */
 Meridian.register({
   id: "ren", code: "CV", codeDe: "Ren", ord: 13,
   name: "Konzeptionsgefäß", titel: "Konzeptionsgefäß", nameHan: "任脉",
@@ -38,14 +48,14 @@ Meridian.register({
          "Projektion eingezeichnet. Eine Gegenseite gibt es nicht: das Gefäß läuft " +
          "selbst auf der Mittellinie.",
 
-  cun: { nabel: [437, 434], schambein: [437, 486],
+  cun: { nabel: [437, 436], schambein: [437, 560],
          hinweis: "Nabel → Schambeinoberkante = 5 Cun; Nabel → Brustbeinwinkel = 8 Cun" },
 
-  path: [[437,575],[437,530],[437,486],[437,476],[437,465],[437,450],[437,434],[437,423],
-         [437,392],[437,371],[437,360],[437,336],[437,310],[437,285],[437,260],[437,232],
+  path: [[437,585],[437,572],[437,560],[437,535],[437,510],[437,473],[437,436],[437,426],
+         [437,395],[437,374],[437,364],[437,336],[437,310],[437,285],[437,260],[437,232],
          [437,205],[437,176],[437,150]],
 
-  inner: "M437,486 C448,520 452,552 448,575",
+  inner: "M437,560 C448,572 452,582 448,588",
   branches: [
     { label: "Ast um den Mund zu den Augen", d: "M437,150 C452,140 466,124 470,108" }
   ],
@@ -226,81 +236,91 @@ Meridian.register({
 
   points: [
     { n:1, pinyin:"Huìyīn", han:"会阴", de:"Zusammenkunft des Yin", en:"Meeting of Yin",
-      x:437, y:575, key:false, role:"",
+      x:437, y:585, key:false, role:"",
       antik:"", wx:"",
       tags:["Beginn des Gefäßes","Treffpunkt von Ren, Du und Chong"],
+      wirkung:["Beginn des Ren Mai", "Treffpunkt von Ren Mai, Du Mai und Chong Mai", "", "Belebt bei Bewusstlosigkeit und Ertrinken", "Ordnet den Damm und die Geschlechtsorgane", "Beruhigt den Geist"],
       loc:"Am Damm, in der Mitte zwischen After und äußeren Geschlechtsteilen. Der Punkt ist von vorn nicht zu sehen und hier als Projektion eingezeichnet.",
       ind:"Ertrinken und Bewusstlosigkeit als Notfallpunkt, Harnverhalt, Beschwerden im Genitalbereich, Vorfall, Hämorrhoiden, Schmerz am Damm.",
       nd:"In der Praxis fast nur als Moxa oder Akupressur. Nadelung nur in Seitenlage und mit besonderer Zurückhaltung." },
 
     { n:2, pinyin:"Qūgǔ", han:"曲骨", de:"Gekrümmter Knochen", en:"Curved Bone",
-      x:437, y:486, key:false, role:"",
+      x:437, y:560, key:false, role:"",
       antik:"", wx:"",
       tags:["Treffpunkt mit dem Lebermeridian"],
+      wirkung:["Treffpunkt mit der Leber-Leitbahn", "", "Ordnet die Blase und das Wasserlassen", "Wärmt den Unteren Erwärmer", "Festigt die Essenz"],
       loc:"Am oberen Rand des Schambeins, fünf Cun unterhalb des Nabels, auf der vorderen Mittellinie.",
       ind:"Harnverhalt, Bettnässen, häufiges Wasserlassen, Ausfluss, Impotenz, Schmerz im Unterbauch, unregelmäßige Regel.",
       nd:"Senkrecht 0,5 bis 1 Cun, vorher die Blase entleeren lassen. In der Schwangerschaft nicht nadeln." },
 
     { n:3, pinyin:"Zhōngjí", han:"中极", de:"Mittlerer Höhepunkt", en:"Central Pole",
-      x:437, y:476, key:true, role:"MU",
+      x:437, y:535, key:true, role:"MU",
       antik:"", wx:"",
       tags:["Mu-Alarmpunkt der Blase","Treffpunkt der drei Fuß-Yin-Meridiane"],
+      wirkung:["Mu-Alarmpunkt der Blase", "Treffpunkt der drei Fuß-Yin-Leitbahnen", "", "Der Punkt für die Blase: Harndrang, Brennen, Verhaltung", "Ordnet die Regel und den Unterbauch", "Leitet Feuchte Hitze aus"],
       loc:"Vier Cun unterhalb des Nabels, auf der vorderen Mittellinie – einen Cun über dem Schambein.",
       ind:"Als Mu-Punkt der Blase bei allen Blasenbeschwerden: brennendes oder häufiges Wasserlassen, Harnverhalt, Inkontinenz. Dazu Ausfluss, unregelmäßige Regel, Regelschmerz, Unfruchtbarkeit, Impotenz, Schmerz im Unterbauch.",
       nd:"Senkrecht 0,8 bis 1,2 Cun bei entleerter Blase. In der Schwangerschaft nicht nadeln." },
 
     { n:4, pinyin:"Guānyuán", han:"关元", de:"Tor zur Urquelle", en:"Origin Pass",
-      x:437, y:465, key:true, role:"MU",
+      x:437, y:510, key:true, role:"MU",
       antik:"", wx:"",
       tags:["Mu-Alarmpunkt des Dünndarms","einer der großen Aufbaupunkte des Körpers","Treffpunkt der drei Fuß-Yin-Meridiane"],
+      wirkung:["Mu-Alarmpunkt des Dünndarms", "Treffpunkt der drei Fuß-Yin-Leitbahnen", "", "Einer der großen Aufbaupunkte: stärkt das Ursprungs-Qi", "Wärmt und festigt die Niere", "Nährt Blut und Essenz", "Der Punkt bei Erschöpfung – meist mit Moxa"],
       loc:"Drei Cun unterhalb des Nabels, auf der vorderen Mittellinie. Mit der eigenen Hand: vier Querfinger unter dem Nabel.",
       ind:"Der wichtigste Aufbaupunkt des Unterbauchs: tiefe Erschöpfung, Schwäche nach langer Krankheit, Kälte im Unterbauch, häufiges nächtliches Wasserlassen, Impotenz, Unfruchtbarkeit, unregelmäßige Regel, Bettnässen, Durchfall am frühen Morgen. Traditionell der Punkt, an dem das Ursprungs-Qi gesammelt wird.",
       nd:"Senkrecht 0,8 bis 1,2 Cun. Der Moxa-Punkt schlechthin – auch als Kur über Wochen. In der Schwangerschaft nicht nadeln und nicht moxen." },
 
     { n:6, pinyin:"Qìhǎi", han:"气海", de:"Meer des Qi", en:"Sea of Qi",
-      x:437, y:450, key:true, role:"",
+      x:437, y:473, key:true, role:"",
       antik:"", wx:"",
       tags:["Meer des Qi","großer Aufbaupunkt"],
+      wirkung:["Meer des Qi", "Großer Aufbaupunkt", "", "Hebt und stärkt das Qi bei Erschöpfung", "Wärmt den Unteren Erwärmer", "Ordnet das Qi im Bauch", "Der zweite große Moxa-Punkt neben Ren 4"],
       loc:"Anderthalb Cun unterhalb des Nabels, auf der vorderen Mittellinie – zwei Querfinger über Ren 4.",
       ind:"Erschöpfung ohne erkennbare Ursache, Kurzatmigkeit bei Anstrengung, schwache Stimme, Antriebslosigkeit, Blähbauch, Verstopfung durch Schwäche, Senkungsgefühl, Bettnässen, unregelmäßige Regel. Wo Ren 4 die Substanz aufbaut, bewegt und hebt Ren 6 das Qi.",
       nd:"Senkrecht 0,8 bis 1,2 Cun. Sehr gut zu moxen. In der Schwangerschaft nicht nadeln." },
 
     { n:8, pinyin:"Shénquè", han:"神阙", de:"Tor des Geistes", en:"Spirit Gate",
-      x:437, y:434, key:true, role:"",
+      x:437, y:436, key:true, role:"",
       antik:"", wx:"",
       tags:["der Nabel","nur Moxa, niemals Nadel"],
+      wirkung:["Der Nabel", "Nur Moxa, niemals Nadel", "", "Wärmt und rettet das Yang bei Kollaps", "Wärmt die Mitte bei Kälte-Durchfall", "Stärkt das Ursprungs-Qi"],
       loc:"In der Mitte des Nabels.",
       ind:"Kalter Bauch mit Durchfall und Rumpeln, Bauchschmerz, der sich mit Wärme bessert, Kollaps mit kalten Gliedern, Erschöpfung, Wasseransammlung im Bauch. Bei Neugeborenen und Kindern ein klassischer Wärmepunkt.",
       nd:"Niemals nadeln. Klassisch Moxa auf einer Schicht Salz im Nabel oder indirekt mit dem Moxakegel; ebenso gut eine warme Auflage." },
 
     { n:9, pinyin:"Shuǐfēn", han:"水分", de:"Wasserscheide", en:"Water Divide",
-      x:437, y:423, key:false, role:"",
+      x:437, y:426, key:false, role:"",
       antik:"", wx:"",
       tags:["Wasserpunkt des Bauches"],
+      wirkung:["Wasserpunkt des Bauches", "", "Trennt das Klare vom Trüben", "Leitet Wasser aus und löst Ödeme", "Ordnet den Darm"],
       loc:"Einen Cun oberhalb des Nabels, auf der vorderen Mittellinie.",
       ind:"Wasseransammlung und Ödeme, aufgetriebener Bauch, Rumpeln, Durchfall mit unverdauten Speisen, wenig Urin. Der Name sagt die Aufgabe: hier wird das Klare vom Trüben geschieden.",
       nd:"Senkrecht 0,8 bis 1,2 Cun. Bei Ödemen gern mit Moxa." },
 
     { n:12, pinyin:"Zhōngwǎn", han:"中脘", de:"Mitte des Magens", en:"Central Venter",
-      x:437, y:392, key:true, role:"MU",
+      x:437, y:395, key:true, role:"MU",
       antik:"", wx:"",
       tags:["Mu-Alarmpunkt des Magens","Hui-Punkt der Fu-Organe","Treffpunkt mehrerer Meridiane"],
+      wirkung:["Mu-Alarmpunkt des Magens", "Hui-Punkt der Fu-Organe", "", "Der Hauptpunkt für den Magen: harmonisiert die Mitte", "Senkt gegenläufiges Magen-Qi ab", "Löst Feuchtigkeit und Nahrungsstau", "Stärkt Magen und Milz"],
       loc:"Vier Cun oberhalb des Nabels, auf halbem Weg zwischen Nabel und Brustbeinwinkel.",
       ind:"Der wichtigste Punkt für den mittleren Erwärmer: Magenschmerz, Völlegefühl, Aufstoßen, Sodbrennen, Übelkeit, Erbrechen, Appetitlosigkeit, Blähbauch, Durchfall, Verstopfung. Als Hui-Punkt aller Hohlorgane auch bei Beschwerden von Darm, Gallenblase und Blase.",
       nd:"Senkrecht 0,8 bis 1,5 Cun. Sehr gut zu moxen. Nicht unmittelbar nach dem Essen nadeln." },
 
     { n:14, pinyin:"Jùquè", han:"巨阙", de:"Großes Tor", en:"Great Tower Gate",
-      x:437, y:371, key:true, role:"MU",
+      x:437, y:374, key:true, role:"MU",
       antik:"", wx:"",
       tags:["Mu-Alarmpunkt des Herzens"],
+      wirkung:["Mu-Alarmpunkt des Herzens", "", "Beruhigt den Geist", "Senkt gegenläufiges Qi ab", "Öffnet die Brust bei Beklemmung"],
       loc:"Sechs Cun oberhalb des Nabels, also zwei Cun unterhalb des Brustbeinwinkels.",
       ind:"Als Mu-Punkt des Herzens bei Herzklopfen, Enge und Schmerz in der Brust, Angst, Unruhe, Schlaflosigkeit, Vergesslichkeit. Dazu Sodbrennen, Erbrechen, Schluckauf, Übelkeit – der Punkt liegt genau an der Grenze zwischen Brust und Bauch.",
       nd:"Schräg 0,5 bis 1 Cun nach unten. Nicht tief senkrecht – darunter liegen Herz und Leber." },
 
     { n:15, pinyin:"Jiūwěi", han:"鸠尾", de:"Taubenschwanz", en:"Turtledove Tail",
-      x:437, y:360, key:false, role:"LUO",
+      x:437, y:364, key:false, role:"LUO",
       antik:"luo", wx:"",
       tags:["Luo-Punkt des Ren Mai","Ursprungspunkt der Quellen-Energie"],
+      wirkung:["Luo-Punkt des Ren Mai", "", "Beruhigt den Geist", "Öffnet die Brust", "Wandelt Schleim, der den Geist umnebelt"],
       loc:"Sieben Cun oberhalb des Nabels, einen Cun unterhalb des Brustbeinwinkels, unter der Spitze des Schwertfortsatzes.",
       ind:"Als Luo-Punkt strahlt er in den ganzen Bauch aus: Bauchschmerz und Blähung. Dazu Herzklopfen, Enge in der Brust, Angst, Schwermut, Krampfanfälle, Schluckauf, Asthma.",
       nd:"Schräg 0,4 bis 0,6 Cun nach unten. Ein empfindlicher Punkt; sparsam verwenden." },
@@ -309,6 +329,7 @@ Meridian.register({
       x:437, y:310, key:true, role:"MU",
       antik:"", wx:"",
       tags:["Mu-Alarmpunkt des Perikards","Hui-Punkt des Qi","Meer des Qi","Treffpunkt vieler Meridiane"],
+      wirkung:["Mu-Alarmpunkt des Perikards", "Hui-Punkt des Qi", "Meer des Qi", "", "Der Punkt für die Brust: öffnet sie und ordnet das Qi", "Stillt Husten und Kurzatmigkeit", "Fördert den Milchfluss", "Beruhigt den Geist bei Kummer"],
       loc:"Auf dem Brustbein, in Höhe des vierten Zwischenrippenraums, also genau auf halbem Weg zwischen den Brustwarzen.",
       ind:"Als Hui-Punkt des Qi der Punkt bei allem, was mit Atem und Brust zu tun hat: Enge und Druck in der Brust, Kurzatmigkeit, Asthma, Husten, Herzklopfen, Seufzen, Kummer, der auf der Brust liegt. Dazu Milchstau, zu wenig Muttermilch, Brustdrüsenentzündung, Schluckauf, Erbrechen.",
       nd:"Flach 0,3 bis 0,5 Cun nach unten am Brustbein entlang. Als Akupressur sehr gut zur Selbsthilfe bei Beklemmung." },
@@ -317,6 +338,7 @@ Meridian.register({
       x:437, y:260, key:false, role:"",
       antik:"", wx:"",
       tags:["Brustbeinpunkt"],
+      wirkung:["Brustbeinpunkt", "", "Öffnet die Brust und stillt Husten", "Senkt gegenläufiges Qi ab", "Befreit die Kehle"],
       loc:"Auf dem Brustbein, in Höhe des ersten Zwischenrippenraums.",
       ind:"Husten, Asthma, Engegefühl und Schmerz in der Brust, Schmerz in der Flanke, Halsschmerz. Der Name meint den Baldachin über dem Herzen – gemeint ist die Lunge.",
       nd:"Flach 0,3 bis 0,5 Cun nach unten." },
@@ -325,6 +347,7 @@ Meridian.register({
       x:437, y:232, key:true, role:"",
       antik:"", wx:"",
       tags:["Hustenpunkt","Treffpunkt mit dem Yinwei Mai"],
+      wirkung:["Hustenpunkt", "Treffpunkt mit dem Yinwei Mai", "", "Der Punkt bei Husten und Asthma", "Senkt gegenläufiges Lungen-Qi ab", "Wandelt Schleim in der Kehle", "Befreit die Stimme"],
       loc:"In der Drosselgrube, in der Mitte der Vertiefung am oberen Rand des Brustbeins.",
       ind:"Husten jeder Art, Asthma mit pfeifendem Atem, Heiserkeit, Verlust der Stimme, Kloßgefühl im Hals, Schluckbeschwerden, Halsschmerz, Schluckauf, Kropf.",
       nd:"Zuerst 0,2 Cun senkrecht, dann die Nadel umlegen und flach 0,5 bis 1 Cun hinter dem Brustbein nach unten führen. Niemals schräg nach hinten stechen – dort liegt die Luftröhre. Ein Punkt für geübte Hände." },
@@ -333,6 +356,7 @@ Meridian.register({
       x:437, y:176, key:false, role:"",
       antik:"", wx:"",
       tags:["Zungenpunkt","Treffpunkt mit dem Yinwei Mai"],
+      wirkung:["Zungenpunkt", "Treffpunkt mit dem Yinwei Mai", "", "Löst die Zunge bei Sprachstörung und Schluckbeschwerden", "Wandelt Schleim in der Kehle", "Mindert übermäßigen Speichelfluss"],
       loc:"Am Hals auf der Mittellinie, in der Vertiefung am oberen Rand des Zungenbeins, oberhalb des Kehlkopfs.",
       ind:"Sprachstörungen nach Schlaganfall, steife oder gelähmte Zunge, Schluckbeschwerden, Speichelfluss, trockener Mund, plötzlicher Stimmverlust, Schwellung unter der Zunge.",
       nd:"Schräg 0,5 bis 0,8 Cun in Richtung Zungengrund. Vorsicht wegen der Lage am Kehlkopf." },
@@ -341,6 +365,7 @@ Meridian.register({
       x:437, y:150, key:true, role:"",
       antik:"", wx:"",
       tags:["Endpunkt des Gefäßes","Treffpunkt mit Du Mai, Magen und Dickdarm"],
+      wirkung:["Endpunkt des Ren Mai", "Treffpunkt mit Du Mai, Magen und Dickdarm", "", "Vertreibt Wind aus dem Gesicht", "Löst Gesichtslähmung und Speichelfluss", "Lindert Zahnschmerz im Unterkiefer"],
       loc:"In der Mitte der Furche zwischen Unterlippe und Kinn.",
       ind:"Gesichtslähmung im Bereich von Mund und Kinn, Speichelfluss, Zahnfleischschmerz und Zahnschmerz im Unterkiefer, Kiefersperre, Schwellung des Gesichts, plötzlicher Stimmverlust, Mundtrockenheit. Zusammen mit Du 26 das Paar an den beiden Enden der Mittellinien.",
       nd:"Schräg 0,2 bis 0,3 Cun nach oben." }
