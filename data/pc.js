@@ -224,6 +224,7 @@ Meridian.register({
       antik:"ho", wx:"wasser",
       tags:["Ho / He – Meerpunkt","Punkt bei Hitze im Blut"],
       wirkung:["Ho / He – Meerpunkt", "Wasserpunkt der Perikard-Leitbahn", "", "Kühlt Hitze im Blut – der Punkt bei Sommerhitze und Erbrechen", "Beruhigt den Geist", "Harmonisiert den Magen"],
+      skelett:"ellenbogen_vorn",
       marken:["ellenbeuge", "bizepssehne"],
       loc:"In der Ellenbeugefalte, an der Kleinfingerseite der Bizepssehne. Bei leicht gebeugtem Ellenbogen gut zu tasten.",
       ind:"Herzschmerz, Herzklopfen, Unruhe mit Hitzegefühl, Magenschmerz, Erbrechen, Durchfall mit Hitze, Sommerhitze mit Erbrechen, Zittern und Krampf in Arm und Hand, Ellenbogenschmerz.",

@@ -293,6 +293,7 @@ Meridian.register({
       antik:"ho", wx:"erde",
       tags:["Ho / He – Meerpunkt","Sedierungspunkt","Punkt bei Knoten und Schwellungen"],
       wirkung:["Ho / He – Meerpunkt", "Erdpunkt der Dreifach-Erwärmer-Leitbahn", "Sedierungspunkt", "", "Löst Knoten und Schwellungen – der Punkt bei geschwollenen Lymphknoten", "Wandelt Schleim", "Klärt Hitze aus der Leitbahn", "Beruhigt den Geist"],
+      skelett:"ellenbogen_hinten",
       marken:["olekranon"],
       loc:"Einen Cun oberhalb der Spitze des Ellenbogenhöckers, in der Vertiefung, die sich bei gebeugtem Ellenbogen zeigt.",
       ind:"Schmerz im Ellenbogen und an der Rückseite des Oberarms, steifer Nacken. Klassisch außerdem der Punkt bei Knoten und Verhärtungen: geschwollene Lymphknoten am Hals, Kröpfe, Knoten unter der Haut. Dazu Schwermut, Angst und Migräne. Als Sedierungspunkt bei Fülle des Meridians.",

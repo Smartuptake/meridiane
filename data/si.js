@@ -266,6 +266,7 @@ Meridian.register({
       antik:"ho", wx:"erde",
       tags:["Ho / He – Meerpunkt","Sedierungspunkt"],
       wirkung:["Ho / He – Meerpunkt", "Erdpunkt der Dünndarm-Leitbahn", "Sedierungspunkt", "", "Klärt Hitze aus der Leitbahn", "Löst Schmerz in Ellenbogen und Nacken", "Beruhigt bei Krämpfen"],
+      skelett:"ellenbogen_hinten",
       marken:["olekranon", "epicond_med_h", "ulnarrinne"],
       loc:"In der Rinne zwischen dem Olecranon und dem Epicondylus medialis humeri – dort, wo der Ellennerv verläuft und der Stoß den bekannten Blitz auslöst.",
       ind:"Schmerz im Ellenbogen und an der Ulnarkante des Arms, Taubheit im kleinen Finger, Zahnschmerz, Schwellung am Hals, Krampfanfall.",

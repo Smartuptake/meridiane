@@ -586,13 +586,16 @@
           "font-family": SCHRIFT, "font-size": 15, "font-weight": 700 });
         kopf.textContent = LBL + " " + p.n + "  " + p.pinyin;
         gDetailText.appendChild(kopf);
-        var lupe = el("text", { x: bx + LUPE_B - LUPE_RAND, y: zy, "text-anchor": "end",
-          fill: STEIN, "font-family": SCHRIFT, "font-size": 12 });
+        /* Bei langen Namen rutscht die Zeile rechts nach unten, sonst
+           laufen Unterschrift und Titel ineinander. */
+        var lang = (LBL + " " + p.n + "  " + p.pinyin).length > 13;
+        var lupe = el("text", { x: bx + LUPE_B - LUPE_RAND, y: zy + (lang ? 16 : 0),
+          "text-anchor": "end", fill: STEIN, "font-family": SCHRIFT, "font-size": 12 });
         lupe.textContent = sk ? sk.titel
           : (Math.round(f * 10) / 10).toFixed(1).replace(".", ",") + "fach";
         gDetailText.appendChild(lupe);
 
-        var zeile = 0;
+        var zeile = lang ? 1 : 0;
         liste.forEach(function (mk, i) {
           if (mk.l || mk.p)
             scheibe(gDetailText, i + 1, bx + LUPE_RAND + 7, zy + 17 + zeile * 16);

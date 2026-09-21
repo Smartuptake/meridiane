@@ -95,6 +95,134 @@ Meridian.skelett({
      Punkte bleiben vorerst beim Foto.
      --------------------------------------------------------------- */
 
+  /* ---------------------------------------------------------------
+     Derselbe Fußrücken, an der Senkrechten gespiegelt: der linke Fuß.
+     Blase und Gallenblase sind auf der Figur am linken Fuß
+     eingezeichnet; eine rechte Fußzeichnung waere falsch herum.
+     Großzehe links, kleine Zehe rechts.
+     --------------------------------------------------------------- */
+
+  fussruecken_links: {
+    titel: "Fu\u00dfr\u00fccken, linker Fu\u00df",
+    feld: [44, -2, 150, 340],
+
+    knochen: [
+      { name: "Schienbein mit Innenknöchel", d: "M132,5.5 Q132,2 128.5,2 L71.5,2 Q68,2 67.6,5.5 L64.4,34.5 Q64,38 64.7,41.4 L66.3,48.6 Q67,52 68.9,55 L72.1,60 Q74,63 76.5,65.5 L80.5,69.5 Q83,72 85.5,69.5 L87.5,67.5 Q90,65 90.6,61.6 L92.4,51.4 Q93,48 96.5,47.5 L128.5,42.5 Q132,42 132,38.5 Z", stark: true },
+      { name: "Wadenbein mit Außenknöchel", d: "M156.3,5.5 Q156,2 152.5,2 L136.5,2 Q133,2 132.7,5.5 L129.3,38.5 Q129,42 129.5,45.5 L131.5,60.5 Q132,64 133.6,67.1 L138.4,75.9 Q140,79 143.4,78.4 L147.6,77.6 Q151,77 152.2,73.7 L155.8,63.3 Q157,60 157.3,56.5 L158.7,41.5 Q159,38 158.7,34.5 Z", stark: true },
+      { name: "Sprungbein", d: "M147.3,58.9 Q146,52 139,51.7 L99,50.3 Q92,50 88.6,56.1 L85.4,61.9 Q82,68 84.4,74.6 L87.6,83.4 Q90,90 96.9,90.9 L123.1,94.1 Q130,95 134.8,89.9 L145.2,79.1 Q150,74 148.7,67.1 Z", stark: true },
+      { name: "Fersenbein", d: "M184.8,73 Q184,66 177,65.3 L153,62.7 Q146,62 144.8,68.9 L141.2,89.1 Q140,96 145.8,99.9 L156.2,107.1 Q162,111 167.7,106.9 L181.3,97.1 Q187,93 186.2,86 Z", stark: true },
+      { name: "Kahnbein", d: "M119,93.2 Q116,88 110,87.4 L84,84.6 Q78,84 75.8,89.6 L72.2,98.4 Q70,104 72.8,109.3 L76.2,115.7 Q79,121 85,120.2 L104,117.8 Q110,117 113.6,112.2 L119.4,104.8 Q123,100 120,94.8 Z", stark: true },
+      { name: "Würfelbein", d: "M180.2,107.6 Q178,102 172,101.4 L144,98.6 Q138,98 136.7,103.8 L133.3,118.2 Q132,124 135,129.2 L139,135.8 Q142,141 148,140.4 L166,138.6 Q172,138 175.5,133.1 L181.5,124.9 Q185,120 182.8,114.4 Z", stark: true },
+      { name: "Inneres Keilbein", d: "M105.8,121.7 Q104,116 98,115.3 L74,112.7 Q68,112 66.8,117.9 L63.2,136.1 Q62,142 65.3,147 L68.7,152 Q72,157 77.9,155.9 L94.1,153.1 Q100,152 102.5,146.5 L106.5,137.5 Q109,132 107.2,126.3 Z" },
+      { name: "Mittleres Keilbein", d: "M128.2,116.5 Q126,112 121,111.6 L107,110.4 Q102,110 101.6,115 L100.4,133 Q100,138 102.4,142.4 L103.6,144.6 Q106,149 110.9,147.9 L123.1,145.1 Q128,144 129.3,139.2 L131.7,130.8 Q133,126 130.8,121.5 Z" },
+      { name: "Äußeres Keilbein", d: "M150.2,112.5 Q148,108 143,107.5 L131,106.5 Q126,106 125.6,111 L124.4,127 Q124,132 126.2,136.5 L127.8,139.5 Q130,144 134.9,142.8 L145.1,140.2 Q150,139 151.4,134.2 L153.6,126.8 Q155,122 152.8,117.5 Z" },
+      { name: "1. Mittelfußknochen", d: "M98.9,159.8 L90.9,226 A17,17 0 0 1 57.3,221 L69.2,155.3 A15,15 0 0 1 98.9,159.8 Z", stark: true },
+      { name: "2. Mittelfußknochen", d: "M123,150.5 L118,234.7 A12,12 0 0 1 94.1,232.4 L105.1,148.8 A9,9 0 0 1 123,150.5 Z" },
+      { name: "3. Mittelfußknochen", d: "M146,146.3 L143,230.4 A11,11 0 0 1 121.1,228.8 L130,145.1 A8,8 0 0 1 146,146.3 Z" },
+      { name: "4. Mittelfußknochen", d: "M166,142 L166,222 A10,10 0 0 1 146,221.5 L150,141.6 A8,8 0 0 1 166,142 Z" },
+      { name: "5. Mittelfußknochen", d: "M188,135.6 L191,213.6 A11,11 0 0 1 169,214.4 L166,136.4 A11,11 0 0 1 188,135.6 Z" },
+      { name: "Grundglied der Großzehe", d: "M84.9,243.6 L79.9,283.5 A12,12 0 0 1 56,281.1 L59,241 A13,13 0 0 1 84.9,243.6 Z", stark: true },
+      { name: "Endglied der Großzehe", d: "M78,296 L78,320 A12,12 0 0 1 54,319 L56,295.1 A11,11 0 0 1 78,296 Z", stark: true },
+      { name: "Grundglied der 2. Zehe", d: "M112.9,247.3 L108.9,275.1 A8,8 0 0 1 93,273.4 L95,245.4 A9,9 0 0 1 112.9,247.3 Z" },
+      { name: "Mittelglied der 2. Zehe", d: "M108,282.7 L105.5,306.7 A6.5,6.5 0 0 1 92.5,305.6 L94,281.6 A7,7 0 0 1 108,282.7 Z" },
+      { name: "Endglied der 2. Zehe", d: "M105,313.8 L105.5,325.7 A6.5,6.5 0 0 1 92.5,325.7 L93,313.8 A6,6 0 0 1 105,313.8 Z" },
+      { name: "Grundglied der 3. Zehe", d: "M139.4,243 L136.5,268.9 A7.5,7.5 0 0 1 121.5,267.7 L122.5,241.7 A8.5,8.5 0 0 1 139.4,243 Z" },
+      { name: "Mittelglied der 3. Zehe", d: "M135.6,276.4 L134.1,298.4 A6.1,6.1 0 0 1 121.9,297.9 L122.4,275.9 A6.6,6.6 0 0 1 135.6,276.4 Z" },
+      { name: "Endglied der 3. Zehe", d: "M133.7,305.7 L134.2,315.7 A6.2,6.2 0 0 1 121.8,315.7 L122.3,305.7 A5.7,5.7 0 0 1 133.7,305.7 Z" },
+      { name: "Grundglied der 4. Zehe", d: "M164,236.4 L163,258.3 A7,7 0 0 1 149,258.3 L148,236.4 A8,8 0 0 1 164,236.4 Z" },
+      { name: "Mittelglied der 4. Zehe", d: "M162.2,266.2 L161.7,286.1 A5.7,5.7 0 0 1 150.3,286.1 L149.8,266.2 A6.2,6.2 0 0 1 162.2,266.2 Z" },
+      { name: "Endglied der 4. Zehe", d: "M161.4,293.7 L161.9,302.7 A5.9,5.9 0 0 1 150.1,302.7 L150.6,293.7 A5.4,5.4 0 0 1 161.4,293.7 Z" },
+      { name: "Grundglied der 5. Zehe", d: "M188.5,227.6 L189.5,245.6 A6.5,6.5 0 0 1 176.6,247.1 L173.6,229.2 A7.5,7.5 0 0 1 188.5,227.6 Z" },
+      { name: "Mittelglied der 5. Zehe", d: "M188.8,253.5 L190.3,271.6 A5.3,5.3 0 0 1 179.8,272.7 L177.3,254.8 A5.8,5.8 0 0 1 188.8,253.5 Z" },
+      { name: "Endglied der 5. Zehe", d: "M190.1,279.7 L190.6,287.6 A5.6,5.6 0 0 1 179.4,287.6 L179.9,279.7 A5.1,5.1 0 0 1 190.1,279.7 Z" }
+    ],
+
+    punkte: {
+      "Bl 62": [150,  92], "Bl 63": [184, 122], "Bl 64": [187, 142],
+      "Bl 65": [191, 206], "Bl 66": [191, 230], "Bl 67": [190, 285],
+      "Gb 40": [140,  96], "Gb 41": [168, 180], "Gb 43": [170, 246],
+      "Gb 44": [162, 298]
+    },
+
+    marken: {
+      aussenknoechel: { text: "Spitze des Au\u00dfenkn\u00f6chels", p: [146,  78] },
+      innenknoechel:  { text: "Spitze des Innenkn\u00f6chels", p: [ 83,  72] },
+      knoechelspalte: { text: "Kn\u00f6chelspalte", l: [150,  66,  74,  62] },
+      mfk5:           { text: "H\u00f6cker des f\u00fcnften Mittelfu\u00dfknochens", p: [188, 140] },
+      fussrand_lat:   { text: "Au\u00dfenrand des Fu\u00dfes, Rot-Wei\u00df-Grenze", l: [190, 152, 194, 244] },
+      mfk45:          { text: "Zwischenraum 4. und 5. Mittelfu\u00dfknochen", l: [168, 206, 167, 148] },
+      mfk45_s:        { text: "Zwischenraum 4. und 5. Mittelfu\u00dfknochen", l: [168, 206, 167, 148] },
+      zehe45:         { text: "Zwischenraum 4. und 5. Zehe", l: [170, 256, 170, 234] },
+      zehe45_s:       { text: "Zwischenraum 4. und 5. Zehe", l: [170, 256, 170, 234] },
+      kleinzehe:      { text: "Au\u00dfenseite der kleinen Zehe", l: [192, 276, 192, 292] },
+      wuerfelbein:    { text: "W\u00fcrfelbein", p: [160, 120] },
+      kahnbein:       { text: "H\u00f6cker des Kahnbeins", p: [ 70, 104] }
+    }
+  },
+
+  /* ---------------------------------------------------------------
+     Ellenbogen, rechter Arm. Von vorn liegt die Speiche links – auf
+     der Vorderansicht ist die Daumenseite außen, also bei den
+     kleineren x. Von hinten ist es umgekehrt.
+     Ein Cun misst am Unterarm 25 Bildpunkte, am Oberarm 28.
+     --------------------------------------------------------------- */
+
+  ellenbogen_vorn: {
+    titel: "Ellenbogen von vorn",
+    feld: [24, -30, 152, 380],
+
+    knochen: [
+      { name: "Oberarmknochen", d: "M74,-31.2 L67,114.4 A33,33 0 0 0 133,114.4 L126,-31.2 A26,26 0 0 0 74,-31.2 Z", stark: true },
+      { name: "Untere Knorren des Oberarmknochens", d: "M42.7,126.4 Q46,118 55,118 L145,118 Q154,118 157.3,126.4 L161.7,137.6 Q165,146 161.6,154.3 L159.4,159.7 Q156,168 147.6,171.1 L134.4,175.9 Q126,179 117,179 L83,179 Q74,179 65.5,176 L51.5,171 Q43,168 39.9,159.5 L38.1,154.5 Q35,146 38.3,137.6 Z", stark: true },
+      { name: "Köpfchen der Speiche", d: "M45.3,188.4 Q48,182 55,182 L73,182 Q80,182 82.5,188.6 L83.5,191.4 Q86,198 82.5,204.1 L81.5,205.9 Q78,212 71,212 L61,212 Q54,212 49.8,206.4 L46.2,201.6 Q42,196 44.7,189.6 Z", stark: true },
+      { name: "Speiche", d: "M50.1,206.8 L39.1,330.9 A13,13 0 0 0 64.9,333.4 L77.9,209.5 A14,14 0 0 0 50.1,206.8 Z", stark: true },
+      { name: "Elle", d: "M107,186.3 L109,332.2 A13,13 0 0 0 134.9,333.2 L148.9,188 A21,21 0 0 0 107,186.3 Z", stark: true }
+    ],
+
+    punkte: {
+      "Di 11": [ 56, 182], "Di 10": [ 56, 232],
+      "Lu 5":  [ 80, 186], "Lu 6":  [ 62, 310],
+      "Pe 3":  [112, 186],
+      "He 3":  [150, 188], "He 2":  [152, 100]
+    },
+
+    marken: {
+      ellenbeuge:   { text: "Ellenbeugefalte", l: [ 44, 180, 160, 186] },
+      bizepssehne:  { text: "Sehne des zweik\u00f6pfigen Oberarmmuskels", l: [ 98, 140,  96, 192] },
+      epicond_med:  { text: "Innerer Oberarmknorren", p: [160, 156] },
+      epicond_lat:  { text: "\u00c4u\u00dferer Oberarmknorren", p: [ 40, 154] },
+      speiche_rand: { text: "Speichenseitiger Rand des Unterarms", l: [ 56, 230,  48, 320] },
+      elle_rand:    { text: "Rand der Elle", l: [130, 230, 124, 320] },
+      bizeps_innen: { text: "Rinne innen neben dem Bizeps", l: [138,  90, 132, 142] },
+      speichenkopf: { text: "K\u00f6pfchen der Speiche", p: [ 64, 196] }
+    }
+  },
+
+  ellenbogen_hinten: {
+    titel: "Ellenbogen von hinten",
+    feld: [24, -30, 152, 380],
+
+    knochen: [
+      { name: "Oberarmknochen", d: "M74,-31.3 L67,110.4 A33,33 0 0 0 133,110.4 L126,-31.3 A26,26 0 0 0 74,-31.3 Z", stark: true },
+      { name: "Untere Knorren des Oberarmknochens", d: "M40.2,122.2 Q44,114 53,114 L147,114 Q156,114 159,122.5 L163,133.5 Q166,142 161.8,150 L159.2,155 Q155,163 146.2,165 L128.8,169 Q120,171 111,171 L85,171 Q76,171 67.3,168.7 L47.7,163.3 Q39,161 36.2,152.5 L34.8,148.5 Q32,140 35.8,131.8 Z", stark: true },
+      { name: "Ellenbogenhöcker", d: "M73.6,157.6 Q76,150 84,149.7 L114,148.3 Q122,148 125.3,155.3 L129.7,164.7 Q133,172 130.1,179.4 L126.9,187.6 Q124,195 116,195.4 L96,196.6 Q88,197 82.5,191.2 L73.5,181.8 Q68,176 70.4,168.4 Z", stark: true },
+      { name: "Elle", d: "M86.1,194.6 L75,331 A13,13 0 0 0 100.8,334 L121.8,198.8 A18,18 0 0 0 86.1,194.6 Z", stark: true },
+      { name: "Köpfchen der Speiche", d: "M123,185.2 Q126,180 132,179.6 L152,178.4 Q158,178 159.9,183.7 L162.1,190.3 Q164,196 160.8,201 L158.2,205 Q155,210 149,210 L136,210 Q130,210 126.4,205.2 L121.6,198.8 Q118,194 121,188.8 Z", stark: true },
+      { name: "Speiche", d: "M128,207.1 L138,332.9 A12,12 0 0 0 162,331.4 L156,205.3 A14,14 0 0 0 128,207.1 Z", stark: true }
+    ],
+
+    punkte: {
+      "D\u00fc 8": [ 66, 178], "3E 10": [102, 166]
+    },
+
+    marken: {
+      olekranon:     { text: "Ellenbogenh\u00f6cker", p: [100, 192] },
+      epicond_med_h: { text: "Innerer Oberarmknorren", p: [ 40, 152] },
+      ulnarrinne:    { text: "Rinne des Ellennervs", l: [ 54, 162,  74, 190] },
+      elle_rand:     { text: "Rand der Elle", l: [ 96, 232,  88, 320] }
+    }
+  },
+
   handflaeche: {
     titel: "Handfl\u00e4che, rechte Hand",
     feld: [4, -52, 192, 400],
