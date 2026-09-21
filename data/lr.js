@@ -1,10 +1,12 @@
 /* Lebermeridian – Fuß-Jueyin – 足厥阴肝经
-   Kalibriert auf img/front.png (880 × 1168). Landmarken wie bei Milz,
-   Magen und Niere: Innenknöchelspitze y 998, Kniegelenksspalt y 812 bis
-   818, dazwischen 16 Cun, also 11,25 Bildpunkte je Cun am Unterschenkel.
-   Am Oberschenkel Schambeinhöhe y 486 bis Knie y 812, dazwischen 18 Cun,
-   also 18,1 Bildpunkte je Cun. Waagerecht 1 Cun = 17 Bildpunkte, aus
-   Ma 25 übernommen; Nabel y 434, Brustwarze y 310, Rippenabstand 17. */
+   Kalibriert auf img/front.png (880 × 1168). Landmarken am 21.09.2026 neu
+   vermessen: Spitze des Innenknöchels y 1042 (nicht 998 – das ist die
+   schmalste Stelle des Knöchels), Kniegelenksspalt y 827, Condylus medialis
+   der Tibia y 840. Innen gelten 13 Cun zwischen Condylus und Knöchelspitze,
+   also 15,5 Bildpunkte je Cun am Unterschenkel. Am Oberschenkel Schambein
+   y 487 bis Knie y 827, dazwischen 18 Cun, also 18,9 Bildpunkte je Cun.
+   Waagerecht 1 Cun = 16,6 Bildpunkte (Brustwarzen 370 und 502, 8 Cun);
+   Mittellinie x 437, Nabel y 436, Brustwarze y 310, Rippenabstand 17. */
 Meridian.register({
   id: "lr", code: "LR", codeDe: "Le", ord: 12,
   name: "Leber", titel: "Lebermeridian", nameHan: "肝经",
@@ -25,12 +27,12 @@ Meridian.register({
          "der elften Rippe und Le 14 im sechsten Zwischenrippenraum unter der " +
          "Brustwarze. Alle vierzehn Punkte sind hier eingezeichnet.",
 
-  cun: { knoechel: [388, 998], knie: [399, 812],
-         hinweis: "Innenknöchel → Kniegelenksspalt = 16 Cun; Le 5 liegt 5, Le 6 liegt 7 Cun über dem Knöchel" },
+  cun: { knoechel: [392, 1042], knie: [399, 840],
+         hinweis: "Spitze des Innenknöchels → Condylus medialis der Tibia = 13 Cun; Le 5 liegt 5, Le 6 liegt 7 Cun über dem Knöchel" },
 
-  path: [[365,1117],[359,1104],[368,1078],[374,1042],[380,1010],[385,980],[390,942],[394,919],
-         [396,885],[397,851],[399,812],[402,740],[402,680],[402,620],[402,576],[403,522],
-         [396,492],[385,470],[372,440],[361,415],[362,388],[369,344]],
+  path: [[363,1113],[361,1100],[368,1082],[374,1062],[380,1046],[383,1005],[385,965],[390,934],
+         [394,890],[397,851],[399,815],[402,740],[402,680],[402,620],[404,582],[403,525],
+         [396,487],[385,470],[372,440],[361,415],[362,388],[369,344]],
 
   inner: "M396,492 C414,488 428,486 437,486 C440,470 438,452 436,436 C432,410 424,384 414,360",
   branches: [
@@ -240,49 +242,55 @@ Meridian.register({
 
   points: [
     { n:1, pinyin:"Dàdūn", han:"大敦", de:"Große Erhebung", en:"Large Pile",
-      x:365, y:1117, key:false, role:"TING",
+      x:363, y:1113, key:false, role:"TING",
       antik:"ting", wx:"holz",
       tags:["Ting / Jing – Brunnen-/Quellpunkt","Punkt bei Leistenbruch"],
+      wirkung:["Ting / Jing – Brunnen-/Quellpunkt", "Holzpunkt der Leber-Leitbahn", "", "Ordnet das Qi im Unterbauch", "Der Punkt beim Leistenbruch", "Stillt Blutungen und beruhigt den Geist"],
       loc:"An der Außenseite der großen Zehe, ein Fen (0,1 Cun) proximal des Nagelfalzwinkels – also auf der dem zweiten Zeh zugewandten Seite.",
       ind:"Leistenbruch und ziehender Schmerz im Hoden, Schmerz im Unterbauch, der zu den Geschlechtsteilen zieht, Bettnässen, Harnverhalt, Gebärmuttervorfall, langanhaltende Regelblutung, Ohnmacht, Krampfanfälle.",
       nd:"Schräg 0,1 bis 0,2 Cun oder Mikroaderlass. Bei Kältestauung klassisch mit Moxa." },
 
     { n:2, pinyin:"Xíngjiān", han:"行间", de:"Zwischenraum des Gehens", en:"Moving Between",
-      x:359, y:1104, key:true, role:"YONG · SED",
+      x:361, y:1100, key:true, role:"YONG · SED",
       antik:"yong", wx:"feuer",
       tags:["Yong / Ying – kleiner Flusspunkt","Sedierungspunkt","Hauptpunkt bei Leberfeuer"],
+      wirkung:["Yong / Ying – kleiner Flusspunkt", "Feuerpunkt der Leber-Leitbahn", "Sedierungspunkt", "", "Kühlt Leber-Feuer – der Hauptpunkt bei Zorn", "Senkt aufsteigendes Leber-Yang ab", "Klärt Hitze aus Augen und Kopf", "Beruhigt Krämpfe"],
       loc:"Auf dem Fußrücken zwischen erster und zweiter Zehe, dicht vor dem Rand der Schwimmhaut, an der Grenze zwischen rotem und weißem Fleisch.",
       ind:"Der Feuerpunkt und zugleich der Sedierungspunkt – der erste Punkt bei aufloderndem Leberfeuer: rote schmerzende Augen, pochender Schläfenkopfschmerz, Zorn, bitterer Mund, Schlaflosigkeit mit zornigen Träumen, Bluthochdruck, Nasenbluten, dunkler brennender Urin, Regelschmerz mit Hitze.",
       nd:"Senkrecht oder schräg 0,5 bis 0,8 Cun." },
 
     { n:3, pinyin:"Tàichōng", han:"太冲", de:"Großer Ansturm", en:"Supreme Surge",
-      x:368, y:1078, key:true, role:"YU · YUAN",
+      x:368, y:1082, key:true, role:"YU · YUAN",
       antik:"yu", wx:"erde",
       tags:["Yu / Shu – Bachpunkt","Yuan-Quellpunkt","eines der Vier Tore mit Di 4","der wichtigste Punkt des Meridians"],
+      wirkung:["Yu / Shu – Bachpunkt", "Erdpunkt der Leber-Leitbahn", "Yuan-Quellpunkt", "Eines der Vier Tore, zusammen mit Di 4", "", "Löst gestautes Leber-Qi", "Senkt Leber-Yang ab", "Nährt Leber-Blut und Leber-Yin", "Ordnet die Regel", "Besänftigt Wind und Krampf"],
       loc:"Auf dem Fußrücken in der Vertiefung zwischen erstem und zweitem Mittelfußknochen, etwa zwei Cun hinter dem Zwischenraum der Zehen. Man streicht von der Zehenlücke aufwärts, bis der Finger hängen bleibt.",
       ind:"Der Punkt für alles Gestaute: Reizbarkeit, Druck unter den Rippen, Kloßgefühl im Hals, Spannung vor der Regel, Regelschmerz, Kopfschmerz an Schläfe und Scheitel, Schwindel, trockene oder rote Augen, Bluthochdruck, Schlaflosigkeit, Krämpfe, Zittern, Schmerz im Fuß. Zusammen mit Di 4 die Vier Tore.",
       nd:"Senkrecht 0,5 bis 0,8 Cun. Sehr druckempfindlich, wenn Leber-Qi staut – der Befund selbst ist schon ein Hinweis." },
 
     { n:4, pinyin:"Zhōngfēng", han:"中封", de:"Mittlere Grenze", en:"Middle Seal",
-      x:380, y:1010, key:false, role:"KING",
+      x:380, y:1046, key:false, role:"KING",
       antik:"king", wx:"metall",
       tags:["King / Jing – Flusspunkt"],
+      wirkung:["King / Jing – Strom-/Flusspunkt", "Metallpunkt der Leber-Leitbahn", "", "Löst gestautes Qi im Unterbauch", "Leitet Feuchtigkeit und Hitze aus", "Öffnet die Leitbahn am Sprunggelenk"],
       loc:"Vor dem Innenknöchel, in der Vertiefung an der Innenseite der Sehne des vorderen Schienbeinmuskels, etwa einen Cun vor der Knöchelspitze.",
       ind:"Schmerz im Unterbauch und in der Leiste, Leistenbruch, Schmerz beim Wasserlassen, Samenerguss im Schlaf, Schmerz und Steifigkeit im Sprunggelenk, Gelbsucht, kalte Füße.",
       nd:"Senkrecht 0,5 bis 0,8 Cun." },
 
     { n:5, pinyin:"Lǐgōu", han:"蠡沟", de:"Rinne des Holzwurms", en:"Woodworm Canal",
-      x:390, y:942, key:true, role:"LUO",
+      x:385, y:965, key:true, role:"LUO",
       antik:"luo", wx:"",
       tags:["Luo-Punkt zur Gallenblase","Hauptpunkt im Genitalbereich"],
+      wirkung:["Luo-Punkt – zieht zur Gallenblase", "", "Ordnet das Qi im Genitalbereich", "Löst Juckreiz und Feuchtigkeit unten", "Reguliert die Regel"],
       loc:"Fünf Cun oberhalb der Innenknöchelspitze, direkt auf der Innenfläche des Schienbeins.",
       ind:"Juckreiz, Brennen und Ausfluss im Genitalbereich, Schmerz und Schwellung der Hoden, unregelmäßige Regel, Harnverhalt oder Bettnässen, Kloßgefühl im Hals. Der Luo-Punkt zieht zu den Geschlechtsteilen und ist dort der wichtigste Fernpunkt.",
       nd:"Flach 0,3 bis 0,5 Cun am Knochen entlang." },
 
     { n:6, pinyin:"Zhōngdū", han:"中都", de:"Mittlere Hauptstadt", en:"Central Metropolis",
-      x:394, y:919, key:false, role:"XI",
+      x:390, y:934, key:false, role:"XI",
       antik:"xi", wx:"",
       tags:["Xi-Spaltpunkt"],
+      wirkung:["Xi-Cleft – Akkumulationspunkt", "", "Akutpunkt bei Schmerz im Unterbauch", "Bewegt das Blut bei Stauung", "Ordnet die Regel"],
       loc:"Sieben Cun oberhalb der Innenknöchelspitze, ebenfalls auf der Innenfläche des Schienbeins, also zwei Cun über Le 5.",
       ind:"Als Xi-Punkt bei Akutem und bei Blutungen: heftiger Unterbauchschmerz, anhaltende Regelblutung, Nachblutung nach der Geburt, Ausfluss, akuter Leistenschmerz, Durchfall mit Schmerz.",
       nd:"Flach 0,3 bis 0,5 Cun am Knochen entlang." },
@@ -291,14 +299,16 @@ Meridian.register({
       x:397, y:851, key:false, role:"",
       antik:"", wx:"",
       tags:["Kniepunkt"],
+      wirkung:["Lokalpunkt am Knie", "", "Vertreibt Wind und Feuchtigkeit aus dem Knie", "Öffnet die Leitbahn an der Innenseite", "Löst Schmerz beim Beugen und Strecken"],
       loc:"An der Innenseite des Unterschenkels, einen Cun hinter MP 9, unterhalb des inneren Knieknorrens.",
       ind:"Schmerz und Schwellung an der Knieinnenseite, Schwierigkeiten beim Strecken und Beugen, Schmerz, der in den Oberschenkel zieht, Halsschmerz.",
       nd:"Senkrecht 0,8 bis 1,2 Cun." },
 
     { n:8, pinyin:"Qūquán", han:"曲泉", de:"Gekrümmte Quelle", en:"Spring at the Bend",
-      x:399, y:812, key:true, role:"HO · TON",
+      x:399, y:815, key:true, role:"HO · TON",
       antik:"ho", wx:"wasser",
       tags:["Ho / He – Meerpunkt","Tonisierungspunkt","nährt Leber-Blut und Leber-Yin"],
+      wirkung:["Ho / He – Meerpunkt", "Wasserpunkt der Leber-Leitbahn", "Tonisierungspunkt", "", "Nährt Leber-Blut und Leber-Yin", "Leitet Feuchtigkeit und Hitze aus dem Unteren Erwärmer", "Ordnet die Regel und den Genitalbereich", "Behandelt das Knie von innen"],
       loc:"Am inneren Ende der Kniekehlenfalte bei gebeugtem Knie, vor den beiden Sehnen, oberhalb des inneren Knieknorrens.",
       ind:"Als Wasserpunkt des Holzmeridians der Punkt, der Leber-Blut und Leber-Yin nährt: trockene Augen, Schwindel, nächtliche Krämpfe, spärliche Regel, Unfruchtbarkeit. Dazu Juckreiz im Genitalbereich, Ausfluss, Schmerz an der Knieinnenseite, Harnverhalt.",
       nd:"Senkrecht 0,8 bis 1,2 Cun bei gebeugtem Knie." },
@@ -307,14 +317,16 @@ Meridian.register({
       x:402, y:740, key:false, role:"",
       antik:"", wx:"",
       tags:["Oberschenkelpunkt"],
+      wirkung:["Lokalpunkt am Oberschenkel", "", "Ordnet die Regel", "Öffnet die Leitbahn an der Innenseite des Oberschenkels", "Reguliert das Wasser"],
       loc:"An der Innenseite des Oberschenkels, vier Cun oberhalb des inneren Knieknorrens, zwischen den Muskeln.",
       ind:"Unregelmäßige Regel, Schmerz im Unterbauch und im Kreuz, Harnverhalt oder Bettnässen, Schmerz an der Innenseite des Oberschenkels.",
       nd:"Senkrecht 0,8 bis 1,2 Cun." },
 
     { n:10, pinyin:"Zúwǔlǐ", han:"足五里", de:"Fünf Meilen am Fuß", en:"Leg Five Li",
-      x:402, y:576, key:false, role:"",
+      x:404, y:582, key:false, role:"",
       antik:"", wx:"",
       tags:["Leistenpunkt"],
+      wirkung:["Lokalpunkt in der Leiste", "", "Leitet Feuchtigkeit und Hitze aus dem Unteren Erwärmer", "Ordnet das Wasserlassen", "Öffnet die Leitbahn in der Leiste"],
       loc:"An der Innenseite des Oberschenkels, drei Cun unterhalb von Le 11, am Rand des langen Anziehmuskels.",
       ind:"Schmerz und Schweregefühl im Unterbauch, Harnverhalt, Bettnässen, Juckreiz im Genitalbereich, Müdigkeit und Schläfrigkeit, geschwollene Lymphknoten in der Leiste.",
       nd:"Senkrecht 0,8 bis 1,2 Cun. Vorsicht: hier verlaufen große Gefäße – vorher tasten." },
@@ -323,14 +335,16 @@ Meridian.register({
       x:403, y:522, key:false, role:"",
       antik:"", wx:"",
       tags:["Leistenpunkt","Frauenpunkt"],
+      wirkung:["Lokalpunkt in der Leiste", "", "Ordnet die Regel und den Kinderwunsch", "Bewegt Qi und Blut im Unterbauch", "Öffnet die Leitbahn in der Leiste"],
       loc:"In der Leiste, zwei Cun unterhalb der Höhe des Schambeins und zwei Cun seitlich der vorderen Mittellinie, am Rand des langen Anziehmuskels.",
       ind:"Unregelmäßige Regel, Unfruchtbarkeit, Schmerz im Unterbauch, Schmerz an der Innenseite des Oberschenkels und in der Leiste.",
       nd:"Senkrecht 0,8 bis 1,2 Cun. Auch hier vorher die Schlagader tasten." },
 
     { n:12, pinyin:"Jímài", han:"急脉", de:"Hastiges Gefäß", en:"Urgent Pulse",
-      x:396, y:492, key:false, role:"",
+      x:396, y:487, key:false, role:"",
       antik:"", wx:"",
       tags:["Punkt an der Leistenbeuge"],
+      wirkung:["Punkt an der Leistenbeuge", "", "Ordnet das Qi im Genitalbereich", "Löst Schmerz in der Leiste", "Wärmt die Leber-Leitbahn bei Kälte"],
       loc:"In der Leistenbeuge, zweieinhalb Cun seitlich der vorderen Mittellinie, auf Höhe des oberen Schambeinrands. Der Name kommt von der Schlagader, die hier zu tasten ist.",
       ind:"Ziehender Schmerz im Unterbauch, der zu den Geschlechtsteilen zieht, Leistenbruch, Hodenschmerz, Gebärmuttervorfall, Schmerz an der Innenseite des Oberschenkels.",
       nd:"Senkrecht 0,5 bis 0,8 Cun, unter Umgehung der tastbaren Schlagader. Kein Moxa." },
@@ -339,6 +353,7 @@ Meridian.register({
       x:361, y:415, key:true, role:"BEN",
       antik:"", wx:"",
       tags:["Mu-Alarmpunkt der Milz","Hui-Punkt der Zang-Organe","Treffpunkt mit der Gallenblase"],
+      wirkung:["Mu-Alarmpunkt der Milz", "Hui-Punkt der Zang-Organe", "Treffpunkt mit der Gallenblase", "", "Stärkt die Milz und ordnet die Mitte", "Löst gestautes Leber-Qi", "Harmonisiert Leber und Milz – der Punkt bei Ärger, der auf den Magen schlägt"],
       loc:"Am freien Ende der elften Rippe an der seitlichen Bauchwand. Man findet ihn, indem man den Ellenbogen an den Körper legt – die Ellenbogenspitze zeigt die Höhe an.",
       ind:"Als Mu-Punkt der Milz bei Verdauungsschwäche, Blähungen, Durchfall, unverdauten Speiseresten im Stuhl, Müdigkeit nach dem Essen. Als Hui-Punkt aller Zang-Organe bei jeder Schwäche der Speicherorgane. Dazu Schmerz und Druck in der Flanke, Schwellung der Milz, Erbrechen.",
       nd:"Schräg 0,5 bis 0,8 Cun. Auf der rechten Seite liegt die Leber darunter, auf der linken die Milz – nie tief senkrecht stechen." },
@@ -347,6 +362,7 @@ Meridian.register({
       x:369, y:344, key:true, role:"",
       antik:"", wx:"",
       tags:["Mu-Alarmpunkt der Leber","Endpunkt des Meridians","Treffpunkt mit Milz und Yinwei Mai"],
+      wirkung:["Mu-Alarmpunkt der Leber", "Endpunkt der Leber-Leitbahn", "Treffpunkt mit Milz und Yinwei Mai", "", "Löst gestautes Leber-Qi in Brust und Rippen", "Harmonisiert Leber und Magen", "Bewegt das Blut und löst Stauung"],
       loc:"Im sechsten Zwischenrippenraum, senkrecht unter der Brustwarze, vier Cun seitlich der vorderen Mittellinie – zwei Rippenzwischenräume unterhalb der Brustwarze.",
       ind:"Als Mu-Punkt der Leber das Gegenstück zu Bl 18 auf dem Rücken: Druck und Schmerz unter den Rippen, Enge in der Brust, Seufzen, Reizbarkeit, Übelkeit, Aufstoßen, bitterer Mund, Spannung in den Brüsten, Brustdrüsenentzündung, Gelbsucht. Druckempfindlichkeit hier ist ein guter Hinweis auf gestautes Leber-Qi.",
       nd:"Schräg oder flach 0,5 bis 0,8 Cun am Rippenrand entlang. Nie senkrecht – darunter liegen Lunge und Leber." }
