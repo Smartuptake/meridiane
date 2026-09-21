@@ -1,6 +1,8 @@
 /* Magenmeridian – Fuß-Yangming – 足阳明胃经
    Punktlagen kalibriert auf img/front.png (880 × 1168).
-   Kniegelenksspalt y≈818, Außenknöchel y≈998 → 16 Cun, rund 10,6 px je Cun. */
+   Am 21.09.2026 nachgemessen: y 998 ist die schmalste Stelle des Knöchels, nicht
+   die Spitze des Außenknöchels. Die liegt bei y≈1050, der Kniegelenksspalt bei
+   y≈827. 16 Cun = 223 px, also 13,9 px je Cun am Unterschenkel. */
 Meridian.register({
   id: "st", code: "ST", codeDe: "Ma", ord: 3,
   name: "Magen", titel: "Magenmeridian", nameHan: "胃经",
@@ -17,19 +19,20 @@ Meridian.register({
          "des Oberschenkels und die Außenkante des Schienbeins bis zur zweiten Zehe an Ma 45. " +
          "Kein anderer Meridian berührt Gesicht, Rumpf und Bein zugleich.",
 
-  cun: { knie: [358, 818], knoechel: [372, 998],
-         hinweis: "Kniegelenksspalt → Außenknöchel = 16 Cun; Ma 36 liegt 3 Cun unter Ma 35" },
+  cun: { knie: [354, 827], knoechel: [357, 1050],
+         hinweis: "Kniegelenksspalt → Spitze des Außenknöchels = 16 Cun; Ma 36 liegt 3 Cun unter Ma 35" },
 
-  path: [[417,108],[421,146],[406,162],[398,190],[380,215],[366,232],[366,270],[366,313],
-         [380,360],[395,400],[403,435],[403,480],[400,508],[388,560],[376,640],[366,700],
-         [355,770],[358,818],[359,850],[357,882],[356,914],[360,950],[372,1000],[360,1063],
-         [357,1085],[359,1105],[364,1114]],
+  path: [[419,103],[421,141],[415,152],[407,175],[398,195],[386,207],[371,215],[371,270],
+         [371,313],[382,360],[396,400],[404,436],[404,480],[401,508],[389,560],[377,640],
+         [367,700],[356,765],[354,827],[356,869],[357,910],[360,952],[366,1000],[371,1048],
+         [365,1062],[355,1082],[349,1097],[351,1114]],
 
-  inner: "M368,240 C398,286 418,336 428,386 C436,424 438,452 428,478 " +
+  inner: "M371,222 C398,282 418,336 428,386 C436,424 438,452 428,478 " +
          "C414,498 398,492 392,470",
   branches: [
-    { label: "Aufsteigender Ast zur Stirnecke", d: "M406,162 C400,138 397,114 396,92" },
-    { label: "Ast zu Ma 40", d: "M357,895 L345,903" }
+    { label: "Aufsteigender Ast zur Stirnecke",
+      d: "M416,150 C411,141 408,133 406,128 C403,122 401,119 401,114 C400,96 401,78 404,62" },
+    { label: "Ast zu Ma 40", d: "M359,936 L345,936" }
   ],
 
   /* --- Das Organ --- */
@@ -177,125 +180,142 @@ Meridian.register({
 
   points: [
     { n:1, pinyin:"Chéngqì", han:"承泣", de:"Tränen empfangen", en:"Container of Tears",
-      x:417, y:108, key:true, role:"",
+      x:419, y:103, key:true, role:"",
       tags:["Anfangspunkt des Meridians","Treffpunkt mit Ren Mai und Yangqiao Mai"],
+      wirkung:["Anfangspunkt der Magen-Leitbahn", "Treffpunkt mit Ren Mai und Yangqiao Mai", "", "Klärt Hitze aus den Augen", "Vertreibt Wind aus dem Gesicht", "Macht die Augen hell"],
       loc:"Zwischen Augapfel und unterem Orbitarand, senkrecht unter der Pupille bei geradeaus gerichtetem Blick.",
       ind:"Augenerkrankungen, tränende oder gerötete Augen, Lidzucken, Kurzsichtigkeit, Gesichtslähmung.",
       nd:"Senkrecht 0,5–1 Cun, den Augapfel sanft nach oben schieben, langsam und ohne zu drehen. Nicht moxibustieren." },
 
     { n:4, pinyin:"Dìcāng", han:"地仓", de:"Erdspeicher", en:"Earth Granary",
-      x:421, y:146, key:false, role:"",
+      x:421, y:141, key:false, role:"",
       tags:["Treffpunkt mit Di und Yangqiao Mai"],
+      wirkung:["Treffpunkt mit Dickdarm und Yangqiao Mai", "", "Vertreibt Wind aus dem Gesicht", "Öffnet die Leitbahn um den Mund", "Der Hauptpunkt beim hängenden Mundwinkel"],
       loc:"0,4 Cun lateral des Mundwinkels, senkrecht unter der Pupille.",
       ind:"Gesichtslähmung, herabhängender Mundwinkel, Speichelfluss, Zahnschmerz, Sprechstörung.",
       nd:"Tangential Richtung Ma 6, 0,5–1,5 Cun." },
 
     { n:6, pinyin:"Jiáchē", han:"颊车", de:"Wangenwagen", en:"Jaw Bone",
-      x:406, y:162, key:false, role:"",
+      x:406, y:128, key:false, role:"",
       tags:[],
+      wirkung:["Lokalpunkt auf dem Kaumuskel", "", "Vertreibt Wind und öffnet den Kiefer", "Löst die Leitbahn an Wange und Unterkiefer", "Lindert Zahnschmerz im Unterkiefer"],
       loc:"Ein Querfinger anterior und superior des Kieferwinkels, auf dem Muskelbauch des M. masseter, der beim Zusammenbeißen hervortritt.",
       ind:"Kieferklemme, Zahnschmerz im Unterkiefer, Gesichtslähmung, Schwellung der Wange, Mumps.",
       nd:"Senkrecht 0,3–0,5 Cun oder tangential Richtung Ma 4." },
 
     { n:8, pinyin:"Tóuwéi", han:"头维", de:"Kopfecke", en:"Head's Binding",
-      x:396, y:92, key:false, role:"",
+      x:404, y:62, key:false, role:"",
       tags:["Treffpunkt mit Gb und Yangwei Mai"],
+      wirkung:["Treffpunkt mit Gallenblase und Yangwei Mai", "", "Vertreibt Wind und klärt den Kopf", "Lindert Kopfschmerz an Stirn und Schläfe", "Beruhigt tränende Augen bei Wind"],
       loc:"In der Ecke des Stirnhaaransatzes, 4,5 Cun lateral der Mittellinie.",
       ind:"Kopfschmerz an der Stirn und an der Schläfe, Schwindel, Augenschmerz, tränende Augen bei Wind.",
       nd:"Tangential 0,5–1 Cun. Nicht moxibustieren." },
 
     { n:12, pinyin:"Quēpén", han:"缺盆", de:"Leere Schale", en:"Empty Basin",
-      x:366, y:232, key:false, role:"",
+      x:371, y:215, key:false, role:"",
       tags:["Treffpunkt mehrerer Yang-Meridiane"],
+      wirkung:["Treffpunkt mehrerer Yang-Leitbahnen", "", "Senkt gegenläufig aufsteigendes Qi ab", "Öffnet die Brust und stillt Husten", "Löst die Leitbahn an Hals und Schulter"],
       loc:"In der Mitte der Fossa supraclavicularis, 4 Cun lateral der vorderen Mittellinie, über dem Schlüsselbein.",
       ind:"Husten, Asthma, Enge in der Brust, Halsschmerz, Schmerz in der Schulter.",
       nd:"Senkrecht 0,3–0,5 Cun. Nicht tief – Pleuragefahr. In der Schwangerschaft meiden." },
 
     { n:25, pinyin:"Tiānshū", han:"天枢", de:"Himmelsangel", en:"Celestial Pivot",
-      x:403, y:435, key:true, role:"MU",
+      x:404, y:436, key:true, role:"MU",
       tags:["Mu-Punkt des Dickdarms","Angelpunkt zwischen oben und unten"],
+      wirkung:["Mu-Punkt des Dickdarms", "Angelpunkt zwischen oben und unten", "", "Reguliert Magen und Darm in beide Richtungen", "Löst Nahrungsstau und Feuchtigkeit", "Ordnet das Qi im Unterbauch"],
       loc:"2 Cun lateral der Mitte des Nabels.",
       ind:"Durchfall und Verstopfung gleichermaßen, Bauchschmerz, Blähungen, unregelmäßige Regel, Verdauungsstörungen aller Art.",
       nd:"Senkrecht 1–1,5 Cun. In der Schwangerschaft meiden." },
 
     { n:34, pinyin:"Liángqiū", han:"梁丘", de:"Kuppe des Hügels", en:"Ridge Mound",
-      x:355, y:770, key:false, role:"XI",
+      x:356, y:765, key:false, role:"XI",
       tags:["Xi-Cleft – Akkumulationspunkt","Akutpunkt"],
+      wirkung:["Xi-Cleft – Akkumulationspunkt", "", "Akutpunkt bei plötzlichem Magenschmerz", "Senkt gegenläufiges Magen-Qi ab", "Öffnet die Leitbahn am Knie"],
       loc:"2 Cun proximal des seitlichen Oberrandes der Patella, 4 Cun oberhalb des Kniegelenksspalts, direkt oberhalb von Ma 35.",
       ind:"Akuter Magenschmerz, akuter Knieschmerz, Schwellung der Brust, Durchfall.",
       nd:"Senkrecht 1–1,5 Cun." },
 
     { n:35, pinyin:"Dúbí", han:"犊鼻", de:"Kalbsschnauze", en:"Calf's Nose",
-      x:358, y:818, key:false, role:"",
+      x:354, y:827, key:false, role:"",
       tags:["laterales Knieauge"],
+      wirkung:["Lokalpunkt am Knie – das laterale Knieauge", "", "Vertreibt Wind, Kälte und Feuchtigkeit aus dem Knie", "Löst Schwellung und Steife", "Öffnet die Leitbahn im Bein"],
       loc:"Bei gebeugtem Knie unmittelbar unterhalb der Patella, seitlich der Patellasehne, im lateralen Knieauge.",
       ind:"Knieschmerz und Kniesteife, Schwellung des Knies, Schwäche im Bein.",
       nd:"Schräg nach medial-hinten, 0,5–1,2 Cun." },
 
     { n:36, pinyin:"Zúsānlǐ", han:"足三里", de:"Dritter Weiler am Fuß", en:"Leg Three Li",
-      x:359, y:850, key:true, role:"HO · BEN",
+      x:356, y:869, key:true, role:"HO · BEN",
       antik:"ho", wx:"erde",
       tags:["Ho / He – Meerpunkt","Ben-Punkt","Kommandopunkt Bauch","stärkt Qi und Blut"],
+      wirkung:["Ho / He – Meerpunkt", "Erdpunkt der Magen-Leitbahn", "Ben-Punkt", "Kommandopunkt für den Bauch", "", "Stärkt Magen und Milz", "Baut Qi und Blut auf", "Löst Feuchtigkeit und Schleim", "Senkt gegenläufiges Magen-Qi ab", "Stützt die Abwehr"],
       loc:"3 Cun unterhalb der lateralen Kniegelenksspalte, einen Finger breit lateral der Tibiakante.",
       ind:"Alle Beschwerden der Mitte, Erschöpfung, Immunschwäche, Magenschmerz, Übelkeit, Durchfall wie Verstopfung. Der meistgenutzte Punkt des Systems.",
       nd:"Senkrecht 1–2 Cun. Moxa ausdrücklich empfohlen." },
 
     { n:37, pinyin:"Shàngjùxū", han:"上巨虚", de:"Obere große Leere", en:"Upper Great Hollow",
-      x:357, y:882, key:true, role:"",
+      x:357, y:910, key:true, role:"",
       tags:["unterer He-Punkt des Dickdarms"],
+      wirkung:["Unterer He-Punkt des Dickdarms", "", "Reguliert den Dickdarm", "Klärt Hitze und Feuchtigkeit aus dem Darm", "Löst Bauchschmerz und Durchfall"],
       loc:"3 Cun unterhalb von Ma 36, einen Finger breit lateral der Tibiakante.",
       ind:"Bauchschmerz, Durchfall, Verstopfung, Dysenterie – die Darmbeschwerden schlechthin.",
       nd:"Senkrecht 1–2 Cun." },
 
     { n:39, pinyin:"Xiàjùxū", han:"下巨虚", de:"Untere große Leere", en:"Lower Great Hollow",
-      x:356, y:914, key:false, role:"",
+      x:360, y:952, key:false, role:"",
       tags:["unterer He-Punkt des Dünndarms"],
+      wirkung:["Unterer He-Punkt des Dünndarms", "", "Reguliert den Dünndarm", "Trennt das Klare vom Trüben", "Öffnet die Leitbahn im Bein"],
       loc:"1 Cun distal von Ma 38, 9 Cun unterhalb von Ma 35.",
       ind:"Unterbauchschmerz, Durchfall, Schmerz in der Brustseite, Schwäche und Schmerz im Bein.",
       nd:"Senkrecht 1–1,5 Cun." },
 
     { n:40, pinyin:"Fēnglóng", han:"丰隆", de:"Üppige Fülle", en:"Abundant Bulge",
-      x:345, y:903, key:true, role:"LUO",
+      x:345, y:936, key:true, role:"LUO",
       tags:["Luo-Punkt – Verbindungspunkt","zieht zum Yuan-Punkt Mi 3","der Schleimpunkt"],
+      wirkung:["Luo-Punkt – zieht zum Yuan-Punkt Mi 3", "", "Wandelt Schleim – der Schleimpunkt schlechthin", "Öffnet die Brust und stillt Husten", "Klärt Schleim, der den Geist umnebelt", "Beruhigt den Geist"],
       loc:"Genau in der Mitte zwischen Unterkante der Patella und der Spitze des Malleolus externus, 8 Cun unterhalb der Kniegelenksspalte, zwei Finger breit lateral der Tibiakante – einen Cun lateral von Ma 38.",
       ind:"Schleim in jeder Form: Husten mit Auswurf, Engegefühl, Benommenheit, Schwindel, auch Schleim, der den Geist umnebelt.",
       nd:"Senkrecht 1–1,5 Cun." },
 
     { n:41, pinyin:"Jiěxī", han:"解溪", de:"Befreiter Wasserlauf", en:"Ravine Divide",
-      x:372, y:1000, key:true, role:"KING · TON",
+      x:371, y:1048, key:true, role:"KING · TON",
       antik:"king", wx:"feuer",
       tags:["King / Jing – Strom-/Flusspunkt","Tonisierungspunkt"],
+      wirkung:["King / Jing – Strom-/Flusspunkt", "Feuerpunkt der Magen-Leitbahn", "Tonisierungspunkt", "", "Klärt Hitze aus dem Magen", "Löst Schwellung im Sprunggelenk", "Beruhigt den Geist"],
       loc:"Am Fußrücken in der Mitte der Knöchelspalte, zwischen den Sehnen des M. extensor hallucis longus und des M. extensor digitorum longus – lateraler, als man vermutet.",
       ind:"Schwellung und Schmerz im Sprunggelenk, Fußheberschwäche, Kopfschmerz, Schwindel, Verstopfung.",
       nd:"Senkrecht 0,5–1 Cun." },
 
     { n:42, pinyin:"Chōngyáng", han:"冲阳", de:"Hauptstraße des Yang", en:"Surging Yang",
-      x:360, y:1063, key:true, role:"YUAN",
+      x:365, y:1062, key:true, role:"YUAN",
       tags:["Yuan-Quellpunkt"],
+      wirkung:["Yuan-Quellpunkt", "", "Stärkt Magen und Milz", "Öffnet die Leitbahn am Fußrücken", "Klärt Hitze aus dem Gesicht"],
       loc:"Am höchsten Punkt des Fußrückens, 1,5 Cun distal von Ma 41, auf der Linie zwischen Ma 41 und Ma 43. Der Puls der A. dorsalis pedis ist hier tastbar.",
       ind:"Schwäche und Schmerz am Fußrücken, Gesichtsschwellung, Zahnschmerz, Appetitlosigkeit, Magenschmerz.",
       nd:"Senkrecht 0,3–0,5 Cun, die Arterie beim Nadeln zur Seite schieben." },
 
     { n:43, pinyin:"Xiàngǔ", han:"陷谷", de:"Das eingebrochene Tal", en:"Sunken Valley",
-      x:357, y:1085, key:false, role:"YU",
+      x:355, y:1082, key:false, role:"YU",
       antik:"yu", wx:"holz",
       tags:["Yu / Shu – größerer Flusspunkt"],
+      wirkung:["Yu / Shu – Bachpunkt", "Holzpunkt der Magen-Leitbahn", "", "Leitet Feuchtigkeit aus und löst Ödeme", "Klärt Hitze aus dem Gesicht", "Öffnet die Leitbahn am Fuß"],
       loc:"In der Vertiefung zwischen dem zweiten und dritten Mittelfußknochen, proximal der Zehengrundgelenke.",
       ind:"Schwellung im Gesicht und am Fußrücken, Bauchschmerz mit Rumpeln, Ödeme.",
       nd:"Senkrecht 0,3–0,5 Cun." },
 
     { n:44, pinyin:"Nèitíng", han:"内庭", de:"Innere Vorhalle", en:"Inner Court",
-      x:359, y:1105, key:true, role:"YONG",
+      x:349, y:1097, key:true, role:"YONG",
       antik:"yong", wx:"wasser",
       tags:["Yong / Ying – kleiner Flusspunkt","kühlt Magen-Feuer"],
+      wirkung:["Yong / Ying – kleiner Flusspunkt", "Wasserpunkt der Magen-Leitbahn", "", "Kühlt Magen-Feuer", "Klärt Hitze aus Zähnen, Mund und Kehle", "Senkt gegenläufiges Magen-Qi ab"],
       loc:"Zwischen zweiter und dritter Zehe, distal des Zehengrundgelenks, 0,5 Cun proximal der Grenze der Aponeurose.",
       ind:"Zahnschmerz im Oberkiefer, Mundgeruch, Nasenbluten, brennender Magenschmerz, Heißhunger, Halsschmerz.",
       nd:"Senkrecht oder schräg 0,3–0,5 Cun." },
 
     { n:45, pinyin:"Lìduì", han:"厉兑", de:"Unterdrückte Heiterkeit", en:"Severe Mouth",
-      x:364, y:1114, key:true, role:"TING · SED",
+      x:351, y:1114, key:true, role:"TING · SED",
       antik:"ting", wx:"metall",
       tags:["Ting / Jing – Brunnen-/Quellpunkt","Sedierungspunkt","klärt den Geist"],
+      wirkung:["Ting / Jing – Brunnen-/Quellpunkt", "Metallpunkt der Magen-Leitbahn", "Sedierungspunkt", "", "Klärt Hitze und senkt das Yang ab", "Beruhigt den Geist bei Albträumen", "Belebt bei Bewusstlosigkeit"],
       loc:"An der lateralen, fibularen Seite der zweiten Zehe, ein Fen (0,1 Cun) proximal des Nagelfalzwinkels.",
       ind:"Albträume und unruhiger Schlaf, Gesichtsschwellung, Nasenbluten, Zahnschmerz, Fieber, Bewusstlosigkeit.",
       nd:"Schräg 0,1 Cun oder Mikroaderlass." }
