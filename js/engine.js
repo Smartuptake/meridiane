@@ -69,117 +69,50 @@
   var UMRISS_SCHRITT = 8;
 
   /* ===========================================================
-     Lupe – vergrößerte Nebenabbildung
+     Detailabbildung
      ===========================================================
-     Wo die Figur den Körper verkürzt zeigt – am deutlichsten am Fuß,
-     der zum Betrachter zeigt –, rücken die Punkte so dicht zusammen,
-     dass die Scheiben sich berühren. Dann taugt die Tafel zum Lernen
-     nichts mehr.
+     Die Figur ist ein Foto. Für die meisten Punkte reicht das – am
+     Rumpf und am Oberschenkel sieht man, wo der Punkt liegt.
 
-     Die Engine sucht solche Ballungen selbst und legt für jede eine
-     vergrößerte Nebenabbildung auf das freie Papier neben der Figur.
-     Der Ausschnitt wird vergrößert, die Punktscheiben aber nicht –
-     nur so wachsen die Abstände zwischen ihnen.
+     An Hand und Fuß reicht es nicht. Dort verkürzt die Figur, die
+     Punktscheiben berühren sich, und vor allem: die Lageangaben reden
+     von Dingen, die auf der Haut nicht zu sehen sind – von der Sehne
+     des ellenseitigen Handbeugers, vom Erbsenbein, vom Zwischenraum
+     zwischen zweitem und drittem Mittelfußknochen.
+
+     Darum hat jede Tafel eine Detailabbildung. Sie folgt dem
+     angeklickten Punkt, vergrößert seine Umgebung, zeigt die Nachbarn
+     mit – und zeichnet die Marken ein, von denen die Lageangabe
+     spricht, jede mit Nummer und Namen.
+
+     Der Ausschnitt wird vergrößert, die Punktscheiben nicht. Nur so
+     wachsen die Abstände zwischen ihnen.
+
+     Die Marken stehen in data/marken.js, einmal je Ansicht und Ort;
+     ein Punkt nennt sie nur beim Namen. Mit data.lupe = false lässt
+     sich die Detailabbildung für eine Tafel abschalten.
      =========================================================== */
 
-  /* Zwei Schwellen, und das aus gutem Grund.
+  var LUPE_B = 290, LUPE_H = 318, LUPE_RAND = 8;
+  var LUPE_BILD_B = 274, LUPE_BILD_H = 186;
 
-     LUPE_KERN ist der Abstand, unter dem sich die Scheiben tatsächlich
-     überdecken (Radius 5,4 plus weißer Ring). Nur solche Paare bilden
-     den Kern einer Ballung.
-
-     LUPE_NAH zieht danach die unmittelbaren Nachbarn mit hinein, aber
-     ohne weiterzuketten. Sonst würde eine Kette entstehen, die sich
-     durch die ganze Tafel frisst: die Zustimmungspunkte am Rücken
-     stehen alle fünfzehn Bildpunkte auseinander, stehen aber schnur-
-     gerade untereinander und lesen sich einwandfrei. Die brauchen
-     keine Lupe – die Ferse braucht eine. */
-  var LUPE_KERN = 14;
-  var LUPE_NAH = 18;
-  var LUPE_B = 280, LUPE_H = 228, LUPE_RAND = 8, LUPE_SPALTE = 56;
+  /* Benannte anatomische Marken, nach Ansicht geordnet */
+  var MARKEN = { front: {}, back: {}, side: {} };
+  function marken(tafel) {
+    for (var v in tafel) {
+      MARKEN[v] = MARKEN[v] || {};
+      for (var k in tafel[v]) MARKEN[v][k] = tafel[v][k];
+    }
+  }
+  function markeHolen(view, m) {
+    if (!m) return null;
+    if (typeof m !== "string") return m;
+    return (MARKEN[view] || {})[m] || null;
+  }
 
   function abstand(a, b) {
     var dx = a.x - b.x, dy = a.y - b.y;
     return Math.sqrt(dx * dx + dy * dy);
-  }
-
-  function ballungen(P) {
-    var gruppe = P.map(function (_, i) { return i; });
-    function wurzel(i) { while (gruppe[i] !== i) i = gruppe[i]; return i; }
-    for (var i = 0; i < P.length; i++)
-      for (var j = i + 1; j < P.length; j++)
-        if (abstand(P[i], P[j]) < LUPE_KERN) {
-          var a = wurzel(i), b = wurzel(j);
-          if (a !== b) gruppe[b] = a;
-        }
-    var topf = {};
-    P.forEach(function (p, i) {
-      var w = wurzel(i);
-      (topf[w] = topf[w] || []).push(p);
-    });
-    var raus = [];
-    for (var k in topf) if (topf[k].length > 1) raus.push(topf[k]);
-
-    /* Nachbarn aufnehmen, aber nicht weiterketten – und jeden Punkt nur
-       einmal, sonst steht er hinterher zweimal auf der Schiene der Lupe. */
-    var vergeben = [];
-    raus.forEach(function (g) { g.forEach(function (p) { vergeben.push(p); }); });
-    raus.forEach(function (g) {
-      var kern = g.slice();
-      P.forEach(function (p) {
-        if (vergeben.indexOf(p) >= 0) return;
-        for (var i = 0; i < kern.length; i++)
-          if (abstand(p, kern[i]) < LUPE_NAH) { g.push(p); vergeben.push(p); return; }
-      });
-    });
-    return raus;
-  }
-
-  /* Zwei Ballungen dicht nebeneinander ergeben eine Lupe, keine zwei –
-     aber nur, solange der gemeinsame Ausschnitt kompakt bleibt. Sonst
-     wächst er so weit, dass die Vergrößerung nichts mehr bringt. Das
-     passiert auf der vorderen Mittellinie, wo Ren Mai eine lange Kette
-     enger Punkte bildet. */
-  var LUPE_MAX = 95;
-  function verschmelzen(gruppen) {
-    var veraendert = true;
-    while (veraendert) {
-      veraendert = false;
-      for (var i = 0; i < gruppen.length && !veraendert; i++) {
-        for (var j = i + 1; j < gruppen.length && !veraendert; j++) {
-          var a = kasten(gruppen[i]), b = kasten(gruppen[j]);
-          var nah = a.x0 - 60 < b.x1 && a.x1 + 60 > b.x0 &&
-                    a.y0 - 60 < b.y1 && a.y1 + 60 > b.y0;
-          var breit = Math.max(a.x1, b.x1) - Math.min(a.x0, b.x0);
-          var hoch  = Math.max(a.y1, b.y1) - Math.min(a.y0, b.y0);
-          if (nah && breit <= LUPE_MAX && hoch <= LUPE_MAX) {
-            gruppen[i] = gruppen[i].concat(gruppen[j].filter(function (p) {
-              return gruppen[i].indexOf(p) < 0;
-            }));
-            gruppen.splice(j, 1);
-            veraendert = true;
-          }
-        }
-      }
-    }
-    return gruppen;
-  }
-
-  function kasten(gruppe) {
-    var xs = gruppe.map(function (p) { return p.x; }),
-        ys = gruppe.map(function (p) { return p.y; });
-    return { x0: Math.min.apply(null, xs), x1: Math.max.apply(null, xs),
-             y0: Math.min.apply(null, ys), y1: Math.max.apply(null, ys) };
-  }
-
-  function engsterAbstand(gruppe) {
-    var m = 1e9;
-    for (var i = 0; i < gruppe.length; i++)
-      for (var j = i + 1; j < gruppe.length; j++) {
-        var dx = gruppe[i].x - gruppe[j].x, dy = gruppe[i].y - gruppe[j].y;
-        m = Math.min(m, Math.sqrt(dx * dx + dy * dy));
-      }
-    return m;
   }
 
   /* Liegt das Rechteck neben der Figur und nicht auf einer Sperrfläche? */
@@ -202,7 +135,7 @@
     var gefunden = [];
     [16, W - 16 - breite].forEach(function (bx) {
       for (var by = 10; by <= H - hoehe - 10; by += 8) {
-        if (platzFrei(view, bx - 6, by - 20, bx + breite + 6, by + hoehe + 6, sperren))
+        if (platzFrei(view, bx - 6, by - 22, bx + breite + 6, by + hoehe + 6, sperren))
           gefunden.push([bx, by]);
       }
     });
@@ -380,128 +313,215 @@
     });
 
 
-    /* --- Lupen: vergrößerte Nebenabbildungen für zu enge Stellen ------
-       Der Ausschnitt wird vergrößert, die Punktscheiben nicht. Nur so
-       wachsen die Abstände zwischen ihnen. Mit data.lupe = false lässt
-       sich das für eine Tafel abschalten. */
-    var gLupe = el("g", {}), gLupeLab = el("g", {});
-    svg.appendChild(gLupe); svg.appendChild(gLupeLab);
-    var lupenKaesten = [];
+    /* --- Detailabbildung, folgt dem angeklickten Punkt -------- */
+    var gDetail = el("g", {}), gDetailText = el("g", {});
+    svg.appendChild(gDetail); svg.appendChild(gDetailText);
+    var detailKasten = null;
+    var detailZeigen = function () {};
 
-    if (data.lupe !== false) {
+    if (data.lupe !== false) (function () {
+      /* So viel Vergrößerung, dass auch das engste Punktpaar auseinanderrückt */
+      var eng = 1e9;
+      for (var a = 0; a < P.length; a++)
+        for (var b = a + 1; b < P.length; b++) eng = Math.min(eng, abstand(P[a], P[b]));
+      var f = Math.max(2.4, Math.min(5, 26 / Math.max(4, eng)));
+
       var sperren = [
         [lx - 10, 78, lx + 215, 212],
         rechts ? [railX - 34, top - 26, W + 200, bot + 26]
                : [-200, top - 26, railX + 34, bot + 26]
       ];
-      verschmelzen(ballungen(P)).forEach(function (gruppe, nr) {
-        gruppe.sort(function (a, b) { return a.y - b.y; });
-        var k = kasten(gruppe);
-        var bildB = LUPE_B - 2 * LUPE_RAND - LUPE_SPALTE;
-        var bildH = LUPE_H - 2 * LUPE_RAND;
-        var luft = 14;
-        var rx0 = k.x0 - luft, rx1 = k.x1 + luft, ry0 = k.y0 - luft, ry1 = k.y1 + luft;
-        var f = Math.min(bildB / (rx1 - rx0), bildH / (ry1 - ry0), 4.5);
-        if (f < 1.5) return;                      /* lohnt nicht */
-        var mx = (rx0 + rx1) / 2, my = (ry0 + ry1) / 2;
+      var mitteY = P.reduce(function (s, p) { return s + p.y; }, 0) / P.length;
+      var platz = suchePlatz(data.view, LUPE_B, LUPE_H, mitteY, sperren);
+      if (!platz) return;                         /* kein Papier frei */
+      var bx = platz[0], by = platz[1];
+      detailKasten = [bx, by - 24, bx + LUPE_B, by + LUPE_H];
 
-        var platz = suchePlatz(data.view, LUPE_B, LUPE_H, my, sperren);
-        if (!platz) return;                       /* kein Papier frei */
-        var bx = platz[0], by = platz[1];
-        sperren.push([bx - 14, by - 28, bx + LUPE_B + 14, by + LUPE_H + 14]);
-        lupenKaesten.push([bx, by - 24, bx + LUPE_B, by + LUPE_H]);
+      var fx = bx + LUPE_RAND, fy = by + LUPE_RAND;
 
-        var fx = bx + LUPE_RAND, fy = by + LUPE_RAND;
-        var tx = fx + bildB / 2 - f * mx, ty = fy + bildH / 2 - f * my;
+      gDetail.appendChild(el("rect", { x: bx, y: by, width: LUPE_B, height: LUPE_H,
+        fill: PAPIER }));
 
-        /* Papier unter der Lupe, damit die Hilfslinien nicht durchscheinen */
-        gLupe.appendChild(el("rect", { x: bx, y: by, width: LUPE_B, height: LUPE_H,
-          fill: PAPIER }));
+      var id = "detail-" + (data.id || "x");
+      var clip = el("clipPath", { id: id });
+      clip.appendChild(el("rect", { x: fx, y: fy, width: LUPE_BILD_B, height: LUPE_BILD_H }));
+      gDetail.appendChild(clip);
 
-        var id = "lupe-" + (data.id || "x") + "-" + nr;
-        var clip = el("clipPath", { id: id });
-        clip.appendChild(el("rect", { x: fx, y: fy, width: bildB, height: bildH }));
-        gLupe.appendChild(clip);
+      var innen = el("g", { "clip-path": "url(#" + id + ")" });
+      var gBild = el("g", {});
+      var b2 = el("image", { href: imgBase + data.view + ".png", x: 0, y: 0,
+        width: W, height: H, preserveAspectRatio: "xMidYMid meet" });
+      b2.style.filter = "saturate(.85)";
+      gBild.appendChild(b2);
+      gBild.appendChild(el("path", { d: D, fill: "none", stroke: PAPIER,
+        "stroke-width": 6.4 / f, "stroke-linecap": "round", opacity: ".55" }));
+      gBild.appendChild(el("path", { d: D, fill: "none", stroke: TUSCHE,
+        "stroke-width": 3.2 / f, "stroke-linecap": "round" }));
+      if (DZ) {
+        gBild.appendChild(el("path", { d: DZ, fill: "none", stroke: PAPIER,
+          "stroke-width": 5.4 / f, "stroke-linecap": "round", opacity: ".55" }));
+        gBild.appendChild(el("path", { d: DZ, fill: "none", stroke: TUSCHE,
+          "stroke-width": 2.2 / f, "stroke-linecap": "round" }));
+      }
+      innen.appendChild(gBild);
+      var gInhalt = el("g", {});
+      innen.appendChild(gInhalt);
+      gDetail.appendChild(innen);
+      gDetail.appendChild(el("rect", { x: fx, y: fy, width: LUPE_BILD_B, height: LUPE_BILD_H,
+        fill: "none", stroke: TUSCHE, "stroke-width": 1.2 }));
 
-        var innen = el("g", { "clip-path": "url(#" + id + ")" });
-        var gBild = el("g", { transform: "translate(" + tx.toFixed(2) + "," + ty.toFixed(2) +
-                                         ") scale(" + f.toFixed(4) + ")" });
-        var b2 = el("image", { href: imgBase + data.view + ".png", x: 0, y: 0,
-          width: W, height: H, preserveAspectRatio: "xMidYMid meet" });
-        b2.style.filter = "saturate(.85)";
-        gBild.appendChild(b2);
-        gBild.appendChild(el("path", { d: D, fill: "none", stroke: PAPIER,
-          "stroke-width": 6.4 / f, "stroke-linecap": "round", opacity: ".55" }));
-        gBild.appendChild(el("path", { d: D, fill: "none", stroke: TUSCHE,
-          "stroke-width": 3.2 / f, "stroke-linecap": "round" }));
-        if (DZ) {
-          gBild.appendChild(el("path", { d: DZ, fill: "none", stroke: PAPIER,
-            "stroke-width": 5.4 / f, "stroke-linecap": "round", opacity: ".55" }));
-          gBild.appendChild(el("path", { d: DZ, fill: "none", stroke: TUSCHE,
-            "stroke-width": 2.2 / f, "stroke-linecap": "round" }));
+      /* Markierung auf der Figur, die mitwandert */
+      var rahmen = el("rect", { x: 0, y: 0, width: 10, height: 10, rx: 4,
+        fill: "none", stroke: STEIN, "stroke-width": 1.2, opacity: ".75" });
+      var faden = el("path", { d: "", fill: "none", stroke: STEIN,
+        "stroke-width": 1, opacity: ".5" });
+      gDetail.appendChild(rahmen); gDetail.appendChild(faden);
+
+      var SCHRIFT = '"LXGW WenKai TC", "Lato", Arial, "Kaiti SC", sans-serif';
+
+      /* Namen, die nicht in den Kasten passen, an einer Leerstelle teilen */
+      function umbrechen(text, breite) {
+        var worte = text.split(" "), zeilen = [], jetzt = "";
+        worte.forEach(function (w) {
+          if (jetzt && (jetzt + " " + w).length > breite) { zeilen.push(jetzt); jetzt = w; }
+          else jetzt = jetzt ? jetzt + " " + w : w;
+        });
+        if (jetzt) zeilen.push(jetzt);
+        return zeilen;
+      }
+
+      /* Kleine Nummernscheibe, wie sie auf der Zeichnung und in der
+         Liste darunter dieselbe Marke bezeichnet. */
+      function scheibe(ziel, nr, x, y, imFenster) {
+        if (imFenster) {
+          x = Math.max(fx + 11, Math.min(fx + LUPE_BILD_B - 11, x));
+          y = Math.max(fy + 11, Math.min(fy + LUPE_BILD_H - 11, y));
         }
-        innen.appendChild(gBild);
-        gLupe.appendChild(innen);
-        gLupe.appendChild(el("rect", { x: fx, y: fy, width: bildB, height: bildH,
-          fill: "none", stroke: TUSCHE, "stroke-width": 1.2 }));
+        ziel.appendChild(el("circle", { cx: x, cy: y, r: 7, fill: PAPIER,
+          stroke: STEIN, "stroke-width": 1.1 }));
+        var t = el("text", { x: x, y: y + 3.6, "text-anchor": "middle", fill: STEIN,
+          "font-family": SCHRIFT, "font-size": 9.5, "font-weight": 700 });
+        t.textContent = nr;
+        ziel.appendChild(t);
+      }
 
-        /* Markierung auf der Figur und die Verbindung dorthin */
-        var mrx = k.x0 - 11, mry = k.y0 - 11,
-            mrw = (k.x1 - k.x0) + 22, mrh = (k.y1 - k.y0) + 22;
-        gLupe.appendChild(el("rect", { x: mrx, y: mry, width: mrw, height: mrh, rx: 4,
-          fill: "none", stroke: STEIN, "stroke-width": 1.2, opacity: ".75" }));
-        gLupe.appendChild(el("path", {
-          d: "M" + (bx < mrx ? bx + LUPE_B : bx) + "," + (by + LUPE_H / 2) +
-             " L" + (bx < mrx ? mrx : mrx + mrw) + "," + (mry + mrh / 2),
-          fill: "none", stroke: STEIN, "stroke-width": 1, opacity: ".5" }));
+      detailZeigen = function (p) {
+        var tx = fx + LUPE_BILD_B / 2 - f * p.x, ty = fy + LUPE_BILD_H / 2 - f * p.y;
+        gBild.setAttribute("transform",
+          "translate(" + tx.toFixed(2) + "," + ty.toFixed(2) + ") scale(" + f.toFixed(4) + ")");
+        while (gInhalt.firstChild) gInhalt.removeChild(gInhalt.firstChild);
+        while (gDetailText.firstChild) gDetailText.removeChild(gDetailText.firstChild);
 
-        /* Punkte und kleine Schiene in der Lupe */
-        var spalteX = bx + LUPE_B - LUPE_RAND - LUPE_SPALTE;
-        var oben = fy + 15, unten = fy + bildH - 11;
-        gruppe.forEach(function (p, rang) {
-          var px = tx + f * p.x, py = ty + f * p.y;
-          var ly = gruppe.length === 1 ? (oben + unten) / 2
-                 : oben + (unten - oben) * rang / (gruppe.length - 1);
-          var idx = P.indexOf(p);
+        function schirm(x, y) { return [tx + f * x, ty + f * y]; }
+        var hw = LUPE_BILD_B / (2 * f), hh = LUPE_BILD_H / (2 * f);
 
-          p._lupeLead = el("path", { d: "M" + spalteX + "," + ly + " L" + (px + 8) + "," + py,
-            fill: "none", stroke: HAARLINIE, "stroke-width": 1 });
-          gLupe.appendChild(p._lupeLead);
+        /* Der Rahmen auf der Figur zeigt, was die Abbildung zeigt */
+        rahmen.setAttribute("x", p.x - hw); rahmen.setAttribute("y", p.y - hh);
+        rahmen.setAttribute("width", 2 * hw); rahmen.setAttribute("height", 2 * hh);
+        var vonX = bx < p.x ? p.x - hw : p.x + hw;
+        faden.setAttribute("d", "M" + (bx < p.x ? bx + LUPE_B : bx) + "," +
+          (by + LUPE_BILD_H / 2) + " L" + vonX + "," + p.y);
 
-          var g2 = el("g", { role: "button", tabindex: "0" });
-          g2.style.cursor = "pointer";
-          p._lupeRing = el("circle", { cx: px, cy: py, r: 11, fill: "none",
-            stroke: SIEGELROT, "stroke-width": 1.4, opacity: "0" });
-          p._lupeDot = el("circle", { cx: px, cy: py, r: p.key ? 5.4 : 4.4,
-            fill: SIEGELROT, stroke: WEISS, "stroke-width": 1.5 });
-          g2.appendChild(p._lupeRing); g2.appendChild(p._lupeDot);
-          g2.appendChild(el("circle", { cx: px, cy: py, r: 14, fill: "transparent" }));
-          g2.setAttribute("aria-label", LBL + " " + p.n + ", " + p.pinyin + ", vergrößert");
-          g2.addEventListener("click", function (e) { e.stopPropagation(); select(idx); });
-          g2.addEventListener("keydown", function (e) {
-            if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.stopPropagation(); select(idx); }
-          });
-          gLupe.appendChild(g2);
-
-          p._lupeTxt = el("text", { x: spalteX + 8, y: ly + 5, fill: STEIN,
-            "font-family": '"LXGW WenKai TC", "Lato", Arial, "Kaiti SC", sans-serif',
-            "font-size": 14, "font-weight": 700, "letter-spacing": 0.4 });
-          p._lupeTxt.textContent = LBL + " " + p.n;
-          p._lupeTxt.style.cursor = "pointer";
-          p._lupeTxt.addEventListener("click", function (e) { e.stopPropagation(); select(idx); });
-          gLupeLab.appendChild(p._lupeTxt);
+        /* Marken zuerst, damit die Punkte darüberliegen */
+        var liste = [];
+        (p.marken || []).forEach(function (m) {
+          var mk = markeHolen(data.view, m);
+          if (!mk) return;
+          liste.push(mk);
+          var nr = liste.length;
+          if (mk.l) {
+            var a = schirm(mk.l[0], mk.l[1]), b = schirm(mk.l[2], mk.l[3]);
+            gInhalt.appendChild(el("line", { x1: a[0], y1: a[1], x2: b[0], y2: b[1],
+              stroke: STEIN, "stroke-width": 1.7, "stroke-linecap": "round", opacity: ".95" }));
+            /* Die Nummer sitzt an dem Ende, das im Ausschnitt liegt */
+            var drin = function (q) {
+              return q[0] > fx + 6 && q[0] < fx + LUPE_BILD_B - 6 &&
+                     q[1] > fy + 6 && q[1] < fy + LUPE_BILD_H - 6;
+            };
+            var e = drin(b) ? b : (drin(a) ? a : [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2]);
+            var g0 = (e === a) ? b : a;
+            var dx = e[0] - g0[0], dy = e[1] - g0[1], len = Math.sqrt(dx * dx + dy * dy) || 1;
+            scheibe(gInhalt, nr, e[0] + dx / len * 12, e[1] + dy / len * 12, true);
+          } else if (mk.p) {
+            var q = schirm(mk.p[0], mk.p[1]);
+            gInhalt.appendChild(el("path", {
+              d: "M" + (q[0] - 5) + "," + q[1] + " h10 M" + q[0] + "," + (q[1] - 5) + " v10",
+              stroke: STEIN, "stroke-width": 1.7, "stroke-linecap": "round" }));
+            scheibe(gInhalt, nr, q[0] + 11, q[1] - 10, true);
+          }
         });
 
-        var nn = gruppe.map(function (p) { return p.n; });
-        var bt = el("text", { x: bx, y: by - 9, fill: STEIN,
-          "font-family": '"LXGW WenKai TC", "Lato", Arial, "Kaiti SC", sans-serif',
-          "font-size": 13, "letter-spacing": 0.3 });
-        bt.textContent = LBL + " " + Math.min.apply(null, nn) + " bis " + LBL + " " +
-          Math.max.apply(null, nn) + " · " +
-          (Math.round(f * 10) / 10).toFixed(1).replace(".", ",") + "fach vergrößert";
-        gLupeLab.appendChild(bt);
-      });
-    }
+        /* Die Punkte im Ausschnitt, der gewählte hervorgehoben */
+        var drinnen = [];
+        P.forEach(function (q, k) {
+          if (Math.abs(q.x - p.x) > hw - 3 || Math.abs(q.y - p.y) > hh - 3) return;
+          drinnen.push({ q: q, k: k, sy: schirm(q.x, q.y)[1] });
+        });
+        drinnen.sort(function (a, b) { return a.sy - b.sy; });
+        var schieneX = fx + LUPE_BILD_B - 46, vorher = -1e9;
+        drinnen.forEach(function (e) {
+          e.ly = Math.max(vorher + 15, Math.min(fy + LUPE_BILD_H - 8,
+                 Math.max(fy + 13, e.sy)));
+          vorher = e.ly;
+        });
+        drinnen.forEach(function (e) {
+          var q = e.q, k = e.k;
+          var s = schirm(q.x, q.y), an = (q === p);
+          var g2 = el("g", { role: "button", tabindex: "0" });
+          g2.style.cursor = "pointer";
+          if (an) g2.appendChild(el("circle", { cx: s[0], cy: s[1], r: 11, fill: "none",
+            stroke: SIEGELROT, "stroke-width": 1.4 }));
+          g2.appendChild(el("circle", { cx: s[0], cy: s[1], r: an ? 6.2 : 4.4,
+            fill: SIEGELROT, stroke: WEISS, "stroke-width": 1.5 }));
+          g2.appendChild(el("circle", { cx: s[0], cy: s[1], r: 13, fill: "transparent" }));
+          g2.setAttribute("aria-label", LBL + " " + q.n + ", " + q.pinyin + ", vergrößert");
+          g2.addEventListener("click", function (e) { e.stopPropagation(); select(k); });
+          g2.addEventListener("keydown", function (e) {
+            if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.stopPropagation(); select(k); }
+          });
+          gInhalt.appendChild(g2);
+
+          gInhalt.appendChild(el("path", {
+            d: "M" + schieneX + "," + e.ly + " L" + (s[0] + 8) + "," + s[1],
+            fill: "none", stroke: an ? STEIN : HAARLINIE, "stroke-width": 1 }));
+          var t = el("text", { x: schieneX + 6, y: e.ly + 4,
+            fill: an ? TUSCHE : STEIN, "font-family": SCHRIFT,
+            "font-size": 12.5, "font-weight": 700 });
+          t.textContent = LBL + " " + q.n;
+          gInhalt.appendChild(t);
+        });
+
+        /* Unterschrift und Markenliste */
+        var zy = by + LUPE_RAND + LUPE_BILD_H + 19;
+        var kopf = el("text", { x: bx + LUPE_RAND, y: zy, fill: TUSCHE,
+          "font-family": SCHRIFT, "font-size": 15, "font-weight": 700 });
+        kopf.textContent = LBL + " " + p.n + "  " + p.pinyin;
+        gDetailText.appendChild(kopf);
+        var lupe = el("text", { x: bx + LUPE_B - LUPE_RAND, y: zy, "text-anchor": "end",
+          fill: STEIN, "font-family": SCHRIFT, "font-size": 12 });
+        lupe.textContent = (Math.round(f * 10) / 10).toFixed(1).replace(".", ",") + "fach";
+        gDetailText.appendChild(lupe);
+
+        var zeile = 0;
+        liste.forEach(function (mk, i) {
+          if (mk.l || mk.p)
+            scheibe(gDetailText, i + 1, bx + LUPE_RAND + 7, zy + 17 + zeile * 16);
+          umbrechen(mk.text, 40).forEach(function (stueck) {
+            var t = el("text", { x: bx + LUPE_RAND + 19, y: zy + 21 + zeile * 16,
+              fill: STEIN, "font-family": SCHRIFT, "font-size": 12.5 });
+            t.textContent = stueck;
+            gDetailText.appendChild(t);
+            zeile++;
+          });
+        });
+        if (!liste.length) {
+          var h = el("text", { x: bx + LUPE_RAND, y: zy + 21, fill: KIESEL,
+            "font-family": SCHRIFT, "font-size": 12.5 });
+          h.textContent = "Noch keine Marken eingetragen.";
+          gDetailText.appendChild(h);
+        }
+      };
+    })();
 
     function beschriften() {
       P.forEach(function (p) {
@@ -520,13 +540,9 @@
         q._ring.setAttribute("opacity", on ? "1" : "0");
         q._txt.setAttribute("fill", on ? TUSCHE : STEIN);
         q._lead.setAttribute("stroke", on ? STEIN : HAARLINIE);
-        if (q._lupeDot) {
-          q._lupeDot.setAttribute("r", on ? (q.key ? 7 : 6.2) : (q.key ? 5.4 : 4.4));
-          q._lupeRing.setAttribute("opacity", on ? "1" : "0");
-          q._lupeTxt.setAttribute("fill", on ? TUSCHE : STEIN);
-          q._lupeLead.setAttribute("stroke", on ? STEIN : HAARLINIE);
-        }
+
       });
+      detailZeigen(P[i]);
       if (opts.onPoint) opts.onPoint(P[i], i, P);
     }
 
@@ -564,7 +580,7 @@
         if (which === "labels") {
           gLab.setAttribute("opacity", on ? "1" : "0");
           gLead.setAttribute("opacity", on ? "1" : "0");
-          gLupeLab.setAttribute("opacity", on ? "1" : "0");
+          gDetailText.setAttribute("opacity", on ? "1" : "0");
           legende.setAttribute("opacity", on ? "1" : "0");
         }
       },
@@ -575,9 +591,10 @@
         data.path.forEach(function (a) { xs.push(a[0]); ys2.push(a[1]); });
         (data.zweig || []).forEach(function (a) { xs.push(a[0]); ys2.push(a[1]); });
         P.forEach(function (p) { xs.push(p.x); ys2.push(p.y); });
-        lupenKaesten.forEach(function (r) {
-          xs.push(r[0], r[2]); ys2.push(r[1], r[3]);
-        });
+        if (detailKasten) {
+          xs.push(detailKasten[0], detailKasten[2]);
+          ys2.push(detailKasten[1], detailKasten[3]);
+        }
         var x0 = Math.min.apply(null, xs), x1 = Math.max.apply(null, xs),
             y0 = Math.min.apply(null, ys2), y1 = Math.max.apply(null, ys2);
         x0 -= 40; x1 += 60; y0 -= 60; y1 += 60;
@@ -602,5 +619,6 @@
     };
   }
 
-  global.Meridian = { register: register, get: get, mount: mount, spline: spline, W: W, H: H };
+  global.Meridian = { register: register, get: get, mount: mount, spline: spline,
+                      marken: marken, W: W, H: H };
 })(window);
