@@ -69,12 +69,16 @@
     svg.appendChild(bild);
 
     var D = spline(data.path);
+    /* Nur die Blase hat auf dem Rücken eine zweite äußere Linie. */
+    var DZ = data.zweig ? spline(data.zweig) : null;
 
     /* Gegenseite – nur andeutend, Kiesel */
     var gMirror = el("g", { transform: "translate(" + W + ",0) scale(-1,1)", opacity: ".45" });
     if (data.mirror !== false) {
       gMirror.appendChild(el("path", { d: D, fill: "none", stroke: KIESEL,
         "stroke-width": 2.4, "stroke-linecap": "round" }));
+      if (DZ) gMirror.appendChild(el("path", { d: DZ, fill: "none", stroke: KIESEL,
+        "stroke-width": 1.8, "stroke-linecap": "round" }));
       P.forEach(function (p) {
         gMirror.appendChild(el("circle", { cx: p.x, cy: p.y, r: 3, fill: KIESEL }));
       });
@@ -97,6 +101,13 @@
     var bahn = el("path", { d: D, fill: "none", stroke: TUSCHE,
       "stroke-width": 3.2, "stroke-linecap": "round" });
     svg.appendChild(bahn);
+
+    if (DZ) {
+      svg.appendChild(el("path", { d: DZ, fill: "none", stroke: PAPIER,
+        "stroke-width": 5.4, "stroke-linecap": "round", opacity: ".55" }));
+      svg.appendChild(el("path", { d: DZ, fill: "none", stroke: TUSCHE,
+        "stroke-width": 2.2, "stroke-linecap": "round" }));
+    }
 
     var gLead = el("g", {}), gPts = el("g", {}), gLab = el("g", {});
     svg.appendChild(gLead); svg.appendChild(gPts); svg.appendChild(gLab);
@@ -263,6 +274,7 @@
         if (!eng) return svg.setAttribute("viewBox", "0 0 " + W + " " + H);
         var xs = [], ys2 = [];
         data.path.forEach(function (a) { xs.push(a[0]); ys2.push(a[1]); });
+        (data.zweig || []).forEach(function (a) { xs.push(a[0]); ys2.push(a[1]); });
         P.forEach(function (p) { xs.push(p.x); ys2.push(p.y); });
         var x0 = Math.min.apply(null, xs), x1 = Math.max.apply(null, xs),
             y0 = Math.min.apply(null, ys2), y1 = Math.max.apply(null, ys2);
@@ -271,7 +283,9 @@
         if (gLab.getAttribute("opacity") !== "0") {
           try {
             var b = gLab.getBBox();
-            x0 = Math.min(x0, b.x - 14); x1 = Math.max(x1, b.x + b.width + 14);
+            /* getBBox rechnet die Sperrung des letzten Zeichens nicht mit,
+               darum rechts etwas mehr Luft als links. */
+            x0 = Math.min(x0, b.x - 14); x1 = Math.max(x1, b.x + b.width + 30);
             y0 = Math.min(y0, b.y - 14);
             y1 = Math.max(y1, b.y + b.height + 14);
           } catch (e) { /* getBBox scheitert, wenn nichts gezeichnet ist */ }

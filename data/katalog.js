@@ -11,7 +11,7 @@ window.MeridianKatalog = [
 
   { umlauf:2, id:"ht", titel:"Herzmeridian", code:"HT", codeDe:"He", name:"Herz",         han:"心", channel:"Hand-Shaoyin",  element:"Feuer",  wx:"feuer",  yin:true,  clock:"11–13", points:9,  view:"front", fertig:true },
   { umlauf:2, id:"si", titel:"Dünndarmmeridian", code:"SI", codeDe:"Dü", name:"Dünndarm",     han:"小肠", channel:"Hand-Taiyang",  element:"Feuer",  wx:"feuer",  yin:false, clock:"13–15", points:19, view:"back",  fertig:true },
-  { umlauf:2, id:"bl", titel:"Blasenmeridian", code:"BL", codeDe:"Bl", name:"Blase",        han:"膀胱", channel:"Fuß-Taiyang",   element:"Wasser", wx:"wasser", yin:false, clock:"15–17", points:67, view:"back",  fertig:false },
+  { umlauf:2, id:"bl", titel:"Blasenmeridian", code:"BL", codeDe:"Bl", name:"Blase",        han:"膀胱", channel:"Fuß-Taiyang",   element:"Wasser", wx:"wasser", yin:false, clock:"15–17", points:67, view:"back",  fertig:true },
   { umlauf:2, id:"ki", titel:"Nierenmeridian", code:"KI", codeDe:"Ni", name:"Niere",        han:"肾", channel:"Fuß-Shaoyin",   element:"Wasser", wx:"wasser", yin:true,  clock:"17–19", points:27, view:"front", fertig:false },
 
   { umlauf:3, id:"pc", titel:"Perikardmeridian", code:"PC", codeDe:"Pe", name:"Perikard",     han:"心包", channel:"Hand-Jueyin",   element:"Feuer",  wx:"feuer",  yin:true,  clock:"19–21", points:9,  view:"front", fertig:false },
