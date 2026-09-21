@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Der Qi-Fluss – Healthlane Academy</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+<div class="nav dunkel">
+  <div class="inner">
+    <a class="home" href="index.html" aria-label="Healthlane Academy, zur Übersicht">
+      <img src="img/marke/hla-logo-horizontal-negativ.svg" alt="Healthlane Academy">
+    </a>
+    <nav>
+      <a href="index.html">Übersicht</a>
+      <a href="#bahnen">Die Bahnen</a>
+      <a href="#umlauf">Der große Umlauf</a>
+      <a href="#uhr">Organuhr</a>
+      <a href="#gefaesse">Die beiden Gefäße</a>
+      <a href="index.html#uebungen">Übungen</a>
+    </nav>
+  </div>
+</div>
+
+<header class="dunkel hero">
+  <div class="inner">
+    <p class="label">Vierzehn Bahnen · 气的流注</p>
+    <h1 style="margin-top:12px">Der Qi-Fluss<span class="hanzi">气</span></h1>
+    <p class="lead" id="hIntro">Das Qi steht nicht still. Es läuft in einem geschlossenen Kreis
+    durch alle zwölf Hauptmeridiane, Tag und Nacht, und braucht für eine Runde
+    vierundzwanzig Stunden. Diese Seite zeigt beides: wo die Bahnen am Körper liegen und
+    in welcher Reihenfolge das Qi sie durchläuft. Dazu kommen die beiden unpaarigen
+    Gefäße, die vorn und hinten auf der Mittellinie laufen und selbst nicht Teil des
+    Kreises sind, sondern sein Vorrat.</p>
+  </div>
+</header>
+
+<section class="weiss" id="bahnen">
+  <div class="inner">
+    <p class="label">Die Bahnen</p>
+    <h2 style="margin-top:12px">Wo die Meridiane am Körper liegen</h2>
+    <p class="lead">Jede Bahn trägt die Farbe ihrer Wandlungsphase. Die blasseren Linien sind
+    die Gegenseite: alle zwölf Hauptmeridiane laufen paarig, rechts wie links. Die beiden
+    unpaarigen Gefäße stehen in Tusche, weil sie keiner Phase angehören. Ein Klick auf einen
+    Namen führt zur Tafel des einzelnen Meridians.</p>
+
+    <div class="bahnen-grid" style="margin-top:48px">
+      <figure>
+        <svg id="svgFront" xmlns="http://www.w3.org/2000/svg"></svg>
+        <figcaption>Vorderansicht<ul class="bahnen-liste" id="legFront"></ul></figcaption>
+      </figure>
+      <figure>
+        <svg id="svgBack" xmlns="http://www.w3.org/2000/svg"></svg>
+        <figcaption>Rückansicht<ul class="bahnen-liste" id="legBack"></ul></figcaption>
+      </figure>
+    </div>
+
+    <div class="bahnen-seite" style="margin-top:64px">
+      <figure>
+        <svg id="svgSide" xmlns="http://www.w3.org/2000/svg"></svg>
+        <figcaption>Seitenansicht<ul class="bahnen-liste" id="legSide"></ul></figcaption>
+      </figure>
+      <div class="fliess">
+        <p>Eine Bahn läuft weder vorn noch hinten, sondern an der Seite: die Gallenblase.
+        Sie beginnt am äußeren Augenwinkel, zieht im Zickzack über die Kopfseite, wechselt
+        an der Flanke ein zweites Mal zwischen vorn und hinten und läuft dann an der ganzen
+        Außenlinie des Beins hinab bis zur vierten Zehe. Mit vierundvierzig Punkten ist sie
+        nach der Blase der zweitlängste Meridian.</p>
+        <p>Dieser Verlauf erklärt fast ihre gesamte Beschwerdenliste: einseitiger
+        Kopfschmerz und Migräne, Ohrbeschwerden, Schmerz in der Flanke, Hüftschmerz und
+        Ischias an der Beinaußenseite. Wer an der Seite Beschwerden hat, denkt zuerst an
+        Shaoyang – an die Gallenblase und ihren Partner, den Drei-Erwärmer.</p>
+      </div>
+    </div>
+
+    <div class="merkkasten" style="margin-top:48px">
+      <p class="label">Merke</p>
+      <p style="margin:0">Yin läuft an den Innenseiten, Yang an den Außenseiten. Am Arm liegen
+      die drei Yin-Meridiane auf der Beugeseite und die drei Yang-Meridiane auf der
+      Streckseite; am Bein ebenso. Wer sich das merkt, findet jede Bahn ungefähr, auch ohne
+      sie einzeln gelernt zu haben.</p>
+    </div>
+  </div>
+</section>
+
+<section class="papier" id="umlauf">
+  <div class="inner">
+    <p class="label">Der große Umlauf</p>
+    <h2 style="margin-top:12px">In welcher Reihenfolge das Qi läuft<span class="hanzi">流注</span></h2>
+    <p class="lead">Die zwölf Meridiane bilden eine einzige geschlossene Kette. Sie zerfällt in
+    drei Umläufe zu je vier, und jeder Umlauf hat denselben Bau: Er beginnt in der Brust, geht
+    als Yin-Bahn zur Hand, kehrt als Yang-Bahn zum Kopf zurück, steigt als Yang-Bahn zum Fuß
+    hinab und kommt als Yin-Bahn wieder in der Brust an. Dort übernimmt der nächste Umlauf.
+    Wer diesen Bau einmal gesehen hat, muss die Reihenfolge nicht auswendig lernen.</p>
+
+    <div class="tafel-scroll" style="margin-top:48px">
+      <svg id="svgUmlauf" xmlns="http://www.w3.org/2000/svg" style="min-width:900px"></svg>
+    </div>
+
+    <div class="merkkasten" style="margin-top:48px">
+      <p class="label">Merke</p>
+      <p style="margin:0">Die Übergänge liegen dort, wo die Bahnen am oberflächlichsten
+      verlaufen: an Fingern und Zehen wechselt Yin zu Yang, in Brust und Kopf wechselt Yang zu
+      Yin. Genau dort liegen die Antikpunkte – und genau deshalb sind sie so wirksam.</p>
+    </div>
+  </div>
+</section>
+
+<section class="weiss" id="uhr">
+  <div class="inner">
+    <p class="label">Organuhr</p>
+    <h2 style="margin-top:12px">Dieselbe Kette als Uhr<span class="hanzi">子午流注</span></h2>
+    <p class="lead">Der Umlauf dauert vierundzwanzig Stunden; auf jeden Meridian entfallen zwei.
+    In dieser Zeit hat er seine Maximalzeit, und genau gegenüber auf dem Zifferblatt seine
+    Minimalzeit. Die Farben zeigen, dass vier Meridiane zum Feuer gehören und je zwei zu den
+    übrigen vier Phasen.</p>
+    <div class="schaubilder" style="margin-top:48px">
+      <figure>
+        <svg id="svgUhrBild" xmlns="http://www.w3.org/2000/svg"></svg>
+        <figcaption>Die Organuhr. Wer regelmäßig zur selben Stunde aufwacht, findet hier den
+        Meridian, der dann an der Reihe ist.</figcaption>
+      </figure>
+      <figure>
+        <svg id="svgWuxingBild" xmlns="http://www.w3.org/2000/svg"></svg>
+        <figcaption>Die fünf Wandlungsphasen mit ihren Organpaaren. Der nährende Zyklus läuft
+        außen im Uhrzeigersinn, der bändigende als Stern durch die Mitte.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="papier" id="gefaesse">
+  <div class="inner">
+    <p class="label">Die beiden Gefäße</p>
+    <h2 style="margin-top:12px">Ren Mai und Du Mai<span class="hanzi">任督</span></h2>
+    <div class="organ-grid" style="margin-top:40px">
+      <div class="fliess">
+        <p>Neben den zwölf Hauptmeridianen kennt die chinesische Medizin acht außerordentliche
+        Gefäße. Sie gehören nicht zum großen Umlauf und haben keine Maximalzeit; sie gelten als
+        Reservoire, die aufnehmen, was die zwölf im Überfluss haben, und abgeben, wo es fehlt.
+        Sechs von ihnen leihen sich ihre Punkte von den Hauptmeridianen.</p>
+        <p>Zwei haben eigene Punkte, und nur deshalb erscheinen sie neben den zwölf: das
+        Konzeptionsgefäß Ren Mai auf der vorderen Mittellinie und das Lenkergefäß Du Mai auf der
+        hinteren. Zusammen ergeben sie die vierzehn Bahnen, von denen viele Darstellungen
+        sprechen. Ren Mai heißt Meer der Yin-Meridiane, Du Mai Meer der Yang-Meridiane.</p>
+        <p>Im Qigong werden beide zu einem Kreis zusammengeführt: vorn hinab, hinten hinauf.
+        Das ist der Kleine Energiekreislauf – das Tableau dazu liegt bei den Übungen.</p>
+      </div>
+      <div><dl class="eigenschaften" id="gMeta"></dl></div>
+    </div>
+    <div class="karten" style="margin-top:40px" id="gKarten"></div>
+  </div>
+</section>
+
+<footer class="dunkel">
+  <div class="inner fliess">
+    <p>Die Bahnen sind nach der proportionalen Cun-Maßlehre auf die Figuren gesetzt und dienen
+    der Orientierung im Unterricht, nicht der Behandlung. Am Menschen wird immer palpiert.</p>
+    <p>Die Farben folgen den fünf Wandlungsphasen. Metall ist in der Überlieferung weiß und auf
+    hellem Grund nicht darstellbar; es steht hier als helles Silber mit Kontur.</p>
+  </div>
+</footer>
+
+<script src="js/engine.js"></script>
+<script src="js/wuxing.js"></script>
+<script src="js/qifluss.js"></script>
+<script src="data/wandlungsphasen.js"></script>
+<script src="data/katalog.js"></script>
+<script src="data/lu.js"></script><script src="data/li.js"></script>
+<script src="data/st.js"></script><script src="data/sp.js"></script>
+<script src="data/ht.js"></script><script src="data/si.js"></script>
+<script src="data/bl.js"></script><script src="data/ki.js"></script>
+<script src="data/pc.js"></script><script src="data/te.js"></script>
+<script src="data/gb.js"></script><script src="data/lr.js"></script>
+<script src="data/ren.js"></script><script src="data/du.js"></script>
+<script>
+(function () {
+  ["front", "back", "side"].forEach(function (v) {
+    var id = "svg" + v.charAt(0).toUpperCase() + v.slice(1);
+    QiFluss.bahnen(document.getElementById(id), v);
+    QiFluss.bahnenLegende(document.getElementById("leg" + v.charAt(0).toUpperCase() + v.slice(1)), v);
+  });
+  QiFluss.umlauf(document.getElementById("svgUmlauf"));
+  Wuxing.organuhr(document.getElementById("svgUhrBild"), "");
+  Wuxing.diagramm(document.getElementById("svgWuxingBild"), "");
+
+  var meta = [
+    ["Zahl der Gefäße", "acht außerordentliche"],
+    ["Mit eigenen Punkten", "nur Ren Mai und Du Mai"],
+    ["Ren Mai", "Meer der Yin-Meridiane, 24 Punkte"],
+    ["Du Mai", "Meer der Yang-Meridiane, 28 Punkte"],
+    ["Öffnungspunkte", "Lu 7 mit Ni 6 · Dü 3 mit Bl 62"],
+    ["Gemeinsam", "Kleiner Energiekreislauf"]
+  ];
+  var dl = document.getElementById("gMeta");
+  meta.forEach(function (r) {
+    var d = document.createElement("div");
+    var dt = document.createElement("dt"); dt.textContent = r[0];
+    var dd = document.createElement("dd"); dd.textContent = r[1];
+    d.appendChild(dt); d.appendChild(dd); dl.appendChild(d);
+  });
+
+  var host = document.getElementById("gKarten");
+  window.MeridianKatalog.filter(function (m) { return m.umlauf === 4; }).forEach(function (m) {
+    var a = document.createElement("a");
+    a.className = "karte"; a.href = "meridian.html?m=" + m.id;
+    var kopf = document.createElement("div"); kopf.className = "karte-kopf";
+    var kurz = document.createElement("span"); kurz.className = "karte-kurz"; kurz.textContent = m.codeDe;
+    var intl = document.createElement("span"); intl.className = "karte-int"; intl.textContent = m.code;
+    var hz = document.createElement("span"); hz.className = "karte-han hanzi"; hz.textContent = m.han;
+    kopf.appendChild(kurz); kopf.appendChild(intl); kopf.appendChild(hz);
+    var h3 = document.createElement("h3"); h3.textContent = m.name;
+    var z = document.createElement("p"); z.className = "zeile";
+    z.textContent = m.channel + " · " + (m.yin ? "Yin" : "Yang") + " · außerordentliches Gefäß";
+    var fuss = document.createElement("div"); fuss.className = "fuss";
+    var u = document.createElement("span"); u.textContent = "ohne Organuhr";
+    var p = document.createElement("span"); p.textContent = m.points + " Punkte";
+    var st = document.createElement("span"); st.className = "stand"; st.textContent = "fertig";
+    fuss.appendChild(u); fuss.appendChild(p); fuss.appendChild(st);
+    a.appendChild(kopf); a.appendChild(h3); a.appendChild(z); a.appendChild(fuss);
+    host.appendChild(a);
+  });
+})();
+</script>
+</body>
+</html>

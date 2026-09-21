@@ -16,6 +16,7 @@
     </a>
     <nav>
       <a href="../index.html">Meridiane</a>
+      <a href="../qifluss.html">Qi-Fluss</a>
       <a href="../index.html#uebungen" aria-current="page">Übungen</a>
     </nav>
   </div>
@@ -53,7 +54,25 @@
   </div>
 </section>
 
-<section class="weiss" id="uebungen">
+<section class="weiss" id="qifluss">
+  <div class="inner">
+    <p class="label">Der Qi-Fluss</p>
+    <h2 style="margin-top:12px">Warum die Reihenfolge so ist, wie sie ist<span class="hanzi">流注</span></h2>
+    <p class="lead">Die sechs Übungen folgen keiner beliebigen Ordnung: Sie gehen die drei
+    Umläufe des Qi durch, jeden in seinen beiden Paaren. Das Schaubild zeigt die ganze Kette.
+    Jeder Umlauf beginnt in der Brust, läuft als Yin-Bahn zur Hand, als Yang-Bahn zum Kopf,
+    als Yang-Bahn zum Fuß und als Yin-Bahn zurück in die Brust – dort übernimmt der nächste.
+    Wer in dieser Folge dehnt, geht den Weg des Qi mit.</p>
+    <div class="tafel-scroll" style="margin-top:40px">
+      <svg id="svgUmlauf" xmlns="http://www.w3.org/2000/svg" style="min-width:900px"></svg>
+    </div>
+    <p class="lead druckweg" style="margin-top:32px">Die ausführliche Darstellung mit allen
+    Bahnen auf der Figur steht auf der Seite
+    <a href="../qifluss.html">Der Qi-Fluss</a>.</p>
+  </div>
+</section>
+
+<section class="papier" id="uebungen">
   <div class="inner">
     <p class="label druckweg">Die Übungen</p>
     <h2 style="margin-top:12px" class="druckweg">Ausgangshaltung und Dehnung</h2>
@@ -61,7 +80,7 @@
   </div>
 </section>
 
-<section class="papier">
+<section class="weiss">
   <div class="inner">
     <div class="merkkasten">
       <p class="label">Hinweis</p>
@@ -79,8 +98,11 @@
 </footer>
 
 <script src="../js/wuxing.js"></script>
+<script src="../js/qifluss.js"></script>
 <script src="../data/wandlungsphasen.js"></script>
+<script src="../data/katalog.js"></script>
 <script src="../data/meridiandehnung.js"></script>
 <script src="../js/dehnung.js"></script>
+<script>QiFluss.umlauf(document.getElementById("svgUmlauf"), "../");</script>
 </body>
 </html>
