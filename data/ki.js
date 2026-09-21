@@ -244,6 +244,7 @@ Meridian.register({
       antik:"yong", wx:"feuer",
       tags:["Yong / Ying – kleiner Flusspunkt","Punkt beim Leerfeuer"],
       wirkung:["Yong / Ying – kleiner Flusspunkt", "Feuerpunkt der Nieren-Leitbahn", "", "Kühlt Leerhitze bei Nieren-Yin-Mangel", "Ordnet die Regel und den Genitalbereich", "Festigt die Essenz bei nächtlichem Samenverlust"],
+      skelett:"fussruecken",
       marken:["kahnbein", "fussrand_med"],
       loc:"Am inneren Fußrand, unterhalb der gut tastbaren Knochenvorwölbung des Kahnbeins, an der Grenze zwischen rotem und weißem Fleisch.",
       ind:"Nachtschweiß, Hitze am Abend, wunde Kehle, Durst, Blut im Auswurf, unruhiger Schlaf. Als Feuerpunkt des Wassermeridians der klassische Punkt, wenn Leerfeuer lodert. Dazu Juckreiz im Genitalbereich und Regelstörungen.",

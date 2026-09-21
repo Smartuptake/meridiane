@@ -96,6 +96,10 @@
   var LUPE_B = 290, LUPE_H = 318, LUPE_RAND = 8;
   var LUPE_BILD_B = 274, LUPE_BILD_H = 186;
 
+  /* Skelettzeichnungen, siehe data/skelette.js */
+  var SKELETTE = {};
+  function skelett(tafel) { for (var k in tafel) SKELETTE[k] = tafel[k]; }
+
   /* Benannte anatomische Marken, nach Ansicht geordnet */
   var MARKEN = { front: {}, back: {}, side: {} };
   function marken(tafel) {
@@ -320,6 +324,15 @@
     var detailZeigen = function () {};
 
     if (data.lupe !== false) (function () {
+      /* Eine Zeichnung braucht mehr Höhe als ein Fotoausschnitt. Die
+         beiden Maße gelten nur hier drinnen und überdecken die
+         allgemeinen. */
+      var hatSkelett = P.some(function (q) {
+        return q.skelett && SKELETTE[q.skelett] && SKELETTE[q.skelett].punkte &&
+               SKELETTE[q.skelett].punkte[LBL + " " + q.n];
+      });
+      var LUPE_H = hatSkelett ? 400 : 318, LUPE_BILD_H = hatSkelett ? 268 : 186;
+
       /* So viel Vergrößerung, dass auch das engste Punktpaar auseinanderrückt */
       var eng = 1e9;
       for (var a = 0; a < P.length; a++)
@@ -364,6 +377,8 @@
           "stroke-width": 2.2 / f, "stroke-linecap": "round" }));
       }
       innen.appendChild(gBild);
+      var gSkelett = el("g", { opacity: "0" });
+      innen.appendChild(gSkelett);
       var gInhalt = el("g", {});
       innen.appendChild(gInhalt);
       gDetail.appendChild(innen);
@@ -392,10 +407,21 @@
 
       /* Kleine Nummernscheibe, wie sie auf der Zeichnung und in der
          Liste darunter dieselbe Marke bezeichnet. */
+      var belegt = [];
       function scheibe(ziel, nr, x, y, imFenster) {
         if (imFenster) {
           x = Math.max(fx + 11, Math.min(fx + LUPE_BILD_B - 11, x));
           y = Math.max(fy + 11, Math.min(fy + LUPE_BILD_H - 11, y));
+          /* Zwei Nummern auf derselben Stelle sind nicht zu lesen */
+          for (var versuch = 0; versuch < 8; versuch++) {
+            var frei = true;
+            for (var i = 0; i < belegt.length; i++)
+              if (Math.abs(belegt[i][0] - x) < 17 && Math.abs(belegt[i][1] - y) < 17) frei = false;
+            if (frei) break;
+            y += 18;
+            if (y > fy + LUPE_BILD_H - 11) { y = fy + 11; x += 19; }
+          }
+          belegt.push([x, y]);
         }
         ziel.appendChild(el("circle", { cx: x, cy: y, r: 7, fill: PAPIER,
           stroke: STEIN, "stroke-width": 1.1 }));
@@ -405,17 +431,71 @@
         ziel.appendChild(t);
       }
 
+      /* Die Knochen werden bei jedem Aufruf neu gezeichnet – dreißig
+         Pfade fallen nicht ins Gewicht, und so bleibt die Strichstärke
+         unabhängig vom Maßstab. */
+      function knochenZeichnen(sk, sf) {
+        while (gSkelett.firstChild) gSkelett.removeChild(gSkelett.firstChild);
+        sk.knochen.forEach(function (kn) {
+          gSkelett.appendChild(el("path", { d: kn.d, fill: "#EFEAE2",
+            stroke: TUSCHE, "stroke-width": (kn.stark ? 1.5 : 1.1) / sf,
+            "stroke-linejoin": "round" }));
+        });
+      }
+
       detailZeigen = function (p) {
-        var tx = fx + LUPE_BILD_B / 2 - f * p.x, ty = fy + LUPE_BILD_H / 2 - f * p.y;
-        gBild.setAttribute("transform",
-          "translate(" + tx.toFixed(2) + "," + ty.toFixed(2) + ") scale(" + f.toFixed(4) + ")");
         while (gInhalt.firstChild) gInhalt.removeChild(gInhalt.firstChild);
         while (gDetailText.firstChild) gDetailText.removeChild(gDetailText.firstChild);
 
-        function schirm(x, y) { return [tx + f * x, ty + f * y]; }
-        var hw = LUPE_BILD_B / (2 * f), hh = LUPE_BILD_H / (2 * f);
+        belegt.length = 0;
+        var sk = p.skelett ? SKELETTE[p.skelett] : null;
+        if (sk && !(sk.punkte && sk.punkte[LBL + " " + p.n])) sk = null;
+        var schirm, lage, sichtbar, markenTopf, hw, hh;
 
-        /* Der Rahmen auf der Figur zeigt, was die Abbildung zeigt */
+        if (sk) {
+          /* --- Zeichnung --- */
+          gBild.setAttribute("opacity", "0");
+          gSkelett.setAttribute("opacity", "1");
+          var fe = sk.feld;
+          var sf = Math.min((LUPE_BILD_B - 78) / fe[2], (LUPE_BILD_H - 16) / fe[3]);
+          var stx = fx + 10 - fe[0] * sf;
+          var sty = fy + (LUPE_BILD_H - fe[3] * sf) / 2 - fe[1] * sf;
+          gSkelett.setAttribute("transform", "translate(" + stx.toFixed(2) + "," +
+            sty.toFixed(2) + ") scale(" + sf.toFixed(4) + ")");
+          knochenZeichnen(sk, sf);
+          schirm = function (x, y) { return [stx + sf * x, sty + sf * y]; };
+          lage = function (q) { return sk.punkte[LBL + " " + q.n]; };
+          sichtbar = function (q) { return !!sk.punkte[LBL + " " + q.n]; };
+          markenTopf = sk.marken || {};
+
+          /* Der Verlauf verbindet auf der Zeichnung die Punkte, die hier
+             zu sehen sind – in Flussrichtung. */
+          var kette = P.filter(sichtbar).map(lage);
+          if (kette.length > 1) {
+            var dd = spline(kette);
+            gSkelett.appendChild(el("path", { d: dd, fill: "none", stroke: PAPIER,
+              "stroke-width": 6.4 / sf, "stroke-linecap": "round", opacity: ".6" }));
+            gSkelett.appendChild(el("path", { d: dd, fill: "none", stroke: TUSCHE,
+              "stroke-width": 3.2 / sf, "stroke-linecap": "round" }));
+          }
+          hw = 48; hh = 48;
+        } else {
+          /* --- Fotoausschnitt --- */
+          gBild.setAttribute("opacity", "1");
+          gSkelett.setAttribute("opacity", "0");
+          var tx = fx + LUPE_BILD_B / 2 - f * p.x, ty = fy + LUPE_BILD_H / 2 - f * p.y;
+          gBild.setAttribute("transform",
+            "translate(" + tx.toFixed(2) + "," + ty.toFixed(2) + ") scale(" + f.toFixed(4) + ")");
+          schirm = function (x, y) { return [tx + f * x, ty + f * y]; };
+          lage = function (q) { return [q.x, q.y]; };
+          hw = LUPE_BILD_B / (2 * f); hh = LUPE_BILD_H / (2 * f);
+          sichtbar = function (q) {
+            return Math.abs(q.x - p.x) <= hw - 3 && Math.abs(q.y - p.y) <= hh - 3;
+          };
+          markenTopf = MARKEN[data.view] || {};
+        }
+
+        /* Der Rahmen auf der Figur zeigt, welche Gegend gemeint ist */
         rahmen.setAttribute("x", p.x - hw); rahmen.setAttribute("y", p.y - hh);
         rahmen.setAttribute("width", 2 * hw); rahmen.setAttribute("height", 2 * hh);
         var vonX = bx < p.x ? p.x - hw : p.x + hw;
@@ -425,7 +505,7 @@
         /* Marken zuerst, damit die Punkte darüberliegen */
         var liste = [];
         (p.marken || []).forEach(function (m) {
-          var mk = markeHolen(data.view, m);
+          var mk = (typeof m === "string") ? markenTopf[m] : m;
           if (!mk) return;
           liste.push(mk);
           var nr = liste.length;
@@ -454,8 +534,9 @@
         /* Die Punkte im Ausschnitt, der gewählte hervorgehoben */
         var drinnen = [];
         P.forEach(function (q, k) {
-          if (Math.abs(q.x - p.x) > hw - 3 || Math.abs(q.y - p.y) > hh - 3) return;
-          drinnen.push({ q: q, k: k, sy: schirm(q.x, q.y)[1] });
+          if (!sichtbar(q)) return;
+          var o = lage(q);
+          drinnen.push({ q: q, k: k, o: o, sy: schirm(o[0], o[1])[1] });
         });
         drinnen.sort(function (a, b) { return a.sy - b.sy; });
         var schieneX = fx + LUPE_BILD_B - 46, vorher = -1e9;
@@ -466,7 +547,7 @@
         });
         drinnen.forEach(function (e) {
           var q = e.q, k = e.k;
-          var s = schirm(q.x, q.y), an = (q === p);
+          var s = schirm(e.o[0], e.o[1]), an = (q === p);
           var g2 = el("g", { role: "button", tabindex: "0" });
           g2.style.cursor = "pointer";
           if (an) g2.appendChild(el("circle", { cx: s[0], cy: s[1], r: 11, fill: "none",
@@ -499,7 +580,8 @@
         gDetailText.appendChild(kopf);
         var lupe = el("text", { x: bx + LUPE_B - LUPE_RAND, y: zy, "text-anchor": "end",
           fill: STEIN, "font-family": SCHRIFT, "font-size": 12 });
-        lupe.textContent = (Math.round(f * 10) / 10).toFixed(1).replace(".", ",") + "fach";
+        lupe.textContent = sk ? sk.titel
+          : (Math.round(f * 10) / 10).toFixed(1).replace(".", ",") + "fach";
         gDetailText.appendChild(lupe);
 
         var zeile = 0;
@@ -620,5 +702,5 @@
   }
 
   global.Meridian = { register: register, get: get, mount: mount, spline: spline,
-                      marken: marken, W: W, H: H };
+                      marken: marken, skelett: skelett, W: W, H: H };
 })(window);
